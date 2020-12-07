@@ -1,0 +1,62 @@
+import 'package:PadrinhoMED/app/modules/match/components/card_profile_widget.dart';
+import 'package:PadrinhoMED/app/modules/match/components/head_widget.dart';
+import 'package:PadrinhoMED/app/modules/match/components/match_button_option_widget.dart';
+import 'package:PadrinhoMED/app/modules/match/components/swipe_card_widget.dart';
+import 'package:PadrinhoMED/app/modules/match/models/head_model.dart';
+import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:PadrinhoMED/app/utils/size_config.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:swipe_stack/swipe_stack.dart';
+import 'match_controller.dart';
+
+class MatchPage extends StatefulWidget {
+
+  final HeadModel headModel;
+  final List<CardProfile> listCard;
+
+  const MatchPage({Key key, this.headModel, this.listCard}) : super(key: key);
+  @override
+  _MatchPageState createState() => _MatchPageState(listCard: listCard,headModel: headModel);
+}
+
+class _MatchPageState extends ModularState<MatchPage, MatchController> with TickerProviderStateMixin {
+
+  final GlobalKey<SwipeStackState> _swipeKey = GlobalKey<SwipeStackState>();
+  final HeadModel headModel;
+
+  final List<CardProfile> listCard;
+
+  _MatchPageState({this.listCard,this.headModel});
+
+
+  void notLove(){
+    _swipeKey.currentState.swipeLeft();
+  }
+
+  void love(){
+    _swipeKey.currentState.swipeRight();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(children: [
+            HeaderWidget(backgroundColor: headModel.color,colorCategory: headModel.textColor,colorTitle: headModel.textColor,title: "Mostrando lista de",nameCategory: headModel.name),
+            SwipeCardWidget(listCard: listCard,swipeKey: _swipeKey,),
+            MatchButtonOptionWidget(
+              goHome: (){Modular.to.pushReplacementNamed("/Navigator");},
+              love: (){love();},
+              notLove: (){notLove();},)
+          ],),
+        ),
+      )
+    );
+  }
+}
