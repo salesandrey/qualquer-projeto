@@ -16,6 +16,24 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   //use 'controller' variable to access controller
 
+  FocusNode emailNode;
+  FocusNode passwordNode;
+  bool show = true;
+
+  @override
+  void initState() {
+    emailNode = new FocusNode();
+    passwordNode = new FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailNode.dispose();
+    passwordNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context){
@@ -25,7 +43,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
           backgroundColor: KPrimaryColor,
           body: SafeArea(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -54,12 +72,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           Container(
                             child: TextField(
                               onChanged: controller.changeEmail,
+                              focusNode: emailNode,
+                              onTap: (){
+                                emailNode.requestFocus();
+                                setState(() {});
+                              },
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
+                                focusColor: Color(0xFF050072),
                                 labelText: "E-mail",
                                 errorText: controller.emailValidator? controller.emailFeedback:null,
-                                labelStyle: TextStyle(fontFamily: "Montserrat Regular",
-                                  color: KBlueTextColor,
-                                ),
+                                labelStyle: TextStyle(fontFamily: "Montserrat Regular", color: emailNode.hasFocus ? Color(0xFF050072):KgreyColor,fontSize: 18,),
                                 contentPadding: const EdgeInsets.symmetric(horizontal: 5),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
@@ -77,13 +100,34 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           Container(
                             child: TextField(
                               onChanged: controller.changePassword,
+
+                              focusNode: passwordNode,
+                              onTap: (){
+                                  passwordNode.requestFocus();
+                                  setState(() {});
+                              },
+                              buildCounter: (BuildContext context,{int currentLength, int maxLength, bool isFocused }){
+                                if(passwordNode.hasFocus)
+                                  return Text("Esqueceu?",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color:Color(0xFF6259B2)));
+                                else
+                                  return null;
+                              },
+                              obscureText: show,
                               decoration: InputDecoration(
+                                focusColor: Color(0xFF050072),
                                 labelText: "Senha",
-                                errorText: controller.passwordValidator? controller.passwordFeedback:null,
-                                labelStyle: TextStyle(
-                                  fontFamily: "Montserrat Regular",
-                                  color: KBlueTextColor,
-                                ),
+                                suffixIcon:
+                                passwordNode.hasFocus?
+                                IconButton(onPressed: (){show = !show; setState(() {});},
+                                  icon: Image(
+                                    image: show ? AssetImage("assets/images/eye_login.png") : AssetImage("assets/images/eye_open_login.png"),
+                                    height: 23,
+                                    width: 23,
+                                    color: controller.passwordValidator? Colors.redAccent:Colors.black),):null,
+                                errorText: controller.passwordValidator? "Senha Incorreta : (":null,
+                                errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
+                                hintStyle: TextStyle(fontSize: 18,fontFamily: "Montserrat Regular",color: KBlueTextColor,),
+                                labelStyle: TextStyle(fontFamily: "Montserrat Regular",color: passwordNode.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,fontSize: 18),
                                 contentPadding: const EdgeInsets.symmetric(horizontal: 5),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
@@ -129,7 +173,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                 "Criar nova conta",
                                 style: TextStyle(
                                   fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Montserrat Bold",
                                   color: KBlueTextColor,
                                 ),
                                 textAlign: TextAlign.center,

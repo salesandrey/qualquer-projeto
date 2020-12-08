@@ -18,7 +18,7 @@ class _LoadingPageState extends ModularState<LoadingPage, LoadingController> wit
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 20))..repeat();
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2))..repeat();
   }
 
   @override
@@ -48,18 +48,18 @@ class _LoadingPageState extends ModularState<LoadingPage, LoadingController> wit
                           child: child,
                         );
                       },
-                      child: Image.asset("assets/images/icon.png"),
+                      child: Image.asset("assets/images/icon.png",width: 58,height: 58,),
                     ),
                   ),
                   SizedBox(height: 30,),
                   Container(
-                    child: Text("Woohoo!",style: TextStyle(color: kCheck,fontFamily: "Montserrat Bold",fontSize: 16),),
+                    child: Text("Woohoo!",textAlign: TextAlign.center,style: TextStyle(color: kCheck,fontFamily: "Montserrat Bold",fontSize: 18),),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width*0.7,
-                    child: Text("Suas respostas foram registradas.Aguarde enquanto sua tela inicial está sendo configurada.",
+                    width: MediaQuery.of(context).size.width*0.8,
+                    child: Text("Suas respostas foram registradas.\nAguarde enquanto sua tela inicial está sendo configurada.",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14,height: 1.4,color: kGrey,fontFamily: "Montserrat Regular"),),
+                      style: TextStyle(fontSize: 16,color: kGrey,fontFamily: "Montserrat Regular"),),
                   ),
                   Spacer(flex: 1,),
                   Container(
@@ -85,7 +85,7 @@ class _LoadingPageState extends ModularState<LoadingPage, LoadingController> wit
                           Modular.to.pushReplacementNamed("/Navigator");
                         },
                         textStyle: TextStyle(
-                            fontSize: 16.0,
+                            fontSize: 18.0,
                             color: kGrey,
                             fontFamily: "Montserrat Bold"
                         ),

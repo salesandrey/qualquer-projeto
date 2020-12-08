@@ -29,8 +29,8 @@ class ButtonWidget extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontFamily: "Montserrat Bold",
+                    fontSize: 18,
                     color: titleColor),
               ),
             ),

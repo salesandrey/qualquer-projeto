@@ -13,8 +13,9 @@ class TextInputWidget extends StatelessWidget {
   final Function changeText;
   final bool validator;
   final String errorText;
+  final FocusNode focusNode;
 
-  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText}) : super(key: key);
+  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText, this.focusNode}) : super(key: key);
 
 
   @override
@@ -24,14 +25,16 @@ class TextInputWidget extends StatelessWidget {
         style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold"),
         textAlignVertical: TextAlignVertical.center,
         onChanged: changeText,
+        focusNode: focusNode,
         decoration: InputDecoration(
+          helperMaxLines: 3,
           helperText: helpText,
           helperStyle: TextStyle(fontSize: 15,color: Color(0xFF000099),fontFamily: "Montserrat Regular"),
           labelText: labelText,
           hintText: hintText,
-          errorText: validator ?errorText:null,
+          errorText: validator ? errorText:null,
           hintStyle: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold"),
-          labelStyle: TextStyle(color: Kdeep_perpleColor,fontFamily: "Montserrat Regular",fontSize: 18),
+          labelStyle: TextStyle(color: Kdeep_perpleColor,fontFamily: "Montserrat Regular",fontSize: 18,),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: KGreyColor)),

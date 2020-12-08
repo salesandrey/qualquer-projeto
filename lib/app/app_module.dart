@@ -31,7 +31,7 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, module: SplashModule()),
+        ModularRouter(Modular.initialRoute, module: LoginModule()),
         ModularRouter("/Tutorial", module: TutorialModule()),
         ModularRouter("/EditProfile", module: EditProfileModule()),
         ModularRouter("/Navigator", module: NavigatorModule()),
@@ -42,12 +42,7 @@ class AppModule extends MainModule {
         ModularRouter("/Register", module: RegisterModule()),
         ModularRouter("/Match", module: MatchModule()),
         ModularRouter("/OnBoarding", module: OnBoardingModule()),
-        ModularRouter(
-          "/Video",
-          child: (_, args) => VideoTutorialPage(
-            videoPath: args.data,
-          ),
-        ),
+        ModularRouter("/Video", child: (_, args) => VideoTutorialPage(videoPath: args.data,),),
         ModularRouter("/CheckEmail", child: (_, args) => CheckEmailPage()),
         ModularRouter("/Account", child: (_, args) => AccountPage()),
         ModularRouter("/Category", child: (_, args) => CategoryPage()),

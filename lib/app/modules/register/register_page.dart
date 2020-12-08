@@ -1,4 +1,3 @@
-import 'package:PadrinhoMED/app/modules/login/componentes/button_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/components/button_confirm_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/components/text_input_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/viewmodel/register_validate_viewmodel.dart';
@@ -15,6 +14,24 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+
+  FocusNode username;
+  FocusNode instagram;
+
+  @override
+  void initState() {
+    username = FocusNode();
+    instagram = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    username.dispose();
+    instagram.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: InkWell(
                       onTap: () {
                         Modular.to.pop();
@@ -80,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Expanded(
                   flex: 2,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -92,13 +109,6 @@ class _RegisterPageState extends State<RegisterPage> {
                               fontSize: 24,
                               color: KBlueTextColor),
                         ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "Para começar, como \npodemos te chamar?",
-                          style: TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
-                        ),
                       ],
                     ),
                   ),
@@ -106,12 +116,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 Expanded(
                   flex: 4,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         TextInputWidget(errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Este é o nome para seus certificados",),
-                        TextInputWidget(validator: false,changeText: controller.changeInstagram,labelText: "Digite seu @ do Instagram",helpText: "Essa informação não é obrigatória,\nmas ela torna mais fácil as pessoas\nte encontrarem aqui pelo app!",)
+                        TextInputWidget(validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória,mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
                       ],
                     ),
                   ),
@@ -120,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   flex: 4,
                   child: Container(
                     padding:
-                    const EdgeInsets.only(left: 15, right: 15, bottom: 50),
+                    const EdgeInsets.only(left: 40, right: 40, bottom: 40),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -133,8 +143,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               setState(() {});
                             },
                             text: "CONTINUAR",
-                            color:KButtonLightColor,
-                            textColor: KButtonLightTextColor,
+                            color: controller.username=="" || controller.username.length < 2?KButtonLightColor: Color(0xFF6259B2),
+                            textColor: controller.username=="" || controller.username.length < 2? KButtonLightTextColor: Colors.white,
                             highLightColor: KBlueTextColor,
                             elevation: 0.00)
                       ],

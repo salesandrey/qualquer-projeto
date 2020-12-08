@@ -55,6 +55,7 @@ abstract class _RegisterControllerBase with Store {
   @action
   void changeUsername(String value){
     username = value;
+    print(username.length);
   }
 
   @action
