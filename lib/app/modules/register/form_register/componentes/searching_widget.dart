@@ -24,7 +24,7 @@ class _SearchingWidgetState extends State<SearchingWidget> {
         Container(
           margin: const EdgeInsets.only(top: 25, bottom: 15),
           child: Text(
-            "O que você procura?",
+            "Você gostaria de ser: ",
             style: TextStyle(
                 fontFamily: "Montserrat Bold",
                 fontSize: 18,
@@ -37,14 +37,14 @@ class _SearchingWidgetState extends State<SearchingWidget> {
             controller.changeTypeSearch("Afilhado");
             setState(() {});
           },
-          text: "Afilhados",
+          text: "Afilhado",
           height: 56.00,
           radius: 50.00,
-          centerDistance: 50.00,
+          centerDistance: 20.00,
           elevation: 0.00,
-          bordSize: selectedValue==1? 2.0 : 1.0,
+          bordSize: 1.0,
           fontFamily: selectedValue==1? "Montserrat Bold" : "Montserrat Regular",
-          textColor: selectedValue==1? Colors.white:Colors.black,
+          textColor: selectedValue==1? Colors.white:Color(0xFF050072),
           color: selectedValue==1?KBlueColor:Colors.white,),
         SizedBox(
           height: 8,
@@ -55,14 +55,14 @@ class _SearchingWidgetState extends State<SearchingWidget> {
             controller.changeTypeSearch("Padrinho");
             setState(() {});
           },
-          text: "Padrinhos",
+          text: "Padrinho",
           height: 56.00,
           radius: 50.00,
           centerDistance: 50.00,
           elevation: 0.00,
-          bordSize: selectedValue==2? 2.0 : 1.0,
+          bordSize: 1.0,
           fontFamily: selectedValue==2? "Montserrat Bold" : "Montserrat Regular",
-          textColor: selectedValue==2? Colors.white:Colors.black,
+          textColor: selectedValue==2? Colors.white:Color(0xFF050072),
           color: selectedValue==2? KBlueColor:Colors.white,)
       ],
     );

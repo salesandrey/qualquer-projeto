@@ -50,7 +50,7 @@ class _GraduationPageState
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                   child: InkWell(
                     onTap: () {
                       Modular.to.pop();

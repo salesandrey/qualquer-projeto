@@ -53,7 +53,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                 Container(
                   margin: const EdgeInsets.only(top: 25, bottom: 15),
                   child: Text(
-                    "Onde você mora?",
+                    "Digite a sua localização?",
                     style: TextStyle(
                         fontFamily: "Montserrat Bold",
                         fontSize: 18,

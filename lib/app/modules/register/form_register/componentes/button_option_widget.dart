@@ -24,13 +24,6 @@ class ButtonOptionWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(centerDistance),
-            border: Border.all(
-              style: BorderStyle.solid,
-              color: KBlueColor,
-            ),
-          ),
           width: MediaQuery.of(context).size.width * 0.9,
           height: height,
           child: RaisedButton(
@@ -46,7 +39,7 @@ class ButtonOptionWidget extends StatelessWidget {
             child: FittedBox(
               child: Text(
                 text,
-                style: TextStyle(fontSize: 16, color: textColor,fontFamily: fontFamily),
+                style: TextStyle(fontSize: 18, color: textColor,fontFamily: fontFamily),
                 textAlign: TextAlign.center,
               ),
             ),

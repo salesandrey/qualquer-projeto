@@ -44,6 +44,7 @@ abstract class _RegisterControllerBase with Store {
   @action
   void changeInstagram(String value){
     instagram = value;
+    print(instagram);
   }
 
   @observable

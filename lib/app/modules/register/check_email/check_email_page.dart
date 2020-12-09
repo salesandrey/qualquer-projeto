@@ -54,123 +54,95 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
                     ],
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
-                    child: InkWell(
-                      onTap: () {
-                        controller.changePinCodeFeedback("");
-                        controller.changePinCodeValidate(false);
-                        Modular.to.pop();
-                      },
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.arrow_back_ios,
-                            color: Kdeep_perpleColor,
-                            size: 18,
-                          ),
-                          Text('VOLTAR',
-                            style: TextStyle(
-                              fontFamily: "Montserrat Regular",
-                              fontSize: 15,
-                              color: Kdeep_perpleColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Perfeito!",
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
+                  child: InkWell(
+                    onTap: () {
+                      controller.changePinCodeFeedback("");
+                      controller.changePinCodeValidate(false);
+                      Modular.to.pop();
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.arrow_back_ios,
+                          color: Kdeep_perpleColor,
+                          size: 18,
+                        ),
+                        Text('VOLTAR',
                           style: TextStyle(
-                              fontFamily: "Montserrat Bold",
-                              fontSize: 24,
-                              color: KBlueTextColor),
-                        ),
-                        Text(
-                          "Agora cheque seu e-mail,\nque nós acabamos de enviar \num código de validação",
-                          style: TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
+                            fontFamily: "Montserrat Regular",
+                            fontSize: 15,
+                            color: Kdeep_perpleColor,
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 3,
-                  child:Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Text(
-                            "Código de validação",
-                            style: TextStyle(color: KBlueTextColor, fontSize: 15,fontFamily: "Montserrat Regular"),
-                          ),
+                Container(padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Perfeito!",
+                        style: TextStyle(
+                            fontFamily: "Montserrat Bold",
+                            fontSize: 24,
+                            color: KBlueTextColor),
+                      ),
+                      Text(
+                        "Agora cheque seu e-mail,\nque nós acabamos de enviar \num código de validação",
+                        style: TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 72),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Text(
+                          "Código de validação",
+                          style: TextStyle(color: Color(0xFF050072), fontSize: 15,fontFamily: "Montserrat Regular"),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              PinCodeTextField(
-                                autofocus: true,
-                                hideCharacter: false,
-                                highlight: true,
-                                highlightColor: Colors.blue,
-                                defaultBorderColor: Colors.black,
-                                hasTextBorderColor: Colors.green,
-                                pinBoxRadius: 10,
-                                pinBoxBorderWidth: 0.7,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:16.0,),
+                        child: PinCodeTextField(
+                          autofocus: true,
+                          hideCharacter: false,
+                          highlight: true,
+                          defaultBorderColor: kGrey,
+                          pinBoxRadius: 17,
+                          pinBoxBorderWidth: 1,
 
-                                maxLength: 4,
-                                onTextChanged: controller.changePinCode,
-                                onDone: (text) {
-                                  controller.sendCodeValidation();
-                                  setState(() {});
-                                },
-                                pinBoxWidth: 64,
-                                pinBoxHeight: 81,
-                                hasUnderline: false,
-                                wrapAlignment: WrapAlignment.spaceAround,
-                                pinBoxDecoration:
-                                ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                                pinTextStyle: TextStyle(fontSize: 22.0),
-                                pinTextAnimatedSwitcherTransition:
-                                ProvidedPinBoxTextAnimation.scalingTransition,
-//                    pinBoxColor: Colors.green[100],
-                                pinTextAnimatedSwitcherDuration:
-                                Duration(milliseconds: 300),
-//                    highlightAnimation: true,
-                                highlightAnimationBeginColor: Colors.black,
-                                highlightAnimationEndColor: Colors.white12,
-                                keyboardType: TextInputType.number,
-                              ),
-                            ],
-                          ),
+                          maxLength: 4,
+                          hasError: controller.pinCodeValidate,
+                          onTextChanged: controller.changePinCode,
+                          onDone: (text) {
+                            controller.sendCodeValidation();
+                            setState(() {});
+                          },
+                          pinBoxWidth: 72,
+                          pinBoxHeight: 89,
+                          hasUnderline: false,
+                          errorBorderColor: Colors.redAccent,
+                          wrapAlignment: WrapAlignment.spaceBetween,
+                          pinBoxDecoration:
+                          ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+                          pinTextStyle: TextStyle(fontSize: 32.0,fontFamily: "Montserrat Bold"),
+                          pinTextAnimatedSwitcherTransition:
+                          ProvidedPinBoxTextAnimation.scalingTransition,
+                          pinTextAnimatedSwitcherDuration:
+                          Duration(milliseconds: 300),
+                          highlightAnimationEndColor: Colors.white12,
+                          keyboardType: TextInputType.number,
                         ),
-                        SizedBox(height: 20,),
-                        Center(
-                          child: Visibility(
-                            child: Text(
-                              controller.pinCodeFeedback,
-                            ),
-                            visible: controller.pinCodeValidate,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(

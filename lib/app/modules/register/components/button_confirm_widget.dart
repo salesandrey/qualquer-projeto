@@ -9,8 +9,10 @@ class ButtonConfirmWidget  extends StatelessWidget {
   final String text;
   final Color textColor;
   final Function navigation;
+  final Color disableColor;
+  final Color disableTextColor;
 
-  ButtonConfirmWidget({this.navigation,this.color, this.elevation, this.highLightColor, this.text, this.textColor});
+  ButtonConfirmWidget({this.navigation,this.color, this.elevation, this.highLightColor, this.text, this.textColor, this.disableColor, this.disableTextColor});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,8 @@ class ButtonConfirmWidget  extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.9,
               height: 56,
               child: RaisedButton(
+                  disabledColor: disableColor,
+                  disabledTextColor: disableTextColor,
                   onPressed: navigation,
                   color: color,
                   elevation: elevation,

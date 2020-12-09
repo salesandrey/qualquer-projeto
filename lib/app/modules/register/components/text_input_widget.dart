@@ -1,7 +1,9 @@
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/modules/tutorial/components/text_widget.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 
@@ -14,27 +16,30 @@ class TextInputWidget extends StatelessWidget {
   final bool validator;
   final String errorText;
   final FocusNode focusNode;
+  final TextEditingController controller;
+  final Function function;
 
-  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText, this.focusNode}) : super(key: key);
+  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText, this.focusNode, this.controller, this.function}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: TextField(
+        onTap: function ,
+        controller: controller,
         style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold"),
         textAlignVertical: TextAlignVertical.center,
         onChanged: changeText,
         focusNode: focusNode,
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           helperMaxLines: 3,
           helperText: helpText,
-          helperStyle: TextStyle(fontSize: 15,color: Color(0xFF000099),fontFamily: "Montserrat Regular"),
+          helperStyle: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular"),
           labelText: labelText,
-          hintText: hintText,
-          errorText: validator ? errorText:null,
-          hintStyle: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold"),
-          labelStyle: TextStyle(color: Kdeep_perpleColor,fontFamily: "Montserrat Regular",fontSize: 18,),
+          errorText: validator ? errorText : null,
+          labelStyle: TextStyle(color: focusNode.hasFocus? Color(0xFF050072) : KgreyColor ,fontFamily: "Montserrat Regular",fontSize: 18,),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: KGreyColor)),

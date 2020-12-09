@@ -23,6 +23,7 @@ import 'modules/register/register_module.dart';
 import 'modules/register/video_tutorial/video_tutorial_page.dart';
 import 'modules/tutorial/tutorial_module.dart';
 
+
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
@@ -49,8 +50,7 @@ class AppModule extends MainModule {
         ModularRouter("/Location", child: (_, args) => LocationPage()),
         ModularRouter("/Graduation", child: (_, args) => GraduationPage()),
         ModularRouter("/Programs", child: (_, args) => ProgramsPage()),
-        ModularRouter("/Speciality",
-            child: (_, args) => SpecialityPage(title: args.data)),
+        ModularRouter("/Speciality", child: (_, args) => SpecialityPage(title: args.data)),
       ];
 
   @override

@@ -1,10 +1,12 @@
 import 'package:PadrinhoMED/app/modules/login/componentes/button_widget.dart';
+import 'package:PadrinhoMED/app/modules/register/components/button_confirm_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/form_register/componentes/searching_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/modules/register/viewmodel/register_validate_viewmodel.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
@@ -22,136 +24,157 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<RegisterController>(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: KPrimaryColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  child: Row(
+    return Observer(builder: (context){
+      return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: KPrimaryColor,
+        body: Stack(alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              child: ListView(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(
-                        flex: 6,
-                        child: Container(
-                          height: 8,
-                          color: KBlueColor,
+                      Container(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 6,
+                              child: Container(
+                                height: 8,
+                                color: KBlueColor,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 7,
+                              child: Container(
+                                height: 8,
+                                color: KButtonLightTextColor,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Expanded(
-                        flex: 7,
-                        child: Container(
-                          height: 8,
-                          color: KButtonLightTextColor,
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 40),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Vamos lá!",
+                              style: TextStyle(
+                                  fontFamily: "Montserrat Bold",
+                                  fontSize: 24,
+                                  color: KBlueTextColor),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            SearchingWidget(),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Quem é o afilhado?",
+                              style: TextStyle(
+                                  fontFamily: "Montserrat Bold",
+                                  fontSize: 15,
+
+                                  color: KGreyColor),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut feugiat est, elementum volutpat nisl. Aliquam tristique rutrum tellus eget egestas. In hac habitasse platea dictumst. Fusce accumsan volutpat velit, sit amet ultrices dolor rutrum non. Morbi consectetur tortor erat, nec pulvinar erat tincidunt eu.",
+                              textAlign: TextAlign.justify,
+                              style:
+                              TextStyle(fontSize: 14, color: KGreyColor,fontFamily: "Montserrat Regular"),
+                            ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Text(
+                              "Quem é o padrinho?",
+                              style: TextStyle(
+                                  fontFamily: "Montserrat Bold",
+                                  fontSize: 15,
+
+                                  color: KGreyColor),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut feugiat est, elementum volutpat nisl. Aliquam tristique rutrum tellus eget egestas. In hac habitasse platea dictumst. Fusce accumsan volutpat velit, sit amet ultrices dolor rutrum non. Morbi consectetur tortor erat, nec pulvinar erat tincidunt eu."
+                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut feugiat est, elementum volutpat nisl. Aliquam tristique rutrum tellus eget egestas. In hac habitasse platea dictumst. Fusce accumsan volutpat velit, sit amet ultrices dolor rutrum non. Morbi consectetur tortor erat, nec pulvinar erat tincidunt eu."
+                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut feugiat est, elementum volutpat nisl. Aliquam tristique rutrum tellus eget egestas. In hac habitasse platea dictumst. Fusce accumsan volutpat velit, sit amet ultrices dolor rutrum non. Morbi consectetur tortor erat, nec pulvinar erat tincidunt eu.",
+                              textAlign: TextAlign.justify,
+                              style:
+                              TextStyle(fontSize: 14, color: KGreyColor,fontFamily: "Montserrat Regular"),
+                            ),
+                            SizedBox(height:MediaQuery.of(context).size.height *0.2)
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-                Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Vamos lá, então!",
-                          style: TextStyle(
-                              fontFamily: "Montserrat Bold",
-                              fontSize: 24,
-                              color: KBlueTextColor),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "Para começar, vamos te ajudar \na ser encontrado aqui no app:",
-                          style:
-                          TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
-                        ),
-                        SearchingWidget(),
-                      ],
-                    ),
-                  ),
-                Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "O que faz um afilhado?",
-                          style: TextStyle(
-                              fontFamily: "Montserrat Bold",
-                              fontSize: 15,
-
-                              color: KGreyColor),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut feugiat est, elementum volutpat nisl. Aliquam tristique rutrum tellus eget egestas. In hac habitasse platea dictumst. Fusce accumsan volutpat velit, sit amet ultrices dolor rutrum non. Morbi consectetur tortor erat, nec pulvinar erat tincidunt eu.",
-                          textAlign: TextAlign.justify,
-                          style:
-                          TextStyle(fontSize: 14, color: KGreyColor,fontFamily: "Montserrat Regular"),
-                        ),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Text(
-                          "O que faz um padrinho?",
-                          style: TextStyle(
-                              fontFamily: "Montserrat Bold",
-                              fontSize: 15,
-
-                              color: KGreyColor),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut feugiat est, elementum volutpat nisl. Aliquam tristique rutrum tellus eget egestas. In hac habitasse platea dictumst. Fusce accumsan volutpat velit, sit amet ultrices dolor rutrum non. Morbi consectetur tortor erat, nec pulvinar erat tincidunt eu.",
-                          textAlign: TextAlign.justify,
-                          style:
-                          TextStyle(fontSize: 14, color: KGreyColor,fontFamily: "Montserrat Regular"),
-                        ),
-                      ],
-                    ),
-                  ),
-                SizedBox(
-                  height: 50,
-                ),
-                Container(
-                    padding: const EdgeInsets.only(left: 15,right: 15,bottom: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ButtonWidget(
-                          navigation: ()
-                          {
-                            print(controller.typeSearch);
-                            if(RegisterValidateViewModel().validateTypeSearch(controller)){
-                              if(controller.typeSearch=="Afilhado"){
-                                Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro.mp4");
-                              }
-                              else{
-                                Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro2.mp4");
-                              }
-                            }
-
-                          }, title: "CONTINUAR",color: KButtonLightColor,titleColor:KButtonLightTextColor, highlightColor: KBlueTextColor,elevation: 0.00,)
-                      ],
-                    ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
+            Positioned(
+              bottom: 0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height *0.15,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
+                          )),
+                      Positioned(bottom: 40,left: 40,right: 40,
+                          child: ButtonConfirmWidget(
+                              navigation: controller.typeSearch== null?
+                              null : (){
+                                print(controller.typeSearch);
+                                if(RegisterValidateViewModel().validateTypeSearch(controller)){
+                                  if(controller.typeSearch=="Afilhado"){
+                                    Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro.mp4");
+                                  }else{
+                                    Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro2.mp4");
+                                  }
+                                }},
+                              disableColor: KButtonLightColor,
+                              disableTextColor:KButtonLightTextColor,
+                              text: "CONTINUAR",
+                              color: Color(0xFF6259B2),
+                              textColor: Colors.white,
+                              highLightColor: KBlueTextColor,
+                              elevation: 0.00)
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
-      ),
-    );
+      );
+    });
+
   }
 }

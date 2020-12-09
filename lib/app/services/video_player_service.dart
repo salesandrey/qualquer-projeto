@@ -18,11 +18,13 @@ class _VideoPlayerServiceState extends State<VideoPlayerService> {
 
   _VideoPlayerServiceState(this.videoPath);
 
-  void checkVideo(){
+  void checkVideo() async{
 
     if(_controller.value.position == _controller.value.duration){
       isPlay = false;
       setState(() {});
+      await _controller.seekTo(Duration.zero);
+      _controller.pause();
 
     }
   }
