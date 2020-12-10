@@ -343,6 +343,36 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     });
   }
 
+  final _$ufsStringAtom = Atom(name: '_RegisterControllerBase.ufsString');
+
+  @override
+  ObservableList<String> get ufsString {
+    _$ufsStringAtom.reportRead();
+    return super.ufsString;
+  }
+
+  @override
+  set ufsString(ObservableList<String> value) {
+    _$ufsStringAtom.reportWrite(value, super.ufsString, () {
+      super.ufsString = value;
+    });
+  }
+
+  final _$citiesStringAtom = Atom(name: '_RegisterControllerBase.citiesString');
+
+  @override
+  ObservableList<String> get citiesString {
+    _$citiesStringAtom.reportRead();
+    return super.citiesString;
+  }
+
+  @override
+  set citiesString(ObservableList<String> value) {
+    _$citiesStringAtom.reportWrite(value, super.citiesString, () {
+      super.citiesString = value;
+    });
+  }
+
   final _$_RegisterControllerBaseActionController =
       ActionController(name: '_RegisterControllerBase');
 
@@ -600,6 +630,17 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   @override
+  void transformCityList() {
+    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
+        name: '_RegisterControllerBase.transformCityList');
+    try {
+      return super.transformCityList();
+    } finally {
+      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 loading: ${loading},
@@ -622,7 +663,9 @@ locationState: ${locationState},
 locationCity: ${locationCity},
 graduation: ${graduation},
 speciality: ${speciality},
-checkTerm: ${checkTerm}
+checkTerm: ${checkTerm},
+ufsString: ${ufsString},
+citiesString: ${citiesString}
     ''';
   }
 }

@@ -16,10 +16,10 @@ class ActivitiesWidget extends StatefulWidget {
 class _ActivitiesWidgetState extends State<ActivitiesWidget> {
 
   final Map<String,String> iconText = {
-    "Redes Sociais":"Posts para \nRedes Sociais",
-    "Casos e Aulas":"Discussão de Casos \nClínicos e Aulas",
+    "Redes Sociais":"Post para \nredes sociais",
+    "Casos e Aulas":"Discussão de caso \nclínico e aula",
     "Trabalho Científico":"Trabalho\nCientífico",
-    "Rotina Médica":"Acompanhar \nRotina Médica",
+    "Rotina Médica":"Acompanhamento \nrotina médico",
     "Mentoria Carreira":"Mentoria sobre \nCarreira Médica"
   };
 
@@ -35,7 +35,9 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
   Widget build(BuildContext context) {
     final controller = Provider.of<RegisterController>(context);
     return Observer(builder: (_){
-      return Column(crossAxisAlignment: CrossAxisAlignment.start,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             margin: const EdgeInsets.only(top: 25, bottom: 15),
@@ -56,7 +58,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                     children: [
                       TextSpan(text: "Selecione "),
                       TextSpan(text: "todos ",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:KGreyColor)),
-                      TextSpan(text: "os programas \nque você quer participar:" )
+                      TextSpan(text: "os programas \nque gostaria de participar" )
                     ]),),
               ],
             ),
@@ -81,7 +83,10 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                       style: BorderStyle.solid,
                       color: Color(0xFF707070),
                     )
-                ),child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+                ),child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+                ),
               ): Container(width: 32, height: 32, decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.00),
                   border: Border.all(
@@ -112,7 +117,10 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                     style: BorderStyle.solid,
                     color: Color(0xFF707070),
                   )
-              ),child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),
             ): Container(width: 32, height: 32, decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.00),
                 border: Border.all(
@@ -143,7 +151,10 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                     style: BorderStyle.solid,
                     color: Color(0xFF707070),
                   )
-              ),child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),
             ): Container(width: 32, height: 32, decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.00),
                 border: Border.all(
@@ -174,13 +185,19 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                     style: BorderStyle.solid,
                     color: Color(0xFF707070),
                   )
-              ),child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),
             ): Container(width: 32, height: 32, decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.00),
                 border: Border.all(
                     style: BorderStyle.solid,
                     color: Color(0xFF707070)))),
             border: controller.activities.contains("Mentoria sobre Carreira Médica")? Color(0xFF050072):Colors.white,
+          ),
+          SizedBox(
+            height: 8,
           ),
           CustomCheckBox(
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt lorem in arcu dignissim vehicula vitae sit amet nibh. Curabitur eget eros ullamcorper, dictum mauris eget, scelerisque ipsum. Sed et justo fermentum.",
@@ -202,7 +219,10 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                     style: BorderStyle.solid,
                     color: Color(0xFF707070),
                   )
-              ),child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Image(image: AssetImage("assets/images/check.png"),fit: BoxFit.contain,),
+              ),
             ): Container(width: 32, height: 32, decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.00),
                 border: Border.all(

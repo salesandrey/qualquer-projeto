@@ -16,13 +16,13 @@ class HeadWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 40),
       height: 64,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(25),
-          bottomRight: Radius.circular(25),
+          bottomLeft: Radius.circular(35),
+          bottomRight: Radius.circular(35),
         ),
       ),
       child: Column(
@@ -36,15 +36,13 @@ class HeadWidget extends StatelessWidget {
           Row(
             children: [
               Container(
-                child: Flexible(
-                  child: FittedBox(
-                    child: Text(
-                      head,
-                      style: TextStyle(
-                          color: headColor,
-                          fontSize: 16,
-                          fontFamily: "Montserrat Bold"),
-                    ),
+                child: FittedBox(
+                  child: Text(
+                    head,
+                    style: TextStyle(
+                        color: headColor,
+                        fontSize: 18,
+                        fontFamily: "Montserrat Bold"),
                   ),
                 ),
               ),

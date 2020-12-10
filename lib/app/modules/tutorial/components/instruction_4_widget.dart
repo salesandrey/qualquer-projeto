@@ -13,7 +13,7 @@ class Instruction4 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 27),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -25,19 +25,18 @@ class Instruction4 extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                              fontFamily: "Montserrat Bold",
                               color: KSecondaryColor,
                             ),
                           ),
                           Container(
-                            child: FittedBox(
-                              child: Text(
-                                'E claro, os programas que esse\ncontato quer participar por aqui!',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: KSecondaryColor,
-                                ),
+                            child: Text(
+                              'E claro, os programas que essa pessoas quer participar por aqui!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: "Montserrat Regular",
+                                fontSize: 18,
+                                color: KSecondaryColor,
                               ),
                             ),
                           ),
@@ -49,7 +48,8 @@ class Instruction4 extends StatelessWidget {
                       child: Image(
                         image: AssetImage(
                             'assets/images/swirly-scribbled-arrow@2x.png'),
-                        width: 70,
+                        width: 85.96,
+                        height: 85.96,
                       ),
                     ),
                     Container(
@@ -68,7 +68,7 @@ class Instruction4 extends StatelessWidget {
                               "Programas PadrinhoMed",
                               style: TextStyle(
                                   fontSize: 14,fontFamily: "Montserrat Bold",
-                                  color: KBlueColor),
+                                  color: Color(0xFF050072)),
                             ),
                           ),
                           Container(
@@ -90,13 +90,14 @@ class Instruction4 extends StatelessWidget {
                                           text: "Trabalho\nCientífico",
                                           roundedColor:KBlueColor.withOpacity(0.2)),
                                       RoundedIconWidget(
-                                          image:'assets/images/first-aid-kit.png',
-                                          text: "Rotina\nMédica",
-                                          roundedColor:KBlueColor.withOpacity(0.2)),
-                                      RoundedIconWidget(
                                           image:'assets/images/target.png',
                                           text: "Mentoria\nCarreira",
                                           roundedColor:KBlueColor.withOpacity(0.2)),
+                                      RoundedIconWidget(
+                                          image:'assets/images/first-aid-kit.png',
+                                          text: "Rotina\nMédica",
+                                          roundedColor:KBlueColor.withOpacity(0.2)),
+
                                     ],
                                   ),
                                 ),

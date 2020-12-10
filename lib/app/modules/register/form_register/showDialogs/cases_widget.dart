@@ -35,7 +35,7 @@ class CasesWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                            margin: EdgeInsets.only(top: 80),
+                            margin: EdgeInsets.only(top: 94),
                             child: Text(
                               title,
                               textAlign: TextAlign.center,
@@ -44,7 +44,7 @@ class CasesWidget extends StatelessWidget {
                                   fontFamily: "Montserrat Bold"),
                             )),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 24),
                             child: Text(
                               description,
                               textAlign: TextAlign.center,
@@ -53,7 +53,7 @@ class CasesWidget extends StatelessWidget {
                                   fontFamily: "Montserrat Regular"),
                             )),
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 15),
+                          margin: EdgeInsets.only(bottom: 40,top: 24),
                           child: Container(
                               margin: EdgeInsets.only(top: 15),
                               height: 56,
@@ -78,17 +78,19 @@ class CasesWidget extends StatelessWidget {
               ],
             ),
             Positioned(
-              top: -75,
+              top: -70,
               child: Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100)),
                   child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(32),
                       height: 136,
                       width: 136,
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle),child: Image(image: AssetImage(imagePath),fit: BoxFit.contain))
+                        shape: BoxShape.circle,
+                      color: KLightPurple),
+                      child: Center(child: Image(image: AssetImage(imagePath),fit: BoxFit.contain,color: Color(0xFF050072),)))
                   )
             )
           ],

@@ -80,6 +80,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 focusColor: Color(0xFF050072),
+                                errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
                                 labelText: "E-mail",
                                 errorText: controller.emailValidator? controller.emailFeedback:null,
                                 labelStyle: TextStyle(fontFamily: "Montserrat Regular", color: emailNode.hasFocus ? Color(0xFF050072):KgreyColor,fontSize: 18,),

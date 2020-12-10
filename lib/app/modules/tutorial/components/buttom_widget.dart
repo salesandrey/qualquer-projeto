@@ -11,26 +11,24 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
-      height: 46,
+      width: 125,
+      height: 40,
       child: RaisedButton(
         elevation: 0,
         highlightElevation: 0,
         onPressed: () {},
-        textColor: KBlueColor,
+        textColor: Color(0xFF050072),
         color: KthirdColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
           side: BorderSide(
-            color: KBlueColor,
+            color: Color(0xFF050072),
             width: 1,
           ),
         ),
-        child: FittedBox(
-          child: Text(
-            text,
-            style: TextStyle(fontSize: 16,fontFamily: "Montserrat Regular"),
-          ),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
         ),
       ),
     );

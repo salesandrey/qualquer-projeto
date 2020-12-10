@@ -58,7 +58,7 @@ class LogoutDialogWidget extends StatelessWidget {
                                       },
                                       color:Color(0xffcdcae5),
                                       shape: StadiumBorder(),
-                                      child: FittedBox(child: Text("Sim",style: TextStyle(color: Color(0xFF6259B2),fontFamily: "Montserrat Bold",fontSize: 18)),)
+                                      child: FittedBox(child: Text("SIM",style: TextStyle(color: Color(0xFF6259B2),fontFamily: "Montserrat Bold",fontSize: 18)),)
                                   )
                               ),
                               SizedBox(width: 10,),
@@ -75,7 +75,7 @@ class LogoutDialogWidget extends StatelessWidget {
                                     },
                                     color: Color(0xff6259B2),
                                     shape: StadiumBorder(),
-                                    child: FittedBox(child: Text("Não",style: TextStyle(color: Kfivthcolor,fontFamily: "Montserrat Bold",fontSize: 18),)),
+                                    child: FittedBox(child: Text("NÃO",style: TextStyle(color: Kfivthcolor,fontFamily: "Montserrat Bold",fontSize: 18),)),
                                   )
                               ),
                             ],
@@ -100,8 +100,13 @@ class LogoutDialogWidget extends StatelessWidget {
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100)),
-                  child: Image.asset(
-                    "assets/images/thinking.png",fit: BoxFit.contain,
+                  child: Container(
+                    padding: EdgeInsets.all(28.0),
+                    child: Image(
+                      image:AssetImage("assets/images/cry_emoji.png"),
+                      height: 80,
+                      width: 80,
+                    ),
                   ))),
             )
           ],

@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:PadrinhoMED/app/models/city_model.dart';
+import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:PadrinhoMED/app/models/user_model.dart';
 import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_controller.dart';
 import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_widget.dart';
 import 'package:PadrinhoMED/app/repositories/email_validator_repository.dart';
+import 'package:PadrinhoMED/app/repositories/location_repository.dart';
 import 'package:PadrinhoMED/app/repositories/user_repository.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:PadrinhoMED/app/utils/time_convert.dart';
@@ -156,7 +159,7 @@ abstract class _RegisterControllerBase with Store {
   ObservableList activities = [].asObservable();
 
   @observable
-  String speciality;
+  String speciality = "";
 
 
 
@@ -277,6 +280,121 @@ abstract class _RegisterControllerBase with Store {
      Modular.to.pushNamed("/Tutorial");
    }
 
+  }
+
+  List<String> specialityList = [
+    "Clínica Médica",
+    "Pediatria",
+    "Cirurgia Geral",
+    "Ginecologia e Obstetrícia",
+    "Anestesiologia",
+    "Medicina do Trabalho",
+    "Ortopedia e Traumotologia",
+    "Cardiologia",
+    "Oftalmologia",
+    "Radiologia e Diagnóstico por Imagem",
+    "Psiquiatria",
+    "Dermatologia",
+    "Medicina Intensiva",
+    "Otorrinolaringologia",
+    "Cirurgia Plástica",
+    "Medicina de Família e Comunidade",
+    "Urologia",
+    "Medicina de Tráfego",
+    "Endocrinologia e Metabologia",
+    "Neurologia",
+    "Gastroenterologia",
+    "Nefrologia",
+    "Cirurgia Vascular",
+    "Infectologia",
+    "Acupuntura",
+    "Oncologia Clínica",
+    "Pneumologia",
+    "Neurocirurgia",
+    "Patologia",
+    "Endoscopia",
+    "Cirurgia do Aparelho Digestivo",
+    "Hematologia e Hemoterapia",
+    "Homeopatia",
+    "Reumatologia",
+    "Cirurgia Cardiovascular",
+    "Mastologia",
+    "Coloproctologia",
+    "Medicina Preventiva e Social",
+    "Geriatria",
+    "Nutrologia",
+    "Angiologia",
+    "Arlegia e Imunologia",
+    "Patologia Clínica/Medicina Laboratorial",
+    "Cirurgia Pediátrica",
+    "Cirurgia Oncológica",
+    "Cirurgia de Cabeça e Pescoço",
+    "Cirurgia Toráxica",
+    "Medicina Nuclear",
+    "Medicina Física e Reabilitação",
+    "Medicina Esportiva",
+    "Medicina Legal e Perícia Médica",
+    "Cirurgia da Mão",
+    "Radioterapia",
+    "Genética Médica"
+  ];
+
+
+  List<UfModel> ufs = [];
+
+  List<CityModel> cities = [];
+
+  @observable
+  ObservableList<String>ufsString;
+
+  @observable
+  ObservableList<String>citiesString;
+
+  @computed
+  List get citiesComputed => cities.map((e) => e.nome).toList();
+
+  @action
+  void cleanListCities(){
+    citiesString = null;
+  }
+
+ 
+
+  Future<void> getUF() async{
+     ufs.clear();
+     dynamic data = await  LocationRepository().getUF();
+     print(data.runtimeType);
+     if(data!=null) {
+       for(dynamic value in data){
+         UfModel model  = UfModel.fromMap(value);
+         ufs.add(model);
+       }
+     }
+     transformUfList();
+  }
+
+  void transformUfList(){
+    ufsString = ufs.map((e) => e.nome).toList().asObservable();
+  }
+
+  @action
+  void transformCityList(){
+    citiesString = cities.map((e) => e.nome).toList().asObservable();
+    print(citiesString);
+  }
+
+  Future<void> getCities(String id) async{
+    cities.clear();
+
+    dynamic data = await  LocationRepository().getCity(id);
+    print(data.runtimeType);
+    if(data!=null) {
+      for (dynamic value in data) {
+        CityModel model = CityModel.fromMap(value);
+        cities.add(model);
+      }
+    }
+    transformCityList();
   }
 
 

@@ -8,7 +8,7 @@ class Instruction2 extends StatelessWidget {
     return Container(
       color: KfirstColor.withOpacity(0.9),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+
         children: <Widget>[
           HeadWidget(
             color: KLightPurple,
@@ -17,31 +17,30 @@ class Instruction2 extends StatelessWidget {
             head:"Mais indicados para você",
             smallHead: " ",
             headColor: KBlueTextColor),
-          Expanded(
-            flex: 2,
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image(
-                    image:AssetImage('assets/images/rotated-right-arrow@2x.png'),
-                    width: 40,
-                  ),
-                ],
-              ),
+          SizedBox(height: 32,),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image:AssetImage('assets/images/rotated-right-arrow@2x.png'),
+                  width: 32,
+                  height: 80,
+                ),
+              ],
             ),
           ),
-          Expanded(
-            flex: 5,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Text(
+          SizedBox(height: 16.0,),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: [
+                Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Text(
                           'Lista em exibição',
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -51,36 +50,34 @@ class Instruction2 extends StatelessWidget {
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
-                        Container(
-                          child: FittedBox(
-                            child: Text(
-                              'Existem várias formas de\ncarregar uma lista de pessoas\nem nosso app. É sempre\nimportante checar aqui em\ncima o que você está vendo',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: KSecondaryColor,
-                                  fontFamily: "Montserrat Regular"
-                              ),
-                            ),
+                      ),
+                      Container(
+                        child: Text(
+                          'Existem várias formas de\ncarregar uma lista de pessoas\nem nosso app. É sempre\nimportante checar aqui em\ncima o que você está vendo',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: KSecondaryColor,
+                              fontFamily: "Montserrat Regular"
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30,),
-                  Container(
-                    child: Text(
-                      'Sempre que você acessar o seu app, a primeira tela será a nossa lista de “Mais indicados para você”',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: KthirdColor,
                       ),
-                    ),
+                      SizedBox(height: 30,),
+                      Container(
+                        child: Text(
+                          'Sempre que você acessar o seu app, a primeira tela será a nossa lista de “Mais indicados para você”',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: "Montserrat Bold",
+                            color: KthirdColor,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

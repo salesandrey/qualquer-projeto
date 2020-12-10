@@ -24,7 +24,7 @@ class Instruction1 extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                              fontFamily: "Montserrat Bold",
                               color: KSecondaryColor,
                             ),
                           ),
@@ -34,7 +34,8 @@ class Instruction1 extends StatelessWidget {
                                 'Como essa é sua primeira vez\npor aqui, vamos explicar as\nfuncionalidades básicas do\napp PadrinhoMed.',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontFamily: "Montserrat Regular",
+                                  fontSize: 18,
                                   color: KSecondaryColor,
                                 ),
                               ),
@@ -44,7 +45,7 @@ class Instruction1 extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 30,
                     ),
                     Container(
                       child: FittedBox(
@@ -53,7 +54,7 @@ class Instruction1 extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 15,
-                            fontWeight: FontWeight.bold,
+                            fontFamily: "Montserrat Bold",
                             color: KthirdColor,
                           ),
                         ),

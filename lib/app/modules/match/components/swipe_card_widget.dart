@@ -38,8 +38,6 @@ class SwipeCardWidget extends StatelessWidget {
           onEnd: () => debugPrint("onEnd"),
           onSwipe: (int index, SwiperPosition position) =>
               debugPrint("onSwipe $index $position"),
-          onRewind: (int index, SwiperPosition position) =>
-              debugPrint("onRewind $index $position"),
         ));
   }
 }

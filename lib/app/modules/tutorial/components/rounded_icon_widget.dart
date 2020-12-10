@@ -12,12 +12,12 @@ class RoundedIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        margin: const EdgeInsets.only(top: 12),
-        height: 80,
+        width: 54,
+        height: 71,
         child: Column(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.2,
+              width: 40,
               height: 40,
               decoration: BoxDecoration(
                 color: roundedColor,
@@ -29,24 +29,21 @@ class RoundedIconWidget extends StatelessWidget {
                 children: [
                   Image(
                     image: AssetImage(image),
-                    height: 22,
+                    height: 24,
+                    width: 21.59,
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 1,
             ),
-            Flexible(
-              child: FittedBox(
-                child: Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontFamily: "Montserrat Regular"
-                  ),
-                ),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 11,
+                fontFamily: "Montserrat Regular"
               ),
             ),
           ],

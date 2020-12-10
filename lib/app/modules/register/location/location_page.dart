@@ -4,6 +4,7 @@ import 'package:PadrinhoMED/app/modules/register/form_register/componentes/locat
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/modules/register/viewmodel/register_validate_viewmodel.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,6 +19,28 @@ class LocationPage extends StatefulWidget {
 
 class _LocationPageState extends State<LocationPage> {
   //use 'controller' variable to access controller
+
+  GlobalKey<AutoCompleteTextFieldState<String>> keyStringState = new GlobalKey();
+  GlobalKey<AutoCompleteTextFieldState<String>> keyStringCity = new GlobalKey();
+  RegisterController controller;
+  TextEditingController stateController;
+  TextEditingController cityController;
+
+  @override
+  void initState() {
+    stateController = TextEditingController();
+    cityController = TextEditingController();
+    controller = Provider.of<RegisterController>(context,listen: false);
+    controller.getUF();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    stateController.dispose();
+    cityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +120,15 @@ class _LocationPageState extends State<LocationPage> {
                             style:
                             TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
                           ),
-                          LocationWidget(),
+                          LocationWidget(
+                              controller: controller,
+                            cityController: cityController,
+                            keyStringCity: keyStringCity,
+                            keyStringState: keyStringState,
+                            label1: "",
+                            label2: "",
+                            stateController: stateController,
+                          ),
                         ],
                       ),
                     ),
@@ -111,13 +142,14 @@ class _LocationPageState extends State<LocationPage> {
                   ],
                 ),
               ),
+
               Positioned(bottom: 40,left: 40,right: 40,
                   child: ButtonConfirmWidget(
-                      navigation: controller.locationCity== null || controller.locationState==null?
-                      null : (){
+                      navigation: (controller.ufsString!=null && controller.ufsString.contains(controller.locationState)) && (controller.citiesString!=null && controller.citiesString.contains(controller.locationCity))?
+                          (){
                         if(RegisterValidateViewModel().validateLocation(controller)){
                           Modular.to.pushNamed("/Graduation");
-                        }},
+                        }}:null,
                       disableColor: KButtonLightColor,
                       disableTextColor:KButtonLightTextColor,
                       text: "CONTINUAR",

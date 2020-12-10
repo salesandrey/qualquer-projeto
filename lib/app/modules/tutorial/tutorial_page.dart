@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:PadrinhoMED/app/modules/tutorial/components/buttons_pageview_widget.dart';
 import 'package:PadrinhoMED/app/modules/tutorial/components/instruction_1_widget.dart';
 import 'package:PadrinhoMED/app/modules/tutorial/components/instruction_2_widget.dart';
@@ -54,12 +56,21 @@ class _TutorialPageState extends ModularState<TutorialPage, TutorialController> 
       body: SafeArea(
         child: Stack(alignment: Alignment.center,
           children: [
-            Image.asset("assets/images/bg.JPG",fit: BoxFit.fill,),
+            Positioned.fill(
+               child:
+               Container(
+                 decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/bg.JPG",),fit: BoxFit.fill,)),
+                 child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 4,sigmaY: 4),
+                    child: Container(color: Colors.white.withOpacity(0),
+                    )),
+               ),
+            ),
             PageView(controller: pageController,children: tab,onPageChanged: (value){setState(() {});},),
             Positioned(bottom: 0,child: ButtonsPageViewWidget(
               controller: pageController,
               goAhead:(){goAhead();},
-              goBack: (){goBack();},))
+              goBack: index == 0 ? null : (){goBack();},))
             ],),)
     );
   }

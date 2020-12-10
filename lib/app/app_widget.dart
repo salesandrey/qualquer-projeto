@@ -16,7 +16,8 @@ class AppWidget extends StatelessWidget {
         navigatorKey: Modular.navigatorKey,
         title: 'PadrinhoMED',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
+
         ),
         initialRoute: '/',
         onGenerateRoute: Modular.generateRoute,

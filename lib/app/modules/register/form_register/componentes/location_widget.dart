@@ -1,51 +1,32 @@
+import 'package:PadrinhoMED/app/models/uf_model.dart';
+import 'package:PadrinhoMED/app/modules/register/components/autocomplete_text_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
-class LocationWidget extends StatefulWidget {
-  @override
-  _LocationWidgetState createState() => _LocationWidgetState();
-}
+class LocationWidget extends StatelessWidget {
 
-class _LocationWidgetState extends State<LocationWidget> {
+  final GlobalKey<AutoCompleteTextFieldState<String>> keyStringState;
+  final GlobalKey<AutoCompleteTextFieldState<String>> keyStringCity;
+  final RegisterController controller;
+  final TextEditingController stateController;
+  final TextEditingController cityController;
+  final String label1;
+  final String label2;
 
-  List<DropdownMenuItem<String>> items = [
+  LocationWidget({Key key, this.controller, this.stateController, this.cityController, this.keyStringState, this.keyStringCity, this.label1, this.label2}) : super(key: key);
 
-    DropdownMenuItem(child: Text("Acre",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Acre",),
-    DropdownMenuItem(child: Text("Alagoas",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Alagoas",),
-    DropdownMenuItem(child: Text("Amapá",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Amapá",),
-    DropdownMenuItem(child: Text("Amazonas",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Amazonas",),
-    DropdownMenuItem(child: Text("Bahia",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Bahia",),
-    DropdownMenuItem(child: Text("Ceará",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Ceará",),
-    DropdownMenuItem(child: Text("Distrito Federal",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Distrito Federal",),
-    DropdownMenuItem(child: Text("Espírito Santo",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Espírito Santo",),
-    DropdownMenuItem(child: Text("Goiás",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Goiás",),
-    DropdownMenuItem(child: Text("Maranhão",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Maranhão",),
-    DropdownMenuItem(child: Text("Mato Grosso",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Mato Grosso",),
-    DropdownMenuItem(child: Text("Mato Grosso do Sul",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Mato Grosso do Sul",),
-    DropdownMenuItem(child: Text("Minas Gerais",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Minas Gerais",),
-    DropdownMenuItem(child: Text("Pará",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Pará",),
-    DropdownMenuItem(child: Text("Paraíba",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Paraíba",),
-    DropdownMenuItem(child: Text("Paraná",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Paraná",),
-    DropdownMenuItem(child: Text("Pernambuco",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Pernambuco",),
-    DropdownMenuItem(child: Text("Piauí",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Piauí",),
-    DropdownMenuItem(child: Text("Rio de Janeiro",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Rio de Janeiro",),
-    DropdownMenuItem(child: Text("Rio Grande do Norte",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Rio Grande do Norte",),
-    DropdownMenuItem(child: Text("Rio Grande do Sul",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Rio Grande do Sul",),
-    DropdownMenuItem(child: Text("Rondônia",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Rondônia",),
-    DropdownMenuItem(child: Text("Roraima",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Roraima",),
-    DropdownMenuItem(child: Text("Santa Catarina",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Santa Catarina",),
-    DropdownMenuItem(child: Text("São Paulo",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "São Paulo",),
-    DropdownMenuItem(child: Text("Sergipe",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Sergipe",),
-    DropdownMenuItem(child: Text("Tocantins",style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Regular")),value: "Tocantins",),
-  ];
+  void getCity() async{
+    List<UfModel> value = controller.ufs.where((element) => identical(element.nome, controller.locationState)).toList();
+    await controller.getCities(value[0].id.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<RegisterController>(context);
     return Observer(builder: (_){
       return Container(
           child:Column(crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,36 +34,56 @@ class _LocationWidgetState extends State<LocationWidget> {
                 Container(
                   margin: const EdgeInsets.only(top: 25, bottom: 15),
                   child: Text(
-                    "Digite a sua localização?",
+                    "Onde você mora?",
                     style: TextStyle(
                         fontFamily: "Montserrat Bold",
                         fontSize: 18,
                         color: KBlackLightTextColor),
                   ),
                 ),
-                Container(
-                  child: DropdownButton<String>(isExpanded: true,
-                    value: controller.locationState==null?null:controller.locationState,
-                    underline: Container(
-                      height: 1,
-                      color: KGreyColor,
-                    ),
-                    items: items,
-                    icon: Icon(Icons.keyboard_arrow_down_sharp),
-                    onChanged: controller.changeLocationState,
-                    elevation: 0,
-                    hint: Text("Selecione um estado",
-                      style: TextStyle(fontFamily: "Montserrat Regular",fontSize: 18,color: KBlueColor),),),),
-                Container(
-                    child: TextField(
-                    onChanged: controller.changeLocationCity,
-                    decoration: InputDecoration(
-                        hintText: "E agora, a cidade",
-                        hintStyle: TextStyle(color: KGreyColor,fontFamily: "Montserrat Regular",fontSize: 18),
-                        labelStyle: TextStyle(color: KGreyColor),
-                        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: KGreyColor)),
-                        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: KBlueTextColor)))))
+                Theme(
+                  data: ThemeData(primaryColor:Color(0xFF050072)),
+                  child: Container(
+                      child: controller.ufsString==null?
+                      CircularProgressIndicator():
+                      AutoCompleteTextWidget(
+                        labelText: "",
+                        element: kGrey,
+                        controller: stateController,
+                        suggestion: controller.ufsString,
+                        textSubmit:(value)
+                        {
+                          controller.changeLocationState(value);
+                          controller.cleanListCities();
+                          getCity();
+                        },
+                        onChanged: controller.changeLocationState,
+                        keyText: keyStringState,
+                      )),
+                ),
+                Visibility(visible: controller.citiesString==null?false:true,
+                    child: Theme(
+                      data:ThemeData(primaryColor:Color(0xFF050072)),
+                      child: Container(child: controller.citiesString!=null && controller.citiesString.isEmpty?
+                      CircularProgressIndicator():
+                      AutoCompleteTextWidget(
+                              labelText: "",
+                              element: kGrey,
+                              controller: cityController,
+                              suggestion: controller.citiesComputed,
+                              textSubmit: (value){
+                                controller.changeLocationCity(value);
+                              print(controller.locationState);
+                              print(controller.locationCity);
+                              print(controller.ufsString.contains(controller.locationState));
+                              print(controller.citiesString.contains(controller.locationCity));
+                              },
+                              onChanged: controller.changeLocationCity,
+                              keyText: keyStringCity)
+                      ),
+                    ))
               ]));
     });
   }
 }
+

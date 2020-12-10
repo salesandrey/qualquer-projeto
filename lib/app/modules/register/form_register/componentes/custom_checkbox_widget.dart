@@ -18,17 +18,16 @@ class CustomCheckBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Provider.of<RegisterController>(context);
     return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0),
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0),
           side: BorderSide(color:border)),
+      elevation: 0,
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width * 0.9,
         height: 64,
         child: ListTile(
-          leading: InkWell(onTap: changeFunction,
+          horizontalTitleGap: 10,
+          leading: InkWell(
+              onTap: changeFunction,
               child: customBox),
           title: Text(title,
               style: TextStyle(fontFamily: "Montserrat Regular",
