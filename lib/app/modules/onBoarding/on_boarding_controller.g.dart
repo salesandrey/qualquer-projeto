@@ -34,18 +34,11 @@ mixin _$OnBoardingController on _OnBoardingControllerBase, Store {
     });
   }
 
-  final _$_OnBoardingControllerBaseActionController =
-      ActionController(name: '_OnBoardingControllerBase');
+  final _$getNameAsyncAction = AsyncAction('_OnBoardingControllerBase.getName');
 
   @override
-  void changeName(String value) {
-    final _$actionInfo = _$_OnBoardingControllerBaseActionController
-        .startAction(name: '_OnBoardingControllerBase.changeName');
-    try {
-      return super.changeName(value);
-    } finally {
-      _$_OnBoardingControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> getName() {
+    return _$getNameAsyncAction.run(() => super.getName());
   }
 
   @override

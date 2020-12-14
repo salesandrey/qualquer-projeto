@@ -32,7 +32,7 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, module: LoginModule()),
+        ModularRouter(Modular.initialRoute, module: SplashModule()),
         ModularRouter("/Tutorial", module: TutorialModule()),
         ModularRouter("/EditProfile", module: EditProfileModule()),
         ModularRouter("/Navigator", module: NavigatorModule()),

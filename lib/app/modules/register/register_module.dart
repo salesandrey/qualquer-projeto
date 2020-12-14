@@ -17,7 +17,7 @@ class RegisterModule extends ChildModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute,
-            child: (_, args) => LocationPage()),
+            child: (_, args) => RegisterPage()),
       ];
 
   static Inject get to => Inject<RegisterModule>.of();

@@ -16,6 +16,11 @@ class _OnBoardingPageState
   //use 'controller' variable to access controller
 
 
+  @override
+  void initState() {
+    controller.getName();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +76,7 @@ class _OnBoardingPageState
                             child: Center(
                               child: FittedBox(
                                 child: Text(
-                                  'Prontinho, ${controller.username}!',
+                                  'Prontinho, ${controller.username.split(" ")[0]}!',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 18,
@@ -115,7 +120,7 @@ class _OnBoardingPageState
                             height: 56,
                             child: RaisedButton(
                               onPressed: () {
-                              Modular.to.pushReplacementNamed("/Navigator");
+                                Modular.to.pushReplacementNamed("/Navigator");
                               },
                               color:Color(0xff6259B2),
                               elevation: 0,

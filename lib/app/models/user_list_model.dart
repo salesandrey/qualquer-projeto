@@ -1,11 +1,14 @@
+// To parse this JSON data, do
+//
+//     final userMatchModel = userMatchModelFromMap(jsonString);
+
 import 'dart:convert';
 
-class UserModel {
-  UserModel({
+class UserMatchModel {
+  UserMatchModel({
     this.id,
     this.nome,
     this.email,
-    this.senha,
     this.data,
     this.cod,
     this.sobre,
@@ -24,7 +27,6 @@ class UserModel {
   final int id;
   final String nome;
   final String email;
-  final String senha;
   final DateTime data;
   final String cod;
   final String sobre;
@@ -39,11 +41,10 @@ class UserModel {
   final List<Interess> interesses;
   final List<Atividade> atividades;
 
-  UserModel copyWith({
+  UserMatchModel copyWith({
     int id,
     String nome,
     String email,
-    String senha,
     DateTime data,
     String cod,
     String sobre,
@@ -58,11 +59,10 @@ class UserModel {
     List<Interess> interesses,
     List<Atividade> atividades,
   }) =>
-      UserModel(
+      UserMatchModel(
         id: id ?? this.id,
         nome: nome ?? this.nome,
         email: email ?? this.email,
-        senha: senha ?? this.senha,
         data: data ?? this.data,
         cod: cod ?? this.cod,
         sobre: sobre ?? this.sobre,
@@ -78,15 +78,14 @@ class UserModel {
         atividades: atividades ?? this.atividades,
       );
 
-  factory UserModel.fromJson(String str) => UserModel.fromMap(json.decode(str));
+  factory UserMatchModel.fromJson(String str) => UserMatchModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
+  factory UserMatchModel.fromMap(Map<String, dynamic> json) => UserMatchModel(
     id: json["id"],
     nome: json["nome"],
     email: json["email"],
-    senha: json["senha"],
     data: DateTime.parse(json["data"]),
     cod: json["cod"],
     sobre: json["sobre"],
@@ -106,7 +105,6 @@ class UserModel {
     "id": id,
     "nome": nome,
     "email": email,
-    "senha": senha,
     "data": "${data.year.toString().padLeft(4, '0')}-${data.month.toString().padLeft(2, '0')}-${data.day.toString().padLeft(2, '0')}",
     "cod": cod,
     "sobre": sobre,
@@ -126,23 +124,27 @@ class UserModel {
 class Atividade {
   Atividade({
     this.id,
-    this.tipo,
+    this.idUsuario,
     this.atividade,
+    this.tipo,
   });
 
   final int id;
-  final String tipo;
+  final int idUsuario;
   final String atividade;
+  final String tipo;
 
   Atividade copyWith({
     int id,
-    String tipo,
+    int idUsuario,
     String atividade,
+    String tipo,
   }) =>
       Atividade(
         id: id ?? this.id,
-        tipo: tipo ?? this.tipo,
+        idUsuario: idUsuario ?? this.idUsuario,
         atividade: atividade ?? this.atividade,
+        tipo: tipo ?? this.tipo,
       );
 
   factory Atividade.fromJson(String str) => Atividade.fromMap(json.decode(str));
@@ -151,49 +153,55 @@ class Atividade {
 
   factory Atividade.fromMap(Map<String, dynamic> json) => Atividade(
     id: json["id"],
-    tipo: json["tipo"],
+    idUsuario: json["idUsuario"],
     atividade: json["atividade"],
+    tipo: json["tipo"],
   );
 
   Map<String, dynamic> toMap() => {
     "id": id,
-    "tipo": tipo,
+    "idUsuario": idUsuario,
     "atividade": atividade,
+    "tipo": tipo,
   };
 }
 
 class Interess {
   Interess({
     this.id,
-    this.especialidade,
-    this.graduacao,
+    this.idUsuario,
     this.tipo,
-    this.cidade,
     this.estado,
+    this.cidade,
+    this.graduacao,
+    this.especialidade,
   });
 
   final int id;
-  final String especialidade;
-  final String graduacao;
+  final int idUsuario;
   final String tipo;
-  final String cidade;
   final String estado;
+  final String cidade;
+  final String graduacao;
+  final String especialidade;
 
   Interess copyWith({
     int id,
-    String especialidade,
-    String graduacao,
+    int idUsuario,
     String tipo,
-    String cidade,
     String estado,
+    String cidade,
+    String graduacao,
+    String especialidade,
   }) =>
       Interess(
         id: id ?? this.id,
-        especialidade: especialidade ?? this.especialidade,
-        graduacao: graduacao ?? this.graduacao,
+        idUsuario: idUsuario ?? this.idUsuario,
         tipo: tipo ?? this.tipo,
-        cidade: cidade ?? this.cidade,
         estado: estado ?? this.estado,
+        cidade: cidade ?? this.cidade,
+        graduacao: graduacao ?? this.graduacao,
+        especialidade: especialidade ?? this.especialidade,
       );
 
   factory Interess.fromJson(String str) => Interess.fromMap(json.decode(str));
@@ -202,19 +210,21 @@ class Interess {
 
   factory Interess.fromMap(Map<String, dynamic> json) => Interess(
     id: json["id"],
-    especialidade: json["especialidade"],
-    graduacao: json["graduacao"],
+    idUsuario: json["idUsuario"],
     tipo: json["tipo"],
-    cidade: json["cidade"],
     estado: json["estado"],
+    cidade: json["cidade"],
+    graduacao: json["graduacao"],
+    especialidade: json["especialidade"],
   );
 
   Map<String, dynamic> toMap() => {
     "id": id,
-    "especialidade": especialidade,
-    "graduacao": graduacao,
+    "idUsuario": idUsuario,
     "tipo": tipo,
-    "cidade": cidade,
     "estado": estado,
+    "cidade": cidade,
+    "graduacao": graduacao,
+    "especialidade": especialidade,
   };
 }

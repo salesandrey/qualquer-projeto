@@ -12,8 +12,9 @@ class AutoCompleteTextWidget extends StatelessWidget {
   final Function focusChanged;
   final List<String> suggestion;
   final String labelText;
+  final Icon icon;
 
-  const AutoCompleteTextWidget({this.keyText, this.controller, this.element, this.textSubmit, this.onChanged, this.focusChanged, this.suggestion, this.labelText});
+  const AutoCompleteTextWidget({this.keyText, this.controller, this.element, this.textSubmit, this.onChanged, this.focusChanged, this.suggestion, this.labelText, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +23,21 @@ class AutoCompleteTextWidget extends StatelessWidget {
         key: keyText,
         controller: controller,
         clearOnSubmit: false,
-
         onFocusChanged: focusChanged,
         textSubmitted: textSubmit,
         style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color: element,),
         suggestions: suggestion,
         textChanged: onChanged,
-        decoration: InputDecoration(
 
+        decoration: InputDecoration(
           labelText: labelText,
-          suffixIcon: Icon(Icons.search),
-          labelStyle: TextStyle(fontFamily: "Montserrat Regular",fontSize: 18,height: -7
+          suffixIcon: icon,
+          labelStyle: TextStyle(fontFamily: "Montserrat Regular",fontSize: 18,height: -5,color: element),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: element),
           ),
-          ),
-        ),
+
+        ))
     );
   }
 }

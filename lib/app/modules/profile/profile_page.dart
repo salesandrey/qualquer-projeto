@@ -17,6 +17,12 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
   //use 'controller' variable to access controller
 
   @override
+  void initState() {
+    controller.getName();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
       return Scaffold(
@@ -33,47 +39,42 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        flex: 8,
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Oi, ${controller.name}!",style: TextStyle(color: KSecondaryColor,fontFamily: "Montserrat Bold",fontSize: 24),),
-                              SizedBox(height: 10,),
-                              Text("O que você procura por aqui?",style: TextStyle(fontSize: 15,color: KSecondaryColor,fontFamily:"MontSerrat Regular"),),
-                            ],
-                          ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Oi, ${controller.name.split(" ")[0]}!",style: TextStyle(color: KSecondaryColor,fontFamily: "Montserrat Bold",fontSize: 24),),
+                            SizedBox(height: 10,),
+                            Text("O que você procura por aqui?",style: TextStyle(fontSize: 15,color: KSecondaryColor,fontFamily:"MontSerrat Regular"),),
+                          ],
                         ),
                       ),
-                      Expanded(
-                        child: Container(
-                          child: FittedBox(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: KSecondaryColor.withOpacity(0.2),
-                              ),
-                              height: 60,
-                              width: 60,
-                              child:Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      showDialog(context: context,
-                                        builder: (_) => LogoutDialogWidget());
-                                    },
-                                    child: Container(
-                                      child: Image(
-                                        image: AssetImage('assets/images/logout.png'),
-                                        height: 25,
-                                      ),
+                      Container(
+                        child: FittedBox(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: KSecondaryColor.withOpacity(0.2),
+                            ),
+                            height: 60,
+                            width: 60,
+                            child:Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(context: context,
+                                      builder: (_) => LogoutDialogWidget());
+                                  },
+                                  child: Container(
+                                    child: Image(
+                                      image: AssetImage('assets/images/logout.png'),
+                                      height: 25,
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

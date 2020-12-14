@@ -34,6 +34,13 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
     });
   }
 
+  final _$getNameAsyncAction = AsyncAction('_ProfileControllerBase.getName');
+
+  @override
+  Future<void> getName() {
+    return _$getNameAsyncAction.run(() => super.getName());
+  }
+
   @override
   String toString() {
     return '''

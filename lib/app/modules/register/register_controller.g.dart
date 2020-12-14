@@ -19,6 +19,14 @@ final $RegisterController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterController on _RegisterControllerBase, Store {
+  Computed<List<dynamic>> _$citiesComputedComputed;
+
+  @override
+  List<dynamic> get citiesComputed => (_$citiesComputedComputed ??=
+          Computed<List<dynamic>>(() => super.citiesComputed,
+              name: '_RegisterControllerBase.citiesComputed'))
+      .value;
+
   final _$loadingAtom = Atom(name: '_RegisterControllerBase.loading');
 
   @override
@@ -630,6 +638,17 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   @override
+  void cleanListCities() {
+    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
+        name: '_RegisterControllerBase.cleanListCities');
+    try {
+      return super.cleanListCities();
+    } finally {
+      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void transformCityList() {
     final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
         name: '_RegisterControllerBase.transformCityList');
@@ -665,7 +684,8 @@ graduation: ${graduation},
 speciality: ${speciality},
 checkTerm: ${checkTerm},
 ufsString: ${ufsString},
-citiesString: ${citiesString}
+citiesString: ${citiesString},
+citiesComputed: ${citiesComputed}
     ''';
   }
 }

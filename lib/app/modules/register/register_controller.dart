@@ -363,7 +363,6 @@ abstract class _RegisterControllerBase with Store {
   Future<void> getUF() async{
      ufs.clear();
      dynamic data = await  LocationRepository().getUF();
-     print(data.runtimeType);
      if(data!=null) {
        for(dynamic value in data){
          UfModel model  = UfModel.fromMap(value);

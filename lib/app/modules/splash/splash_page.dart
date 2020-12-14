@@ -16,9 +16,9 @@ class _SplashPageState extends ModularState<SplashPage, SplashController> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3),()
+    Future.delayed(Duration(seconds: 2),()
     {
-      Modular.to.pushReplacementNamed("/Login");
+      controller.checkUserLogging();
     }
     );
   }

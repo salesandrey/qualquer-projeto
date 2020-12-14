@@ -12,7 +12,7 @@ class NavigatorModule extends ChildModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute,
-            child: (_, args) => NavigatorPage()),
+            child: (_, args) => NavigatorPage(),transition:TransitionType.rightToLeft,duration: Duration(seconds: 2)),
       ];
 
   static Inject get to => Inject<NavigatorModule>.of();

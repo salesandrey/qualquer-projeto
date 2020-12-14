@@ -14,7 +14,9 @@ class SearchingPage extends StatefulWidget {
 
 class _SearchingPageState
     extends ModularState<SearchingPage, SearchingController> {
-  //use 'controller' variable to access controller
+
+
+  bool showOptions = true;
 
   @override
   void initState() {
@@ -32,9 +34,8 @@ class _SearchingPageState
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+            margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -42,36 +43,52 @@ class _SearchingPageState
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         prefixIcon: Icon(Icons.search,color: kGrey,),
-                        hintText: "Digite o nome aqui",
-                        hintStyle: TextStyle(color: kGrey),
+                        hintText: "Buscar e-mail ou @ do Instagram",
+                        hintStyle: TextStyle(color: kGrey,fontFamily: "Montserrat Regular",fontSize: 15),
                       )
                   ),
                 ),
-                SizedBox(height: 20,),
-                Text("Nível de graduação",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                Padding(
-                  padding: const EdgeInsets.only(top:10,bottom: 20),
-                  child: Column(children: controller.listGraduation,),
-                ),
-                Text("Atividades de interesse",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                Padding(
-                  padding: const EdgeInsets.only(top:10.0,bottom: 20),
-                  child: Column(children: controller.programs),
-                ),
-                Text("Especialidade",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                Padding(
-                  padding: const EdgeInsets.only(top:10.0,bottom: 10),
-                  child: Column(children: controller.specialits,),
-                ),
                 Container(
-                  padding: EdgeInsets.only(left: 22),
-                  child: InkWell(onTap: (){}
-                    ,child: Text("Quer mais filtros? Seja Premium!",
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: kCheck,
-                          fontWeight: FontWeight.bold),),
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                    SizedBox(height: 20,),
+                    Text("Nível de graduação",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10,bottom: 20),
+                      child: Column(children: controller.listGraduation,),
+                    ),
+                    Text("Programas PadrinhoMed",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10.0,bottom: 20),
+                      child: Column(children: controller.programs),
+                    ),
+                    Text("Especialidade",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10.0,bottom: 10),
+                      child: ConstrainedBox(constraints: true ? BoxConstraints() : BoxConstraints(maxHeight: 50.0),
+                        child:showOptions?
+                        Column(crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                          controller.specialits[0],
+                          controller.specialits[1],
+                          controller.specialits[2],
+                          controller.specialits[3],
+                          InkWell(onTap: (){
+                            showOptions = false;
+                            setState(() {});
+                          },
+                            child: Container(
+                              padding: EdgeInsets.only(top: 17),
+                              child: Text("Mostrar todas",style: TextStyle(color: Color(0xFF6259B2,),fontSize: 15,fontFamily: "Montserrat Bold",decoration: TextDecoration.underline,),),),
+                          )],) :
+                        Column(children: controller.specialits),
+                      ),
+
+
+                    ),
+                  ],),
                 ),
                 SizedBox(height: 20,),
                 ApplyButtonWidget(
@@ -84,7 +101,7 @@ class _SearchingPageState
                   radius: 50.00,
                   centerDistance: 50.00,
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 40,),
               ],
             ),
           ),

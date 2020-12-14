@@ -25,7 +25,6 @@ class CustomCheckBox extends StatelessWidget {
       child: Container(
         height: 64,
         child: ListTile(
-          horizontalTitleGap: 10,
           leading: InkWell(
               onTap: changeFunction,
               child: customBox),

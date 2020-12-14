@@ -19,8 +19,8 @@ class CheckBoxWidget extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 25,
-              height: 25,
+              width: 24,
+              height: 24,
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
                 border: Border.all(color: Color(0xff707070)),
@@ -36,7 +36,7 @@ class CheckBoxWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Flexible(child: FittedBox(child: Text(controller.title,style: TextStyle(color: kGrey)))),
+            Flexible(child: FittedBox(child: Text(controller.title,style: TextStyle(color: kGrey,fontFamily: "Montserrat Regular",fontSize: 15)))),
           ],
         ),
       );

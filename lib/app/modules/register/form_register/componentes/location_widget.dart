@@ -17,8 +17,10 @@ class LocationWidget extends StatelessWidget {
   final TextEditingController cityController;
   final String label1;
   final String label2;
+  final Icon icon1;
+  final Icon icon2;
 
-  LocationWidget({Key key, this.controller, this.stateController, this.cityController, this.keyStringState, this.keyStringCity, this.label1, this.label2}) : super(key: key);
+  LocationWidget({Key key, this.controller, this.stateController, this.cityController, this.keyStringState, this.keyStringCity, this.label1, this.label2, this.icon1, this.icon2}) : super(key: key);
 
   void getCity() async{
     List<UfModel> value = controller.ufs.where((element) => identical(element.nome, controller.locationState)).toList();
@@ -47,8 +49,9 @@ class LocationWidget extends StatelessWidget {
                       child: controller.ufsString==null?
                       CircularProgressIndicator():
                       AutoCompleteTextWidget(
-                        labelText: "",
-                        element: kGrey,
+                        icon: icon1,
+                        labelText: label1,
+                        element: Color(0xFF050072),
                         controller: stateController,
                         suggestion: controller.ufsString,
                         textSubmit:(value)
@@ -61,27 +64,31 @@ class LocationWidget extends StatelessWidget {
                         keyText: keyStringState,
                       )),
                 ),
-                Visibility(visible: controller.citiesString==null?false:true,
-                    child: Theme(
-                      data:ThemeData(primaryColor:Color(0xFF050072)),
-                      child: Container(child: controller.citiesString!=null && controller.citiesString.isEmpty?
-                      CircularProgressIndicator():
-                      AutoCompleteTextWidget(
-                              labelText: "",
-                              element: kGrey,
-                              controller: cityController,
-                              suggestion: controller.citiesComputed,
-                              textSubmit: (value){
-                                controller.changeLocationCity(value);
-                              print(controller.locationState);
-                              print(controller.locationCity);
-                              print(controller.ufsString.contains(controller.locationState));
-                              print(controller.citiesString.contains(controller.locationCity));
-                              },
-                              onChanged: controller.changeLocationCity,
-                              keyText: keyStringCity)
-                      ),
-                    ))
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: Visibility(visible: controller.citiesString==null?false:true,
+                      child: Theme(
+                        data:ThemeData(primaryColor:Color(0xFF050072)),
+                        child: Container(child: controller.citiesString!=null && controller.citiesString.isEmpty?
+                        CircularProgressIndicator():
+                        AutoCompleteTextWidget(
+                                icon: icon2,
+                                labelText: label2,
+                                element: kGrey,
+                                controller: cityController,
+                                suggestion: controller.citiesComputed,
+                                textSubmit: (value){
+                                  controller.changeLocationCity(value);
+                                print(controller.locationState);
+                                print(controller.locationCity);
+                                print(controller.ufsString.contains(controller.locationState));
+                                print(controller.citiesString.contains(controller.locationCity));
+                                },
+                                onChanged: controller.changeLocationCity,
+                                keyText: keyStringCity)
+                        ),
+                      )),
+                )
               ]));
     });
   }
