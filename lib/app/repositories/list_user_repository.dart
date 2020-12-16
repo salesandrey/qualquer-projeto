@@ -3,13 +3,14 @@ import 'package:http/http.dart';
 
 class ListUserRepository{
 
-  Future<dynamic> get() async{
+  Future<dynamic> get(String id) async{
     String url = "https://padmed.lanconi.com.br/usuarioList.py";
 
     var currentFilter = jsonEncode(
         {
-      "limit":0,
-      "offset":10
+          "idUsuario": id,
+          "limit":0,
+          "offset":30
         });
 
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);

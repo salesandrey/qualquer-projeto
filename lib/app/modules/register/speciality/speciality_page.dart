@@ -7,7 +7,6 @@ import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
 
 import '../register_controller.dart';
@@ -15,21 +14,23 @@ import '../register_controller.dart';
 class SpecialityPage extends StatefulWidget {
 
   final String title;
+  final bool message;
 
-  const SpecialityPage({Key key, this.title}) : super(key: key);
+  const SpecialityPage({Key key, this.title, this.message}) : super(key: key);
 
   @override
-  _SpecialityPageState createState() => _SpecialityPageState(title);
+  _SpecialityPageState createState() => _SpecialityPageState(title: title,message: message);
 }
 
 class _SpecialityPageState extends State<SpecialityPage> {
 
   final String title;
+  final bool message;
   GlobalKey<AutoCompleteTextFieldState<String>> keyStringSpeciality = new GlobalKey();
   TextEditingController specialityController;
   FocusNode speciality;
 
-  _SpecialityPageState(this.title);
+  _SpecialityPageState({this.title,this.message});
 
   @override
   void initState() {
@@ -65,26 +66,6 @@ class _SpecialityPageState extends State<SpecialityPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 16,
-                            child: Container(
-                              height: 8,
-                              color: KBlueColor,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 7,
-                            child: Container(
-                              height: 8,
-                              color: KButtonLightTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
                       padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                       child: InkWell(
                         onTap: () {
@@ -115,6 +96,7 @@ class _SpecialityPageState extends State<SpecialityPage> {
                         children: [
                           Text(
                             title,
+                            textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontFamily: "Montserrat Bold",
                                 fontSize: 24,
@@ -125,6 +107,7 @@ class _SpecialityPageState extends State<SpecialityPage> {
                           ),
                           Text(
                             "Escolha a especialidade que melhor define sua atuação",
+                            textAlign: TextAlign.left,
                             style:
                             TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
                           ),
@@ -145,6 +128,24 @@ class _SpecialityPageState extends State<SpecialityPage> {
                               ),
                             ),
                           ),
+
+                          Visibility(
+                            visible: message,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                              Container(padding: EdgeInsets.only(top: 50),
+                                  child:Text("Fique tranquilo!",style: TextStyle(fontSize: 15, fontFamily: "Montserrat Bold",color: kGrey),textAlign: TextAlign.left,)),
+                              Container(padding: EdgeInsets.only(top: 8),
+                                  child:Text("A especialidade de interesse serve para configurarmos o aplicativo da melhor forma para você. Lembre-se que é possível editar essa especialidade sempre que quiser, editando seu Perfil no App, em nossa barra do Menu.",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: "Montserrat Regular",
+                                        color: kGrey),
+                                    textAlign: TextAlign.left,)),
+                            ],),
+                          )
+
                         ],
                       ),
                     ),

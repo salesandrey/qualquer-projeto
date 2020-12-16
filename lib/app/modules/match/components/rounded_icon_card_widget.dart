@@ -1,4 +1,5 @@
 import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RoundedIconCardWidget extends StatelessWidget {
@@ -6,19 +7,19 @@ class RoundedIconCardWidget extends StatelessWidget {
   final String title;
 
   final Map<String,String> iconType  = {
-    "Redes Sociais":"assets/images/share.png",
-    "Casos e Aulas":"assets/images/speech-bubble.png",
-    "Trabalho Científico":"assets/images/chemistry.png",
-    "Rotina Médica":"assets/images/first-aid-kit.png",
-    "Mentoria Carreira":"assets/images/target.png"
+    "Posts para Redes Sociais":"assets/images/share.png",
+    "Discussão de Casos Clínicos e Aulas":"assets/images/speech-bubble.png",
+    "Trabalhos Científicos":"assets/images/chemistry.png",
+    "Acompanhar Rotina Médica":"assets/images/first-aid-kit.png",
+    "Mentoria sobre Carreira Médica":"assets/images/target.png"
   };
 
   final Map<String,String> iconText = {
-    "Redes Sociais":"Redes\nSociais",
-    "Casos e Aulas":"Casos\ne Aulas",
-    "Trabalho Científico":"Trabalho\nCientífico",
-    "Rotina Médica":"Rotina\nMédica",
-    "Mentoria Carreira":"Mentoria\nCarreira"
+    "Posts para Redes Sociais":"Redes\nSociais",
+    "Discussão de Casos Clínicos e Aulas":"Casos\ne Aulas",
+    "Trabalhos Científicos":"Trabalho\nCientífico",
+    "Acompanhar Rotina Médica":"Rotina\nMédica",
+    "Mentoria sobre Carreira Médica":"Mentoria\nCarreira"
   };
 
   RoundedIconCardWidget({Key key, this.title}) : super(key: key);
@@ -26,15 +27,15 @@ class RoundedIconCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       child: Container(
-        margin: const EdgeInsets.only(top: 12),
+        padding: EdgeInsets.only(top: 12),
         height: 80,
         child: Column(
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: 40,
+              height: MediaQuery.of(context).size.height * 0.06,
               decoration: BoxDecoration(
                 color: KBlueColor.withOpacity(0.2),
                 shape: BoxShape.circle,
@@ -45,7 +46,7 @@ class RoundedIconCardWidget extends StatelessWidget {
                 children: [
                   Image(
                     image: AssetImage(iconType[title]),
-                    height: 22,
+                    height: MediaQuery.of(context).size.height * 0.03,
                   ),
                 ],
               ),
@@ -54,14 +55,12 @@ class RoundedIconCardWidget extends StatelessWidget {
               height: 5,
             ),
             Flexible(
-              child: FittedBox(
-                child: Text(
-                  iconText[title],
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Montserrat Regular"
-                  ),
+              child: Text(
+                iconText[title],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.03,
+                  fontFamily: "Montserrat Regular"
                 ),
               ),
             ),

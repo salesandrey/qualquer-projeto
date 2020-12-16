@@ -1,12 +1,10 @@
-import 'package:PadrinhoMED/app/models/user_model.dart';
+import 'package:PadrinhoMED/app/global_components/card_user_widget/card_user_widget_controller.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 
 class CardUserWidget extends StatelessWidget {
 
-  final Color color;
-  final IconData heart;
-  final UserModel user;
+  final CardUserWidgetController controller;
 
   final Map<String,Color> colorCard = {
     "Estudante (1º ao 8º semestre)":Color(0xFFED7AA0),
@@ -16,7 +14,7 @@ class CardUserWidget extends StatelessWidget {
     "Médico Especialista":Color(0xFFFFBE69)
   };
 
-  CardUserWidget({Key key, this.color, this.user, this.heart}) : super(key: key);
+  CardUserWidget({Key key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class CardUserWidget extends StatelessWidget {
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
-              color: colorCard[user.graduacao],
+              color: colorCard[controller.user.graduacao],
             ),
           ),
           Expanded(
@@ -59,40 +57,37 @@ class CardUserWidget extends StatelessWidget {
                       Container(
                         child: Row(
                           children: [
-                            FittedBox(
-                              child: Text(
-                                user.nome,
-                                style: TextStyle(
-                                  fontFamily: "Montserrat Bold",
-                                  fontSize: 18,
-                                  color: KBlackColor,
-                                ),
+                            Text(
+                              controller.user.nome,
+                              style: TextStyle(
+                                fontFamily: "Montserrat Bold",
+                                fontSize: 18,
+                                color: KBlackColor,
                               ),
                             ),
-                            FittedBox(
-                              child: Text(
-                                "interesse: ${user.interesses[0].especialidade}",
-                                style: TextStyle(
-                                  fontFamily: "Montserrat Bold",
-                                  fontSize: 14,
-                                  color: KGreyColor,
-                                ),
+                            Text(
+                              "interesse: ${controller.user.interesses[0].especialidade}",
+                              style: TextStyle(
+                                fontFamily: "Montserrat Bold",
+                                fontSize: 14,
+                                color: KGreyColor,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Icon(heart, color: Color(0xff6259B2)),
+                      controller.like
+                          ? Icon(Icons.favorite, color: Color(0xff6259B2))
+                          : Icon(
+                          Icons.favorite_border, color: Color(0xff6259B2)),
                     ],
                   ),
-                  FittedBox(
-                    child: Text(
-                      user.graduacao,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: "Montserrat Regular",
-                        color: Colors.black,
-                      ),
+                  Text(
+                    controller.user.graduacao,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: "Montserrat Regular",
+                      color: Colors.black,
                     ),
                   ),
                 ],
@@ -104,3 +99,4 @@ class CardUserWidget extends StatelessWidget {
     );
   }
 }
+

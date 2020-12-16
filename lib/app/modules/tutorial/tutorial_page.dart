@@ -20,7 +20,7 @@ class _TutorialPageState extends ModularState<TutorialPage, TutorialController> 
 
 
   PageController pageController = PageController(initialPage: 0);
-  int index = 1;
+  int index = 0;
   List<Widget> tab = [
     Instruction1(),
     Instruction2(),
@@ -66,7 +66,7 @@ class _TutorialPageState extends ModularState<TutorialPage, TutorialController> 
                     )),
                ),
             ),
-            PageView(controller: pageController,children: tab,onPageChanged: (value){setState(() {});},),
+            PageView(controller: pageController,children: tab,onPageChanged: (value){setState(() {});},physics: new NeverScrollableScrollPhysics(),),
             Positioned(bottom: 0,child: ButtonsPageViewWidget(
               controller: pageController,
               goAhead:(){goAhead();},

@@ -1,4 +1,8 @@
+import 'package:PadrinhoMED/app/global_components/card_user_widget/card_user_widget_controller.dart';
+import 'package:PadrinhoMED/app/global_components/card_user_widget/card_user_widget_page.dart';
+import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/modules/home/home_page.dart';
+import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -16,7 +20,9 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
 
   @override
   void initState() {
+    controller.getUserID();
     controller.getInterest();
+    controller.initStream();
     super.initState();
   }
 
@@ -48,14 +54,22 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
             children: [
               SingleChildScrollView(
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
-                  child: Column(
-                    children: [
-
-                    ],
+                  margin: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
+                  child: Observer(builder:(context){
+                    if(controller.usersADD.data!=null){
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: controller.usersADD.data.length,
+                        itemBuilder: (BuildContext context,int index){
+                          UserMatchModel model  = UserMatchModel.fromMap(controller.usersADD.data["results"][index]);
+                          return CardUserWidget(controller: CardUserWidgetController(user: model,id:controller.userID,like: true),);
+                        },
+                      );
+                    }
+                    return Container();
+                  })
                   ),
                 ),
-              ),
               SingleChildScrollView(
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),

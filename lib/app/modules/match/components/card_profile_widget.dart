@@ -1,128 +1,140 @@
+import 'package:PadrinhoMED/app/models/user_list_model.dart';
+import 'package:PadrinhoMED/app/modules/match/components/button_card_profile_widget.dart';
 import 'package:PadrinhoMED/app/modules/match/components/rounded_icon_card_widget.dart';
+import 'package:PadrinhoMED/app/modules/match/components/text_card_profile_widget.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:PadrinhoMED/app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CardProfile extends StatelessWidget {
 
-  final colorCard;
-  final String head;
-  final String title;
-  final String content;
-  final String iconTitle;
-  final Color colorIconTitle;
-  final List<String> activits;
+  final UserMatchModel user;
+  final Map<String,Color> colorCard = {
+    "Estudante (1º ao 8º semestre)":Color(0xFFED7AA0),
+    "Interno (9º ao 12º semestre)":Color(0xFFA652B7),
+    "Médico Graduado":Color(0xFF6AA4E8),
+    "Em Especialização / Residente":Color(0xFF3FBAA3),
+    "Médico Especialista":Color(0xFFFFBE69)
+  };
 
-  const CardProfile({Key key,
-    this.colorCard,
-    this.head,
-    this.title,
-    this.content,
-    this.iconTitle,
-    this.colorIconTitle,
-    this.activits}) : super(key: key);
+  CardProfile({Key key, this.user,}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Card(
+      margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      margin: EdgeInsets.zero,
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white,
-        ),
-        height: 460,
+        width: 306,
+        height: 450,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
+              margin: EdgeInsets.zero,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8),
                   topRight: Radius.circular(8),
                 ),
-                color: colorCard,
+                color: colorCard[user.graduacao],
               ),
               height: 10,
             ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: Text(
-                        head,
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontFamily: "Montserrat Bold",
-                            color: KBlackColor),
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 2),
+                    child: Text(
+                      "${user.nome.split(" ").first} ${user.nome.split(" ").last}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontFamily: "Montserrat Bold",
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        title,
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: "Montserrat Bold",
-                            color: KGreyColor),
-                        textAlign: TextAlign.center,
+                  ),
+                  Container(
+                    child: Text(
+                      "Interesse: ${user.especialidade}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: KGreyColor,
+                        fontFamily: "Montserrat Bold",
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              flex: 5,
-              child: Container(
-                margin: const EdgeInsets.only(left: 15, right: 15, top: 30),
-                child: Column(
-                  children: [
-                    Container(
-                      child: Text(
-                        content,
-                        style: TextStyle(fontSize: 14, color: KBlackColor,fontFamily: "Montserrat Regular"),
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 12,
-                      ),
+            Container(
+                padding: EdgeInsets.only(top: 20,left:24,right: 24 ),
+                child: TextCardProfileWidget(text1: "Nível de Graduação",text2: user.graduacao)),
+            Container(
+                padding: EdgeInsets.only(top: 20,left: 24,right: 24),
+                child: TextCardProfileWidget(text1: "Localização",text2: "${user.cidade}, ${user.estado}")),
+            Container(
+              padding: EdgeInsets.only(top: 20,left: 24,right: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FittedBox(
+                    fit:BoxFit.fitWidth,
+                    child: Text(
+                      "Contatos de ${user.nome.split(" ").first}",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Montserrat Bold",
+                          color: Color(0xFF050072)),
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 8),
+                    height: 40,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ButtonCardProfileWidget(text: "E-mail"),
+                        SizedBox(width: 16,),
+                        ButtonCardProfileWidget(text: "Instagram")
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
             Divider(
               indent: 15,
               endIndent: 15,
             ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                child: Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(top: 8),
-                      child: Text(
-                        iconTitle,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: colorIconTitle,
-                          fontFamily: "Montserrat Bold",
-                        ),
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    child: Text(
+                      'Programas PadrinhoMed',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF050072),
+                        fontFamily: "Montserrat Bold",
                       ),
                     ),
-                    Container(
-                      child: Row(children: activits.map((e) => RoundedIconCardWidget(title: e)).toList(),
-                      ),
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: user.atividades.map((e) => RoundedIconCardWidget(title: e.atividade)).toList(),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

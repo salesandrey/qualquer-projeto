@@ -53,7 +53,7 @@ class Instruction4 extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: 170,
+                      height: MediaQuery.of(context).size.height *0.23,
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -79,11 +79,11 @@ class Instruction4 extends StatelessWidget {
                                     children: [
                                       RoundedIconWidget(
                                         image:'assets/images/share.png',
-                                        text:"Redes\nSociais",
+                                        text:"Rede\nSocial",
                                         roundedColor:KBlueColor.withOpacity(0.2)),
                                       RoundedIconWidget(
                                           image:'assets/images/speech-bubble.png',
-                                          text: "Casos e\nAulas",
+                                          text: "Caso e\nAula",
                                           roundedColor:KBlueColor.withOpacity(0.2)),
                                       RoundedIconWidget(
                                           image:'assets/images/chemistry.png',

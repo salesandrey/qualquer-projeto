@@ -7,6 +7,9 @@ import 'package:PadrinhoMED/app/modules/register/graduation/graduation_page.dart
 import 'package:PadrinhoMED/app/modules/register/location/location_page.dart';
 import 'package:PadrinhoMED/app/modules/register/programs/programs_page.dart';
 import 'package:PadrinhoMED/app/modules/register/speciality/speciality_page.dart';
+import 'package:PadrinhoMED/app/modules/reset_password/components/check_email_reset_page.dart';
+import 'package:PadrinhoMED/app/modules/reset_password/components/confirm_email_page.dart';
+import 'package:PadrinhoMED/app/modules/reset_password/reset_password_module.dart';
 import 'package:PadrinhoMED/app/modules/splash/splash_module.dart';
 
 import 'app_controller.dart';
@@ -22,7 +25,6 @@ import 'modules/register/check_email/check_email_page.dart';
 import 'modules/register/register_module.dart';
 import 'modules/register/video_tutorial/video_tutorial_page.dart';
 import 'modules/tutorial/tutorial_module.dart';
-
 
 class AppModule extends MainModule {
   @override
@@ -42,6 +44,9 @@ class AppModule extends MainModule {
         ModularRouter("/Loading", module: LoadingModule()),
         ModularRouter("/Register", module: RegisterModule()),
         ModularRouter("/Match", module: MatchModule()),
+        ModularRouter("/ResetPassword", module: ResetPasswordModule()),
+        ModularRouter("/CheckEmailReset", child: (_, args) => CheckEmailResetPage()),
+        ModularRouter("/ConfirmEmailPage", child: (_, args) => ConfirmEmailPage()),
         ModularRouter("/OnBoarding", module: OnBoardingModule()),
         ModularRouter("/Video", child: (_, args) => VideoTutorialPage(videoPath: args.data,),),
         ModularRouter("/CheckEmail", child: (_, args) => CheckEmailPage()),
@@ -50,7 +55,11 @@ class AppModule extends MainModule {
         ModularRouter("/Location", child: (_, args) => LocationPage()),
         ModularRouter("/Graduation", child: (_, args) => GraduationPage()),
         ModularRouter("/Programs", child: (_, args) => ProgramsPage()),
-        ModularRouter("/Speciality", child: (_, args) => SpecialityPage(title: args.data)),
+        ModularRouter("/Speciality",
+            child: (_, args) => SpecialityPage(
+                  title: args.data[0],
+                  message: args.data[1],
+                )),
       ];
 
   @override

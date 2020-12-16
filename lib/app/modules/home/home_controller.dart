@@ -108,8 +108,10 @@ abstract class _HomeControllerBase with Store {
   }
 
   Future<void> getUsers() async{
-    clearUsers();
-    dynamic data = await ListUserRepository().get();
+    if(users!=null){
+     clearUsers();
+    }
+    dynamic data = await ListUserRepository().get(currentUser.id.toString());
     List<UserMatchModel> newList =[];
     if(data!=null){
       for(dynamic value in data["results"]){

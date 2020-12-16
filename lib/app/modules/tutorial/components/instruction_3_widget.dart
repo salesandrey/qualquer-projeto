@@ -23,7 +23,7 @@ class Instruction3 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(top: 32),
+                  padding: EdgeInsets.only(top: 12),
                   child: Column(
                     children: [
                       Text(
@@ -47,16 +47,15 @@ class Instruction3 extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    padding: EdgeInsets.only(top: 24,left:24,right: 24 ),
+                    padding: EdgeInsets.only(top: 24,left: 24,right: 24),
                     child: TextWidget(text1: "Nível de Graduação",text2:"Estudante 1º a 8º semestre")),
                 Container(
                     padding: EdgeInsets.only(top: 24,left: 24,right: 24),
                     child: TextWidget(text1: "Localização",text2: "São Bernado do Campo, SP")),
                 Container(
-                  padding: EdgeInsets.only(top: 24,left: 24,right: 24),
+                  padding: EdgeInsets.only(top: 24,left: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
                         "Contatos de Flávia",
@@ -74,7 +73,7 @@ class Instruction3 extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             ButtonWidget(text: "E-mail"),
-                            SizedBox(width: 16,),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.02,),
                             ButtonWidget(text: "Instagram")
                           ],
                         ),
@@ -105,15 +104,13 @@ class Instruction3 extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          child: FittedBox(
-                            child: Text(
-                              'No card, você tem as principais\ninformações de cada pessoa',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: KSecondaryColor,
-                                  fontFamily: "Montserrat Regular"
-                              ),
+                          child: Text(
+                            'No card, você tem as principais\ninformações de cada pessoa',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: KSecondaryColor,
+                                fontFamily: "Montserrat Regular"
                             ),
                           ),
                         ),
@@ -122,15 +119,13 @@ class Instruction3 extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  child: FittedBox(
-                    child: Text(
-                      ' Importante: O e-mail e Instagram\nsó aparecem se você e a pessoa\nestiverem conectados no app',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: "Montserrat Bold",
-                        color: KthirdColor,
-                      ),
+                  child: Text(
+                    ' Importante: O e-mail e Instagram\nsó aparecem se você e a pessoa\nestiverem conectados no app',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: "Montserrat Bold",
+                      color: KthirdColor,
                     ),
                   ),
                 ),

@@ -46,6 +46,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
               children: [
                 Text(
                   "Agora pra fechar…",
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                       fontFamily: "Montserrat Bold",
                       fontSize: 24,

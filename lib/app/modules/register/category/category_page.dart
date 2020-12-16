@@ -37,26 +37,6 @@ class _CategoryPageState extends State<CategoryPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Container(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 6,
-                              child: Container(
-                                height: 8,
-                                color: KBlueColor,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 7,
-                              child: Container(
-                                height: 8,
-                                color: KButtonLightTextColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 40),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,6 +44,7 @@ class _CategoryPageState extends State<CategoryPage> {
                           children: [
                             Text(
                               "Vamos lá!",
+                              textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontFamily: "Montserrat Bold",
                                   fontSize: 24,
@@ -132,43 +113,38 @@ class _CategoryPageState extends State<CategoryPage> {
             ),
             Positioned(
               bottom: 0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+              child: Stack(
                 children: [
-                  Stack(
-                    children: [
-                      Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height *0.15,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
-                          )),
-                      Positioned(bottom: 40,left: 40,right: 40,
-                          child: ButtonConfirmWidget(
-                              navigation: controller.typeSearch== null?
-                              null : (){
-                                print(controller.typeSearch);
-                                if(RegisterValidateViewModel().validateTypeSearch(controller)){
-                                  if(controller.typeSearch=="Afilhado"){
-                                    Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro.mp4");
-                                  }else{
-                                    Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro2.mp4");
-                                  }
-                                }},
-                              disableColor: KButtonLightColor,
-                              disableTextColor:KButtonLightTextColor,
-                              text: "CONTINUAR",
-                              color: Color(0xFF6259B2),
-                              textColor: Colors.white,
-                              highLightColor: KBlueTextColor,
-                              elevation: 0.00)
-                      ),
-                    ],
-                  )
-                ],
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height *0.15,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
+                      )),
+                  Positioned(left: 40,right: 40,
+                      child: ButtonConfirmWidget(
+                          navigation: controller.typeSearch== null?
+                          null : (){
+                            print(controller.typeSearch);
+                            if(RegisterValidateViewModel().validateTypeSearch(controller)){
+                              if(controller.typeSearch=="Afilhado"){
+                                Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro.mp4");
+                              }else{
+                                Modular.to.pushReplacementNamed("/Video",arguments: "assets/videos/intro2.mp4");
+                              }
+                            }},
+                          disableColor: KButtonLightColor,
+                          disableTextColor:KButtonLightTextColor,
+                          text: "CONTINUAR",
+                          color: Color(0xFF6259B2),
+                          textColor: Colors.white,
+                          highLightColor: KBlueTextColor,
+                          elevation: 0.00)
+                  ),
+                ],alignment: Alignment.center,
               ),
             ),
           ],

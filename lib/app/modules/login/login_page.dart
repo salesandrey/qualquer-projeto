@@ -72,6 +72,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           Container(
                             child: TextField(
                               onChanged: controller.changeEmail,
+                              style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold",fontSize: 18),
                               focusNode: emailNode,
                               onTap: (){
                                 emailNode.requestFocus();
@@ -101,7 +102,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           Container(
                             child: TextField(
                               onChanged: controller.changePassword,
-
+                              style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold",fontSize: 18),
                               focusNode: passwordNode,
                               onTap: (){
                                   passwordNode.requestFocus();
@@ -109,7 +110,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                               },
                               buildCounter: (BuildContext context,{int currentLength, int maxLength, bool isFocused }){
                                 if(passwordNode.hasFocus)
-                                  return Text("Esqueceu?",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color:Color(0xFF6259B2)));
+                                  return InkWell(onTap: (){
+                                    Modular.to.pushNamed("/ResetPassword");
+                                  },child: Text("Esqueceu?",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color:Color(0xFF6259B2))));
                                 else
                                   return null;
                               },

@@ -19,11 +19,11 @@ final $RegisterController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterController on _RegisterControllerBase, Store {
-  Computed<List<dynamic>> _$citiesComputedComputed;
+  Computed<List<String>> _$citiesComputedComputed;
 
   @override
-  List<dynamic> get citiesComputed => (_$citiesComputedComputed ??=
-          Computed<List<dynamic>>(() => super.citiesComputed,
+  List<String> get citiesComputed => (_$citiesComputedComputed ??=
+          Computed<List<String>>(() => super.citiesComputed,
               name: '_RegisterControllerBase.citiesComputed'))
       .value;
 
@@ -351,6 +351,36 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     });
   }
 
+  final _$ufsAtom = Atom(name: '_RegisterControllerBase.ufs');
+
+  @override
+  ObservableList<UfModel> get ufs {
+    _$ufsAtom.reportRead();
+    return super.ufs;
+  }
+
+  @override
+  set ufs(ObservableList<UfModel> value) {
+    _$ufsAtom.reportWrite(value, super.ufs, () {
+      super.ufs = value;
+    });
+  }
+
+  final _$citiesAtom = Atom(name: '_RegisterControllerBase.cities');
+
+  @override
+  ObservableList<CityModel> get cities {
+    _$citiesAtom.reportRead();
+    return super.cities;
+  }
+
+  @override
+  set cities(ObservableList<CityModel> value) {
+    _$citiesAtom.reportWrite(value, super.cities, () {
+      super.cities = value;
+    });
+  }
+
   final _$ufsStringAtom = Atom(name: '_RegisterControllerBase.ufsString');
 
   @override
@@ -379,6 +409,21 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     _$citiesStringAtom.reportWrite(value, super.citiesString, () {
       super.citiesString = value;
     });
+  }
+
+  final _$getUFAsyncAction = AsyncAction('_RegisterControllerBase.getUF');
+
+  @override
+  Future<void> getUF() {
+    return _$getUFAsyncAction.run(() => super.getUF());
+  }
+
+  final _$getCitiesAsyncAction =
+      AsyncAction('_RegisterControllerBase.getCities');
+
+  @override
+  Future<void> getCities(String id) {
+    return _$getCitiesAsyncAction.run(() => super.getCities(id));
   }
 
   final _$_RegisterControllerBaseActionController =
@@ -649,6 +694,17 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   @override
+  void transformUfList() {
+    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
+        name: '_RegisterControllerBase.transformUfList');
+    try {
+      return super.transformUfList();
+    } finally {
+      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void transformCityList() {
     final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
         name: '_RegisterControllerBase.transformCityList');
@@ -683,6 +739,8 @@ locationCity: ${locationCity},
 graduation: ${graduation},
 speciality: ${speciality},
 checkTerm: ${checkTerm},
+ufs: ${ufs},
+cities: ${cities},
 ufsString: ${ufsString},
 citiesString: ${citiesString},
 citiesComputed: ${citiesComputed}

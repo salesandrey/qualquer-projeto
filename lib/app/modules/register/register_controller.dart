@@ -1,19 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:PadrinhoMED/app/models/city_model.dart';
 import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:PadrinhoMED/app/models/user_model.dart';
-import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_controller.dart';
-import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_widget.dart';
 import 'package:PadrinhoMED/app/repositories/email_validator_repository.dart';
 import 'package:PadrinhoMED/app/repositories/location_repository.dart';
 import 'package:PadrinhoMED/app/repositories/user_repository.dart';
-import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:PadrinhoMED/app/utils/time_convert.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:validators/sanitizers.dart';
 
 part 'register_controller.g.dart';
 
@@ -47,7 +43,6 @@ abstract class _RegisterControllerBase with Store {
   @action
   void changeInstagram(String value){
     instagram = value;
-    print(instagram);
   }
 
   @observable
@@ -215,7 +210,6 @@ abstract class _RegisterControllerBase with Store {
 
   Future<void> sendCodeValidation() async{
     dynamic data = await EmailValidatorRepository().sendCodeVerification(email, pinCode);
-    print(data);
     if(data!=null && data["results"]=="Sucesso"){
       changePinCodeValidate(true);
       changePinCodeFeedback("Código Válido");
@@ -229,6 +223,7 @@ abstract class _RegisterControllerBase with Store {
 
   Future<void> saveData() async{
 
+    SharedLocalStorageService storage = SharedLocalStorageService();
     Map<String,String> typeActivits ={
       "Posts para Redes Sociais":"20",
       "Discussão de Casos Clínicos e Aulas":"21",
@@ -275,6 +270,15 @@ abstract class _RegisterControllerBase with Store {
        });
 
    dynamic data = await UserRepository().insert(user);
+   dynamic recoverData = await UserRepository().get(email, password);
+
+    UserModel model = UserModel.fromMap(recoverData["results"]);
+    List<dynamic> newActivities = model.atividades.map((element) {
+      return element.atividade.toString();
+    }).toList();
+    var list = newActivities.cast<String>().toList();
+
+   await storage.saveDataLocal(model, email, password, list);
 
    if(data!=null){
      Modular.to.pushNamed("/Tutorial");
@@ -339,10 +343,11 @@ abstract class _RegisterControllerBase with Store {
     "Genética Médica"
   ];
 
+  @observable
+  ObservableList<UfModel> ufs;
 
-  List<UfModel> ufs = [];
-
-  List<CityModel> cities = [];
+  @observable
+  ObservableList<CityModel> cities;
 
   @observable
   ObservableList<String>ufsString;
@@ -351,7 +356,13 @@ abstract class _RegisterControllerBase with Store {
   ObservableList<String>citiesString;
 
   @computed
-  List get citiesComputed => cities.map((e) => e.nome).toList();
+  List<String> get citiesComputed {
+
+    if(cities==null){
+      return [];
+    }
+    return cities.map((e) => e.nome).toList();
+  }
 
   @action
   void cleanListCities(){
@@ -359,19 +370,24 @@ abstract class _RegisterControllerBase with Store {
   }
 
  
-
+  @action
   Future<void> getUF() async{
-     ufs.clear();
+    if(ufs!=null) {
+      ufs.clear();
+    }
+     List<UfModel> newUFs = [];
      dynamic data = await  LocationRepository().getUF();
      if(data!=null) {
        for(dynamic value in data){
          UfModel model  = UfModel.fromMap(value);
-         ufs.add(model);
+         newUFs.add(model);
        }
      }
+     ufs = newUFs.asObservable();
      transformUfList();
   }
 
+  @action
   void transformUfList(){
     ufsString = ufs.map((e) => e.nome).toList().asObservable();
   }
@@ -379,20 +395,22 @@ abstract class _RegisterControllerBase with Store {
   @action
   void transformCityList(){
     citiesString = cities.map((e) => e.nome).toList().asObservable();
-    print(citiesString);
   }
 
+  @action
   Future<void> getCities(String id) async{
-    cities.clear();
-
+    if(cities!=null) {
+      cities.clear();
+    }
     dynamic data = await  LocationRepository().getCity(id);
-    print(data.runtimeType);
+    List<CityModel> newCities = [];
     if(data!=null) {
       for (dynamic value in data) {
         CityModel model = CityModel.fromMap(value);
-        cities.add(model);
+        newCities.add(model);
       }
     }
+    cities = newCities.asObservable();
     transformCityList();
   }
 

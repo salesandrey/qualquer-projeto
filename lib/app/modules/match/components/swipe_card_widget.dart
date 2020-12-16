@@ -1,10 +1,11 @@
+import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/modules/match/components/card_profile_widget.dart';
+import 'package:PadrinhoMED/app/utils/swip.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe_stack/swipe_stack.dart';
 
 class SwipeCardWidget extends StatelessWidget {
 
-  final List<CardProfile> listCard;
+  final List<UserMatchModel> listCard;
   final GlobalKey<SwipeStackState> swipeKey;
 
   SwipeCardWidget({Key key, this.listCard, this.swipeKey}) : super(key: key);
@@ -20,12 +21,8 @@ class SwipeCardWidget extends StatelessWidget {
             return SwiperItem(
                 builder: (SwiperPosition position, double progress) {
                   return Material(
-                      elevation: 4,
                       borderRadius: BorderRadius.all(Radius.circular(6)),
-                      child: CardProfile(title: value.title,colorIconTitle: value.colorIconTitle,
-                      iconTitle: value.iconTitle,content: value.content,head: value.head,colorCard: value.colorCard,
-                        activits: value.activits)
-                  );
+                      child: CardProfile(user: value));
                 }
             );
           }).toList(),

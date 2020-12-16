@@ -35,24 +35,6 @@ class _ProgramsPageState extends State<ProgramsPage> {
                   height: MediaQuery.of(context).size.height,
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 16,
-                            child: Container(
-                              height: 8,
-                              color: KBlueColor,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 7,
-                            child: Container(
-                              height: 8,
-                              color: KButtonLightTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                         child: InkWell(

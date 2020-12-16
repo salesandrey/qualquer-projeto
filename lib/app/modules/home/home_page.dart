@@ -103,7 +103,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           navigator: ()
                           {
                             controller.changeFilter("Estudante (1º ao 8º semestre)");
-                            //Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPinkColor,textColor: Colors.black,name: "Estudante (1º ao 8º semestre)")]);
+                            Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPinkColor,textColor: Colors.black,name: "Estudante (1º ao 8º semestre)"),controller.currentUser.id]);
                           },
                         ),
                         CardColorFullWidget(
@@ -113,7 +113,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           navigator: ()
                           {
                             controller.changeFilter("Interno (9º ao 12º semestre)");
-                            //Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPurple,textColor: Colors.black,name: "Interno (9º ao 12º semestre)")]);
+                            Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPurple,textColor: Colors.black,name: "Interno (9º ao 12º semestre)"),controller.currentUser.id]);
                           },
                         ),
                         CardColorFullWidget(
@@ -123,7 +123,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           navigator: ()
                           {
                             controller.changeFilter("Médico Graduado");
-                            //Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KAzulColor,textColor: Colors.black,name:"Médicos Graduado")]);
+
+                            Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,
+                              HeadModel(color:KAzulColor,textColor: Colors.black,name:"Médicos Graduado"),controller.currentUser.id]);
                           },
                         ),
                         CardColorFullWidget(
@@ -133,7 +135,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           navigator: ()
                           {
                             controller.changeFilter("Em Especialização / Residente");
-                            //Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KGreenColor,textColor: Colors.black,name:"Residentes em especialização")]);
+                            Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KGreenColor,textColor: Colors.black,name:"Residentes em especialização"),controller.currentUser.id]);
                           },
                         ),
                         CardColorFullWidget(
@@ -143,7 +145,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           navigator: ()
                           {
                             controller.changeFilter("Médico Especialista");
-                            //Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KYellowColor,textColor: Colors.black,name:"Médicos Especialistas")]);
+                            Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KYellowColor,textColor: Colors.black,name:"Médicos Especialistas"),controller.currentUser.id]);
                           },
                         ),
                       ],

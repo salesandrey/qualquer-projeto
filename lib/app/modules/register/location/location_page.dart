@@ -47,120 +47,105 @@ class _LocationPageState extends State<LocationPage> {
     final controller = Provider.of<RegisterController>(context);
     return Observer(builder: (context){
       return Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: KPrimaryColor,
         body: SafeArea(
-          child: Stack(
-            children: [
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 10,
-                            child: Container(
-                              height: 8,
-                              color: KBlueColor,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 7,
-                            child: Container(
-                              height: 8,
-                              color: KButtonLightTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
-                      child: InkWell(
-                        onTap: () {
-                          Modular.to.pop();
-                        },
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.arrow_back_ios,
-                              color: Kdeep_perpleColor,
-                              size: 18,
-                            ),
-                            Text('VOLTAR',
-                              style: TextStyle(
-                                fontFamily: "Montserrat Regular",
-                                fontSize: 15,
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
+                        child: InkWell(
+                          onTap: () {
+                            Modular.to.pop();
+                          },
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.arrow_back_ios,
                                 color: Kdeep_perpleColor,
+                                size: 18,
                               ),
+                              Text('VOLTAR',
+                                style: TextStyle(
+                                  fontFamily: "Montserrat Regular",
+                                  fontSize: 15,
+                                  color: Kdeep_perpleColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Beleza!",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontFamily: "Montserrat Bold",
+                                  fontSize: 24,
+                                  color: KBlueTextColor),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "Agora selecione o seu \nestado (UF) e a sua cidade:",
+                              textAlign: TextAlign.left,
+                              style:
+                              TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
+                            ),
+                            LocationWidget(
+                                controller: controller,
+                              cityController: cityController,
+                              keyStringCity: keyStringCity,
+                              keyStringState: keyStringState,
+                              label1: "Selecione o Estado",
+                              label2: "E agora,sua cidade ",
+                              icon1: Icon(Icons.keyboard_arrow_down,color: Color(0xFF050072)),
+                              icon2: Icon(Icons.search,),
+                              stateController: stateController,
                             ),
                           ],
                         ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Beleza!",
-                            style: TextStyle(
-                                fontFamily: "Montserrat Bold",
-                                fontSize: 24,
-                                color: KBlueTextColor),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "Agora selecione o seu \nestado (UF) e a sua cidade:",
-                            style:
-                            TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
-                          ),
-                          LocationWidget(
-                              controller: controller,
-                            cityController: cityController,
-                            keyStringCity: keyStringCity,
-                            keyStringState: keyStringState,
-                            label1: "Selecione o Estado",
-                            label2: "E agora,sua cidade ",
-                            icon1: Icon(Icons.keyboard_arrow_down,color: Color(0xFF050072)),
-                            icon2: Icon(Icons.search,),
-                            stateController: stateController,
-                          ),
-                        ],
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Container()
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Container()
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
 
-              Positioned(bottom: 40,left: 40,right: 40,
-                  child: ButtonConfirmWidget(
-                      navigation: (controller.ufsString!=null && controller.ufsString.contains(controller.locationState)) && (controller.citiesString!=null && controller.citiesString.contains(controller.locationCity))?
-                          (){
-                        if(RegisterValidateViewModel().validateLocation(controller)){
-                          Modular.to.pushNamed("/Graduation");
-                        }}:null,
-                      disableColor: KButtonLightColor,
-                      disableTextColor:KButtonLightTextColor,
-                      text: "CONTINUAR",
-                      color: Color(0xFF6259B2),
-                      textColor: Colors.white,
-                      highLightColor: KBlueTextColor,
-                      elevation: 0.00)
-              ),
-            ],
+                Positioned(bottom: 40,left: 40,right: 40,
+                    child: ButtonConfirmWidget(
+                        navigation: (controller.ufsString!=null && controller.ufsString.contains(controller.locationState)) && (controller.citiesString!=null && controller.citiesString.contains(controller.locationCity))?
+                            (){
+                          if(RegisterValidateViewModel().validateLocation(controller)){
+                            Modular.to.pushNamed("/Graduation");
+                          }}:null,
+                        disableColor: KButtonLightColor,
+                        disableTextColor:KButtonLightTextColor,
+                        text: "CONTINUAR",
+                        color: Color(0xFF6259B2),
+                        textColor: Colors.white,
+                        highLightColor: KBlueTextColor,
+                        elevation: 0.00)
+                ),
+              ],
+            ),
           ),
         ),
       );

@@ -18,8 +18,10 @@ class TextInputWidget extends StatelessWidget {
   final FocusNode focusNode;
   final TextEditingController controller;
   final Function function;
+  final TextInputType keyboardType;
+  final TextCapitalization capitalize;
 
-  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText, this.focusNode, this.controller, this.function}) : super(key: key);
+  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText, this.focusNode, this.controller, this.function, this.keyboardType, this.capitalize}) : super(key: key);
 
 
   @override
@@ -32,7 +34,8 @@ class TextInputWidget extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         onChanged: changeText,
         focusNode: focusNode,
-        keyboardType: TextInputType.emailAddress,
+        textCapitalization: capitalize,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           helperMaxLines: 3,
           helperText: helpText,

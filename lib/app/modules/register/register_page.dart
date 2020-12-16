@@ -46,94 +46,74 @@ class _RegisterPageState extends State<RegisterPage> {
     final controller = Provider.of<RegisterController>(context);
     return Observer(builder: (context){
       return Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: KPrimaryColor,
         body: SafeArea(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: SingleChildScrollView(
+            child: Stack(
               children: [
                 Container(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Hero(
-                          tag: "primo1",
-                          child: Container(
-                            height: 8,
-                            color: KBlueColor,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 7,
-                        child: Container(
-                          height: 8,
-                          color: KButtonLightTextColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
-                  child: InkWell(
-                    onTap: () {
-                      Modular.to.pop();
-                    },
-                    child: Row(
-                      children: <Widget>[
-                        Icon(Icons.arrow_back_ios,
-                          color: Color(0xFF050072),
-                          size: 18,
-                        ),
-                        Text('VOLTAR',
-                          style: TextStyle(
-                            fontFamily: "Montserrat Regular",
-                            fontSize: 15,
-                            color: Color(0xFF050072),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height- MediaQuery.of(context).padding.top,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        "Seja bem-vindo ao app PadrinhoMed!",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: "Montserrat Bold",
-                            fontSize: 24,
-                            color: KBlueTextColor),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
+                        child: InkWell(
+                          onTap: () {
+                            Modular.to.pop();
+                          },
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.arrow_back_ios,
+                                color: Color(0xFF050072),
+                                size: 18,
+                              ),
+                              Text('VOLTAR',
+                                style: TextStyle(
+                                  fontFamily: "Montserrat Regular",
+                                  fontSize: 15,
+                                  color: Color(0xFF050072),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Seja bem-vindo ao app PadrinhoMed!",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontFamily: "Montserrat Bold",
+                                  fontSize: 24,
+                                  color: KBlueTextColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 28,),
+                      Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextInputWidget(capitalize: TextCapitalization.words,keyboardType: TextInputType.text,function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Confira seus dados pois este é o nome que vai nos certificados",),
+                              TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória,mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
+                            ],
+                          ),
+                        ),
                     ],
                   ),
                 ),
-                Expanded(
-                  flex: 4,
+                Positioned(
+                  left: 40, right: 40, bottom: 40,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextInputWidget(function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Confira seus dados pois este é o nome que vai nos certificados",),
-                        TextInputWidget(function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória,mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Container(
-                    padding:
-                    const EdgeInsets.only(left: 40, right: 40, bottom: 40),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -145,7 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 Modular.to.pushNamed("/Account");
                               }
                               setState(() {});
-                              },
+                            },
                             disableColor: KButtonLightColor,
                             disableTextColor:KButtonLightTextColor,
                             text: "CONTINUAR",

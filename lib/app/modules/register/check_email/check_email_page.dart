@@ -35,26 +35,6 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 5,
-                        child: Container(
-                          height: 8,
-                          color: KBlueColor,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 5,
-                        child: Container(
-                          height: 8,
-                          color: KButtonLightTextColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                   child: InkWell(
                     onTap: () {
@@ -86,6 +66,7 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
                     children: [
                       Text(
                         "Perfeito!",
+                        textAlign: TextAlign.left,
                         style: TextStyle(
                             fontFamily: "Montserrat Bold",
                             fontSize: 24,
@@ -93,6 +74,7 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
                       ),
                       Text(
                         "Agora cheque seu e-mail,\nque nós acabamos de enviar \num código de validação",
+                        textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
                       ),
                     ],
@@ -126,7 +108,7 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
                             controller.sendCodeValidation();
                             setState(() {});
                           },
-                          pinBoxWidth: 72,
+                          pinBoxWidth: MediaQuery.of(context).size.width * 0.176,
                           pinBoxHeight: 89,
                           hasUnderline: false,
                           errorBorderColor: Colors.redAccent,

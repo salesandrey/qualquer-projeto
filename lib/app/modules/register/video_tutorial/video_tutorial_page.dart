@@ -26,19 +26,6 @@ class _VideoTutorialPageState extends ModularState<VideoTutorialPage, RegisterCo
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex:7,
-                        child:Container(
-                          height: 8,
-                          color: KBlueColor)),
-                      Expanded(
-                        flex: 3,
-                        child:Container(
-                          height: 8,
-                          color: KButtonLightTextColor))])),
                 Expanded(child: VideoPlayerService(videoPath: videoPath,))
     ]))));
   }

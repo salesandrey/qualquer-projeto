@@ -27,30 +27,12 @@ class _GraduationPageState extends State<GraduationPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 12,
-                          child: Container(
-                            height: 8,
-                            color: KBlueColor,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 7,
-                          child: Container(
-                            height: 8,
-                            color: KButtonLightTextColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
+
                     padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                     child: InkWell(
                       onTap: () {
@@ -81,6 +63,7 @@ class _GraduationPageState extends State<GraduationPage> {
                       children: [
                         Text(
                           "Nível de graduação?",
+                          textAlign: TextAlign.left,
                           style: TextStyle(
                               fontFamily: "Montserrat Bold",
                               fontSize: 24,
@@ -91,6 +74,7 @@ class _GraduationPageState extends State<GraduationPage> {
                         ),
                         Text(
                           "Selecione a opção que melhor \ndefine seu nível de graduação",
+                          textAlign: TextAlign.left,
                           style:
                           TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
                         ),
@@ -113,9 +97,9 @@ class _GraduationPageState extends State<GraduationPage> {
                                 if(controller.graduation=="Estudante (1º ao 8º semestre)" ||
                                     controller.graduation=="Interno (9º ao 12º semestre)" ||
                                     controller.graduation=="Médico Graduado")
-                                  Modular.to.pushNamed("/Speciality",arguments: "Qual a especialidade de maior interesse?");
+                                  Modular.to.pushNamed("/Speciality",arguments: ["Qual a especialidade de maior interesse?",true]);
                                 else{
-                                  Modular.to.pushNamed("/Speciality",arguments: "Qual a sua especialidade?");
+                                  Modular.to.pushNamed("/Speciality",arguments: ["Qual a sua especialidade?",false]);
                                 }
                               }
                               setState(() {});
