@@ -36,6 +36,7 @@ class FavoriteRepository{
 
     String url = "https://padmed.lanconi.com.br/favoriteGet.py";
 
+    print(userID);
     var currentFilter = jsonEncode(
         {
           "idUsuario": userID
@@ -44,7 +45,6 @@ class FavoriteRepository{
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
 
     if(response.statusCode==200){
-      print(jsonDecode(response.body));
       return jsonDecode(response.body);
     }else{
       print(response.statusCode);

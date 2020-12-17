@@ -2,6 +2,7 @@ import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VideoPlayerService extends StatefulWidget {
   final String videoPath;
@@ -85,25 +86,47 @@ class _VideoPlayerServiceState extends State<VideoPlayerService> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Container(
-                                  width: MediaQuery.of(context).size.width * 0.8,
+                                  width: MediaQuery.of(context).size.width * 0.4,
                                   height: 56,
                                   child: RaisedButton(
                                     color: Colors.white.withOpacity(0.25),
                                     elevation: 0,
                                     textColor: Colors.white,
-                                    onPressed: () {
-                                        Modular.to.pushNamed("/Location");
+                                    onPressed: () async {
+                                        String url = "http://padrinhomed.com";
+                                        await launch(url);
+
                                     },
                                     shape: StadiumBorder(),
                                     child: FittedBox(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text("QUERO CONHECER MAIS",
+                                        child: Text("MAIS INFO",
                                           style: TextStyle(
                                             fontFamily: "Montserrat Bold",
                                             fontSize: 16,
                                           )),
-                                      ))))])),
+                                      )))),
+                                Container(
+                                    width: MediaQuery.of(context).size.width * 0.4,
+                                    height: 56,
+                                    child: RaisedButton(
+                                        color: Colors.white.withOpacity(0.25),
+                                        elevation: 0,
+                                        textColor: Colors.white,
+                                        onPressed: () {
+                                          Modular.to.pushNamed("/Location");
+                                        },
+                                        shape: StadiumBorder(),
+                                        child: FittedBox(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text("PULAR",
+                                                  style: TextStyle(
+                                                    fontFamily: "Montserrat Bold",
+                                                    fontSize: 16,
+                                                  )),
+                                            ))))])),
                     ),
                   )
                 ],

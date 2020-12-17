@@ -26,8 +26,8 @@ class LoginValidateViewModel{
       controller.changePasswordFeedback("Preencha o campo senha");
       controller.changePasswordValidate(isNull(controller.password));
     }else{
-      if(controller.password.length < 3){
-        controller.changePasswordFeedback("Senha inválida");
+      if(controller.password.length < 6){
+        controller.changePasswordFeedback("Mínimo de seis dígitos");
         controller.changePasswordValidate(true);
       }else{
         controller.changePasswordFeedback("");

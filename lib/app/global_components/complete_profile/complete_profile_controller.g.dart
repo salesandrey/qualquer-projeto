@@ -1,14 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card_user_widget_controller.dart';
+part of 'complete_profile_controller.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final $CardUserWidgetController = BindInject(
-  (i) => CardUserWidgetController(
-      user: i<UserMatchModel>(), id: i<int>(), like: i<bool>()),
+final $CompleteProfileController = BindInject(
+  (i) => CompleteProfileController(
+      user: i<UserMatchModel>(),
+      id: i<int>(),
+      like: i<bool>(),
+      typeSearch: i<String>()),
   singleton: true,
   lazy: true,
 );
@@ -19,8 +22,8 @@ final $CardUserWidgetController = BindInject(
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
-  final _$userAtom = Atom(name: '_CardUserWidgetControllerBase.user');
+mixin _$CompleteProfileController on _CompleteProfileControllerBase, Store {
+  final _$userAtom = Atom(name: '_CompleteProfileControllerBase.user');
 
   @override
   UserMatchModel get user {
@@ -35,7 +38,7 @@ mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
     });
   }
 
-  final _$idAtom = Atom(name: '_CardUserWidgetControllerBase.id');
+  final _$idAtom = Atom(name: '_CompleteProfileControllerBase.id');
 
   @override
   int get id {
@@ -50,7 +53,7 @@ mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
     });
   }
 
-  final _$likeAtom = Atom(name: '_CardUserWidgetControllerBase.like');
+  final _$likeAtom = Atom(name: '_CompleteProfileControllerBase.like');
 
   @override
   bool get like {
@@ -66,7 +69,7 @@ mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
   }
 
   final _$typeSearchAtom =
-      Atom(name: '_CardUserWidgetControllerBase.typeSearch');
+      Atom(name: '_CompleteProfileControllerBase.typeSearch');
 
   @override
   String get typeSearch {
@@ -81,7 +84,8 @@ mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
     });
   }
 
-  final _$patronizeAtom = Atom(name: '_CardUserWidgetControllerBase.patronize');
+  final _$patronizeAtom =
+      Atom(name: '_CompleteProfileControllerBase.patronize');
 
   @override
   bool get patronize {
@@ -97,11 +101,25 @@ mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
   }
 
   final _$changeLikeAsyncAction =
-      AsyncAction('_CardUserWidgetControllerBase.changeLike');
+      AsyncAction('_CompleteProfileControllerBase.changeLike');
 
   @override
   Future<void> changeLike() {
     return _$changeLikeAsyncAction.run(() => super.changeLike());
+  }
+
+  final _$_CompleteProfileControllerBaseActionController =
+      ActionController(name: '_CompleteProfileControllerBase');
+
+  @override
+  void changePatronize() {
+    final _$actionInfo = _$_CompleteProfileControllerBaseActionController
+        .startAction(name: '_CompleteProfileControllerBase.changePatronize');
+    try {
+      return super.changePatronize();
+    } finally {
+      _$_CompleteProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

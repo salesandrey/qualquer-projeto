@@ -3,6 +3,7 @@ import 'package:PadrinhoMED/app/modules/register/location/location_page.dart';
 import 'package:PadrinhoMED/app/modules/register/programs/programs_page.dart';
 import 'package:PadrinhoMED/app/modules/register/register_page.dart';
 import 'package:PadrinhoMED/app/modules/register/speciality/speciality_page.dart';
+import 'package:PadrinhoMED/app/modules/register/terms/terms_page.dart';
 import 'package:PadrinhoMED/app/modules/register/video_tutorial/video_tutorial_page.dart';
 
 import 'register_controller.dart';

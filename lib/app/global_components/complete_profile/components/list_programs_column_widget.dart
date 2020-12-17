@@ -6,19 +6,19 @@ class ListProgramsColumnWidget extends StatelessWidget {
   final String title;
 
   final Map<String,String> iconType  = {
-    "Redes Sociais":"assets/images/share.png",
-    "Casos e Aulas":"assets/images/speech-bubble.png",
-    "Trabalho Científico":"assets/images/chemistry.png",
-    "Rotina Médica":"assets/images/first-aid-kit.png",
-    "Mentoria Carreira":"assets/images/target.png"
+    "Posts para Redes Sociais":"assets/images/share.png",
+    "Discussão de Casos Clínicos e Aulas":"assets/images/speech-bubble.png",
+    "Trabalhos Científicos":"assets/images/chemistry.png",
+    "Acompanhar Rotina Médica":"assets/images/first-aid-kit.png",
+    "Mentoria sobre Carreira Médica":"assets/images/target.png"
   };
 
   final Map<String,String> iconText = {
-    "Redes Sociais":"Posts para Redes Sociais",
-    "Casos e Aulas":"Discussão de Casos Clínicos e Aulas",
-    "Trabalho Científico":"Trabalhos Científicos",
-    "Rotina Médica":"Acompanhar Rotina Médica",
-    "Mentoria Carreira":"Mentoria sobre carreira médica"
+    "Posts para Redes Sociais":"Posts para Redes Sociais",
+    "Discussão de Casos Clínicos e Aulas":"Discussão de Casos Clínicos e Aulas",
+    "Trabalhos Científicos":"Trabalhos Científicos",
+    "Acompanhar Rotina Médica":"Acompanhar Rotina Médica",
+    "Mentoria sobre Carreira Médica":"Mentoria sobre carreira médica"
   };
 
   ListProgramsColumnWidget({Key key, this.title}) : super(key: key);

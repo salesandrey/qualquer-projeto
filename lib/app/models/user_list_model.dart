@@ -10,6 +10,7 @@ class UserMatchModel {
     this.nome,
     this.email,
     this.data,
+    this.match,
     this.cod,
     this.sobre,
     this.situacao,
@@ -28,6 +29,7 @@ class UserMatchModel {
   final String nome;
   final String email;
   final DateTime data;
+  final String match;
   final String cod;
   final String sobre;
   final String situacao;
@@ -86,7 +88,7 @@ class UserMatchModel {
     id: json["id"],
     nome: json["nome"],
     email: json["email"],
-    data: DateTime.parse(json["data"]),
+    data: json["data"]==null || json["data"]==""?null:DateTime.parse(json["data"]),
     cod: json["cod"],
     sobre: json["sobre"],
     situacao: json["situacao"],

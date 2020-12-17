@@ -30,8 +30,8 @@ class CardProfile extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Container(
-        width: 306,
-        height: 450,
+        height: MediaQuery.of(context).size.height * 0.7,
+        width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -50,7 +50,7 @@ class CardProfile extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 2),
+                    padding: EdgeInsets.only(top: 10),
                     child: Text(
                       "${user.nome.split(" ").first} ${user.nome.split(" ").last}",
                       textAlign: TextAlign.center,

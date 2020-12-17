@@ -13,7 +13,6 @@ class ContentWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      // width: MediaQuery.of(context).size.width*0.8,
       child: Row(
         children: <Widget>[
           Expanded(

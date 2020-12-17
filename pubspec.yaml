@@ -39,6 +39,7 @@ dependencies:
   flutter_modular: ^2.0.1
   validators: ^2.0.1
   provider: ^4.3.2+2
+  url_launcher: ^5.7.10
   intl: ^0.16.1
   http: ^0.12.2
   flutter_masked_text: ^0.8.0

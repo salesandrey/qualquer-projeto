@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -53,8 +54,11 @@ class LogoutDialogWidget extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(25),
                                   ),
                                   child: RaisedButton(
-                                      onPressed: (){
-                                        Modular.to.pushReplacementNamed("/Login");
+                                      onPressed: ()async{
+                                        SharedLocalStorageService storage = SharedLocalStorageService();
+                                        await storage.put("email", null);
+                                        await storage.put("password",null);
+                                        Navigator.pushNamedAndRemoveUntil(context, "/Login", ModalRoute.withName("/"));
                                       },
                                       color:Color(0xffcdcae5),
                                       shape: StadiumBorder(),

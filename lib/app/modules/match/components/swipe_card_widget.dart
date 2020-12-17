@@ -20,9 +20,7 @@ class SwipeCardWidget extends StatelessWidget {
           children: listCard.map((value) {
             return SwiperItem(
                 builder: (SwiperPosition position, double progress) {
-                  return Material(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      child: CardProfile(user: value));
+                  return CardProfile(user: value);
                 }
             );
           }).toList(),

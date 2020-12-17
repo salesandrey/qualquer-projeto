@@ -26,8 +26,8 @@ class ValidateResetViewModel{
       controller.changePasswordFeedback("Campo Obrigatório");
       controller.changePasswordValidate(isNull(controller.password));
     } else {
-      if (controller.password.length < 5) {
-        controller.changePasswordFeedback("Senha inválida");
+      if (controller.password.length < 6) {
+        controller.changePasswordFeedback("Mínimo de seis dígitos");
         controller.changePasswordValidate(true);
       } else {
         controller.changePasswordFeedback("");

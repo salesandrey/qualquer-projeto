@@ -15,8 +15,8 @@ class RoundedIconCardWidget extends StatelessWidget {
   };
 
   final Map<String,String> iconText = {
-    "Posts para Redes Sociais":"Redes\nSociais",
-    "Discussão de Casos Clínicos e Aulas":"Casos\ne Aulas",
+    "Posts para Redes Sociais":"Rede\nSocial",
+    "Discussão de Casos Clínicos e Aulas":"Caso\ne Aula",
     "Trabalhos Científicos":"Trabalho\nCientífico",
     "Acompanhar Rotina Médica":"Rotina\nMédica",
     "Mentoria sobre Carreira Médica":"Mentoria\nCarreira"
@@ -29,13 +29,13 @@ class RoundedIconCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Container(
-        padding: EdgeInsets.only(top: 12),
-        height: 80,
+        padding: EdgeInsets.only(top: 15),
+        height: MediaQuery.of(context).size.height * 0.18,
         child: Column(
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.06,
+              height: MediaQuery.of(context).size.height * 0.07,
               decoration: BoxDecoration(
                 color: KBlueColor.withOpacity(0.2),
                 shape: BoxShape.circle,
@@ -46,7 +46,7 @@ class RoundedIconCardWidget extends StatelessWidget {
                 children: [
                   Image(
                     image: AssetImage(iconType[title]),
-                    height: MediaQuery.of(context).size.height * 0.03,
+                    height: MediaQuery.of(context).size.height * 0.04,
                   ),
                 ],
               ),
@@ -54,14 +54,12 @@ class RoundedIconCardWidget extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Flexible(
-              child: Text(
-                iconText[title],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.03,
-                  fontFamily: "Montserrat Regular"
-                ),
+            Text(
+              iconText[title],
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width * 0.034,
+                fontFamily: "Montserrat Regular"
               ),
             ),
           ],

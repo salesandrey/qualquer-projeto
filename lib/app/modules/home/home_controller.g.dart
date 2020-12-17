@@ -19,20 +19,6 @@ final $HomeController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  Computed<List<UserMatchModel>> _$recentUsersComputed;
-
-  @override
-  List<UserMatchModel> get recentUsers => (_$recentUsersComputed ??=
-          Computed<List<UserMatchModel>>(() => super.recentUsers,
-              name: '_HomeControllerBase.recentUsers'))
-      .value;
-  Computed<List<UserMatchModel>> _$mostIndicationComputed;
-
-  @override
-  List<UserMatchModel> get mostIndication => (_$mostIndicationComputed ??=
-          Computed<List<UserMatchModel>>(() => super.mostIndication,
-              name: '_HomeControllerBase.mostIndication'))
-      .value;
   Computed<List<UserMatchModel>> _$sameSpecialtyComputed;
 
   @override
@@ -70,6 +56,36 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$mostIndicationAtom = Atom(name: '_HomeControllerBase.mostIndication');
+
+  @override
+  List<UserMatchModel> get mostIndication {
+    _$mostIndicationAtom.reportRead();
+    return super.mostIndication;
+  }
+
+  @override
+  set mostIndication(List<UserMatchModel> value) {
+    _$mostIndicationAtom.reportWrite(value, super.mostIndication, () {
+      super.mostIndication = value;
+    });
+  }
+
+  final _$recentUsersAtom = Atom(name: '_HomeControllerBase.recentUsers');
+
+  @override
+  List<UserMatchModel> get recentUsers {
+    _$recentUsersAtom.reportRead();
+    return super.recentUsers;
+  }
+
+  @override
+  set recentUsers(List<UserMatchModel> value) {
+    _$recentUsersAtom.reportWrite(value, super.recentUsers, () {
+      super.recentUsers = value;
+    });
+  }
+
   final _$currentUserAtom = Atom(name: '_HomeControllerBase.currentUser');
 
   @override
@@ -98,6 +114,22 @@ mixin _$HomeController on _HomeControllerBase, Store {
     _$filterAtom.reportWrite(value, super.filter, () {
       super.filter = value;
     });
+  }
+
+  final _$getMostIndicationAsyncAction =
+      AsyncAction('_HomeControllerBase.getMostIndication');
+
+  @override
+  Future<void> getMostIndication() {
+    return _$getMostIndicationAsyncAction.run(() => super.getMostIndication());
+  }
+
+  final _$getRecentUsersAsyncAction =
+      AsyncAction('_HomeControllerBase.getRecentUsers');
+
+  @override
+  Future<void> getRecentUsers() {
+    return _$getRecentUsersAsyncAction.run(() => super.getRecentUsers());
   }
 
   final _$_HomeControllerBaseActionController =
@@ -162,10 +194,10 @@ mixin _$HomeController on _HomeControllerBase, Store {
   String toString() {
     return '''
 users: ${users},
+mostIndication: ${mostIndication},
+recentUsers: ${recentUsers},
 currentUser: ${currentUser},
 filter: ${filter},
-recentUsers: ${recentUsers},
-mostIndication: ${mostIndication},
 sameSpecialty: ${sameSpecialty},
 sameLocation: ${sameLocation},
 listFiltered: ${listFiltered}

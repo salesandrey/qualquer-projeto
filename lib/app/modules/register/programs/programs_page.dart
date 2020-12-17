@@ -29,72 +29,67 @@ class _ProgramsPageState extends State<ProgramsPage> {
           resizeToAvoidBottomInset: false,
           backgroundColor: KPrimaryColor,
           body: SafeArea(
-            child: Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
-                        child: InkWell(
-                          onTap: () {
-                            Modular.to.pop();
-                          },
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.arrow_back_ios,
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
+                      child: InkWell(
+                        onTap: () {
+                          Modular.to.pop();
+                        },
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.arrow_back_ios,
+                              color: Kdeep_perpleColor,
+                              size: 18,
+                            ),
+                            Text('VOLTAR',
+                              style: TextStyle(
+                                fontFamily: "Montserrat Regular",
+                                fontSize: 15,
                                 color: Kdeep_perpleColor,
-                                size: 18,
                               ),
-                              Text('VOLTAR',
-                                style: TextStyle(
-                                  fontFamily: "Montserrat Regular",
-                                  fontSize: 15,
-                                  color: Kdeep_perpleColor,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
-                          child: ActivitiesWidget(),
-                        ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 15),
-                        child: Row(
-                          children: [
-                            Container(
-                                padding: EdgeInsets.zero,
-                                width: 25,
-                                height: 25,
-                                margin: const EdgeInsets.only(right: 10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Color(0xff707070)),
-                                    borderRadius: BorderRadius.circular(2)),
-                                child: Theme(
-                                    data: ThemeData(unselectedWidgetColor: Colors.white),
-                                    child: Checkbox(
-                                        checkColor: kCheck,
-                                        activeColor: kCheck,
-                                        value: controller.checkTerm,
-                                        onChanged: controller.changeTerm))),
-                            FittedBox(
-                                child: RichText(text: TextSpan(style: TextStyle(fontFamily: "Montserrat Regular",fontSize: 15,color:kGrey),
-                                    children: [
-                                      TextSpan(text: "Li e concordo com os "),
-                                      TextSpan(recognizer: TapGestureRecognizer()..onTap = (){print("Abrir Termos");},text: "Termos",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:kGrey,decoration: TextDecoration.underline),),
-                                    ]),),),],),),
-
-                    ],
-                  ),
-                ),
-                Positioned(bottom: 40,left: 40,right: 40,
-                    child: ButtonConfirmWidget(
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                        child: ActivitiesWidget(),
+                      ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 15),
+                      child: Row(
+                        children: [
+                          Container(
+                              padding: EdgeInsets.zero,
+                              width: 25,
+                              height: 25,
+                              margin: const EdgeInsets.only(right: 10),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xff707070)),
+                                  borderRadius: BorderRadius.circular(2)),
+                              child: Theme(
+                                  data: ThemeData(unselectedWidgetColor: Colors.white),
+                                  child: Checkbox(
+                                      checkColor: kCheck,
+                                      activeColor: kCheck,
+                                      value: controller.checkTerm,
+                                      onChanged: controller.changeTerm))),
+                          FittedBox(
+                              child: RichText(text: TextSpan(style: TextStyle(fontFamily: "Montserrat Regular",fontSize: 15,color:kGrey),
+                                  children: [
+                                    TextSpan(text: "Li e concordo com os "),
+                                    TextSpan(recognizer: TapGestureRecognizer()..onTap = (){Modular.to.pushNamed("/Terms");},text: "Termos",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:kGrey,decoration: TextDecoration.underline),),
+                                  ]),),),],),),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 40,horizontal: 40),
+                      child:ButtonConfirmWidget(
                         navigation: controller.activities.isNotEmpty && controller.checkTerm?
-                         () async{
+                            () async{
                           controller.changeLoading(true);
                           await controller.saveData();
                           setState(() {});
@@ -106,9 +101,11 @@ class _ProgramsPageState extends State<ProgramsPage> {
                         color: Color(0xFF6259B2),
                         textColor: Colors.white,
                         highLightColor: KBlueTextColor,
-                        elevation: 0.00)
+                        elevation: 0.00),)
+
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

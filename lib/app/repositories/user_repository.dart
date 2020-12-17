@@ -85,4 +85,23 @@ class UserRepository{
 
   }
 
+  Future<dynamic> checkEmail(String email) async{
+    String url = "https://padmed.lanconi.com.br/emailGet.py";
+
+    var userData = jsonEncode({
+      "email": email,
+    });
+
+    Response response = await post(url,headers:{"Content-Type": "application/json"},body:userData );
+
+    if(response.statusCode==200){
+      print(response.body);
+      return jsonDecode(response.body);
+    }
+    else{
+      print(response.body);
+      return null;
+    }
+  }
+
 }

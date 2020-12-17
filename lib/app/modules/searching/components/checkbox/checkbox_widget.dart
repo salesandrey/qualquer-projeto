@@ -23,16 +23,19 @@ class CheckBoxWidget extends StatelessWidget {
               height: 24,
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xff707070)),
-                borderRadius: BorderRadius.circular(2),
+                border: Border.all(color: kGrey,width:controller.check?2:1),
+                borderRadius:BorderRadius.circular(2),
               ),
               child: Theme(
                 data: ThemeData(unselectedWidgetColor: Colors.white),
-                child: Checkbox(
-                    checkColor: color,
-                    activeColor: color,
-                    value: controller.check,
-                    onChanged: controller.setCheck
+                child: Transform.scale(
+                  scale: controller.check? 0.7 : 1,
+                  child: Checkbox(
+                      checkColor: color,
+                      activeColor: color,
+                      value: controller.check,
+                      onChanged: controller.setCheck
+                  ),
                 ),
               ),
             ),

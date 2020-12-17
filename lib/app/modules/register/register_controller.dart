@@ -54,7 +54,6 @@ abstract class _RegisterControllerBase with Store {
   @action
   void changeUsername(String value){
     username = value;
-    print(username.length);
   }
 
   @action
@@ -414,6 +413,18 @@ abstract class _RegisterControllerBase with Store {
     transformCityList();
   }
 
-
+  @action
+  Future<void> checkEmailUser()async{
+    dynamic data = await UserRepository().checkEmail(email);
+    if(data!=null){
+      updateEmailFeedBack("Email em uso : |");
+      changeEmailValidator(true);
+    }else{
+      updateEmailFeedBack("");
+      changeEmailValidator(false);
+      Modular.to.pushNamed("/CheckEmail");
+      changeLoading(false);
+    }
+  }
 
 }

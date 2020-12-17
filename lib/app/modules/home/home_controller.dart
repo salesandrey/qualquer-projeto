@@ -1,6 +1,7 @@
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/models/user_model.dart';
+import 'package:PadrinhoMED/app/repositories/filter_repository.dart';
 import 'package:PadrinhoMED/app/repositories/list_user_repository.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:mobx/mobx.dart';
@@ -15,6 +16,12 @@ abstract class _HomeControllerBase with Store {
 
   @observable
   ObservableList<UserMatchModel> users;
+
+  @observable
+  List<UserMatchModel> mostIndication;
+
+  @observable
+  List<UserMatchModel> recentUsers;
   
   @observable
   UserModel currentUser = UserModel();
@@ -30,31 +37,6 @@ abstract class _HomeControllerBase with Store {
   @action
   void changeFilter(String value){
     filter = value;
-  }
-
-  @computed
-  List<UserMatchModel> get recentUsers{
-    if(users.isEmpty){
-      return [];
-    }else {
-      return users.where((element) {
-        if(DateTime.now().difference(element.data).inDays < 7) {
-          return true;
-        }else{
-          return false;
-        }
-      }).toList();
-    }
-  }
-
-  @computed
-  List<UserMatchModel> get mostIndication{
-    if(users.isEmpty){
-      return [];
-    }else {
-      users.sort((a,b)=>a.atividades.length.compareTo(b.atividades.length));
-      return users.where((element)=> intersection(element.atividades, currentUser.atividades).isNotEmpty).toList();
-    }
   }
 
   @computed
@@ -120,6 +102,34 @@ abstract class _HomeControllerBase with Store {
       }
     }
     users = newList.asObservable();
+  }
+
+  @action
+  Future<void> getMostIndication() async{
+    dynamic data = await FilterRepository().filter("maisIndicados",currentUser.especialidade,currentUser.id);
+    List<UserMatchModel> newList =[];
+    if(data!=null){
+      for(dynamic value in data["results"]){
+        UserMatchModel model  = UserMatchModel.fromMap(value);
+        newList.add(model);
+      }
+    }
+    mostIndication = newList.asObservable();
+
+  }
+
+  @action
+  Future<void> getRecentUsers() async{
+    dynamic data = await FilterRepository().filter("novosUsuarios","",currentUser.id);
+    List<UserMatchModel> newList =[];
+    if(data!=null){
+      for(dynamic value in data["results"]){
+        UserMatchModel model  = UserMatchModel.fromMap(value);
+        newList.add(model);
+      }
+    }
+    recentUsers = newList.asObservable();
+
   }
 
   Future<void> getCurrentUser() async {

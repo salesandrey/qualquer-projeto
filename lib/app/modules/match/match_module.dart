@@ -11,7 +11,7 @@ class MatchModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => MatchPage(listCard:args.data[0],headModel: args.data[1],id: args.data[2],))
+        ModularRouter(Modular.initialRoute, child: (_, args) => MatchPage(listCard:args.data[0],headModel: args.data[1],id: args.data[2],typeSearch: args.data[3],))
       ];
 
   static Inject get to => Inject<MatchModule>.of();

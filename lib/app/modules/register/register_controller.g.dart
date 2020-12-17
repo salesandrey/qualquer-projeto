@@ -426,6 +426,14 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     return _$getCitiesAsyncAction.run(() => super.getCities(id));
   }
 
+  final _$checkEmailUserAsyncAction =
+      AsyncAction('_RegisterControllerBase.checkEmailUser');
+
+  @override
+  Future<void> checkEmailUser() {
+    return _$checkEmailUserAsyncAction.run(() => super.checkEmailUser());
+  }
+
   final _$_RegisterControllerBaseActionController =
       ActionController(name: '_RegisterControllerBase');
 

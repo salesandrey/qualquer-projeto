@@ -68,8 +68,8 @@ class RegisterValidateViewModel{
       controller.updatePasswordFeedBack("Preencha o campo senha");
       controller.changePasswordValidator(isNull(controller.password));
     }else{
-      if(controller.password.length < 5){
-        controller.updatePasswordFeedBack("Senha inválida");
+      if(controller.password.length < 6){
+        controller.updatePasswordFeedBack("Mínimo de seis dígitos");
         controller.changePasswordValidator(true);
       }else{
         controller.updatePasswordFeedBack("");

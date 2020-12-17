@@ -3,15 +3,16 @@ import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-part 'card_user_widget_controller.g.dart';
+part 'complete_profile_controller.g.dart';
 
 @Injectable()
-class CardUserWidgetController = _CardUserWidgetControllerBase
-    with _$CardUserWidgetController;
+class CompleteProfileController = _CompleteProfileControllerBase
+    with _$CompleteProfileController;
 
-abstract class _CardUserWidgetControllerBase with Store {
+abstract class _CompleteProfileControllerBase with Store {
 
-  _CardUserWidgetControllerBase({this.user,this.id,this.like});
+
+  _CompleteProfileControllerBase({this.user,this.id,this.like,this.typeSearch});
 
   @observable
   UserMatchModel user;
@@ -26,11 +27,17 @@ abstract class _CardUserWidgetControllerBase with Store {
   String typeSearch;
 
   @observable
-  bool patronize = false;
+  bool patronize = true;
+
+  @action
+  void changePatronize(){
+    patronize = !patronize;
+  }
 
   @action
   Future<void> changeLike() async{
     like = !like;
     await FavoriteRepository().insert(like?"like":"dislike", id, user.id);
   }
+
 }

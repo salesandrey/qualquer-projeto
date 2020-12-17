@@ -17,11 +17,12 @@ class MatchPage extends StatefulWidget {
 
   final HeadModel headModel;
   final List<UserMatchModel> listCard;
+  final String typeSearch;
   final int id;
 
-  const MatchPage({Key key, this.headModel, this.listCard,this.id}) : super(key: key);
+  const MatchPage({Key key, this.headModel, this.listCard,this.id, this.typeSearch}) : super(key: key);
   @override
-  _MatchPageState createState() => _MatchPageState(listCard: listCard,headModel: headModel,id: id);
+  _MatchPageState createState() => _MatchPageState(listCard: listCard,headModel: headModel,id: id,typeSearch: typeSearch);
 }
 
 class _MatchPageState extends ModularState<MatchPage, MatchController> with TickerProviderStateMixin {
@@ -30,8 +31,9 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
   final HeadModel headModel;
   final int id;
   final List<UserMatchModel> listCard;
+  final String typeSearch;
 
-  _MatchPageState({this.listCard,this.headModel,this.id});
+  _MatchPageState({this.listCard,this.headModel,this.id,this.typeSearch,});
 
   void notLove() async{
     _swipeKey.currentState.swipeLeft();
@@ -62,7 +64,8 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
             MatchButtonOptionWidget(
               goHome: (){Modular.to.pushReplacementNamed("/Navigator");},
               love: (){love();},
-              notLove: (){notLove();},)
+              notLove: (){notLove();},
+              accessProfile: (){Modular.to.pushNamed("/CompleteProfile",arguments: [listCard.last,id,false,typeSearch]);},)
           ],),
         ),
       )

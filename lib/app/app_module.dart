@@ -7,6 +7,7 @@ import 'package:PadrinhoMED/app/modules/register/graduation/graduation_page.dart
 import 'package:PadrinhoMED/app/modules/register/location/location_page.dart';
 import 'package:PadrinhoMED/app/modules/register/programs/programs_page.dart';
 import 'package:PadrinhoMED/app/modules/register/speciality/speciality_page.dart';
+import 'package:PadrinhoMED/app/modules/register/terms/terms_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/components/check_email_reset_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/components/confirm_email_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/reset_password_module.dart';
@@ -17,6 +18,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:PadrinhoMED/app/app_widget.dart';
 
+import 'global_components/complete_profile/complete_profile_controller.dart';
+import 'global_components/complete_profile/complete_profile_page.dart';
 import 'modules/home/home_module.dart';
 import 'modules/login/login_module.dart';
 import 'modules/match/match_module.dart';
@@ -36,6 +39,7 @@ class AppModule extends MainModule {
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, module: SplashModule()),
         ModularRouter("/Tutorial", module: TutorialModule()),
+        ModularRouter("/CompleteProfile",child: (_, args) => CompleteProfilePage(controller: CompleteProfileController(user:args.data[0],id: args.data[1],like: args.data[2],typeSearch: args.data[3]))),
         ModularRouter("/EditProfile", module: EditProfileModule()),
         ModularRouter("/Navigator", module: NavigatorModule()),
         ModularRouter("/Login", module: LoginModule()),
@@ -55,6 +59,7 @@ class AppModule extends MainModule {
         ModularRouter("/Location", child: (_, args) => LocationPage()),
         ModularRouter("/Graduation", child: (_, args) => GraduationPage()),
         ModularRouter("/Programs", child: (_, args) => ProgramsPage()),
+        ModularRouter("/Terms", child: (_, args) => TermsPage()),
         ModularRouter("/Speciality",
             child: (_, args) => SpecialityPage(
                   title: args.data[0],

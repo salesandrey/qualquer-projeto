@@ -18,11 +18,16 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> {
 
 
+
+  Future<void> initAsyncFunction() async{
+    await controller.getUserID();
+    await controller.getInterest();
+    controller.initStream();
+  }
+
   @override
   void initState() {
-    controller.getUserID();
-    controller.getInterest();
-    controller.initStream();
+    initAsyncFunction();
     super.initState();
   }
 
@@ -52,23 +57,21 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
           ),
           body: TabBarView(
             children: [
-              SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
-                  child: Observer(builder:(context){
-                    if(controller.usersADD.data!=null){
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.usersADD.data.length,
-                        itemBuilder: (BuildContext context,int index){
-                          UserMatchModel model  = UserMatchModel.fromMap(controller.usersADD.data["results"][index]);
-                          return CardUserWidget(controller: CardUserWidgetController(user: model,id:controller.userID,like: true),);
-                        },
-                      );
-                    }
-                    return Container();
-                  })
-                  ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
+                child: Observer(builder:(context){
+                  if(controller.usersADD!=null && controller.usersADD.data!=null){
+                    return ListView.builder(
+                      shrinkWrap: false,
+                      itemCount: controller.usersADD.data["results"].length,
+                      itemBuilder: (BuildContext context,int index){
+                        UserMatchModel model  = UserMatchModel.fromMap(controller.usersADD.data["results"][index]);
+                        return CardUserWidget(controller: CardUserWidgetController(user: model,id:controller.userID,like: true),);
+                      },
+                    );
+                  }
+                  return Container();
+                })
                 ),
               SingleChildScrollView(
                 child: Container(
