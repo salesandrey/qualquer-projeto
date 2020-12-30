@@ -1,4 +1,5 @@
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
+import 'package:PadrinhoMED/app/services/push_notification_service.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -16,6 +17,7 @@ abstract class _SplashControllerBase with Store {
 
 
   Future<void> checkUserLogging() async{
+    PushNotificationService().initialize();
     email = await storage.get("email");
     password = await storage.get("password");
 

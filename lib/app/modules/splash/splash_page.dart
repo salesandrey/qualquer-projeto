@@ -24,8 +24,11 @@ class _SplashPageState extends ModularState<SplashPage, SplashController> {
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Image.asset("assets/images/VerticalColor.png",height: 100,),
+      body: Hero(
+        tag: "Logo",
+        child: Center(
+          child: Image.asset("assets/images/VerticalColor.png",width: MediaQuery.of(context).size.width*0.55),
+        ),
       ),
     );
   }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "90859509874",
+    "project_id": "padrinhomed-d6b66",
+    "storage_bucket": "padrinhomed-d6b66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90859509874:android:bf7bf3cbced0a68e924aeb",
+        "android_client_info": {
+          "package_name": "br.lanconi.padrinhomed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90859509874-84dha4p98miq98t0h5f48urn445rqjma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzrMmaa-aC65lOggHnDzlQQ7RLRwur2Ok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90859509874-84dha4p98miq98t0h5f48urn445rqjma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

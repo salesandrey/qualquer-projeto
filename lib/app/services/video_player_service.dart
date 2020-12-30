@@ -115,6 +115,8 @@ class _VideoPlayerServiceState extends State<VideoPlayerService> {
                                         elevation: 0,
                                         textColor: Colors.white,
                                         onPressed: () {
+                                          _controller.pause();
+                                          isPlay = false;
                                           Modular.to.pushNamed("/Location");
                                         },
                                         shape: StadiumBorder(),

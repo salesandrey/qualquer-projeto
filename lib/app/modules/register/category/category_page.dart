@@ -122,7 +122,7 @@ class _CategoryPageState extends State<CategoryPage> {
                           gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
+                              colors: [Colors.white.withOpacity(0.0), Colors.white.withOpacity(1.0)])
                       )),
                   Positioned(left: 40,right: 40,
                       child: ButtonConfirmWidget(

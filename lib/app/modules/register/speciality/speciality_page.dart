@@ -1,9 +1,8 @@
-import 'package:PadrinhoMED/app/modules/login/componentes/button_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/components/autocomplete_text_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/components/button_confirm_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/viewmodel/register_validate_viewmodel.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:PadrinhoMED/app/utils/autocomplete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -103,23 +102,16 @@ class _SpecialityPageState extends State<SpecialityPage> {
                                 color: KBlueTextColor),
                           ),
                           SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "Escolha a especialidade que melhor define sua atuação",
-                            textAlign: TextAlign.left,
-                            style:
-                            TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
-                          ),
-                          SizedBox(
                             height: 20,
                           ),
                           Theme(
                             data: ThemeData(primaryColor:Color(0xFF050072)),
                             child: Container(
                               child: AutoCompleteTextWidget(
-                                labelText: "Digite sua especialidade",
+                                labelText: "Especialidade",
+
                                 element: kGrey,
+                                icon: Icon(Icons.search),
                                 controller: specialityController,
                                 suggestion: controller.specialityList,
                                 textSubmit: controller.changeSpeciality,

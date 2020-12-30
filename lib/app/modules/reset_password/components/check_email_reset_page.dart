@@ -1,8 +1,8 @@
 import 'package:PadrinhoMED/app/modules/reset_password/reset_password_controller.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:PadrinhoMED/app/utils/pin_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:provider/provider.dart';
 
 class CheckEmailResetPage extends StatefulWidget {

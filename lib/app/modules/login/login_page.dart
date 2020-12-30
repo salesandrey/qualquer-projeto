@@ -14,7 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
-  //use 'controller' variable to access controller
+
+
 
   FocusNode emailNode;
   FocusNode passwordNode;
@@ -53,10 +54,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            child: Image(
-                              image: AssetImage('assets/images/VerticalColor.png'),
-                              width: MediaQuery.of(context).size.width*0.55,
+                          Hero(
+                            tag:"Logo",
+                            child: Container(
+                              child: Image(
+                                image: AssetImage('assets/images/VerticalColor.png'),
+                                width: MediaQuery.of(context).size.width*0.55,
+                              ),
                             ),
                           ),
                         ],

@@ -1,10 +1,8 @@
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:PadrinhoMED/app/utils/pin_code.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
-import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:provider/provider.dart';
 
 class CheckEmailPage extends StatefulWidget {
@@ -22,6 +20,11 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
     controller = Provider.of<RegisterController>(context,listen:false);
     controller.sendEmailCode();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -94,6 +97,7 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
                       Padding(
                         padding: const EdgeInsets.only(top:16.0,),
                         child: PinCodeTextField(
+
                           autofocus: true,
                           hideCharacter: false,
                           highlight: true,
@@ -101,6 +105,7 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
                           pinBoxRadius: 17,
                           pinBoxBorderWidth: 1,
 
+                          hasTextBorderColor: Color(0xFF050072),
                           maxLength: 4,
                           hasError: controller.pinCodeValidate,
                           onTextChanged: controller.changePinCode,
@@ -115,7 +120,7 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
                           wrapAlignment: WrapAlignment.spaceBetween,
                           pinBoxDecoration:
                           ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                          pinTextStyle: TextStyle(fontSize: 32.0,fontFamily: "Montserrat Bold"),
+                          pinTextStyle: TextStyle(fontSize: 32.0,fontFamily: "Montserrat Bold",color: Color(0xFF050072)),
                           pinTextAnimatedSwitcherTransition:
                           ProvidedPinBoxTextAnimation.scalingTransition,
                           pinTextAnimatedSwitcherDuration:

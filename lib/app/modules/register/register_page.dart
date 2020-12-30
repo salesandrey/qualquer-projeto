@@ -97,14 +97,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 28,),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
                       Container(
                           padding: const EdgeInsets.symmetric(horizontal: 40),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               TextInputWidget(capitalize: TextCapitalization.words,keyboardType: TextInputType.text,function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Confira seus dados pois este é o nome que vai nos certificados",),
-                              TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória,mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
+                              SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
+                              TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
                             ],
                           ),
                         ),

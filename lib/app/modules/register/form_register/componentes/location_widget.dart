@@ -2,7 +2,7 @@ import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:PadrinhoMED/app/modules/register/components/autocomplete_text_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:PadrinhoMED/app/utils/autocomplete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
