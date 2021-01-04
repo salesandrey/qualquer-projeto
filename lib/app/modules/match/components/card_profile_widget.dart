@@ -52,7 +52,7 @@ class CardProfile extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.only(top: 10),
                     child: Text(
-                      "${user.nome.split(" ").first} ${user.nome.split(" ").last}",
+                      "${user.nome.split(" ").first} ${user.nome.split(" ").last.substring(0,1)}.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,

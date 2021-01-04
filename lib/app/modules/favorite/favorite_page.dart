@@ -67,6 +67,7 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
                       shrinkWrap: false,
                       itemCount: controller.usersADD.data["results"].length,
                       itemBuilder: (BuildContext context,int index){
+                        print(controller.usersADD.data["results"].length);
                         UserMatchModel model  = UserMatchModel.fromMap(controller.usersADD.data["results"][index]);
                         return CardUserWidget(controller: CardUserWidgetController(user: model,id:controller.userID,like: true),);
                       },
@@ -75,16 +76,23 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
                   return Container();
                 })
                 ),
-              SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
-                  child: Column(
-                    children: [
-
-                    ],
-                  ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
+                child: Observer(builder:(context){
+                  if(controller.godfathers!=null && controller.godfathers.data!=null && controller.godfathers.data["results"] != "Nenhum Registro Localizado"){
+                    return ListView.builder(
+                      shrinkWrap: false,
+                      itemCount: controller.godfathers.data["results"].length,
+                      itemBuilder: (BuildContext context,int index){
+                        print(controller.godfathers.data["results"]);
+                        UserMatchModel model  = UserMatchModel.fromMap(controller.godfathers.data["results"][index]);
+                        return CardUserWidget(controller: CardUserWidgetController(user: model,id:controller.userID,like: true),);
+                      },
+                    );
+                  }
+                  return Container();
+                }),
                 ),
-              ),
             ],
           ),
         ),

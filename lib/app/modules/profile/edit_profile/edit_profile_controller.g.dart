@@ -19,53 +19,6 @@ final $EditProfileController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$EditProfileController on _EditProfileControllerBase, Store {
-  final _$usernameAtom = Atom(name: '_EditProfileControllerBase.username');
-
-  @override
-  String get username {
-    _$usernameAtom.reportRead();
-    return super.username;
-  }
-
-  @override
-  set username(String value) {
-    _$usernameAtom.reportWrite(value, super.username, () {
-      super.username = value;
-    });
-  }
-
-  final _$usernameFeedbackAtom =
-      Atom(name: '_EditProfileControllerBase.usernameFeedback');
-
-  @override
-  String get usernameFeedback {
-    _$usernameFeedbackAtom.reportRead();
-    return super.usernameFeedback;
-  }
-
-  @override
-  set usernameFeedback(String value) {
-    _$usernameFeedbackAtom.reportWrite(value, super.usernameFeedback, () {
-      super.usernameFeedback = value;
-    });
-  }
-
-  final _$usernameValidateAtom =
-      Atom(name: '_EditProfileControllerBase.usernameValidate');
-
-  @override
-  bool get usernameValidate {
-    _$usernameValidateAtom.reportRead();
-    return super.usernameValidate;
-  }
-
-  @override
-  set usernameValidate(bool value) {
-    _$usernameValidateAtom.reportWrite(value, super.usernameValidate, () {
-      super.usernameValidate = value;
-    });
-  }
-
   final _$nameAtom = Atom(name: '_EditProfileControllerBase.name');
 
   @override
@@ -78,6 +31,38 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   set name(String value) {
     _$nameAtom.reportWrite(value, super.name, () {
       super.name = value;
+    });
+  }
+
+  final _$nameFeedbackAtom =
+      Atom(name: '_EditProfileControllerBase.nameFeedback');
+
+  @override
+  String get nameFeedback {
+    _$nameFeedbackAtom.reportRead();
+    return super.nameFeedback;
+  }
+
+  @override
+  set nameFeedback(String value) {
+    _$nameFeedbackAtom.reportWrite(value, super.nameFeedback, () {
+      super.nameFeedback = value;
+    });
+  }
+
+  final _$nameValidateAtom =
+      Atom(name: '_EditProfileControllerBase.nameValidate');
+
+  @override
+  bool get nameValidate {
+    _$nameValidateAtom.reportRead();
+    return super.nameValidate;
+  }
+
+  @override
+  set nameValidate(bool value) {
+    _$nameValidateAtom.reportWrite(value, super.nameValidate, () {
+      super.nameValidate = value;
     });
   }
 
@@ -143,6 +128,38 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
     });
   }
 
+  final _$instagramFeedbackAtom =
+      Atom(name: '_EditProfileControllerBase.instagramFeedback');
+
+  @override
+  String get instagramFeedback {
+    _$instagramFeedbackAtom.reportRead();
+    return super.instagramFeedback;
+  }
+
+  @override
+  set instagramFeedback(String value) {
+    _$instagramFeedbackAtom.reportWrite(value, super.instagramFeedback, () {
+      super.instagramFeedback = value;
+    });
+  }
+
+  final _$instagramValidatorAtom =
+      Atom(name: '_EditProfileControllerBase.instagramValidator');
+
+  @override
+  bool get instagramValidator {
+    _$instagramValidatorAtom.reportRead();
+    return super.instagramValidator;
+  }
+
+  @override
+  set instagramValidator(bool value) {
+    _$instagramValidatorAtom.reportWrite(value, super.instagramValidator, () {
+      super.instagramValidator = value;
+    });
+  }
+
   final _$aboutAtom = Atom(name: '_EditProfileControllerBase.about');
 
   @override
@@ -155,6 +172,38 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   set about(String value) {
     _$aboutAtom.reportWrite(value, super.about, () {
       super.about = value;
+    });
+  }
+
+  final _$aboutFeedbackAtom =
+      Atom(name: '_EditProfileControllerBase.aboutFeedback');
+
+  @override
+  String get aboutFeedback {
+    _$aboutFeedbackAtom.reportRead();
+    return super.aboutFeedback;
+  }
+
+  @override
+  set aboutFeedback(String value) {
+    _$aboutFeedbackAtom.reportWrite(value, super.aboutFeedback, () {
+      super.aboutFeedback = value;
+    });
+  }
+
+  final _$aboutValidatorAtom =
+      Atom(name: '_EditProfileControllerBase.aboutValidator');
+
+  @override
+  bool get aboutValidator {
+    _$aboutValidatorAtom.reportRead();
+    return super.aboutValidator;
+  }
+
+  @override
+  set aboutValidator(bool value) {
+    _$aboutValidatorAtom.reportWrite(value, super.aboutValidator, () {
+      super.aboutValidator = value;
     });
   }
 
@@ -239,33 +288,33 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
       ActionController(name: '_EditProfileControllerBase');
 
   @override
-  void changeUsername(String value) {
+  void changeName(String value) {
     final _$actionInfo = _$_EditProfileControllerBaseActionController
-        .startAction(name: '_EditProfileControllerBase.changeUsername');
+        .startAction(name: '_EditProfileControllerBase.changeName');
     try {
-      return super.changeUsername(value);
+      return super.changeName(value);
     } finally {
       _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void changeUsernameFeedback(String value) {
+  void changeNameFeedback(String value) {
     final _$actionInfo = _$_EditProfileControllerBaseActionController
-        .startAction(name: '_EditProfileControllerBase.changeUsernameFeedback');
+        .startAction(name: '_EditProfileControllerBase.changeNameFeedback');
     try {
-      return super.changeUsernameFeedback(value);
+      return super.changeNameFeedback(value);
     } finally {
       _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void changeUsernameValidate(bool value) {
+  void changeNameValidate(bool value) {
     final _$actionInfo = _$_EditProfileControllerBaseActionController
-        .startAction(name: '_EditProfileControllerBase.changeUsernameValidate');
+        .startAction(name: '_EditProfileControllerBase.changeNameValidate');
     try {
-      return super.changeUsernameValidate(value);
+      return super.changeNameValidate(value);
     } finally {
       _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -299,6 +348,74 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
         .startAction(name: '_EditProfileControllerBase.changeEmailValidator');
     try {
       return super.changeEmailValidator(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeInstagram(String value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeInstagram');
+    try {
+      return super.changeInstagram(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeInstagramFeedback(String value) {
+    final _$actionInfo =
+        _$_EditProfileControllerBaseActionController.startAction(
+            name: '_EditProfileControllerBase.changeInstagramFeedback');
+    try {
+      return super.changeInstagramFeedback(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeInstagramValidator(bool value) {
+    final _$actionInfo =
+        _$_EditProfileControllerBaseActionController.startAction(
+            name: '_EditProfileControllerBase.changeInstagramValidator');
+    try {
+      return super.changeInstagramValidator(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeAbout(String value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeAbout');
+    try {
+      return super.changeAbout(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeAboutFeedback(String value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeAboutFeedback');
+    try {
+      return super.changeAboutFeedback(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeAboutValidator(bool value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeAboutValidator');
+    try {
+      return super.changeAboutValidator(value);
     } finally {
       _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -384,15 +501,18 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   @override
   String toString() {
     return '''
-username: ${username},
-usernameFeedback: ${usernameFeedback},
-usernameValidate: ${usernameValidate},
 name: ${name},
+nameFeedback: ${nameFeedback},
+nameValidate: ${nameValidate},
 email: ${email},
 emailFeedBack: ${emailFeedBack},
 emailValidator: ${emailValidator},
 instagram: ${instagram},
+instagramFeedback: ${instagramFeedback},
+instagramValidator: ${instagramValidator},
 about: ${about},
+aboutFeedback: ${aboutFeedback},
+aboutValidator: ${aboutValidator},
 typeSearch: ${typeSearch},
 locationState: ${locationState},
 locationCity: ${locationCity},

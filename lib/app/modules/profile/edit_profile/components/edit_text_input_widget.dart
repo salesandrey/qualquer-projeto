@@ -6,10 +6,14 @@ class EditTextIInputWidget extends StatelessWidget {
   final String labelText;
   final int maxLength;
   final int maxLine;
+  final FocusNode focusNode;
+  final Function requestNode;
+  final bool isVisibility;
+  final bool controllerValidator;
   final TextEditingController controller;
   final Function onChanged;
 
-  const EditTextIInputWidget({Key key, this.labelText, this.controller, this.onChanged, this.maxLine, this.maxLength}) : super(key: key);
+  const EditTextIInputWidget({Key key, this.labelText, this.controller, this.onChanged, this.maxLine, this.maxLength, this.focusNode, this.isVisibility, this.controllerValidator, this.requestNode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +23,17 @@ class EditTextIInputWidget extends StatelessWidget {
       child: TextField(
         maxLength: maxLength,
         maxLines: maxLine,
+        focusNode: focusNode,
         controller: controller,
+        onTap: requestNode,
         onChanged: onChanged,
+        obscureText: isVisibility,
         style: TextStyle(
             color: Colors.black, fontSize: 16, fontFamily: "Montserrat Bold"),
         decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(
-              color: KgreyColor,
-              fontSize: 16,
-              fontWeight: FontWeight.normal),
+          labelStyle: TextStyle(fontFamily: "Montserrat Regular",
+              color: focusNode.hasFocus?controllerValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,fontSize: 18),
           contentPadding: const EdgeInsets.symmetric(horizontal: 5),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
@@ -37,7 +42,7 @@ class EditTextIInputWidget extends StatelessWidget {
           ),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: KgreyColor,
+              color: focusNode.hasFocus?Color(0xFF050072):KgreyColor,
               width: 1.5,
             ),
           ),

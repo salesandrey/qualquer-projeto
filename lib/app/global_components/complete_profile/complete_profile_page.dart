@@ -72,7 +72,7 @@ class CompleteProfilePage extends StatelessWidget {
                                       children: [
                                         FittedBox(
                                           child: Text(
-                                            "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last}",
+                                            "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last.substring(0,1)}.",
                                             style: TextStyle(
                                                 fontSize: 22,
                                                 fontFamily: "Montserrat Bold",
@@ -175,7 +175,7 @@ class CompleteProfilePage extends StatelessWidget {
                                 children: controller.user.atividades.map((e) => ListProgramsColumnWidget(title: e.atividade,)).toList(),),
                             ),
                             SizedBox(height: 32,),
-                            Text("Sobre ${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last}",style: TextStyle(color: Color(0xFF050072),fontFamily: "Montserrat Bold",fontSize:15),),
+                            Text("Sobre ${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last.substring(0,1)}.",style: TextStyle(color: Color(0xFF050072),fontFamily: "Montserrat Bold",fontSize:15),),
                             SizedBox(height: 11,),
                             Text("${controller.user.sobre}",style: TextStyle(color: Color(0xFF050072),fontFamily: "Montserrat Regular",fontSize:14),),
                             SizedBox(height: MediaQuery.of(context).size.height *0.15,)

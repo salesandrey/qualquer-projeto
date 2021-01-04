@@ -1,6 +1,5 @@
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
 import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
-import 'package:PadrinhoMED/app/repositories/godfather_repository.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -50,8 +49,7 @@ abstract class _FavoriteControllerBase with Store {
 
   @action
   void initGodfather(){
-    godfathers = GodfatherRepository(userID: userID).loadingGodFathers.asObservable();
-
+    godfathers = FavoriteRepository(userID: userID).loadingGodFathers.asObservable();
   }
 
 }

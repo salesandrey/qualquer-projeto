@@ -10,31 +10,28 @@ class EditProfileController = _EditProfileControllerBase
 abstract class _EditProfileControllerBase with Store {
 
   @observable
-  String username;
-
-  @observable
-  String usernameFeedback;
-
-  @observable
-  bool usernameValidate = false;
-
-  @action
-  void changeUsername(String value){
-    username = value;
-  }
-
-  @action
-  void changeUsernameFeedback(String value){
-    usernameFeedback = value;
-  }
-
-  @action
-  void changeUsernameValidate(bool value){
-    usernameValidate = value;
-  }
-
-  @observable
   String name;
+
+  @observable
+  String nameFeedback;
+
+  @observable
+  bool nameValidate = false;
+
+  @action
+  void changeName(String value){
+    name = value;
+  }
+
+  @action
+  void changeNameFeedback(String value){
+    nameFeedback = value;
+  }
+
+  @action
+  void changeNameValidate(bool value){
+    nameValidate = value;
+  }
 
   @observable
   String email;
@@ -64,7 +61,49 @@ abstract class _EditProfileControllerBase with Store {
   String instagram;
 
   @observable
+  String instagramFeedback;
+
+  @observable
+  bool instagramValidator = false;
+
+  @action
+  void changeInstagram(String value){
+    instagram = value;
+  }
+
+  @action
+  void changeInstagramFeedback(String value){
+    instagramFeedback = value;
+  }
+
+  @action
+  void changeInstagramValidator(bool value){
+    instagramValidator = value;
+  }
+
+  @observable
   String about;
+
+  @observable
+  String aboutFeedback;
+
+  @observable
+  bool aboutValidator = false;
+
+  @action
+  void changeAbout(String value){
+    about = value;
+  }
+
+  @action
+  void changeAboutFeedback(String value){
+    aboutFeedback = value;
+  }
+
+  @action
+  void changeAboutValidator(bool value){
+    aboutValidator = value;
+  }
 
   @observable
   String typeSearch;

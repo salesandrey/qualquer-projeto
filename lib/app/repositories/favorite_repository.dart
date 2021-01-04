@@ -51,7 +51,29 @@ class FavoriteRepository{
   }
 
   Stream get loadingFavorites async* {
-    print("rodou");
     yield await getUsersAdd(userID);
   }
+
+  Future <dynamic> getMatches(int idUser) async{
+    String url = "https://padmed.lanconi.com.br/matchGet.py";
+    var currentFilter = jsonEncode(
+        {
+          "idUsuario": idUser,
+          "status":"match"
+        });
+
+    Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
+
+    if(response.statusCode==200){
+      return jsonDecode(response.body);
+    }else{
+      print(response.statusCode);
+      return null;
+    }
+  }
+
+  Stream get loadingGodFathers async*{
+    yield await getMatches(userID);
+  }
+
 }

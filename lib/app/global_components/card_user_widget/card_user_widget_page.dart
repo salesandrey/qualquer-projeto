@@ -21,93 +21,93 @@ class CardUserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context){
-      return Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        height: 91,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          color: KSecondaryColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              blurRadius: 5,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 8,
+      return Stack(
+        children: [
+          InkWell(
+            onTap: (){
+              Modular.to.pushNamed("/CompleteProfile",arguments: [controller.user,controller.id,false,controller.typeSearch]);
+            },
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              height: 91,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12),
-                ),
-                color: colorCard[controller.user.graduacao],
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+                color: KSecondaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    blurRadius: 5,
+                    spreadRadius: 1,
+                  ),
+                ],
               ),
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: (){
-                                  Modular.to.pushNamed("/CompleteProfile",arguments: [controller.user,controller.id,false,controller.typeSearch]);
-                                },
-                                child: Text(
-                                  "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last}",
-                                  style: TextStyle(
-                                    fontFamily: "Montserrat Bold",
-                                    fontSize: 18,
-                                    color: KBlackColor,
-                                  ),
-                                ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 8,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomLeft: Radius.circular(12),
+                      ),
+                      color: colorCard[controller.user.graduacao],
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+
+                            child: Text(
+                              "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last.substring(0,1)}.",
+                              style: TextStyle(
+                                fontFamily: "Montserrat Bold",
+                                fontSize: 18,
+                                color: KBlackColor,
                               ),
-                              SizedBox(width: 5,),
-                            ],
+                            ),width: MediaQuery.of(context).size.width * 0.75,
                           ),
-                        ),
-                        InkWell(
-                          onTap: controller.changeLike,
-                          child: controller.like
-                              ? Icon(Icons.favorite, color: Color(0xff6259B2))
-                              : Container(width: 18,height: 16,),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "Interesse: ${controller.user.interesses[0].especialidade}",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: "Montserrat Regular",
-                        color: Colors.black,
+                          Text(
+                            "Interesse: ${controller.user.interesses[0].especialidade}",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: "Montserrat Regular",
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 2,),
+                          Text(
+                            controller.user.graduacao,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: "Montserrat Regular",
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 2,),
-                    Text(
-                      controller.user.graduacao,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: "Montserrat Regular",
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+          Positioned(
+            top: 8,
+            right: 10,
+            child: InkWell(
+              onTap: controller.changeLike,
+              child: controller.like
+                  ? Icon(Icons.favorite, color: Color(0xff6259B2))
+                  : Container(width: 22,height: 22),
+            ),
+          ),
+
+        ],
       );
     });
   }

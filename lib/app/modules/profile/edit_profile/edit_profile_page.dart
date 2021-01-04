@@ -22,13 +22,26 @@ class _EditProfilePageState
   TextEditingController instagram = TextEditingController();
   TextEditingController about = TextEditingController();
 
+  FocusNode nameNode;
+  FocusNode emailNode;
+  FocusNode instagramNode;
+  FocusNode aboutNode;
+  bool show = true;
+
   @override
   void initState() {
+
+    nameNode = FocusNode();
+    emailNode = FocusNode();
+    instagramNode = FocusNode();
+    aboutNode = FocusNode();
+
+
     username.text = "Andrey";
     name.text = "Andrey Sales";
     email.text = "salesandrey11@hotmail.com";
     instagram.text = "@salesandrey";
-    about.text = "Eu sou uma pessoa incrivelmente legal!";
+    about.text = "";
     super.initState();
   }
 
@@ -62,6 +75,7 @@ class _EditProfilePageState
                               'VOLTAR',
                               style: TextStyle(
                                 fontSize: 15,
+                                fontFamily: "Montserrat Regular",
                                 color: Kdeep_perpleColor,
                               ),
                             ),
@@ -69,15 +83,21 @@ class _EditProfilePageState
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(right: 10),
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: KBlueColor.withOpacity(0.3),
+                    InkWell(
+                      onTap: (){
+                        show = !show;
+                        setState(() {});
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 12,horizontal: 7),
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: KBlueColor.withOpacity(0.3),
+                          shape: BoxShape.circle,
+                        ),
+                        child:Image(image: show? AssetImage("assets/images/eye_login.png") : AssetImage("assets/images/eye_open_login.png"),fit: BoxFit.contain,color: Color(0xFF050072),),
                       ),
-                      child: Image.asset("assets/opeeye.png"),
                     ),
                   ],
                 ),
@@ -88,7 +108,7 @@ class _EditProfilePageState
                     'Meus Dados',
                     style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.w900,
+                      fontFamily: "Montserrat Bold",
                       color: Kdeep_perpleColor,
                     ),
                   ),
@@ -102,6 +122,7 @@ class _EditProfilePageState
                         'Confirme suas informações abaixo:',
                         style: TextStyle(
                           fontSize: 15,
+                          fontFamily: "Montserrat Regular",
                           color: KBlackLightTextColor,
                         ),
                       ),
@@ -118,11 +139,41 @@ class _EditProfilePageState
                         borderRadius: BorderRadius.circular(8)),
                     child: Column(
                       children: [
-                        EditTextIInputWidget(labelText: "Nome ou apelido",maxLine: 1,controller: username,),
-                        EditTextIInputWidget(labelText: "Nome e sobrenome",maxLine: 1,controller: name,),
-                        EditTextIInputWidget(labelText: "E-mail",maxLine: 1,controller: email,),
-                        EditTextIInputWidget(labelText: "Instagram",maxLine: 1,controller: instagram,),
-                        EditTextIInputWidget(labelText: "Sobre mim",maxLine: 12,maxLength: 310,controller: about,),
+                        EditTextIInputWidget(labelText: "Nome e sobrenome",
+                          maxLine: 1,controller: name,
+                          focusNode: nameNode,isVisibility: show,
+                          onChanged: controller.changeName,
+                          controllerValidator: controller.nameValidate,
+                          requestNode: (){
+                          nameNode.requestFocus();
+                          setState(() {});}),
+                        EditTextIInputWidget(labelText: "E-mail",
+                          maxLine: 1,controller: email,
+                          focusNode: emailNode,isVisibility: show,
+                          onChanged: controller.changeEmail,
+                          controllerValidator: controller.emailValidator,
+                          requestNode: (){
+                          emailNode.requestFocus();
+                          setState(() {});}),
+                        EditTextIInputWidget(labelText: "Instagram",
+                          maxLine: 1,controller: instagram,
+                          focusNode: instagramNode,isVisibility: show,
+                          onChanged: controller.changeInstagram,
+                          controllerValidator: controller.instagramValidator,
+                          requestNode: (){
+                          instagramNode.requestFocus();
+                          setState(() {});},
+                        ),
+                        EditTextIInputWidget(
+                          labelText: "Sobre mim",maxLine: 4,
+                          maxLength: 310,controller: about,
+                          focusNode: aboutNode,isVisibility: false,
+                          onChanged: controller.changeAbout,
+                          controllerValidator: controller.aboutValidator,
+                          requestNode: (){
+                            aboutNode.requestFocus();
+                            setState(() {});
+                          }),
                         SizedBox(
                           height: 40,
                         ),
@@ -157,7 +208,7 @@ class _EditProfilePageState
                                   "Perfil no App",
                                   style: TextStyle(
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w900,
+                                    fontFamily: "Montserrat Bold",
                                     color: Kdeep_perpleColor,
                                   ),
                                 ),
@@ -187,7 +238,7 @@ class _EditProfilePageState
                                 Text(
                                   "Nível de graduação",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "Montserrat Bold",
                                       fontSize: 15),
                                 ),
                                 SizedBox(
@@ -202,7 +253,7 @@ class _EditProfilePageState
                                     style: TextStyle(
                                         fontSize: 15,
                                         color: KBlackLightTextColor,
-                                        fontWeight: FontWeight.bold),
+                                        fontFamily: "Montserrat Bold",),
                                   ),
                                 ),
                                 Container(
@@ -210,7 +261,6 @@ class _EditProfilePageState
                                     style: TextStyle(fontSize: 15),
                                     textAlignVertical: TextAlignVertical.center,
                                     decoration: InputDecoration(
-                                      hintText: "Ginecologia e Obstetrica",
                                       suffixIcon: Container(
                                         child: Column(
                                           mainAxisAlignment:
@@ -237,7 +287,7 @@ class _EditProfilePageState
                                 Text(
                                   "Atividades de interesse",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "Montserrat Bold",
                                       fontSize: 15),
                                 ),
                                 SizedBox(
@@ -265,7 +315,7 @@ class _EditProfilePageState
                   onPressed: () {},
                   child: Text(
                     "ATUALIZAR",
-                    style: TextStyle(fontWeight: FontWeight.bold,color: Kdeep_PurpleAccentColor.withOpacity(0.3)),
+                    style: TextStyle(fontFamily: "Montserrat Bold",color: Kdeep_PurpleAccentColor.withOpacity(0.3)),
                   ),
                 ),
                 SizedBox(
@@ -284,7 +334,7 @@ class _EditProfilePageState
                 ),
                 Container(
                   child: Text(
-                    " clique aqui e faça o quiz",
+                    "clique aqui e faça o quiz",
                     style: TextStyle(
                       fontSize: 13,
                       color: Kdeep_perpleColor,
