@@ -34,6 +34,21 @@ mixin _$FavoriteController on _FavoriteControllerBase, Store {
     });
   }
 
+  final _$godfathersAtom = Atom(name: '_FavoriteControllerBase.godfathers');
+
+  @override
+  ObservableStream<dynamic> get godfathers {
+    _$godfathersAtom.reportRead();
+    return super.godfathers;
+  }
+
+  @override
+  set godfathers(ObservableStream<dynamic> value) {
+    _$godfathersAtom.reportWrite(value, super.godfathers, () {
+      super.godfathers = value;
+    });
+  }
+
   final _$typeSearchAtom = Atom(name: '_FavoriteControllerBase.typeSearch');
 
   @override
@@ -95,9 +110,21 @@ mixin _$FavoriteController on _FavoriteControllerBase, Store {
   }
 
   @override
+  void initGodfather() {
+    final _$actionInfo = _$_FavoriteControllerBaseActionController.startAction(
+        name: '_FavoriteControllerBase.initGodfather');
+    try {
+      return super.initGodfather();
+    } finally {
+      _$_FavoriteControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 usersADD: ${usersADD},
+godfathers: ${godfathers},
 typeSearch: ${typeSearch},
 userID: ${userID}
     ''';

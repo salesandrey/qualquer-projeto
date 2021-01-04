@@ -36,7 +36,6 @@ class FavoriteRepository{
 
     String url = "https://padmed.lanconi.com.br/favoriteGet.py";
 
-    print(userID);
     var currentFilter = jsonEncode(
         {
           "idUsuario": userID
@@ -47,12 +46,12 @@ class FavoriteRepository{
     if(response.statusCode==200){
       return jsonDecode(response.body);
     }else{
-      print(response.statusCode);
       return null;
     }
   }
 
   Stream get loadingFavorites async* {
+    print("rodou");
     yield await getUsersAdd(userID);
   }
 }

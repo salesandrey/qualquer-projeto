@@ -22,7 +22,9 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
   Future<void> initAsyncFunction() async{
     await controller.getUserID();
     await controller.getInterest();
+    controller.initGodfather();
     controller.initStream();
+
   }
 
   @override

@@ -55,6 +55,8 @@ class _NavigatorPageState extends ModularState<NavigatorPage, NavigatorControlle
                 animation: controller.pageController,
                 builder: (context,snapshot){
                   return BottomNavigationBar(
+                      showSelectedLabels: false,
+                      showUnselectedLabels: false,
                       type: BottomNavigationBarType.fixed,
                       backgroundColor: Colors.white,
                       unselectedIconTheme: IconThemeData(color: kGrey),
