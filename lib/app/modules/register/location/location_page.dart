@@ -57,6 +57,9 @@ class _LocationPageState extends State<LocationPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      LinearProgressIndicator(minHeight: 8.0,value: 0.60,
+                          backgroundColor: Color(0xFFE4E2F0),
+                          valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF6259B2))),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                         child: InkWell(
@@ -98,7 +101,7 @@ class _LocationPageState extends State<LocationPage> {
                               height: 8,
                             ),
                             Text(
-                              "Agora selecione o seu \nestado (UF) e a sua cidade:",
+                              "Agora selecione a sua localização",
                               textAlign: TextAlign.left,
                               style:
                               TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
@@ -108,8 +111,8 @@ class _LocationPageState extends State<LocationPage> {
                               cityController: cityController,
                               keyStringCity: keyStringCity,
                               keyStringState: keyStringState,
-                              label1: "Selecione o Estado",
-                              label2: "E agora,sua cidade ",
+                              label1: "Estado",
+                              label2: "Cidade ",
                               icon1: Icon(Icons.keyboard_arrow_down,color: Color(0xFF050072)),
                               icon2: Icon(Icons.search,),
                               stateController: stateController,

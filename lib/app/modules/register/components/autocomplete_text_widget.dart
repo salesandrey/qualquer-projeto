@@ -32,8 +32,11 @@ class AutoCompleteTextWidget extends StatelessWidget {
 
         decoration: InputDecoration(
           labelText: labelText,
+          contentPadding: EdgeInsets.zero,
           suffixIcon: icon,
-          labelStyle: TextStyle(fontFamily: "Montserrat Regular",fontSize: 18,color: element),
+          labelStyle: TextStyle(
+            height: 5,
+            fontFamily: "Montserrat Regular",fontSize: 18,color: element,),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: element),
           ),

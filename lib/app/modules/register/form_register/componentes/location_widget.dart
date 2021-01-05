@@ -36,7 +36,7 @@ class LocationWidget extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(top: 25, bottom: 15),
                   child: Text(
-                    "Onde você mora?",
+                    "Sua localização",
                     style: TextStyle(
                         fontFamily: "Montserrat Bold",
                         fontSize: 18,
@@ -65,7 +65,7 @@ class LocationWidget extends StatelessWidget {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 12),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Visibility(visible: controller.citiesString==null?false:true,
                       child: Theme(
                         data:ThemeData(primaryColor:Color(0xFF050072)),

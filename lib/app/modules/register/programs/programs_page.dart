@@ -33,6 +33,9 @@ class _ProgramsPageState extends State<ProgramsPage> {
               child: Container(
                 child: Column(
                   children: [
+                    LinearProgressIndicator(minHeight: 8.0,value: 0.90,
+                        backgroundColor: Color(0xFFE4E2F0),
+                        valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF6259B2))),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                       child: InkWell(

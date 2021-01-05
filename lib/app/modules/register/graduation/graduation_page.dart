@@ -31,6 +31,9 @@ class _GraduationPageState extends State<GraduationPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  LinearProgressIndicator(minHeight: 8.0,value: 0.70,
+                      backgroundColor: Color(0xFFE4E2F0),
+                      valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF6259B2))),
                   Container(
 
                     padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
@@ -96,7 +99,7 @@ class _GraduationPageState extends State<GraduationPage> {
                               if(RegisterValidateViewModel().validateGraduation(controller)){
                                 if(controller.graduation=="Estudante (1º ao 8º semestre)" ||
                                     controller.graduation=="Interno (9º ao 12º semestre)" ||
-                                    controller.graduation=="Médico Graduado")
+                                    controller.graduation=="Médico generalista")
                                   Modular.to.pushNamed("/Speciality",arguments: ["Qual a especialidade de maior interesse?",true]);
                                 else{
                                   Modular.to.pushNamed("/Speciality",arguments: ["Qual a sua especialidade?",false]);

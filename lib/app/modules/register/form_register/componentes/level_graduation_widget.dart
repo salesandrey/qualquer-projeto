@@ -59,10 +59,10 @@ class _LevelGraduationWidgetState extends State<LevelGraduationWidget> {
       ButtonOptionWidget(
         function: (){
           selectedValue = 3;
-          controller.changeGraduation("Médico Graduado");
+          controller.changeGraduation("Médico generalista");
           setState(() {});
         },
-        text: "Médico\nGraduado",
+        text: "Médico \ngeneralista",
         height: 68.00,
         radius: 45,
         centerDistance: 32,

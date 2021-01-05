@@ -1,6 +1,5 @@
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/services/video_player_service.dart';
-import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -26,6 +25,9 @@ class _VideoTutorialPageState extends ModularState<VideoTutorialPage, RegisterCo
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                LinearProgressIndicator(minHeight: 8.0,value: 0.50,
+                    backgroundColor: Color(0xFFE4E2F0),
+                    valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF6259B2))),
                 Expanded(child: VideoPlayerService(videoPath: videoPath,))
     ]))));
   }

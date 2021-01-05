@@ -1,38 +1,49 @@
 import 'package:PadrinhoMED/app/modules/register/components/button_confirm_widget.dart';
-import 'package:PadrinhoMED/app/modules/reset_password/viewmodel/validate_reset_viewmodel.dart';
+import 'package:PadrinhoMED/app/modules/register/components/text_input_widget.dart';
+import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
+import 'package:PadrinhoMED/app/modules/register/viewmodel/register_validate_viewmodel.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-import 'reset_password_controller.dart';
 
-class ResetPasswordPage extends StatefulWidget {
-
+class NamePage extends StatefulWidget {
   @override
-  _ResetPasswordPageState createState() => _ResetPasswordPageState();
+  _NamePageState createState() => _NamePageState();
 }
 
-class _ResetPasswordPageState extends State<ResetPasswordPage> {
-  //use 'controller' variable to access controller
+class _NamePageState extends State<NamePage> {
 
-  FocusNode emailNode;
+
+  FocusNode username;
+  FocusNode instagram;
+
 
   @override
   void initState() {
-    emailNode = new FocusNode();
+    username = FocusNode();
+    instagram = FocusNode();
     super.initState();
   }
 
   @override
   void dispose() {
-    emailNode.dispose();
+    username.dispose();
+    instagram.dispose();
     super.dispose();
+  }
+
+  TextEditingController istController(){
+    TextEditingController insta = TextEditingController();
+    insta.text = "@";
+    insta.selection = TextSelection.fromPosition(TextPosition(offset: insta.text.length));
+    return insta;
   }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<ResetPasswordController>(context);
+    final controller = Provider.of<RegisterController>(context);
     return Observer(builder: (context){
       return Scaffold(
         backgroundColor: KPrimaryColor,
@@ -46,7 +57,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      LinearProgressIndicator(minHeight: 8.0,value: 0.10,),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                         child: InkWell(
@@ -77,73 +87,45 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Esqueceu a senha?",
+                              "Seja bem-vindo ao app PadrinhoMed!",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontFamily: "Montserrat Bold",
                                   fontSize: 24,
                                   color: KBlueTextColor),
                             ),
-                            SizedBox(height: 8,),
-                            Text(
-                              "Sem problemas! Digite aqui embaixo o e-mail que deixou cadastrado aqui no app:",
-                              textAlign:TextAlign.left,
-                              style:
-                              TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
-                            ),
-                            SizedBox(height: 83,),
-                            Container(
-                              child: TextField(
-                                onChanged: controller.changeEmail,
-                                style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold",fontSize: 18),
-                                focusNode: emailNode,
-
-                                onTap: (){
-                                  emailNode.requestFocus();
-                                  setState(() {});
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  focusColor: Color(0xFF050072),
-                                  errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
-                                  labelText: "E-mail cadastrado",
-                                  errorText: controller.emailValidator? controller.emailFeedBack:null,
-                                  labelStyle: TextStyle(fontFamily: "Montserrat Regular", color: emailNode.hasFocus ? Color(0xFF050072):KgreyColor,fontSize: 18,),
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 5),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: KGreyColor,
-                                    ),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: KBlueTextColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       ),
-
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextInputWidget(capitalize: TextCapitalization.words,keyboardType: TextInputType.text,function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Confira seus dados pois este é o nome que vai nos certificados",),
+                            SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
+                            TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Positioned(
-                  bottom: 40,left: 40,right: 40,
+                  left: 40, right: 40, bottom: 40,
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         ButtonConfirmWidget(
-                            navigation: controller.email=="" || controller.email.length < 5?
+                            navigation: controller.username=="" || controller.username.length < 5?
                             null : (){
-                              ValidateResetViewModel().validateEmail(controller);
-                              setState(() {});
-                              if(!controller.emailValidator){
-                                Modular.to.pushNamed("/CheckEmailReset");
+                              RegisterValidateViewModel().validateUsername(controller);
+                              if(!controller.usernameValidator) {
+                                Modular.to.pushNamed("/Account");
                               }
+                              setState(() {});
                             },
                             disableColor: KButtonLightColor,
                             disableTextColor:KButtonLightTextColor,
@@ -162,6 +144,5 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         ),
       );
     });
-
   }
 }

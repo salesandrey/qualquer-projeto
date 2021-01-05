@@ -8,17 +8,19 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import 'register_controller.dart';
 
+
+
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends ModularState<RegisterPage,RegisterController> {
+
 
 
   FocusNode username;
   FocusNode instagram;
-
 
   @override
   void initState() {
@@ -57,6 +59,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      LinearProgressIndicator(minHeight: 8.0,value: 0.20,
+                          backgroundColor: Color(0xFFE4E2F0),
+                          valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF6259B2))),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                         child: InkWell(
@@ -99,16 +104,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
                       Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 40),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              TextInputWidget(capitalize: TextCapitalization.words,keyboardType: TextInputType.text,function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Confira seus dados pois este é o nome que vai nos certificados",),
-                              SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
-                              TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
-                            ],
-                          ),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextInputWidget(capitalize: TextCapitalization.words,keyboardType: TextInputType.text,function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Confira seus dados pois este é o nome que vai nos certificados",),
+                            SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
+                            TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
+                          ],
                         ),
+                      ),
                     ],
                   ),
                 ),
@@ -123,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             null : (){
                               RegisterValidateViewModel().validateUsername(controller);
                               if(!controller.usernameValidator) {
-                                Modular.to.pushNamed("/Account");
+                                Modular.to.pushNamed("/CheckEmail");
                               }
                               setState(() {});
                             },

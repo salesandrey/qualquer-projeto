@@ -6,6 +6,7 @@ import 'package:PadrinhoMED/app/modules/register/category/category_page.dart';
 import 'package:PadrinhoMED/app/modules/register/graduation/graduation_page.dart';
 import 'package:PadrinhoMED/app/modules/register/location/location_page.dart';
 import 'package:PadrinhoMED/app/modules/register/programs/programs_page.dart';
+import 'package:PadrinhoMED/app/modules/register/register_page.dart';
 import 'package:PadrinhoMED/app/modules/register/speciality/speciality_page.dart';
 import 'package:PadrinhoMED/app/modules/register/terms/terms_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/components/check_email_reset_page.dart';
@@ -37,7 +38,7 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, module: SplashModule()),
+        ModularRouter(Modular.initialRoute, module: RegisterModule()),
         ModularRouter("/Tutorial", module: TutorialModule()),
         ModularRouter("/CompleteProfile",child: (_, args) => CompleteProfilePage(controller: CompleteProfileController(user:args.data[0],id: args.data[1],like: args.data[2],typeSearch: args.data[3]))),
         ModularRouter("/EditProfile", module: EditProfileModule()),
@@ -47,12 +48,14 @@ class AppModule extends MainModule {
         ModularRouter("/Splash", module: SplashModule()),
         ModularRouter("/Loading", module: LoadingModule()),
         ModularRouter("/Register", module: RegisterModule()),
+
         ModularRouter("/Match", module: MatchModule()),
         ModularRouter("/ResetPassword", module: ResetPasswordModule()),
         ModularRouter("/CheckEmailReset", child: (_, args) => CheckEmailResetPage()),
         ModularRouter("/ConfirmEmailPage", child: (_, args) => ConfirmEmailPage()),
         ModularRouter("/OnBoarding", module: OnBoardingModule()),
         ModularRouter("/Video", child: (_, args) => VideoTutorialPage(videoPath: args.data,),),
+        ModularRouter("/RegisterPage", child: (_, args) => RegisterPage()),
         ModularRouter("/CheckEmail", child: (_, args) => CheckEmailPage()),
         ModularRouter("/Account", child: (_, args) => AccountPage()),
         ModularRouter("/Category", child: (_, args) => CategoryPage()),

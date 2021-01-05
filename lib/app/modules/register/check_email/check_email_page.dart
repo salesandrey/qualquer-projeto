@@ -37,6 +37,9 @@ class _CheckEmailPageState extends State<CheckEmailPage>{
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                LinearProgressIndicator(minHeight: 8.0,value: 0.30,
+                    backgroundColor: Color(0xFFE4E2F0),
+                    valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF6259B2))),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                   child: InkWell(

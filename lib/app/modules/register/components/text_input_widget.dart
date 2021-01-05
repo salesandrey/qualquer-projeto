@@ -37,6 +37,7 @@ class TextInputWidget extends StatelessWidget {
         textCapitalization: capitalize,
         keyboardType: keyboardType,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical:12.0),
           helperMaxLines: 3,
           helperText: helpText,
           helperStyle: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular"),

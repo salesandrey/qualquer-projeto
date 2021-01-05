@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/modules/register/account/account_page.dart';
 import 'package:PadrinhoMED/app/modules/register/category/category_page.dart';
 import 'package:PadrinhoMED/app/modules/register/check_email/check_email_page.dart';
 import 'package:PadrinhoMED/app/modules/register/location/location_page.dart';
@@ -20,7 +21,7 @@ class RegisterModule extends ChildModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute,
-            child: (_, args) => CategoryPage()),
+            child: (_, args) => AccountPage()),
       ];
 
   static Inject get to => Inject<RegisterModule>.of();

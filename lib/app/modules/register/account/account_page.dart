@@ -1,4 +1,4 @@
-import 'package:PadrinhoMED/app/modules/login/componentes/button_widget.dart';
+
 import 'package:PadrinhoMED/app/modules/register/components/button_confirm_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/viewmodel/register_validate_viewmodel.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
@@ -11,12 +11,20 @@ import '../register_controller.dart';
 
 
 class AccountPage extends StatefulWidget {
+
+  final PageController controllerPage;
+
+  const AccountPage({Key key, this.controllerPage}) : super(key: key);
+
   @override
-  _AccountPageState createState() => _AccountPageState();
+  _AccountPageState createState() => _AccountPageState(controllerPage: controllerPage);
 }
 
 class _AccountPageState extends State<AccountPage> {
-  //use 'controller' variable to access controller
+
+  _AccountPageState({this.controllerPage});
+
+    final PageController controllerPage;
 
   FocusNode email;
   FocusNode password;
@@ -54,6 +62,9 @@ class _AccountPageState extends State<AccountPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        LinearProgressIndicator(minHeight: 8.0,value: 0.10,
+                            backgroundColor: Color(0xFFE4E2F0),
+                            valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF6259B2))),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 32),
                           child: InkWell(
@@ -84,7 +95,7 @@ class _AccountPageState extends State<AccountPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Oi, ${controller.username.split(" ")[0]}!",
+                                "Oi!",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontFamily: "Montserrat Bold",
@@ -124,9 +135,13 @@ class _AccountPageState extends State<AccountPage> {
                                     errorText: controller.emailValidator? controller.emailFeedBack:null,
                                     errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
                                     hintStyle: TextStyle(fontFamily: "Montserrat Bold",color: Colors.black),
-                                    labelStyle: TextStyle(fontFamily: "Montserrat Regular",fontSize: 18, color: email.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,
+                                    labelStyle: TextStyle(
+                                      height: -8.0,
+                                      fontFamily: "Montserrat Regular",
+                                      fontSize: 18,
+                                      color: email.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                                    contentPadding: const EdgeInsets.symmetric(vertical: 8),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: KGreyColor,
@@ -156,19 +171,23 @@ class _AccountPageState extends State<AccountPage> {
                                     labelText: "Crie uma senha",
                                     suffixIcon:
                                     password.hasFocus?
-                                    IconButton(onPressed: (){show = !show; setState(() {});},
-                                      icon: Image(
-                                          image: show ? AssetImage("assets/images/eye_login.png") : AssetImage("assets/images/eye_open_login.png"),
-                                          height: 23,
-                                          width: 23,
-                                          color: controller.passwordValidator? Colors.redAccent:Colors.black),):null,
+                                    Padding(padding: const EdgeInsets.fromLTRB(0, 14, 0, 0),
+                                      child: IconButton(onPressed: (){show = !show; setState(() {});},
+                                        icon: Image(
+                                            image: show ? AssetImage("assets/images/eye_login.png") : AssetImage("assets/images/eye_open_login.png"),
+                                            height: 23,
+                                            width: 23,
+                                            color: controller.passwordValidator? Colors.redAccent:Colors.black),),
+                                    ):null,
                                     errorText: controller.passwordValidator? controller.passwordFeedBack:null,
                                     errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
                                     hintStyle: TextStyle(fontFamily: "Montserrat Bold",color: Colors.black),
-                                    labelStyle: TextStyle(fontFamily: "Montserrat Regular",fontSize: 18,
+                                    labelStyle: TextStyle(
+                                      fontFamily: "Montserrat Regular",
+                                      fontSize: 18,
                                       color: password.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                                    contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: KGreyColor,

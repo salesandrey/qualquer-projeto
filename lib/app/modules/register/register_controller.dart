@@ -8,6 +8,7 @@ import 'package:PadrinhoMED/app/repositories/location_repository.dart';
 import 'package:PadrinhoMED/app/repositories/user_repository.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:PadrinhoMED/app/utils/time_convert.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -16,7 +17,8 @@ part 'register_controller.g.dart';
 @Injectable()
 class RegisterController = _RegisterControllerBase with _$RegisterController;
 
-abstract class _RegisterControllerBase with Store {
+abstract class _RegisterControllerBase with Store{
+
 
   @observable
   bool loading = false;
@@ -418,11 +420,10 @@ abstract class _RegisterControllerBase with Store {
     dynamic data = await UserRepository().checkEmail(email);
     if(data!=null){
       updateEmailFeedBack("Email em uso : |");
-      changeEmailValidator(true);
     }else{
       updateEmailFeedBack("");
       changeEmailValidator(false);
-      Modular.to.pushNamed("/CheckEmail");
+      Modular.to.pushNamed("/RegisterPage");
       changeLoading(false);
     }
   }
