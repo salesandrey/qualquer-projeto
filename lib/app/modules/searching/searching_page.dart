@@ -40,9 +40,14 @@ class _SearchingPageState
                 Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: TextField(
+                      textAlignVertical: TextAlignVertical.center,
+                      style: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular",color: Colors.black),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        prefixIcon: Icon(Icons.search,color: kGrey,),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ImageIcon(AssetImage("assets/images/search-interface-symbol (1).png"),color: Color(0xFF050072),),
+                        ),
                         hintText: "Buscar e-mail ou @ do Instagram",
                         hintStyle: TextStyle(color: kGrey,fontFamily: "Montserrat Regular",fontSize: 15),
                       )
@@ -64,7 +69,7 @@ class _SearchingPageState
                       padding: const EdgeInsets.only(top:10.0,bottom: 20),
                       child: Column(children: controller.programs),
                     ),
-                    Text("Especialidade",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                    Text("Especialidades",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
                     Padding(
                       padding: const EdgeInsets.only(top:10.0,bottom: 10),
                       child: ConstrainedBox(constraints: true ? BoxConstraints() : BoxConstraints(maxHeight: 50.0),

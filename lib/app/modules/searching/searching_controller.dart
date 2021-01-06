@@ -22,7 +22,7 @@ abstract class _SearchingControllerBase with Store {
     "Discussão de Casos Clínicos e Aulas",
     "Trabalhos Científicos",
     "Mentoria sobre Carreira Médica",
-    "Acompanhar Rotina Médica",
+    "Acompanhamento de Rotina Médica",
   ];
 
   List<String> specialitsText =[
@@ -82,13 +82,15 @@ abstract class _SearchingControllerBase with Store {
     "Genética Médica"
   ];
 
+
+
   @observable
   ObservableList<CheckBoxWidget> listGraduation = [
     CheckBoxWidget(controller: CheckboxController(title:"Estudante 1º a 8º semestre",check: false),color:Color(0xFFED7AA0)),
     CheckBoxWidget(controller: CheckboxController(title:"Internato 9º a 12º semestre",check: false),color:Color(0xFFA652B7)),
-    CheckBoxWidget(controller: CheckboxController(title:"Médico Graduado",check: false),color:Color(0xFF6AA4E8)),
+    CheckBoxWidget(controller: CheckboxController(title:"Médico generalista",check: false),color:Color(0xFF6AA4E8)),
     CheckBoxWidget(controller: CheckboxController(title:"Residente / Em Especialização",check: false),color:Color(0xFF3FBAA3)),
-    CheckBoxWidget(controller: CheckboxController(title:"Especialista",check: false),color:Color(0xFFFFBE69)),
+    CheckBoxWidget(controller: CheckboxController(title:"Médico especialista",check: false),color:Color(0xFFFFBE69)),
   ].asObservable();
 
   @observable
@@ -125,6 +127,9 @@ abstract class _SearchingControllerBase with Store {
 
   Future<void> addProgramsToList() async{
     programs =  ListOptionViewModel().createListCheckBox(programsText).asObservable();
+    specialitsText.sort((a,b){
+      return a.toLowerCase().compareTo(b.toLowerCase());
+    });
     specialits = ListOptionViewModel().createListCheckBox(specialitsText).asObservable();
   }
 }

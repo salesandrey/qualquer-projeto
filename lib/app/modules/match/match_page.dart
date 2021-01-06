@@ -62,7 +62,7 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
             HeaderWidget(backgroundColor: headModel.color,colorCategory: headModel.textColor,colorTitle: headModel.textColor,title: "Mostrando lista de",nameCategory: headModel.name),
             SwipeCardWidget(listCard: listCard,swipeKey: _swipeKey,),
             MatchButtonOptionWidget(
-              goHome: (){Modular.to.pushReplacementNamed("/Navigator");},
+              goHome: (){Modular.to.pop();},
               love: (){love();},
               notLove: (){notLove();},
               accessProfile: (){Modular.to.pushNamed("/CompleteProfile",arguments: [listCard.last,id,false,typeSearch]);},)

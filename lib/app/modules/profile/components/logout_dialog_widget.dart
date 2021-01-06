@@ -105,7 +105,7 @@ class LogoutDialogWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100)),
                   child: Container(
-                    padding: EdgeInsets.all(28.0),
+                    padding: EdgeInsets.all(20.0),
                     child: Image(
                       image:AssetImage("assets/images/cry_emoji.png"),
                       height: 80,

@@ -58,7 +58,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         Container(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FittedBox(
                                 child: Text(
@@ -70,6 +70,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   ),
                                 ),
                               ),
+                              SizedBox(height: 1,),
                               FittedBox(
                                 child: Text(
                                   "Todo Brasil",
@@ -103,7 +104,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 8),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -114,8 +115,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             description: "1º a 8º semestre",
                             navigator: ()
                             {
-                              controller.changeFilter("Estudante (1º ao 8º semestre)");
-                              Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPinkColor,textColor: Colors.black,name: "Estudante (1º ao 8º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
+                              controller.changeFilter("Estudantes (1º ao 8º semestre)");
+                              Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPinkColor,textColor: Colors.black,name: "Estudante (1º ao 8º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
                             },
                           ),
                           CardColorFullWidget(
@@ -125,19 +126,19 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             navigator: ()
                             {
                               controller.changeFilter("Interno (9º ao 12º semestre)");
-                              Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPurple,textColor: Colors.black,name: "Interno (9º ao 12º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
+                              Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPurple,textColor: Colors.black,name: "Interno (9º ao 12º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
                             },
                           ),
                           CardColorFullWidget(
                             color: KAzulColor,
                             title: "Médicos",
-                            description: "Graduados",
+                            description: "Generalistas",
                             navigator: ()
                             {
-                              controller.changeFilter("Médico Graduado");
+                              controller.changeFilter("Médico Generalistas");
 
-                              Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,
-                                HeadModel(color:KAzulColor,textColor: Colors.black,name:"Médicos Graduado"),controller.currentUser.id,controller.currentUser.tipo]);
+                              Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,
+                                HeadModel(color:KAzulColor,textColor: Colors.black,name:"Médicos Gerenalistas"),controller.currentUser.id,controller.currentUser.tipo]);
                             },
                           ),
                           CardColorFullWidget(
@@ -147,7 +148,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             navigator: ()
                             {
                               controller.changeFilter("Em Especialização / Residente");
-                              Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KGreenColor,textColor: Colors.black,name:"Residentes em especialização"),controller.currentUser.id,controller.currentUser.tipo]);
+                              Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KGreenColor,textColor: Colors.black,name:"Residentes em especialização"),controller.currentUser.id,controller.currentUser.tipo]);
                             },
                           ),
                           CardColorFullWidget(
@@ -156,8 +157,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             description: "Especialistas",
                             navigator: ()
                             {
-                              controller.changeFilter("Médico Especialista");
-                              Modular.to.pushReplacementNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KYellowColor,textColor: Colors.black,name:"Médicos Especialistas"),controller.currentUser.id,controller.currentUser.tipo]);
+                              controller.changeFilter("Médicos Especialista");
+                              Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KYellowColor,textColor: Colors.black,name:"Médicos Especialistas"),controller.currentUser.id,controller.currentUser.tipo]);
                             },
                           ),
                         ],
@@ -165,11 +166,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(top: 15),
+                          margin: const EdgeInsets.only(top: 24),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -181,7 +182,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                               FittedBox(
                                   child: InkWell(
                                     onTap: (){
-                                      Modular.to.pushReplacementNamed("/Match",arguments:[controller.mostIndication,HeadModel(color:KLightPurple,textColor: Color(0xFF050072),name: "Mais indicados para você"),controller.currentUser.id,controller.currentUser.tipo]);
+                                      Modular.to.pushNamed("/Match",arguments:[controller.mostIndication,HeadModel(color:KLightPurple,textColor: Color(0xFF050072),name: "Mais indicados para você"),controller.currentUser.id,controller.currentUser.tipo]);
                                     },
                                     child: Text(
                                       "Ver tudo",
@@ -196,13 +197,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           ),
                         ),
                         SizedBox(height: 8,),
-                        ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: controller.mostIndication!=null?controller.mostIndication.length>=3?3:controller.mostIndication.length:0,
-                            itemBuilder: (BuildContext context,int index){
-
-                              return CardUserWidget(controller: CardUserWidgetController(user: controller.mostIndication[index],id:controller.currentUser.id,like: false),);
-                            })
+                        Container(
+                          height: controller.mostIndication!=null && controller.mostIndication.length!=0?controller.mostIndication.length>=3?300:100 * controller.mostIndication.length :15,
+                          child: ListView.builder(
+                              shrinkWrap:controller.mostIndication!=null?controller.mostIndication.length>=3?false:true:true,
+                              itemCount: controller.mostIndication!=null?controller.mostIndication.length>=3?3:controller.mostIndication.length:0,
+                              itemBuilder: (BuildContext context,int index){
+                                print(controller.mostIndication.length);
+                                return CardUserWidget(controller: CardUserWidgetController(user: controller.mostIndication[index],id:controller.currentUser.id,like: false),);
+                              }),
+                        )
                       ],
                     ),
                   ),
@@ -210,11 +214,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     height: 10,
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       children: [
                       Container(
-                        margin: const EdgeInsets.only(top: 15,left: 15,right: 15),
+                        margin: const EdgeInsets.only(top: 24),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -243,12 +247,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       SizedBox(
                         height: 10,
                       ),
-                        ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: controller.recentUsers!=null?controller.recentUsers.length>=3?3:controller.recentUsers.length:0,
-                            itemBuilder: (BuildContext context,int index){
-                              return CardUserWidget(controller: CardUserWidgetController(user: controller.recentUsers[index],id:controller.currentUser.id,like: false),);
-                            })
+                        Container(
+                          height: controller.recentUsers!=null && controller.recentUsers.length!=0?
+                          controller.recentUsers.length>=3?300:100 * controller.recentUsers.length :15,
+                          child: ListView.builder(
+                              shrinkWrap: controller.recentUsers!=null?controller.recentUsers.length>=3?false:true:true,
+                              itemCount: controller.recentUsers!=null?controller.recentUsers.length>=3?3:controller.recentUsers.length:0,
+                              itemBuilder: (BuildContext context,int index){
+                                return CardUserWidget(controller: CardUserWidgetController(user: controller.recentUsers[index],id:controller.currentUser.id,like: false),);
+                              }),
+                        )
                     ],),
                   )
                 ],

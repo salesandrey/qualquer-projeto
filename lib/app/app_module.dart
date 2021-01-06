@@ -38,7 +38,7 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, module: RegisterModule()),
+        ModularRouter(Modular.initialRoute, module: SplashModule()),
         ModularRouter("/Tutorial", module: TutorialModule()),
         ModularRouter("/CompleteProfile",child: (_, args) => CompleteProfilePage(controller: CompleteProfileController(user:args.data[0],id: args.data[1],like: args.data[2],typeSearch: args.data[3]))),
         ModularRouter("/EditProfile", module: EditProfileModule()),

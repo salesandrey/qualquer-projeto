@@ -48,27 +48,32 @@ class _NavigatorPageState extends ModularState<NavigatorPage, NavigatorControlle
 
     @override
     Widget build(BuildContext context) {
-    return Observer(builder: (context){
-      return Scaffold(
-          body: PageView(controller: controller.pageController,children: tab,physics:new NeverScrollableScrollPhysics(),onPageChanged: (value){ setState(() {});},),
-              bottomNavigationBar: AnimatedBuilder(
-                animation: controller.pageController,
-                builder: (context,snapshot){
-                  return BottomNavigationBar(
-                      showSelectedLabels: false,
-                      showUnselectedLabels: false,
-                      type: BottomNavigationBarType.fixed,
-                      backgroundColor: Colors.white,
-                      unselectedIconTheme: IconThemeData(color: kGrey),
-                      currentIndex: controller.pageController?.page?.round() ?? 0,
-                      selectedItemColor: Color(0xFF050072),
-                      items: items,
-                      onTap:controller.changePage
-                  );
-                },
-              )
-      );
-    });
+    return WillPopScope(
+      onWillPop: ()async{
+        return false;
+      },
+      child: Observer(builder: (context){
+        return Scaffold(
+            body: PageView(controller: controller.pageController,children: tab,physics:new NeverScrollableScrollPhysics(),onPageChanged: (value){ setState(() {});},),
+                bottomNavigationBar: AnimatedBuilder(
+                  animation: controller.pageController,
+                  builder: (context,snapshot){
+                    return BottomNavigationBar(
+                        showSelectedLabels: false,
+                        showUnselectedLabels: false,
+                        type: BottomNavigationBarType.fixed,
+                        backgroundColor: Colors.white,
+                        unselectedIconTheme: IconThemeData(color: kGrey),
+                        currentIndex: controller.pageController?.page?.round() ?? 0,
+                        selectedItemColor: Color(0xFF050072),
+                        items: items,
+                        onTap:controller.changePage
+                    );
+                  },
+                )
+        );
+      }),
+    );
   }
 }
 
