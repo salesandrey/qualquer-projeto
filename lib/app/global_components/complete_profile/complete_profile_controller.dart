@@ -12,7 +12,7 @@ class CompleteProfileController = _CompleteProfileControllerBase
 abstract class _CompleteProfileControllerBase with Store {
 
 
-  _CompleteProfileControllerBase({this.user,this.id,this.like,this.typeSearch});
+  _CompleteProfileControllerBase({this.user,this.id,this.like,this.typeSearch,this.nameAbr});
 
   @observable
   UserMatchModel user;
@@ -34,10 +34,16 @@ abstract class _CompleteProfileControllerBase with Store {
     patronize = !patronize;
   }
 
+  @observable
+  String nameAbr = "";
+
+  Function favorite;
+
   @action
   Future<void> changeLike() async{
     like = !like;
-    await FavoriteRepository().insert(like?"like":"dislike", id, user.id);
+    await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr);
+    favorite();
   }
 
 }

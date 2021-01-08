@@ -17,7 +17,7 @@ class CompleteProfilePage extends StatelessWidget {
   final Map<String,Color> colorCard = {
     "Estudante (1º ao 8º semestre)":Color(0xFFED7AA0),
     "Interno (9º ao 12º semestre)":Color(0xFFA652B7),
-    "Médico Graduado":Color(0xFF6AA4E8),
+    "Médico Generalista":Color(0xFF6AA4E8),
     "Em Especialização / Residente":Color(0xFF3FBAA3),
     "Médico Especialista":Color(0xFFFFBE69)
   };
@@ -67,7 +67,7 @@ class CompleteProfilePage extends StatelessWidget {
                                     },
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(top: 12),
+                                    margin: EdgeInsets.only(top: 16),
                                     child: Column(
                                       children: [
                                         FittedBox(
@@ -82,7 +82,8 @@ class CompleteProfilePage extends StatelessWidget {
                                         FittedBox(
                                           child: Container(
                                             child: Text(
-                                              "Interesse: ${controller.user.especialidade} ",
+                                              controller.user.graduacao=="Em Especialização / Residente" || controller.user.graduacao=="Médico Especialista"?
+                                               "${controller.user.especialidade} " : "Interesse: ${controller.user.especialidade} ",
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontFamily: "Montserrat Bold",
@@ -108,11 +109,10 @@ class CompleteProfilePage extends StatelessWidget {
                                   ),
                                   IconButton(
                                     iconSize: 30,
-                                    icon: controller.like? Icon(
-                                      Icons.favorite,
+                                    icon: controller.like? ImageIcon(AssetImage("assets/images/favorite_icon_line.png"),
                                       color: Color(0xff170C10),
-                                    ):Icon(
-                                      Icons.favorite_border,
+                                    ):ImageIcon(
+                                      AssetImage("assets/images/favorite_icon_outline.png"),
                                       color: Color(0xff170C10),
                                     ),
                                     onPressed: controller.changeLike,

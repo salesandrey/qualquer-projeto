@@ -11,11 +11,12 @@ class FavoriteRepository{
   FavoriteRepository({this.userID});
 
 
-  Future<void> insert(String value,int userID,int userFavorite) async {
+  Future<void> insert(String value,int userID,int userFavorite,String nameAbrev) async {
     String url = "https://padmed.lanconi.com.br/favoriteInsert.py";
 
     var currentFilter = jsonEncode(
         {
+          "nomeAbrev": nameAbrev,
           "idUsuario": userID,
           "idFavorito": userFavorite,
           "status": value
@@ -50,7 +51,7 @@ class FavoriteRepository{
     }
   }
 
-  Stream get loadingFavorites async* {
+  Stream get loadingFavorites async*{
     yield await getUsersAdd(userID);
   }
 

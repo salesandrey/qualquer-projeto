@@ -1,6 +1,8 @@
+import 'package:PadrinhoMED/app/modules/configuration/configuration_module.dart';
 import 'package:PadrinhoMED/app/modules/loading/loading_module.dart';
 import 'package:PadrinhoMED/app/modules/navigator/navigator_module.dart';
 import 'package:PadrinhoMED/app/modules/onBoarding/on_boarding_module.dart';
+import 'package:PadrinhoMED/app/modules/premium/premium_module.dart';
 import 'package:PadrinhoMED/app/modules/profile/edit_profile/edit_profile_module.dart';
 import 'package:PadrinhoMED/app/modules/register/category/category_page.dart';
 import 'package:PadrinhoMED/app/modules/register/graduation/graduation_page.dart';
@@ -24,6 +26,7 @@ import 'global_components/complete_profile/complete_profile_page.dart';
 import 'modules/home/home_module.dart';
 import 'modules/login/login_module.dart';
 import 'modules/match/match_module.dart';
+import 'modules/premium/premium_details/premium_details_page.dart';
 import 'modules/register/account/account_page.dart';
 import 'modules/register/check_email/check_email_page.dart';
 import 'modules/register/register_module.dart';
@@ -39,6 +42,9 @@ class AppModule extends MainModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, module: SplashModule()),
+        ModularRouter("/Configuration", module: ConfigurationModule()),
+        ModularRouter("/PremiumDetails",child:(_, args) => PremiumDetailsPage(typePlane: args.data[0],valuePlane: args.data[1],)),
+        ModularRouter("/Premium",module: PremiumModule()),
         ModularRouter("/Tutorial", module: TutorialModule()),
         ModularRouter("/CompleteProfile",child: (_, args) => CompleteProfilePage(controller: CompleteProfileController(user:args.data[0],id: args.data[1],like: args.data[2],typeSearch: args.data[3]))),
         ModularRouter("/EditProfile", module: EditProfileModule()),

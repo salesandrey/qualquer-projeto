@@ -25,7 +25,7 @@ class ButtonOptionWidget extends StatelessWidget {
       children: [
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
-          height: height,
+          height: MediaQuery.of(context).size.height * 0.075,
           child: RaisedButton(
             onPressed: function,
             color: color,

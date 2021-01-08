@@ -11,7 +11,7 @@ class LoadingModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => LoadingPage()),
+        ModularRouter(Modular.initialRoute, child: (_, args) => LoadingPage(screenCame: args.data,)),
       ];
 
   static Inject get to => Inject<LoadingModule>.of();

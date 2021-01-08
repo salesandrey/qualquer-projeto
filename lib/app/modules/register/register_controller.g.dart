@@ -691,6 +691,17 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   @override
+  void acceptTerms(bool value) {
+    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
+        name: '_RegisterControllerBase.acceptTerms');
+    try {
+      return super.acceptTerms(value);
+    } finally {
+      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void cleanListCities() {
     final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
         name: '_RegisterControllerBase.cleanListCities');

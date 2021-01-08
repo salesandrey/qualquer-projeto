@@ -39,6 +39,7 @@ class HeaderWidget extends StatelessWidget {
             title,
             style: TextStyle(color: colorTitle, fontSize: 12,fontFamily: "Montserrat Regular"),
           ),
+          SizedBox(height: 1,),
           Row(
             children: [
               Container(

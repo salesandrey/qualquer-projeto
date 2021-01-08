@@ -9,7 +9,7 @@ class ListProgramsColumnWidget extends StatelessWidget {
     "Posts para Redes Sociais":"assets/images/share.png",
     "Discussão de Casos Clínicos e Aulas":"assets/images/speech-bubble.png",
     "Trabalhos Científicos":"assets/images/chemistry.png",
-    "Acompanhar Rotina Médica":"assets/images/first-aid-kit.png",
+    "Acompanhamento de Rotina Médica":"assets/images/first-aid-kit.png",
     "Mentoria sobre Carreira Médica":"assets/images/target.png"
   };
 
@@ -17,7 +17,7 @@ class ListProgramsColumnWidget extends StatelessWidget {
     "Posts para Redes Sociais":"Posts para Redes Sociais",
     "Discussão de Casos Clínicos e Aulas":"Discussão de Casos Clínicos e Aulas",
     "Trabalhos Científicos":"Trabalhos Científicos",
-    "Acompanhar Rotina Médica":"Acompanhar Rotina Médica",
+    "Acompanhamento de Rotina Médica":"Acompanhamento de Rotina Médica",
     "Mentoria sobre Carreira Médica":"Mentoria sobre carreira médica"
   };
 

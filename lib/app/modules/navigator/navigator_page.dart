@@ -1,5 +1,6 @@
 import 'package:PadrinhoMED/app/modules/favorite/favorite_module.dart';
 import 'package:PadrinhoMED/app/modules/home/home_module.dart';
+import 'package:PadrinhoMED/app/modules/notification/notification_module.dart';
 import 'package:PadrinhoMED/app/modules/profile/profile_module.dart';
 import 'package:PadrinhoMED/app/modules/searching/searching_module.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
@@ -17,9 +18,9 @@ class _NavigatorPageState extends ModularState<NavigatorPage, NavigatorControlle
 
 
     List<Widget> tab =[
-      RouterOutlet(module: HomeModule()),
+      RouterOutlet(module: HomeModule(),),
       RouterOutlet(module: SearchingModule()),
-      Container(color:Colors.grey),
+      RouterOutlet(module: NotificationModule()),
       RouterOutlet(module: FavoriteModule()),
       RouterOutlet(module: ProfileModule())];
     int index = 0;
@@ -39,8 +40,6 @@ class _NavigatorPageState extends ModularState<NavigatorPage, NavigatorControlle
             icon: ImageIcon(AssetImage("assets/images/favorite_icon.png"),size: 32,),label: ""),
         BottomNavigationBarItem(
             icon: ImageIcon(AssetImage("assets/images/person_icon.png"),size: 32,),label: ""),
-
-
       ];
     super.initState();
   }

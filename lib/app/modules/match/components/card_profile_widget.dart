@@ -4,6 +4,7 @@ import 'package:PadrinhoMED/app/modules/match/components/rounded_icon_card_widge
 import 'package:PadrinhoMED/app/modules/match/components/text_card_profile_widget.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:PadrinhoMED/app/utils/size_config.dart';
+import 'package:PadrinhoMED/app/utils/uf_brazil.dart';
 import 'package:flutter/material.dart';
 
 class CardProfile extends StatelessWidget {
@@ -12,14 +13,12 @@ class CardProfile extends StatelessWidget {
   final Map<String,Color> colorCard = {
     "Estudante (1º ao 8º semestre)":Color(0xFFED7AA0),
     "Interno (9º ao 12º semestre)":Color(0xFFA652B7),
-    "Médico Graduado":Color(0xFF6AA4E8),
+    "Médico Generalista":Color(0xFF6AA4E8),
     "Em Especialização / Residente":Color(0xFF3FBAA3),
     "Médico Especialista":Color(0xFFFFBE69)
   };
 
   CardProfile({Key key, this.user,}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ class CardProfile extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.only(top: 24),
                     child: Text(
                       "${user.nome.split(" ").first} ${user.nome.split(" ").last.substring(0,1)}.",
                       textAlign: TextAlign.center,
@@ -61,8 +60,8 @@ class CardProfile extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    child: Text(
-                      "Interesse: ${user.especialidade}",
+                    child: Text(user.graduacao=="Em Especialização / Residente" || user.graduacao=="Médico Especialista"?
+                    "${user.especialidade} " : "Interesse: ${user.especialidade} ",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
@@ -75,11 +74,11 @@ class CardProfile extends StatelessWidget {
               ),
             ),
             Container(
-                padding: EdgeInsets.only(top: 20,left:24,right: 24 ),
+                padding: EdgeInsets.only(top: 24,left:24,right: 24 ),
                 child: TextCardProfileWidget(text1: "Nível de Graduação",text2: user.graduacao)),
             Container(
                 padding: EdgeInsets.only(top: 20,left: 24,right: 24),
-                child: TextCardProfileWidget(text1: "Localização",text2: "${user.cidade}, ${user.estado}")),
+                child: TextCardProfileWidget(text1: "Localização",text2: "${user.cidade}, ${UFBrazil.ufBrazil.keys.firstWhere((element) => UFBrazil.ufBrazil[element]==user.estado)}")),
             Container(
               padding: EdgeInsets.only(top: 20,left: 24,right: 24),
               child: Column(
@@ -103,7 +102,7 @@ class CardProfile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         ButtonCardProfileWidget(text: "E-mail"),
-                        SizedBox(width: 16,),
+                        SizedBox(width: 8,),
                         ButtonCardProfileWidget(text: "Instagram")
                       ],
                     ),
@@ -111,10 +110,12 @@ class CardProfile extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 20,),
             Divider(
               indent: 15,
               endIndent: 15,
             ),
+            SizedBox(height: 20,),
             Container(
               child: Column(
                 children: [

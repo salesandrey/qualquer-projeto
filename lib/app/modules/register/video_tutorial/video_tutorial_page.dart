@@ -1,7 +1,9 @@
+
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
 import 'package:PadrinhoMED/app/services/video_player_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:provider/provider.dart';
+
 
 class VideoTutorialPage extends StatefulWidget {
   final String videoPath;
@@ -11,7 +13,7 @@ class VideoTutorialPage extends StatefulWidget {
   _VideoTutorialPageState createState() => _VideoTutorialPageState(videoPath);
 }
 
-class _VideoTutorialPageState extends ModularState<VideoTutorialPage, RegisterController> {
+class _VideoTutorialPageState extends State<VideoTutorialPage> {
 
   final String videoPath;
 
@@ -19,6 +21,7 @@ class _VideoTutorialPageState extends ModularState<VideoTutorialPage, RegisterCo
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<RegisterController>(context);
     return Scaffold(
         body: SafeArea(
           child: Container(

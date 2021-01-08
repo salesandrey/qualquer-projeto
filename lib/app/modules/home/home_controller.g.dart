@@ -41,6 +41,52 @@ mixin _$HomeController on _HomeControllerBase, Store {
               name: '_HomeControllerBase.listFiltered'))
       .value;
 
+  final _$favoritesAtom = Atom(name: '_HomeControllerBase.favorites');
+
+  @override
+  ObservableStream<dynamic> get favorites {
+    _$favoritesAtom.reportRead();
+    return super.favorites;
+  }
+
+  @override
+  set favorites(ObservableStream<dynamic> value) {
+    _$favoritesAtom.reportWrite(value, super.favorites, () {
+      super.favorites = value;
+    });
+  }
+
+  final _$updateFavoriteAtom = Atom(name: '_HomeControllerBase.updateFavorite');
+
+  @override
+  bool get updateFavorite {
+    _$updateFavoriteAtom.reportRead();
+    return super.updateFavorite;
+  }
+
+  @override
+  set updateFavorite(bool value) {
+    _$updateFavoriteAtom.reportWrite(value, super.updateFavorite, () {
+      super.updateFavorite = value;
+    });
+  }
+
+  final _$currentFavoritesAtom =
+      Atom(name: '_HomeControllerBase.currentFavorites');
+
+  @override
+  ObservableList<int> get currentFavorites {
+    _$currentFavoritesAtom.reportRead();
+    return super.currentFavorites;
+  }
+
+  @override
+  set currentFavorites(ObservableList<int> value) {
+    _$currentFavoritesAtom.reportWrite(value, super.currentFavorites, () {
+      super.currentFavorites = value;
+    });
+  }
+
   final _$usersAtom = Atom(name: '_HomeControllerBase.users');
 
   @override
@@ -116,6 +162,21 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$initStreamAsyncAction = AsyncAction('_HomeControllerBase.initStream');
+
+  @override
+  Future<void> initStream() {
+    return _$initStreamAsyncAction.run(() => super.initStream());
+  }
+
+  final _$resultFavoritesAsyncAction =
+      AsyncAction('_HomeControllerBase.resultFavorites');
+
+  @override
+  Future<void> resultFavorites(List<dynamic> list) {
+    return _$resultFavoritesAsyncAction.run(() => super.resultFavorites(list));
+  }
+
   final _$getMostIndicationAsyncAction =
       AsyncAction('_HomeControllerBase.getMostIndication');
 
@@ -134,6 +195,17 @@ mixin _$HomeController on _HomeControllerBase, Store {
 
   final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase');
+
+  @override
+  void changeUpdateFavorite(bool value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeUpdateFavorite');
+    try {
+      return super.changeUpdateFavorite(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void loadingCurrentUser(UserModel model) {
@@ -193,6 +265,9 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     return '''
+favorites: ${favorites},
+updateFavorite: ${updateFavorite},
+currentFavorites: ${currentFavorites},
 users: ${users},
 mostIndication: ${mostIndication},
 recentUsers: ${recentUsers},

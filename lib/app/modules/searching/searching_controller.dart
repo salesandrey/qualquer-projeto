@@ -15,6 +15,14 @@ class SearchingController = _SearchingControllerBase with _$SearchingController;
 abstract class _SearchingControllerBase with Store {
 
   @observable
+  String userInstagramEmailSearching;
+
+  @action
+  void changeNameInstagramSearching(String value){
+    userInstagramEmailSearching = value;
+  }
+
+  @observable
   ObservableList<UserModel> users = [UserModel()].asObservable();
 
   List<String> programsText = [

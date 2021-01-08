@@ -86,7 +86,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
                               child: RichText(text: TextSpan(style: TextStyle(fontFamily: "Montserrat Regular",fontSize: 15,color:kGrey),
                                   children: [
                                     TextSpan(text: "Li e concordo com os "),
-                                    TextSpan(recognizer: TapGestureRecognizer()..onTap = (){Modular.to.pushNamed("/Terms");},text: "Termos",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:kGrey,decoration: TextDecoration.underline),),
+                                    TextSpan(recognizer: TapGestureRecognizer()..onTap = (){Modular.to.pushNamed("/Terms");},text: "Termos",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color:kGrey,decoration: TextDecoration.underline),),
                                   ]),),),],),),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 40,horizontal: 40),

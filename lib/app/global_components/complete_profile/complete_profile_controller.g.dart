@@ -11,7 +11,8 @@ final $CompleteProfileController = BindInject(
       user: i<UserMatchModel>(),
       id: i<int>(),
       like: i<bool>(),
-      typeSearch: i<String>()),
+      typeSearch: i<String>(),
+      nameAbr: i<String>()),
   singleton: true,
   lazy: true,
 );
@@ -100,6 +101,21 @@ mixin _$CompleteProfileController on _CompleteProfileControllerBase, Store {
     });
   }
 
+  final _$nameAbrAtom = Atom(name: '_CompleteProfileControllerBase.nameAbr');
+
+  @override
+  String get nameAbr {
+    _$nameAbrAtom.reportRead();
+    return super.nameAbr;
+  }
+
+  @override
+  set nameAbr(String value) {
+    _$nameAbrAtom.reportWrite(value, super.nameAbr, () {
+      super.nameAbr = value;
+    });
+  }
+
   final _$changeLikeAsyncAction =
       AsyncAction('_CompleteProfileControllerBase.changeLike');
 
@@ -129,7 +145,8 @@ user: ${user},
 id: ${id},
 like: ${like},
 typeSearch: ${typeSearch},
-patronize: ${patronize}
+patronize: ${patronize},
+nameAbr: ${nameAbr}
     ''';
   }
 }

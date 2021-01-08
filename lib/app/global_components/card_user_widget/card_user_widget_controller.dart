@@ -11,7 +11,7 @@ class CardUserWidgetController = _CardUserWidgetControllerBase
 
 abstract class _CardUserWidgetControllerBase with Store {
 
-  _CardUserWidgetControllerBase({this.user,this.id,this.like});
+  _CardUserWidgetControllerBase({this.user,this.id,this.like,this.nameAbr,this.favorite});
 
   @observable
   UserMatchModel user;
@@ -28,9 +28,17 @@ abstract class _CardUserWidgetControllerBase with Store {
   @observable
   bool patronize = false;
 
+  @observable
+  String nameAbr = "";
+
+  Function favorite;
+
   @action
   Future<void> changeLike() async{
     like = !like;
-    await FavoriteRepository().insert(like?"like":"dislike", id, user.id);
+    await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr);
+    favorite();
+
   }
+
 }

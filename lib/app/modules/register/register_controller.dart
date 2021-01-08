@@ -202,6 +202,11 @@ abstract class _RegisterControllerBase with Store{
     checkTerm = !checkTerm;
   }
 
+  @action
+  void acceptTerms(bool value){
+    checkTerm = value;
+  }
+
 
   Future<void> sendEmailCode() async{
 
@@ -230,7 +235,7 @@ abstract class _RegisterControllerBase with Store{
       "Discussão de Casos Clínicos e Aulas":"21",
       "Trabalhos Científicos":"22",
       "Mentoria sobre Carreira Médica":"23",
-      "Acompanhar Rotina Médica":"24"
+      "Acompanhamento de Rotina Médica":"24"
     };
 
     List<Map<String,String>> activitsSelect = activities.map((element){
@@ -258,7 +263,7 @@ abstract class _RegisterControllerBase with Store{
          "senha": password,
          "data": TimeConvert().convertDateTimeToString(DateTime.now()),
          "cod": pinRecerved,
-         "sobre":"Alguma coisa",
+         "sobre":"",
          "situacao": "teste situacao",
          "dispositivo": Platform.isAndroid? "Android" : "Ios",
          "especialidade": speciality,
@@ -282,7 +287,7 @@ abstract class _RegisterControllerBase with Store{
    await storage.saveDataLocal(model, email, password, list);
 
    if(data!=null){
-     Modular.to.pushNamed("/Tutorial");
+     Modular.to.pushNamed("/Loading",arguments: "Register");
    }
 
   }
@@ -378,6 +383,7 @@ abstract class _RegisterControllerBase with Store{
     }
      List<UfModel> newUFs = [];
      dynamic data = await  LocationRepository().getUF();
+     print(data);
      if(data!=null) {
        for(dynamic value in data){
          UfModel model  = UfModel.fromMap(value);

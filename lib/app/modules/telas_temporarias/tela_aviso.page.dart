@@ -43,6 +43,7 @@ class _P2MeusCertificados4State extends State<P2MeusCertificados4> {
                               Text('VOLTAR',
                                 style: TextStyle(
                                   fontSize: 14,
+
                                   color: Kdeep_perpleColor,
                                 ),
                               ),
@@ -57,19 +58,6 @@ class _P2MeusCertificados4State extends State<P2MeusCertificados4> {
                             fontSize: 18,
                             fontWeight: FontWeight.w900,
                             color: Kdeep_perpleColor,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: FittedBox(
-                            child: Text('Selecione o certificado para abrir:',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: KGreyColor,
-                              ),
-                            ),
                           ),
                         ),
                       ),

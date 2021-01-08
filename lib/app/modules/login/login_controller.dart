@@ -99,7 +99,7 @@ abstract class _LoginControllerBase with Store {
         storage.put("state", model.estado);
         storage.put("instagram", model.instagram);
         storage.put("activities",list);
-        Modular.to.pushReplacementNamed("/Loading");
+        Modular.to.pushReplacementNamed("/Loading",arguments: "Login");
       }
     }
   }

@@ -8,7 +8,11 @@ part of 'card_user_widget_controller.dart';
 
 final $CardUserWidgetController = BindInject(
   (i) => CardUserWidgetController(
-      user: i<UserMatchModel>(), id: i<int>(), like: i<bool>()),
+      user: i<UserMatchModel>(),
+      id: i<int>(),
+      like: i<bool>(),
+      nameAbr: i<String>(),
+      favorite: i<Function>()),
   singleton: true,
   lazy: true,
 );
@@ -96,6 +100,21 @@ mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
     });
   }
 
+  final _$nameAbrAtom = Atom(name: '_CardUserWidgetControllerBase.nameAbr');
+
+  @override
+  String get nameAbr {
+    _$nameAbrAtom.reportRead();
+    return super.nameAbr;
+  }
+
+  @override
+  set nameAbr(String value) {
+    _$nameAbrAtom.reportWrite(value, super.nameAbr, () {
+      super.nameAbr = value;
+    });
+  }
+
   final _$changeLikeAsyncAction =
       AsyncAction('_CardUserWidgetControllerBase.changeLike');
 
@@ -111,7 +130,8 @@ user: ${user},
 id: ${id},
 like: ${like},
 typeSearch: ${typeSearch},
-patronize: ${patronize}
+patronize: ${patronize},
+nameAbr: ${nameAbr}
     ''';
   }
 }

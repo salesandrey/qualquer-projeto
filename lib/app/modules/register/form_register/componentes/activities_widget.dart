@@ -19,7 +19,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
     "Redes Sociais":"Post para \nredes sociais",
     "Casos e Aulas":"Discussão de caso \nclínico e aula",
     "Trabalho Científico":"Trabalho\nCientífico",
-    "Rotina Médica":"Acompanhamento \nrotina médico",
+    "Rotina Médica":"Acompanhamento de \nrotina médica",
     "Mentoria Carreira":"Mentoria sobre \nCarreira Médica"
   };
 
@@ -59,7 +59,9 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                     children: [
                       TextSpan(text: "Selecione "),
                       TextSpan(text: "todos ",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:KGreyColor)),
-                      TextSpan(text: "os programas \nque gostaria de participar" )
+                      TextSpan(text: "os programas \nque gostaria de participar. \nClique no " ),
+                      TextSpan(text: "i ",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:KGreyColor)),
+                      TextSpan(text: "ao lado de cada opção para conhecer mais cada Plano PadrinhoMed" ),
                     ]),),
               ],
             ),
@@ -206,12 +208,12 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
             title: iconText["Rotina Médica"],
             changeFunction: ()
             {
-              if(controller.activities.contains("Acompanhar Rotina Médica")){
-                controller.removeActivities("Acompanhar Rotina Médica");
+              if(controller.activities.contains("Acompanhamento de Rotina Médica")){
+                controller.removeActivities("Acompanhamento de Rotina Médica");
               }else {
-                controller.addActivities("Acompanhar Rotina Médica");
+                controller.addActivities("Acompanhamento de Rotina Médica");
               }},
-            customBox: controller.activities.contains("Acompanhar Rotina Médica")?
+            customBox: controller.activities.contains("Acompanhamento de Rotina Médica")?
             Container(width: 32, height: 32,
               decoration: BoxDecoration(
                   color: Color(0xFFD9D9EA),
@@ -229,7 +231,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                 border: Border.all(
                     style: BorderStyle.solid,
                     color: Color(0xFF707070)))),
-            border: controller.activities.contains("Acompanhar Rotina Médica")? Color(0xFF050072):Colors.white,
+            border: controller.activities.contains("Acompanhamento de Rotina Médica")? Color(0xFF050072):Colors.white,
           ),
           SizedBox(
             height: 8,

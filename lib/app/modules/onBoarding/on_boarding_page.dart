@@ -37,14 +37,16 @@ class _OnBoardingPageState
               Container(
                   height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
                   width: MediaQuery.of(context).size.width),
-              Align(
-                alignment: Alignment.topCenter,
+              Positioned(
+                top: -50,
                 child: ConfettiWidget(confettiController: confetti,
+                    maximumSize: Size(10,10),
+                    minimumSize: Size(7, 7),
                     blastDirectionality: BlastDirectionality.explosive, shouldLoop: true,
-                    maxBlastForce: 30,
+                    maxBlastForce: 10,
                     blastDirection: 1,
                     emissionFrequency: 0.1,
-                    numberOfParticles: 20,// start again as soon as the animation is finished
+                    numberOfParticles: 5,// start again as soon as the animation is finished
                   colors: const [
                     Colors.green,
                     Colors.blue,
@@ -88,7 +90,7 @@ class _OnBoardingPageState
                           Container(
                             child: Center(
                               child: Text(
-                                'Prontinho,${controller.username.split(" ")[0]}!',
+                                'Prontinho, ${controller.username.split(" ")[0]}!',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 18,

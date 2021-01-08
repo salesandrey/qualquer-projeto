@@ -86,11 +86,14 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                   Modular.to.pushNamed("/EditProfile");
                 }),//Modular.to.pushNamed("/EditProfile");},),
                 BoxOptionWidget(iconImage: 'assets/images/48.png',text: "Meus Certificados", navigation: (){
-                  Navigator.of(context).push(new MaterialPageRoute(builder: (context) => P2MeusCertificados4(),),
-                  );
+
                 },),
-                BoxOptionWidget(iconImage: 'assets/images/50.png',text: "Configurações"),
-                BoxOptionWidget(iconImage: 'assets/images/85.png',text: "Conta Premium"),
+                BoxOptionWidget(iconImage: 'assets/images/50.png',text: "Configurações",navigation: (){
+                  Modular.to.pushNamed("/Configuration");
+                },),
+                BoxOptionWidget(iconImage: 'assets/images/85.png',text: "Conta Premium",navigation: (){
+                  Modular.to.pushNamed("/Premium");
+                },),
                 BoxOptionWidget(iconImage: 'assets/images/51.png',text: "Ajuda"),
               ],
             ),

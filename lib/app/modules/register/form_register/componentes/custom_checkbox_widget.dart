@@ -24,20 +24,22 @@ class CustomCheckBox extends StatelessWidget {
       elevation: 0,
       child: Container(
         height: 64,
-        child: ListTile(
-          leading: InkWell(
-              onTap: changeFunction,
-              child: customBox),
-          title: Text(title,
-              style: TextStyle(fontFamily: "Montserrat Regular",
-                  fontSize: 15, color: KGreyColor)),
-          trailing: InkWell(onTap: () {
+        child: Center(
+          child: ListTile(
+            leading: InkWell(
+                onTap: changeFunction,
+                child: customBox),
+            title: Text(title,
+                style: TextStyle(fontFamily: "Montserrat Regular",
+                    fontSize: 15, color: KGreyColor)),
+            trailing: InkWell(onTap: () {
 
-            showDialog( context: context ,builder: (BuildContext context) {
-              return CasesWidget(title: title,description: description,imagePath: imagePath);
-            });
-          },
-              child: Container(width: 24, height: 24, child: Image(image: AssetImage("assets/images/icon_information.png",),),)),),
+              showDialog( context: context ,builder: (BuildContext context) {
+                return CasesWidget(title: title,description: description,imagePath: imagePath);
+              });
+            },
+                child: Container(width: 24, height: 24, child: Image(image: AssetImage("assets/images/icon_information.png",),),)),),
+        ),
       ),
     );
   }

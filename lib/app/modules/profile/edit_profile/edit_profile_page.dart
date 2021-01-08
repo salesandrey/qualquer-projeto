@@ -1,6 +1,9 @@
+import 'package:PadrinhoMED/app/modules/profile/edit_profile/components/custom_autocompleted_widget.dart';
 import 'package:PadrinhoMED/app/modules/profile/edit_profile/components/edit_text_input_widget.dart';
 import 'package:PadrinhoMED/app/modules/profile/edit_profile/components/location_edit_widget.dart';
 import 'package:PadrinhoMED/app/modules/profile/edit_profile/components/search_edit_widget.dart';
+import 'package:PadrinhoMED/app/modules/register/components/autocomplete_text_widget.dart';
+import 'package:PadrinhoMED/app/utils/autocomplete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'edit_profile_controller.dart';
@@ -21,6 +24,8 @@ class _EditProfilePageState
   TextEditingController email = TextEditingController();
   TextEditingController instagram = TextEditingController();
   TextEditingController about = TextEditingController();
+  TextEditingController speciality = TextEditingController();
+  GlobalKey<AutoCompleteTextFieldState<String>> keyStringSpeciality = new GlobalKey();
 
   FocusNode nameNode;
   FocusNode emailNode;
@@ -42,6 +47,7 @@ class _EditProfilePageState
     email.text = "salesandrey11@hotmail.com";
     instagram.text = "@salesandrey";
     about.text = "";
+    speciality.text = "Pediatria";
     super.initState();
   }
 
@@ -256,28 +262,16 @@ class _EditProfilePageState
                                         fontFamily: "Montserrat Bold",),
                                   ),
                                 ),
-                                Container(
-                                  child: TextField(
-                                    style: TextStyle(fontSize: 15),
-                                    textAlignVertical: TextAlignVertical.center,
-                                    decoration: InputDecoration(
-                                      suffixIcon: Container(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            ColorFiltered(
-                                              colorFilter: ColorFilter.mode(
-                                                  KGreyColor, BlendMode.srcIn),
-                                              child: Image(
-                                                image: AssetImage(
-                                                    'assets/search-interface-symbol (1).png'),
-                                                width: 18,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                Theme(
+                                  data: ThemeData(primaryColor:Color(0xFF050072)),
+                                  child: Container(
+                                    child: CustomAutoCompletedWidget(
+                                      element: Color(0xFF050072),
+                                      controller: speciality,
+                                      suggestion: controller.specialityList,
+                                      textSubmit: controller.changeSpeciality,
+                                      onChanged: controller.changeSpeciality,
+                                      keyText: keyStringSpeciality,
                                     ),
                                   ),
                                 ),

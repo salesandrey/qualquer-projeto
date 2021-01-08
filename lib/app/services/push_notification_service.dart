@@ -6,6 +6,7 @@ class PushNotificationService{
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
+
   Future initialize() async{
 
     if(Platform.isIOS){
@@ -23,5 +24,6 @@ class PushNotificationService{
         print("onResume: $message");
       },
     );
+    _firebaseMessaging.getToken().then((value) => print(value));
   }
 }

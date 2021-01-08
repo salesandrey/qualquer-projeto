@@ -1,6 +1,7 @@
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/models/user_model.dart';
+import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
 import 'package:PadrinhoMED/app/repositories/filter_repository.dart';
 import 'package:PadrinhoMED/app/repositories/list_user_repository.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
@@ -13,6 +14,42 @@ part 'home_controller.g.dart';
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
+
+  @observable
+  ObservableStream favorites;
+
+  @observable
+  bool updateFavorite = false;
+
+  @action
+  void changeUpdateFavorite(bool value){
+    updateFavorite = value;
+  }
+
+  @action
+  Future<void> initStream() async{
+    favorites = FavoriteRepository(userID: currentUser.id).loadingFavorites.asObservable().asBroadcastStream();
+  }
+
+  @observable
+  ObservableList<int> currentFavorites;
+
+  @action
+  Future<void> resultFavorites(List<dynamic> list) async{
+
+    List<int> newElements = [];
+    for(dynamic element in list){
+      int model  = element["id"];
+      newElements.add(model);
+    }
+    currentFavorites = newElements.asObservable();
+  }
+
+  bool checkFavorite(int id){
+    if(currentFavorites.contains(id))
+      return true;
+    return false;
+  }
 
   @observable
   ObservableList<UserMatchModel> users;
@@ -106,7 +143,14 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future<void> getMostIndication() async{
-    dynamic data = await FilterRepository().filter("maisIndicados",currentUser.especialidade,currentUser.id);
+    dynamic data = await FilterRepository().filter(
+    type:"maisIndicados",
+    idUser: currentUser.id,
+    speciality: [{"especialidade":currentUser.graduacao}],
+    email: "",
+    instagram: "",
+    graduations: [{"graduacao":""}]
+    );
     List<UserMatchModel> newList =[];
     if(data!=null){
       for(dynamic value in data["results"]){
@@ -120,7 +164,17 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future<void> getRecentUsers() async{
-    dynamic data = await FilterRepository().filter("novosUsuarios","",currentUser.id);
+
+
+    dynamic data = await FilterRepository().filter(
+      idUser: currentUser.id,
+      type: "novosUsuarios",
+      graduations:[{"graduacao":""}],
+        instagram: "",
+        email: "",
+        speciality: [{"especialidade":""}]
+    );
+
     List<UserMatchModel> newList =[];
     if(data!=null){
       for(dynamic value in data["results"]){
@@ -137,12 +191,14 @@ abstract class _HomeControllerBase with Store {
 
     String id = await storage.get("id");
     String data = await storage.get("data");
+    String name = await storage.get("name");
     String speciality = await storage.get("speciality");
     String graduation = await storage.get("graduation");
     String typeSearch = await storage.get("typeSearch");
 
     UserModel user = UserModel(
         id: toInt(id),
+        nome: name,
         data: DateTime.parse(data),
         especialidade: speciality,
         graduacao: graduation,

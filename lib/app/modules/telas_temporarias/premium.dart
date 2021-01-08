@@ -20,7 +20,6 @@ class _P4ContaPremium1State extends State<P4ContaPremium1> {
             padding: const EdgeInsets.only(bottom: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              //mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -40,6 +39,7 @@ class _P4ContaPremium1State extends State<P4ContaPremium1> {
                           'VOLTAR',
                           style: TextStyle(
                             fontSize: 15,
+                            fontFamily: "Montserrat Regular",
                             color: Kdeep_perpleColor,
                           ),
                         ),

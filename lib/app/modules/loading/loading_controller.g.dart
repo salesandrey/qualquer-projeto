@@ -19,18 +19,19 @@ final $LoadingController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoadingController on _LoadingControllerBase, Store {
-  final _$valueAtom = Atom(name: '_LoadingControllerBase.value');
+  final _$currentsMessagesAtom =
+      Atom(name: '_LoadingControllerBase.currentsMessages');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ObservableList<String> get currentsMessages {
+    _$currentsMessagesAtom.reportRead();
+    return super.currentsMessages;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set currentsMessages(ObservableList<String> value) {
+    _$currentsMessagesAtom.reportWrite(value, super.currentsMessages, () {
+      super.currentsMessages = value;
     });
   }
 
@@ -38,11 +39,11 @@ mixin _$LoadingController on _LoadingControllerBase, Store {
       ActionController(name: '_LoadingControllerBase');
 
   @override
-  void increment() {
+  void loadingMessages() {
     final _$actionInfo = _$_LoadingControllerBaseActionController.startAction(
-        name: '_LoadingControllerBase.increment');
+        name: '_LoadingControllerBase.loadingMessages');
     try {
-      return super.increment();
+      return super.loadingMessages();
     } finally {
       _$_LoadingControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -51,7 +52,7 @@ mixin _$LoadingController on _LoadingControllerBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+currentsMessages: ${currentsMessages}
     ''';
   }
 }

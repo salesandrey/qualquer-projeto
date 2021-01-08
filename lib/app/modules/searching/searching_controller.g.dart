@@ -27,6 +27,23 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
               name: '_SearchingControllerBase.userFiltered'))
       .value;
 
+  final _$userInstagramEmailSearchingAtom =
+      Atom(name: '_SearchingControllerBase.userInstagramEmailSearching');
+
+  @override
+  String get userInstagramEmailSearching {
+    _$userInstagramEmailSearchingAtom.reportRead();
+    return super.userInstagramEmailSearching;
+  }
+
+  @override
+  set userInstagramEmailSearching(String value) {
+    _$userInstagramEmailSearchingAtom
+        .reportWrite(value, super.userInstagramEmailSearching, () {
+      super.userInstagramEmailSearching = value;
+    });
+  }
+
   final _$usersAtom = Atom(name: '_SearchingControllerBase.users');
 
   @override
@@ -88,9 +105,24 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
     });
   }
 
+  final _$_SearchingControllerBaseActionController =
+      ActionController(name: '_SearchingControllerBase');
+
+  @override
+  void changeNameInstagramSearching(String value) {
+    final _$actionInfo = _$_SearchingControllerBaseActionController.startAction(
+        name: '_SearchingControllerBase.changeNameInstagramSearching');
+    try {
+      return super.changeNameInstagramSearching(value);
+    } finally {
+      _$_SearchingControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
+userInstagramEmailSearching: ${userInstagramEmailSearching},
 users: ${users},
 listGraduation: ${listGraduation},
 programs: ${programs},

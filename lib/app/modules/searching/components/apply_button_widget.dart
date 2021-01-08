@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 
 
-class ApplyButtonWidget extends StatefulWidget {
+class ApplyButtonWidget extends StatelessWidget {
+
 
   final String text;
   final Color textColor;
@@ -12,6 +13,7 @@ class ApplyButtonWidget extends StatefulWidget {
   final double height;
   final double radius;
   final double centerDistance;
+  final Function filterResults;
 
   const ApplyButtonWidget({Key key,
     this.text,
@@ -21,39 +23,8 @@ class ApplyButtonWidget extends StatefulWidget {
     this.elevation,
     this.height,
     this.radius,
-    this.centerDistance}) : super(key: key);
-
-
-
-  @override
-  _ApplyButtonWidgetState createState() => _ApplyButtonWidgetState(color: color,
-      height: height,elevation: elevation,text: text,
-      centerDistance: centerDistance,highLightColor: highLightColor,radius: radius,textColor: textColor);
-}
-
-class _ApplyButtonWidgetState extends State<ApplyButtonWidget> {
-
-
-  final String text;
-  final Color textColor;
-  final Color color;
-  final Color highLightColor;
-  final double elevation;
-  final double height;
-  final double radius;
-  final double centerDistance;
-
-  bool pressed = false;
-
-  _ApplyButtonWidgetState({
-      this.text,
-      this.textColor,
-      this.color,
-      this.highLightColor,
-      this.elevation,
-      this.height,
-      this.radius,
-      this.centerDistance});
+    this.centerDistance,
+    this.filterResults}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +37,7 @@ class _ApplyButtonWidgetState extends State<ApplyButtonWidget> {
           width: MediaQuery.of(context).size.width * 0.9,
           height: height,
           child: RaisedButton(
-            onPressed: () {
-              pressed = true;
-              setState(() {});
-            },
+            onPressed: filterResults,
             color: color,
             elevation: elevation,
             highlightElevation: elevation,
@@ -78,7 +46,7 @@ class _ApplyButtonWidgetState extends State<ApplyButtonWidget> {
             child: FittedBox(
               child: Text(
                 text,
-                style: TextStyle(fontSize: 16, color: pressed? Colors.white : textColor,fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, color: true? Colors.white : textColor,fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -88,3 +56,10 @@ class _ApplyButtonWidgetState extends State<ApplyButtonWidget> {
     );
   }
 }
+
+
+
+
+
+
+

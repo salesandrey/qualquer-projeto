@@ -44,7 +44,7 @@ abstract class _FavoriteControllerBase with Store {
 
   @action
   void initStream(){
-    usersADD = FavoriteRepository(userID: userID).loadingFavorites.asObservable();
+    usersADD = FavoriteRepository(userID: userID).loadingFavorites.asObservable().asBroadcastStream();
   }
 
   @action

@@ -53,7 +53,7 @@ class TermsPage extends StatelessWidget {
               Positioned(bottom: 40,left: 40,right: 40,
                   child: ButtonConfirmWidget(
                       navigation: (){
-                        controller.changeTerm(true);
+                        controller.acceptTerms(true);
                         Modular.to.pop();},
                       disableColor: KButtonLightColor,
                       disableTextColor:KButtonLightTextColor,
