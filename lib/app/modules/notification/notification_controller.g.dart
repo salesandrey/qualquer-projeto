@@ -19,39 +19,34 @@ final $NotificationController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$NotificationController on _NotificationControllerBase, Store {
-  final _$valueAtom = Atom(name: '_NotificationControllerBase.value');
+  final _$notificationsAtom =
+      Atom(name: '_NotificationControllerBase.notifications');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ObservableStream<List<NotificationModel>> get notifications {
+    _$notificationsAtom.reportRead();
+    return super.notifications;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set notifications(ObservableStream<List<NotificationModel>> value) {
+    _$notificationsAtom.reportWrite(value, super.notifications, () {
+      super.notifications = value;
     });
   }
 
-  final _$_NotificationControllerBaseActionController =
-      ActionController(name: '_NotificationControllerBase');
+  final _$initStreamAsyncAction =
+      AsyncAction('_NotificationControllerBase.initStream');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_NotificationControllerBaseActionController
-        .startAction(name: '_NotificationControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_NotificationControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> initStream() {
+    return _$initStreamAsyncAction.run(() => super.initStream());
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+notifications: ${notifications}
     ''';
   }
 }

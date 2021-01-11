@@ -1,6 +1,7 @@
 
 
 
+import 'package:PadrinhoMED/app/utils/time_map.dart';
 import 'package:intl/intl.dart';
 
 class TimeConvert{
@@ -13,6 +14,11 @@ class TimeConvert{
 
   String convertDateTimeToString(DateTime date){
     var formattedDate = "${date.year}-${date.month}-${date.day}";
+    return formattedDate;
+  }
+
+  String convertDatetimeToStringBrazilTime(DateTime date){
+    var formattedDate = "${date.day} de ${TimeMap.timeMonth[date.month]} de ${date.day}";
     return formattedDate;
   }
 }

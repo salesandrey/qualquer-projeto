@@ -3,6 +3,7 @@ import 'package:PadrinhoMED/app/modules/home/home_module.dart';
 import 'package:PadrinhoMED/app/modules/notification/notification_module.dart';
 import 'package:PadrinhoMED/app/modules/profile/profile_module.dart';
 import 'package:PadrinhoMED/app/modules/searching/searching_module.dart';
+import 'package:PadrinhoMED/app/repositories/notification_repository.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

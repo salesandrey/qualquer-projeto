@@ -7,8 +7,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'searching_controller.dart';
 
 class SearchingPage extends StatefulWidget {
-  final String title;
-  const SearchingPage({Key key, this.title = "Searching"}) : super(key: key);
 
   @override
   _SearchingPageState createState() => _SearchingPageState();

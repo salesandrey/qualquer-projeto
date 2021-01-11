@@ -32,7 +32,7 @@ class EditTextIInputWidget extends StatelessWidget {
             color: Colors.black, fontSize: 16, fontFamily: "Montserrat Bold"),
         decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(fontFamily: "Montserrat Regular",
+          labelStyle: TextStyle(fontFamily: "Montserrat Regular",height: 1.0,
               color: focusNode.hasFocus?controllerValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,fontSize: 18),
           contentPadding: const EdgeInsets.symmetric(horizontal: 5),
           enabledBorder: UnderlineInputBorder(

@@ -1,5 +1,10 @@
+import 'package:PadrinhoMED/app/models/user_model.dart';
+import 'package:PadrinhoMED/app/modules/profile/edit_profile/viewmodel/list_programs_viewmodel.dart';
+import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_widget.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+
 
 part 'edit_profile_controller.g.dart';
 
@@ -215,5 +220,19 @@ abstract class _EditProfileControllerBase with Store {
     "Genética Médica"
   ];
 
+  @observable
+  int checkGraduation = 0;
+
+  @action
+  changeCheckGraduation(int value){
+    checkGraduation = value;
+  }
+
+  @observable
+  ObservableList<CheckBoxWidget> programs;
+
+  Future<void> addProgramsToList() async{
+    programs =  ListProgramsViewModel().createListCheckBox([]).asObservable();
+  }
 
 }

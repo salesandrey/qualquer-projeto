@@ -22,13 +22,13 @@ mixin _$FavoriteController on _FavoriteControllerBase, Store {
   final _$usersADDAtom = Atom(name: '_FavoriteControllerBase.usersADD');
 
   @override
-  ObservableStream<dynamic> get usersADD {
+  ObservableStream<List<UserMatchModel>> get usersADD {
     _$usersADDAtom.reportRead();
     return super.usersADD;
   }
 
   @override
-  set usersADD(ObservableStream<dynamic> value) {
+  set usersADD(ObservableStream<List<UserMatchModel>> value) {
     _$usersADDAtom.reportWrite(value, super.usersADD, () {
       super.usersADD = value;
     });
@@ -37,13 +37,13 @@ mixin _$FavoriteController on _FavoriteControllerBase, Store {
   final _$godfathersAtom = Atom(name: '_FavoriteControllerBase.godfathers');
 
   @override
-  ObservableStream<dynamic> get godfathers {
+  ObservableStream<List<UserMatchModel>> get godfathers {
     _$godfathersAtom.reportRead();
     return super.godfathers;
   }
 
   @override
-  set godfathers(ObservableStream<dynamic> value) {
+  set godfathers(ObservableStream<List<UserMatchModel>> value) {
     _$godfathersAtom.reportWrite(value, super.godfathers, () {
       super.godfathers = value;
     });

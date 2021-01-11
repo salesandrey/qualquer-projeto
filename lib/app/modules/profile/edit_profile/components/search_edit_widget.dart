@@ -32,7 +32,7 @@ class _SearchingEditWidgetState extends ModularState<SearchingEditWidget,EditPro
               Transform.scale(
                 scale: 1.4,
                 child: Radio(
-                  activeColor: Color(0xFF0000E6),
+                  activeColor: Color(0xFF050072),
                   value: type.Afilhado.index,
                   groupValue: selectedValue,
                   onChanged: (value) {
@@ -42,13 +42,13 @@ class _SearchingEditWidgetState extends ModularState<SearchingEditWidget,EditPro
                   },
                 ),
               ),
-              Text('Afilhado',style: TextStyle(fontFamily: "Montserrat Regular",color: selectedValue==0?Color(0xFF0000E6):kGrey,fontSize: 15)),
+              Text('Afilhado',style: TextStyle(fontFamily: "Montserrat Regular",color: selectedValue==0?Color(0xFF191919):kGrey,fontSize: 15)),
             ],),
             Row(children: [
               Transform.scale(
                 scale: 1.4,
                 child: Radio(
-                  activeColor:Color(0xFF0000E6),
+                  activeColor:Color(0xFF050072),
                   value: type.Padrinho.index,
                   groupValue: selectedValue,
                   onChanged: (value) {
@@ -58,7 +58,7 @@ class _SearchingEditWidgetState extends ModularState<SearchingEditWidget,EditPro
                   },
                 ),
               ),
-              Text('Padrinho',style: TextStyle(fontFamily: "Montserrat Regular",color: selectedValue==1?Color(0xFF0000E6):kGrey,fontSize: 15)),
+              Text('Padrinho',style: TextStyle(fontFamily: "Montserrat Regular",color: selectedValue==1?Color(0xFF191919):kGrey,fontSize: 15)),
             ])
           ],
         ),

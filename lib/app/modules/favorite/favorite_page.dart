@@ -59,7 +59,7 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
             children: [
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
-                child: StreamBuilder(
+                child: StreamBuilder<List<UserMatchModel>>(
                       stream: controller.usersADD,
                       builder: (context,snapshot){
                         if(!snapshot.hasData){
@@ -67,11 +67,9 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
                         }
                         return ListView.builder(
                           shrinkWrap: false,
-                          itemCount: snapshot.data["results"].length,
+                          itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context,int index){
-                            print(snapshot.data["results"].length);
-                            UserMatchModel model  = UserMatchModel.fromMap(snapshot.data["results"][index]);
-                            return CardUserWidget(controller: CardUserWidgetController(user: model,id:controller.userID,like: true),);
+                            return CardUserWidget(controller: CardUserWidgetController(user: snapshot.data[index],id:controller.userID,like: true));
                           },
                         );
                       }
@@ -79,21 +77,22 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
                 ),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
-                child: Observer(builder:(context){
-                  if(controller.godfathers!=null && controller.godfathers.data!=null && controller.godfathers.data["results"] != "Nenhum Registro Localizado"){
+                child: StreamBuilder<List<UserMatchModel>>(
+                  stream: controller.godfathers,
+                  builder: (context, snapshot) {
+
+                    if(!snapshot.hasData){
+                      return Container();
+                    }
                     return ListView.builder(
-                      shrinkWrap: false,
-                      itemCount: controller.godfathers.data["results"].length,
-                      itemBuilder: (BuildContext context,int index){
-                        print(controller.godfathers.data["results"]);
-                        UserMatchModel model  = UserMatchModel.fromMap(controller.godfathers.data["results"][index]);
-                        return CardUserWidget(controller: CardUserWidgetController(user: model,id:controller.userID,like: true),);
-                      },
-                    );
+                          shrinkWrap: false,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext context,int index){
+                            return CardUserWidget(controller: CardUserWidgetController(user: snapshot.data[index],id:controller.userID,like: true),);
+                          },
+                        );
                   }
-                  return Container();
-                }),
-                ),
+                )),
             ],
           ),
         ),

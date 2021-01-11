@@ -111,6 +111,10 @@ flutter:
     - family: Montserrat Regular
       fonts:
         - asset: assets/fonts/Montserrat-Regular.otf
+    - family: Montserrat Light
+      fonts:
+        - asset: assets/fonts/Montserrat-Light.ttf
+
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

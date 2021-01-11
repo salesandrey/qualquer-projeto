@@ -1,4 +1,5 @@
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
+import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:mobx/mobx.dart';
@@ -13,10 +14,10 @@ class FavoriteController = _FavoriteControllerBase with _$FavoriteController;
 abstract class _FavoriteControllerBase with Store {
 
   @observable
-  ObservableStream usersADD;
+  ObservableStream<List<UserMatchModel>> usersADD;
 
   @observable
-  ObservableStream godfathers;
+  ObservableStream<List<UserMatchModel>> godfathers;
 
   @observable
   String typeSearch = "";
@@ -49,7 +50,7 @@ abstract class _FavoriteControllerBase with Store {
 
   @action
   void initGodfather(){
-    godfathers = FavoriteRepository(userID: userID).loadingGodFathers.asObservable();
+    godfathers = FavoriteRepository(userID: userID).loadingGodFathers.asObservable().asBroadcastStream();
   }
 
 }

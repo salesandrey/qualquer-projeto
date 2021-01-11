@@ -45,10 +45,8 @@ class LocationRepository {
         url, headers: {"Content-Type": "application/json"}, body: query);
 
     if (response.statusCode == 200) {
-      print(response.body);
       List<dynamic> list = jsonDecode(response.body)["results"];
-      List<CityModel> cities = list.map((value) => CityModel.fromMap(value))
-          .toList();
+      List<CityModel> cities = list.map((value) => CityModel.fromMap(value)).toList();
       return cities;
     } else {
       return null;

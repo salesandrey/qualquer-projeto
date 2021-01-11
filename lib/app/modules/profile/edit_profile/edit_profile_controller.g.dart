@@ -284,6 +284,22 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
     });
   }
 
+  final _$checkGraduationAtom =
+      Atom(name: '_EditProfileControllerBase.checkGraduation');
+
+  @override
+  int get checkGraduation {
+    _$checkGraduationAtom.reportRead();
+    return super.checkGraduation;
+  }
+
+  @override
+  set checkGraduation(int value) {
+    _$checkGraduationAtom.reportWrite(value, super.checkGraduation, () {
+      super.checkGraduation = value;
+    });
+  }
+
   final _$_EditProfileControllerBaseActionController =
       ActionController(name: '_EditProfileControllerBase');
 
@@ -499,6 +515,17 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   }
 
   @override
+  dynamic changeCheckGraduation(int value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeCheckGraduation');
+    try {
+      return super.changeCheckGraduation(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 name: ${name},
@@ -517,7 +544,8 @@ typeSearch: ${typeSearch},
 locationState: ${locationState},
 locationCity: ${locationCity},
 graduation: ${graduation},
-speciality: ${speciality}
+speciality: ${speciality},
+checkGraduation: ${checkGraduation}
     ''';
   }
 }

@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:http/http.dart';
 
 class FavoriteRepository{
@@ -33,7 +34,7 @@ class FavoriteRepository{
     }
   }
 
-  Future getUsersAdd(int userID) async {
+  Future<List<UserMatchModel>> getUsersAdd(int userID) async {
 
     String url = "https://padmed.lanconi.com.br/favoriteGet.py";
 
@@ -45,17 +46,19 @@ class FavoriteRepository{
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
 
     if(response.statusCode==200){
-      return jsonDecode(response.body);
+      List<dynamic> list = jsonDecode(response.body)["results"];
+      List<UserMatchModel> usersADD = list.map((value) => UserMatchModel.fromMap(value)).toList();
+      return usersADD;
+
     }else{
       return null;
     }
   }
 
-  Stream get loadingFavorites async*{
-    yield await getUsersAdd(userID);
-  }
+  Stream<List<UserMatchModel>> get loadingFavorites =>
+      Stream.periodic(Duration(seconds: 1)).asyncMap((event) => getUsersAdd(userID));
 
-  Future <dynamic> getMatches(int idUser) async{
+  Future<List<UserMatchModel>> getMatches(int idUser) async{
     String url = "https://padmed.lanconi.com.br/matchGet.py";
     var currentFilter = jsonEncode(
         {
@@ -66,15 +69,15 @@ class FavoriteRepository{
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
 
     if(response.statusCode==200){
-      return jsonDecode(response.body);
+      List<dynamic> list = jsonDecode(response.body)["results"];
+      List<UserMatchModel> matches = list.map((value) => UserMatchModel.fromMap(value)).toList();
+      return matches;
     }else{
-      print(response.statusCode);
       return null;
     }
   }
 
-  Stream get loadingGodFathers async*{
-    yield await getMatches(userID);
-  }
+  Stream<List<UserMatchModel>> get loadingGodFathers =>
+      Stream.periodic(Duration(seconds: 1)).asyncMap((event) => getMatches(userID));
 
 }
