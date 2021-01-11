@@ -19,13 +19,80 @@ final $SearchingController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SearchingController on _SearchingControllerBase, Store {
-  Computed<List<UserModel>> _$userFilteredComputed;
+  final _$premiumAtom = Atom(name: '_SearchingControllerBase.premium');
 
   @override
-  List<UserModel> get userFiltered => (_$userFilteredComputed ??=
-          Computed<List<UserModel>>(() => super.userFiltered,
-              name: '_SearchingControllerBase.userFiltered'))
-      .value;
+  bool get premium {
+    _$premiumAtom.reportRead();
+    return super.premium;
+  }
+
+  @override
+  set premium(bool value) {
+    _$premiumAtom.reportWrite(value, super.premium, () {
+      super.premium = value;
+    });
+  }
+
+  final _$stateAtom = Atom(name: '_SearchingControllerBase.state');
+
+  @override
+  String get state {
+    _$stateAtom.reportRead();
+    return super.state;
+  }
+
+  @override
+  set state(String value) {
+    _$stateAtom.reportWrite(value, super.state, () {
+      super.state = value;
+    });
+  }
+
+  final _$cityAtom = Atom(name: '_SearchingControllerBase.city');
+
+  @override
+  String get city {
+    _$cityAtom.reportRead();
+    return super.city;
+  }
+
+  @override
+  set city(String value) {
+    _$cityAtom.reportWrite(value, super.city, () {
+      super.city = value;
+    });
+  }
+
+  final _$ufsAtom = Atom(name: '_SearchingControllerBase.ufs');
+
+  @override
+  ObservableList<UfModel> get ufs {
+    _$ufsAtom.reportRead();
+    return super.ufs;
+  }
+
+  @override
+  set ufs(ObservableList<UfModel> value) {
+    _$ufsAtom.reportWrite(value, super.ufs, () {
+      super.ufs = value;
+    });
+  }
+
+  final _$citiesAtom = Atom(name: '_SearchingControllerBase.cities');
+
+  @override
+  ObservableStream<List<CityModel>> get cities {
+    _$citiesAtom.reportRead();
+    return super.cities;
+  }
+
+  @override
+  set cities(ObservableStream<List<CityModel>> value) {
+    _$citiesAtom.reportWrite(value, super.cities, () {
+      super.cities = value;
+    });
+  }
 
   final _$userInstagramEmailSearchingAtom =
       Atom(name: '_SearchingControllerBase.userInstagramEmailSearching');
@@ -90,23 +157,70 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
     });
   }
 
-  final _$specialitsAtom = Atom(name: '_SearchingControllerBase.specialits');
+  final _$specialistsAtom = Atom(name: '_SearchingControllerBase.specialists');
 
   @override
-  ObservableList<CheckBoxWidget> get specialits {
-    _$specialitsAtom.reportRead();
-    return super.specialits;
+  ObservableList<CheckBoxWidget> get specialists {
+    _$specialistsAtom.reportRead();
+    return super.specialists;
   }
 
   @override
-  set specialits(ObservableList<CheckBoxWidget> value) {
-    _$specialitsAtom.reportWrite(value, super.specialits, () {
-      super.specialits = value;
+  set specialists(ObservableList<CheckBoxWidget> value) {
+    _$specialistsAtom.reportWrite(value, super.specialists, () {
+      super.specialists = value;
     });
+  }
+
+  final _$getUFAsyncAction = AsyncAction('_SearchingControllerBase.getUF');
+
+  @override
+  Future<void> getUF() {
+    return _$getUFAsyncAction.run(() => super.getUF());
+  }
+
+  final _$getCityAsyncAction = AsyncAction('_SearchingControllerBase.getCity');
+
+  @override
+  Future<void> getCity(UfModel model) {
+    return _$getCityAsyncAction.run(() => super.getCity(model));
   }
 
   final _$_SearchingControllerBaseActionController =
       ActionController(name: '_SearchingControllerBase');
+
+  @override
+  void changePremium(bool value) {
+    final _$actionInfo = _$_SearchingControllerBaseActionController.startAction(
+        name: '_SearchingControllerBase.changePremium');
+    try {
+      return super.changePremium(value);
+    } finally {
+      _$_SearchingControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeState(String value) {
+    final _$actionInfo = _$_SearchingControllerBaseActionController.startAction(
+        name: '_SearchingControllerBase.changeState');
+    try {
+      return super.changeState(value);
+    } finally {
+      _$_SearchingControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeCity(String value) {
+    final _$actionInfo = _$_SearchingControllerBaseActionController.startAction(
+        name: '_SearchingControllerBase.changeCity');
+    try {
+      return super.changeCity(value);
+    } finally {
+      _$_SearchingControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void changeNameInstagramSearching(String value) {
@@ -120,14 +234,29 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
   }
 
   @override
+  void filterResults() {
+    final _$actionInfo = _$_SearchingControllerBaseActionController.startAction(
+        name: '_SearchingControllerBase.filterResults');
+    try {
+      return super.filterResults();
+    } finally {
+      _$_SearchingControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+premium: ${premium},
+state: ${state},
+city: ${city},
+ufs: ${ufs},
+cities: ${cities},
 userInstagramEmailSearching: ${userInstagramEmailSearching},
 users: ${users},
 listGraduation: ${listGraduation},
 programs: ${programs},
-specialits: ${specialits},
-userFiltered: ${userFiltered}
+specialists: ${specialists}
     ''';
   }
 }

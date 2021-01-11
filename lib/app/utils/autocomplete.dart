@@ -170,6 +170,7 @@ class AutoCompleteTextFieldState<T> extends State<AutoCompleteTextField> {
       textCapitalization: textCapitalization,
       decoration: decoration,
       style: style,
+      textAlignVertical: TextAlignVertical.center,
       keyboardType: keyboardType,
       focusNode: focusNode ?? new FocusNode(),
       controller: controller ?? new TextEditingController(),

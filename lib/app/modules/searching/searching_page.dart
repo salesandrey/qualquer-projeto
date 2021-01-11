@@ -1,4 +1,5 @@
 import 'package:PadrinhoMED/app/modules/searching/components/apply_button_widget.dart';
+import 'package:PadrinhoMED/app/modules/searching/components/search_filter_premium_widget.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -28,7 +29,7 @@ class _SearchingPageState
   @override
   Widget build(BuildContext context) {
 
-    if(controller.programs.isEmpty && controller.specialits.isEmpty)
+    if(controller.programs.isEmpty && controller.specialists.isEmpty)
     return Center(child: CircularProgressIndicator(backgroundColor: Colors.blue,),);
 
     return Observer(builder: (context){
@@ -36,24 +37,26 @@ class _SearchingPageState
         child: Scaffold(
           body: SingleChildScrollView(
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
               child: Column(
                 children: [
-                  Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    child: TextField(
-                        onChanged: controller.changeNameInstagramSearching,
-                        textAlignVertical: TextAlignVertical.center,
-                        style: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular",color: Colors.black),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: ImageIcon(AssetImage("assets/images/search-interface-symbol (1).png"),color: Color(0xFF050072),),
-                          ),
-                          hintText: "Buscar e-mail ou @ do Instagram",
-                          hintStyle: TextStyle(color: kGrey,fontFamily: "Montserrat Regular",fontSize: 15),
-                        )
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      child: TextField(
+                          onChanged: controller.changeNameInstagramSearching,
+                          textAlignVertical: TextAlignVertical.center,
+                          style: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular",color: Colors.black),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: ImageIcon(AssetImage("assets/images/search-interface-symbol (1).png"),color: Color(0xFF050072),),
+                            ),
+                            hintText: "Buscar e-mail ou @ do Instagram",
+                            hintStyle: TextStyle(color: kGrey,fontFamily: "Montserrat Regular",fontSize: 15),
+                          )
+                      ),
                     ),
                   ),
                   Container(
@@ -79,10 +82,10 @@ class _SearchingPageState
                             child:showOptions?
                             Column(crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                controller.specialits[0],
-                                controller.specialits[1],
-                                controller.specialits[2],
-                                controller.specialits[3],
+                                controller.specialists[0],
+                                controller.specialists[1],
+                                controller.specialists[2],
+                                controller.specialists[3],
                                 InkWell(onTap: (){
                                   showOptions = false;
                                   setState(() {});
@@ -91,14 +94,14 @@ class _SearchingPageState
                                     padding: EdgeInsets.only(top: 17),
                                     child: Text("Mostrar todas",style: TextStyle(color: Color(0xFF6259B2,),fontSize: 15,fontFamily: "Montserrat Bold",decoration: TextDecoration.underline,),),),
                                 )],) :
-                            Column(children: controller.specialits),
+                            Column(children: controller.specialists),
                           ),
-
-
                         ),
                       ],),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 33,),
+                  SearchFilterPremiumWidget(),
+                  SizedBox(height: 40,),
                   ApplyButtonWidget(
                     filterResults: (){},
                     text: "APLICAR",

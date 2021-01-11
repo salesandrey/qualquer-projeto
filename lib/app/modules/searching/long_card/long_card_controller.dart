@@ -7,11 +7,12 @@ part 'long_card_controller.g.dart';
 class LongCardController = _LongCardControllerBase with _$LongCardController;
 
 abstract class _LongCardControllerBase with Store {
-  @observable
-  int value = 0;
 
-  @action
-  void increment() {
-    value++;
-  }
+  _LongCardControllerBase({this.title,this.removeElement});
+
+  @observable
+  String title;
+
+  @observable
+  Function removeElement;
 }

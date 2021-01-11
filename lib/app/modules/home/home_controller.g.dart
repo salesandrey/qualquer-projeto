@@ -41,6 +41,141 @@ mixin _$HomeController on _HomeControllerBase, Store {
               name: '_HomeControllerBase.listFiltered'))
       .value;
 
+  final _$loadingAtom = Atom(name: '_HomeControllerBase.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
+  final _$premiumAtom = Atom(name: '_HomeControllerBase.premium');
+
+  @override
+  bool get premium {
+    _$premiumAtom.reportRead();
+    return super.premium;
+  }
+
+  @override
+  set premium(bool value) {
+    _$premiumAtom.reportWrite(value, super.premium, () {
+      super.premium = value;
+    });
+  }
+
+  final _$activateButtonAtom = Atom(name: '_HomeControllerBase.activateButton');
+
+  @override
+  bool get activateButton {
+    _$activateButtonAtom.reportRead();
+    return super.activateButton;
+  }
+
+  @override
+  set activateButton(bool value) {
+    _$activateButtonAtom.reportWrite(value, super.activateButton, () {
+      super.activateButton = value;
+    });
+  }
+
+  final _$ufsAtom = Atom(name: '_HomeControllerBase.ufs');
+
+  @override
+  ObservableList<UfModel> get ufs {
+    _$ufsAtom.reportRead();
+    return super.ufs;
+  }
+
+  @override
+  set ufs(ObservableList<UfModel> value) {
+    _$ufsAtom.reportWrite(value, super.ufs, () {
+      super.ufs = value;
+    });
+  }
+
+  final _$citiesAtom = Atom(name: '_HomeControllerBase.cities');
+
+  @override
+  ObservableStream<List<CityModel>> get cities {
+    _$citiesAtom.reportRead();
+    return super.cities;
+  }
+
+  @override
+  set cities(ObservableStream<List<CityModel>> value) {
+    _$citiesAtom.reportWrite(value, super.cities, () {
+      super.cities = value;
+    });
+  }
+
+  final _$stateAtom = Atom(name: '_HomeControllerBase.state');
+
+  @override
+  String get state {
+    _$stateAtom.reportRead();
+    return super.state;
+  }
+
+  @override
+  set state(String value) {
+    _$stateAtom.reportWrite(value, super.state, () {
+      super.state = value;
+    });
+  }
+
+  final _$cityAtom = Atom(name: '_HomeControllerBase.city');
+
+  @override
+  String get city {
+    _$cityAtom.reportRead();
+    return super.city;
+  }
+
+  @override
+  set city(String value) {
+    _$cityAtom.reportWrite(value, super.city, () {
+      super.city = value;
+    });
+  }
+
+  final _$stateDialogAtom = Atom(name: '_HomeControllerBase.stateDialog');
+
+  @override
+  String get stateDialog {
+    _$stateDialogAtom.reportRead();
+    return super.stateDialog;
+  }
+
+  @override
+  set stateDialog(String value) {
+    _$stateDialogAtom.reportWrite(value, super.stateDialog, () {
+      super.stateDialog = value;
+    });
+  }
+
+  final _$cityDialogAtom = Atom(name: '_HomeControllerBase.cityDialog');
+
+  @override
+  String get cityDialog {
+    _$cityDialogAtom.reportRead();
+    return super.cityDialog;
+  }
+
+  @override
+  set cityDialog(String value) {
+    _$cityDialogAtom.reportWrite(value, super.cityDialog, () {
+      super.cityDialog = value;
+    });
+  }
+
   final _$favoritesAtom = Atom(name: '_HomeControllerBase.favorites');
 
   @override
@@ -162,6 +297,20 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$getUFAsyncAction = AsyncAction('_HomeControllerBase.getUF');
+
+  @override
+  Future<void> getUF() {
+    return _$getUFAsyncAction.run(() => super.getUF());
+  }
+
+  final _$getCityAsyncAction = AsyncAction('_HomeControllerBase.getCity');
+
+  @override
+  Future<void> getCity(UfModel model) {
+    return _$getCityAsyncAction.run(() => super.getCity(model));
+  }
+
   final _$initStreamAsyncAction = AsyncAction('_HomeControllerBase.initStream');
 
   @override
@@ -195,6 +344,94 @@ mixin _$HomeController on _HomeControllerBase, Store {
 
   final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase');
+
+  @override
+  void changeLoading(bool value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeLoading');
+    try {
+      return super.changeLoading(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeActivateButton(bool value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeActivateButton');
+    try {
+      return super.changeActivateButton(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changePremium(bool value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changePremium');
+    try {
+      return super.changePremium(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeState(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeState');
+    try {
+      return super.changeState(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeStateAndCity(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeStateAndCity');
+    try {
+      return super.changeStateAndCity(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeCity(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeCity');
+    try {
+      return super.changeCity(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeStateDialog(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeStateDialog');
+    try {
+      return super.changeStateDialog(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeCityDialog(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeCityDialog');
+    try {
+      return super.changeCityDialog(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void changeUpdateFavorite(bool value) {
@@ -265,6 +502,15 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     return '''
+loading: ${loading},
+premium: ${premium},
+activateButton: ${activateButton},
+ufs: ${ufs},
+cities: ${cities},
+state: ${state},
+city: ${city},
+stateDialog: ${stateDialog},
+cityDialog: ${cityDialog},
 favorites: ${favorites},
 updateFavorite: ${updateFavorite},
 currentFavorites: ${currentFavorites},

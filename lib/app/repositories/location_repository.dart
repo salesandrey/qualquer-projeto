@@ -1,39 +1,62 @@
-
-
-
 import 'dart:convert';
 
+import 'package:PadrinhoMED/app/models/city_model.dart';
+import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:http/http.dart';
+import 'package:mobx/mobx.dart';
 
-class LocationRepository{
+class LocationRepository {
 
 
-  Future<dynamic> getUF() async{
+  final String id;
 
-    String url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+  LocationRepository({this.id});
 
-    Response response = await get(url);
+  Future<ObservableList<UfModel>> getUF() async {
+    String url = "https://padmed.lanconi.com.br/estadosGet.py";
 
-    if(response.statusCode==200){
-      return  jsonDecode(response.body);
-    }else{
-      print(response.statusCode);
+    var query = jsonEncode(
+        {
+          "id": ""
+        });
+
+    Response response = await post(
+        url, headers: {"Content-Type": "application/json"}, body: query);
+
+    if (response.statusCode == 200) {
+      List<dynamic> list = jsonDecode(response.body)["results"];
+      List<UfModel> ufs = list.map((value) => UfModel.fromMap(value)).toList();
+      return ufs.asObservable();
+    } else {
       return null;
     }
   }
 
-  Future<dynamic> getCity(String id) async{
+  Future<List<CityModel>> getCity(String id) async {
+    String url = "https://padmed.lanconi.com.br/cidadesGet.py";
 
-    String url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/$id/municipios";
+    var query = jsonEncode(
+        {
+          "id": "",
+          "idEstado": id
+        });
 
-    Response response = await get(url);
+    Response response = await post(
+        url, headers: {"Content-Type": "application/json"}, body: query);
 
-    if(response.statusCode==200){
-      return  jsonDecode(response.body);
-    }else{
-      print(response.statusCode);
+    if (response.statusCode == 200) {
+      print(response.body);
+      List<dynamic> list = jsonDecode(response.body)["results"];
+      List<CityModel> cities = list.map((value) => CityModel.fromMap(value))
+          .toList();
+      return cities;
+    } else {
       return null;
     }
+  }
+
+  Stream<List<CityModel>> get cities async*{
+    yield await getCity(id);
   }
 
 }

@@ -2,27 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'long_card_controller.dart';
 
-class LongCardPage extends StatefulWidget {
-  final String title;
-  const LongCardPage({Key key, this.title = "LongCard"}) : super(key: key);
+class LongCard extends StatelessWidget {
 
-  @override
-  _LongCardPageState createState() => _LongCardPageState();
-}
+  final LongCardController controller;
 
-class _LongCardPageState
-    extends ModularState<LongCardPage, LongCardController> {
-  //use 'controller' variable to access controller
+  const LongCard({Key key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0),
+          border: Border.all(color: Colors.green,width: 1),
+          color: Colors.green
       ),
-      body: Column(
-        children: <Widget>[],
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text("Title",style: TextStyle(fontFamily: "Montserrat Regular",color: Colors.green,fontSize: 14)),
+          SizedBox(width: 8),
+          Icon(Icons.highlight_off)
+        ],
       ),
     );
   }
 }
+

@@ -43,10 +43,20 @@ class AppModule extends MainModule {
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, module: SplashModule()),
         ModularRouter("/Configuration", module: ConfigurationModule()),
-        ModularRouter("/PremiumDetails",child:(_, args) => PremiumDetailsPage(typePlane: args.data[0],valuePlane: args.data[1],)),
-        ModularRouter("/Premium",module: PremiumModule()),
+        ModularRouter("/PremiumDetails",
+            child: (_, args) => PremiumDetailsPage(
+                  typePlane: args.data[0],
+                  valuePlane: args.data[1],
+                )),
+        ModularRouter("/Premium", module: PremiumModule()),
         ModularRouter("/Tutorial", module: TutorialModule()),
-        ModularRouter("/CompleteProfile",child: (_, args) => CompleteProfilePage(controller: CompleteProfileController(user:args.data[0],id: args.data[1],like: args.data[2],typeSearch: args.data[3]))),
+        ModularRouter("/CompleteProfile",
+            child: (_, args) => CompleteProfilePage(
+                controller: CompleteProfileController(
+                    user: args.data[0],
+                    id: args.data[1],
+                    like: args.data[2],
+                    typeSearch: args.data[3]))),
         ModularRouter("/EditProfile", module: EditProfileModule()),
         ModularRouter("/Navigator", module: NavigatorModule()),
         ModularRouter("/Login", module: LoginModule()),
@@ -54,13 +64,19 @@ class AppModule extends MainModule {
         ModularRouter("/Splash", module: SplashModule()),
         ModularRouter("/Loading", module: LoadingModule()),
         ModularRouter("/Register", module: RegisterModule()),
-
         ModularRouter("/Match", module: MatchModule()),
         ModularRouter("/ResetPassword", module: ResetPasswordModule()),
-        ModularRouter("/CheckEmailReset", child: (_, args) => CheckEmailResetPage()),
-        ModularRouter("/ConfirmEmailPage", child: (_, args) => ConfirmEmailPage()),
+        ModularRouter("/CheckEmailReset",
+            child: (_, args) => CheckEmailResetPage()),
+        ModularRouter("/ConfirmEmailPage",
+            child: (_, args) => ConfirmEmailPage()),
         ModularRouter("/OnBoarding", module: OnBoardingModule()),
-        ModularRouter("/Video", child: (_, args) => VideoTutorialPage(videoPath: args.data,),),
+        ModularRouter(
+          "/Video",
+          child: (_, args) => VideoTutorialPage(
+            videoPath: args.data,
+          ),
+        ),
         ModularRouter("/RegisterPage", child: (_, args) => RegisterPage()),
         ModularRouter("/CheckEmail", child: (_, args) => CheckEmailPage()),
         ModularRouter("/Account", child: (_, args) => AccountPage()),

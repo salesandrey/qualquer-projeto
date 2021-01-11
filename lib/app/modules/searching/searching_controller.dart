@@ -1,8 +1,10 @@
+import 'package:PadrinhoMED/app/models/city_model.dart';
+import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:PadrinhoMED/app/models/user_model.dart';
 import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_controller.dart';
 import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_widget.dart';
 import 'package:PadrinhoMED/app/modules/searching/viewmodel/list_option_viewmodel.dart';
-import 'package:PadrinhoMED/app/styles/constants.dart';
+import 'package:PadrinhoMED/app/repositories/location_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,6 +15,46 @@ part 'searching_controller.g.dart';
 class SearchingController = _SearchingControllerBase with _$SearchingController;
 
 abstract class _SearchingControllerBase with Store {
+
+  @observable
+  bool premium = false;
+
+  @action
+  void changePremium(bool value){
+    premium = value;
+  }
+
+  @observable
+  String state = "";
+
+  @action
+  void changeState(String value){
+    state = value;
+  }
+
+  @observable
+  String city = "";
+
+  @action
+  void changeCity(String value){
+    city = value;
+  }
+
+  @observable
+  ObservableList<UfModel> ufs;
+
+  @action
+  Future<void> getUF() async {
+    ufs = await LocationRepository().getUF();
+  }
+
+  @observable
+  ObservableStream<List<CityModel>> cities;
+
+  @action
+  Future<void> getCity(UfModel model) async{
+    cities = LocationRepository(id: model.id.toString()).cities.asObservable().asBroadcastStream();
+  }
 
   @observable
   String userInstagramEmailSearching;
@@ -90,47 +132,40 @@ abstract class _SearchingControllerBase with Store {
     "Genética Médica"
   ];
 
-
-
   @observable
   ObservableList<CheckBoxWidget> listGraduation = [
     CheckBoxWidget(controller: CheckboxController(title:"Estudante 1º a 8º semestre",check: false),color:Color(0xFFED7AA0)),
     CheckBoxWidget(controller: CheckboxController(title:"Internato 9º a 12º semestre",check: false),color:Color(0xFFA652B7)),
-    CheckBoxWidget(controller: CheckboxController(title:"Médico generalista",check: false),color:Color(0xFF6AA4E8)),
+    CheckBoxWidget(controller: CheckboxController(title:"Médico Generalista",check: false),color:Color(0xFF6AA4E8)),
     CheckBoxWidget(controller: CheckboxController(title:"Residente / Em Especialização",check: false),color:Color(0xFF3FBAA3)),
-    CheckBoxWidget(controller: CheckboxController(title:"Médico especialista",check: false),color:Color(0xFFFFBE69)),
+    CheckBoxWidget(controller: CheckboxController(title:"Médico Especialista",check: false),color:Color(0xFFFFBE69)),
   ].asObservable();
 
   @observable
   ObservableList<CheckBoxWidget> programs;
 
   @observable
-  ObservableList<CheckBoxWidget> specialits;
+  ObservableList<CheckBoxWidget> specialists;
 
-  @computed
-  List<UserModel> get userFiltered{
-    if(users.isEmpty){return [];} else {
+  @action
+  void filterResults(){
 
-      List<UserModel> usersFiltered = [];
+    List<String> programsSelect = programs.map((element){
+      if(element.controller.check)
+        return element.controller.title;
+    }).toList();
 
-      usersFiltered = users.where((element) {
-        List<String> elementsSelected = ListOptionViewModel().checkOptions(
-            listGraduation);
-        return elementsSelected.contains(element.nome);
-      });
+    List<String> specialistsSelect = specialists.map((element){
+      if(element.controller.check)
+        return element.controller.title;
+    }).toList();
 
-      usersFiltered = users.where((element) {
-        List<String> elementsSelected = ListOptionViewModel().checkOptions(
-            programs);
-        return elementsSelected.contains(element.nome);
-      });
+    List<String> graduationSelect = listGraduation.map((element){
+      if(element.controller.check)
+        return element.controller.title;
+    }).toList();
 
-      usersFiltered = users.where((element) {
-        List<String> elementsSelected = ListOptionViewModel().checkOptions(specialits);
-        return elementsSelected.contains(element.nome);
-      });
-      return usersFiltered.toList();
-    }
+    Modular.to.pushNamed("/HomeFiltered",arguments: [userInstagramEmailSearching,state,city,programsSelect,specialistsSelect,graduationSelect]);
   }
 
   Future<void> addProgramsToList() async{
@@ -138,6 +173,6 @@ abstract class _SearchingControllerBase with Store {
     specialitsText.sort((a,b){
       return a.toLowerCase().compareTo(b.toLowerCase());
     });
-    specialits = ListOptionViewModel().createListCheckBox(specialitsText).asObservable();
+    specialists = ListOptionViewModel().createListCheckBox(specialitsText).asObservable();
   }
 }

@@ -38,7 +38,6 @@ abstract class _CardUserWidgetControllerBase with Store {
     like = !like;
     await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr);
     favorite();
-
   }
 
 }
