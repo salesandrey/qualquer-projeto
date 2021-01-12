@@ -20,9 +20,8 @@ class NotificationRepository{
 
     var query = jsonEncode(
         {
-          "id": id.toString()
+          "id": id
         });
-
     Response response = await post(
         url, headers: {"Content-Type": "application/json"}, body: query);
     if (response.statusCode == 200) {

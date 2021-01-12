@@ -165,7 +165,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                 CardColorFullWidget(
                                   color: KPinkColor,
                                   title: "Estudantes",
-                                  description: "1º a 8º semestre",
+                                  description: "1º ao 8º semestre",
                                   navigator: ()
                                   {
                                     controller.changeFilter("Estudantes (1º ao 8º semestre)");

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 enum type { Afilhado, Padrinho }
-class SearchingEditWidget extends StatefulWidget {
-  @override
-  _SearchingEditWidgetState createState() => _SearchingEditWidgetState();
-}
 
-class _SearchingEditWidgetState extends ModularState<SearchingEditWidget,EditProfileController> {
 
-  int selectedValue = 0;
+class SearchingEditWidget extends StatelessWidget {
+
+  final int selectedValue;
+  final Function changeRadio;
+
+  const SearchingEditWidget({Key key,@required this.selectedValue,@required this.changeRadio}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,7 @@ class _SearchingEditWidgetState extends ModularState<SearchingEditWidget,EditPro
                   activeColor: Color(0xFF050072),
                   value: type.Afilhado.index,
                   groupValue: selectedValue,
-                  onChanged: (value) {
-                    selectedValue = 0;
-                    controller.changeTypeSearch("Afilhado");
-                    setState(() {});
-                  },
+                  onChanged: changeRadio,
                 ),
               ),
               Text('Afilhado',style: TextStyle(fontFamily: "Montserrat Regular",color: selectedValue==0?Color(0xFF191919):kGrey,fontSize: 15)),
@@ -51,11 +47,7 @@ class _SearchingEditWidgetState extends ModularState<SearchingEditWidget,EditPro
                   activeColor:Color(0xFF050072),
                   value: type.Padrinho.index,
                   groupValue: selectedValue,
-                  onChanged: (value) {
-                    selectedValue = 1;
-                    controller.changeTypeSearch("Padrinho");
-                    setState(() {});
-                  },
+                  onChanged: changeRadio,
                 ),
               ),
               Text('Padrinho',style: TextStyle(fontFamily: "Montserrat Regular",color: selectedValue==1?Color(0xFF191919):kGrey,fontSize: 15)),

@@ -6,6 +6,7 @@ class EditTextIInputWidget extends StatelessWidget {
   final String labelText;
   final int maxLength;
   final int maxLine;
+  final InputCounterWidgetBuilder counter;
   final FocusNode focusNode;
   final Function requestNode;
   final bool isVisibility;
@@ -13,7 +14,7 @@ class EditTextIInputWidget extends StatelessWidget {
   final TextEditingController controller;
   final Function onChanged;
 
-  const EditTextIInputWidget({Key key, this.labelText, this.controller, this.onChanged, this.maxLine, this.maxLength, this.focusNode, this.isVisibility, this.controllerValidator, this.requestNode}) : super(key: key);
+  const EditTextIInputWidget({Key key, this.labelText, this.controller, this.onChanged, this.maxLine, this.maxLength, this.focusNode, this.isVisibility, this.controllerValidator, this.requestNode, this.counter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +29,12 @@ class EditTextIInputWidget extends StatelessWidget {
         onTap: requestNode,
         onChanged: onChanged,
         obscureText: isVisibility,
+        buildCounter: counter,
         style: TextStyle(
             color: Colors.black, fontSize: 16, fontFamily: "Montserrat Bold"),
         decoration: InputDecoration(
           labelText: labelText,
+          counterStyle: TextStyle(fontFamily: "Montserrat Regular",fontSize: 15,color: Color(0xFF666666)),
           labelStyle: TextStyle(fontFamily: "Montserrat Regular",height: 1.0,
               color: focusNode.hasFocus?controllerValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,fontSize: 18),
           contentPadding: const EdgeInsets.symmetric(horizontal: 5),

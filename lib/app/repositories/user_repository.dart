@@ -3,7 +3,10 @@
 
 
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:PadrinhoMED/app/models/user_model.dart';
+import 'package:PadrinhoMED/app/utils/time_convert.dart';
 import 'package:http/http.dart';
 
 class UserRepository{
@@ -42,36 +45,26 @@ class UserRepository{
     }
   }
 
-  Future<void> update() async{
+  Future<void> update(UserModel model) async{
       String url = "https://padmed.lanconi.com.br/usuarioUpdate.py";
       var userData = jsonEncode({
-        "id":16,
+        "id":model.id,
+        "instagram":model.instagram,
         "idInteresse":12,
-        "nome":"teste nome atualiazado",
-        "email": "teste email atualiazado",
-        "senha": "123456789",
-        "data":"2020-10-10",
-        "cod":"teste cod atualiazado",
-        "sobre":"teste sobre atualiazado",
-        "situacao": "teste situacao atualiazado",
-        "dispositivo": "teste dispositivo atualiazado",
-        "especialidade":"teste especialidade atualiazado",
-        "graduacao":"teste graduacao atualiazado",
-        "tipoInteresse":"tipo interesse atualiazado",
-        "cidade":"bombinhas",
-        "estado":"santa catarina",
-        "atividades":[
-          {
-            "id": 9,
-            "tipo":"tipo 1 atualizado2",
-            "atividade":"atividade 1 atualizado2"
-          },
-          {
-            "id":10,
-            "tipo":"tipo 2 ito2",
-            "atividade":"atividade ito2"
-          }
-        ]
+        "nome":model.nome,
+        "email": model.email,
+        "data":TimeConvert().convertDateTimeToString(model.data),
+        "cod":model.cod,
+        "sobre":model.sobre,
+        "situacao": "",
+        "dispositivo": Platform.isAndroid? "Android":"Ios",
+        "especialidade": model.especialidade,
+        "graduacao": model.graduacao,
+        "tipo":model.tipo,
+        "cidade":model.cidade,
+        "estado":model.estado,
+        "atividades":model.atividades,
+        "interesses":model.interesses
       });
 
       Response response = await post(url,headers:{"Content-Type": "application/json"},body: userData );
@@ -81,6 +74,7 @@ class UserRepository{
       }
       else{
         print(response.statusCode);
+        print(response.body);
       }
 
   }

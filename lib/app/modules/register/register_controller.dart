@@ -6,6 +6,7 @@ import 'package:PadrinhoMED/app/models/user_model.dart';
 import 'package:PadrinhoMED/app/repositories/email_validator_repository.dart';
 import 'package:PadrinhoMED/app/repositories/location_repository.dart';
 import 'package:PadrinhoMED/app/repositories/user_repository.dart';
+import 'package:PadrinhoMED/app/services/push_notification_service.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:PadrinhoMED/app/utils/time_convert.dart';
 import 'package:flutter/material.dart';
@@ -268,6 +269,7 @@ abstract class _RegisterControllerBase with Store{
          "dispositivo": Platform.isAndroid? "Android" : "Ios",
          "especialidade": speciality,
          "graduacao": graduation,
+         "token": PushNotificationService.token.toString(),
          "tipo": typeSearch,
          "cidade": locationCity,
          "estado": locationState,

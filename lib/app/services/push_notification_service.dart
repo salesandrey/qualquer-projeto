@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 class PushNotificationService{
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  static var token;
 
 
   Future initialize() async{
@@ -24,6 +25,6 @@ class PushNotificationService{
         print("onResume: $message");
       },
     );
-    _firebaseMessaging.getToken().then((value) => print(value));
+    _firebaseMessaging.getToken().then((value) => token=value);
   }
 }

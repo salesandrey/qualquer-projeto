@@ -77,7 +77,6 @@ abstract class _LoginControllerBase with Store {
     if(!emailValidator && !passwordValidator) {
       dynamic data =  await UserRepository().get(email, password);
       if(data!=null) {
-        print(data);
         UserModel model = UserModel.fromMap(data["results"]);
         List<dynamic> activities = model.atividades.map((element) {
 

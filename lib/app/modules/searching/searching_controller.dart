@@ -134,8 +134,8 @@ abstract class _SearchingControllerBase with Store {
 
   @observable
   ObservableList<CheckBoxWidget> listGraduation = [
-    CheckBoxWidget(controller: CheckboxController(title:"Estudante 1º a 8º semestre",check: false),color:Color(0xFFED7AA0)),
-    CheckBoxWidget(controller: CheckboxController(title:"Internato 9º a 12º semestre",check: false),color:Color(0xFFA652B7)),
+    CheckBoxWidget(controller: CheckboxController(title:"Estudante 1º ao 8º semestre",check: false),color:Color(0xFFED7AA0)),
+    CheckBoxWidget(controller: CheckboxController(title:"Internato 9º ao 12º semestre",check: false),color:Color(0xFFA652B7)),
     CheckBoxWidget(controller: CheckboxController(title:"Médico Generalista",check: false),color:Color(0xFF6AA4E8)),
     CheckBoxWidget(controller: CheckboxController(title:"Residente / Em Especialização",check: false),color:Color(0xFF3FBAA3)),
     CheckBoxWidget(controller: CheckboxController(title:"Médico Especialista",check: false),color:Color(0xFFFFBE69)),

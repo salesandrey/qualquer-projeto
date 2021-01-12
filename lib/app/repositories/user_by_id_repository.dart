@@ -13,7 +13,7 @@ class UserByIDRepository{
 
     var query = jsonEncode(
         {
-          "idUsuario": 31
+          "idUsuario": id.toString()
         });
 
     Response response = await post(

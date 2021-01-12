@@ -35,6 +35,28 @@ mixin _$NotificationController on _NotificationControllerBase, Store {
     });
   }
 
+  final _$idAtom = Atom(name: '_NotificationControllerBase.id');
+
+  @override
+  int get id {
+    _$idAtom.reportRead();
+    return super.id;
+  }
+
+  @override
+  set id(int value) {
+    _$idAtom.reportWrite(value, super.id, () {
+      super.id = value;
+    });
+  }
+
+  final _$takeIDAsyncAction = AsyncAction('_NotificationControllerBase.takeID');
+
+  @override
+  Future<void> takeID() {
+    return _$takeIDAsyncAction.run(() => super.takeID());
+  }
+
   final _$initStreamAsyncAction =
       AsyncAction('_NotificationControllerBase.initStream');
 
@@ -46,7 +68,8 @@ mixin _$NotificationController on _NotificationControllerBase, Store {
   @override
   String toString() {
     return '''
-notifications: ${notifications}
+notifications: ${notifications},
+id: ${id}
     ''';
   }
 }

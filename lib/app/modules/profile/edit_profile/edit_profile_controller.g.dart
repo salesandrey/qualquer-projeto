@@ -19,6 +19,36 @@ final $EditProfileController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$EditProfileController on _EditProfileControllerBase, Store {
+  final _$idAtom = Atom(name: '_EditProfileControllerBase.id');
+
+  @override
+  int get id {
+    _$idAtom.reportRead();
+    return super.id;
+  }
+
+  @override
+  set id(int value) {
+    _$idAtom.reportWrite(value, super.id, () {
+      super.id = value;
+    });
+  }
+
+  final _$codeAtom = Atom(name: '_EditProfileControllerBase.code');
+
+  @override
+  String get code {
+    _$codeAtom.reportRead();
+    return super.code;
+  }
+
+  @override
+  set code(String value) {
+    _$codeAtom.reportWrite(value, super.code, () {
+      super.code = value;
+    });
+  }
+
   final _$nameAtom = Atom(name: '_EditProfileControllerBase.name');
 
   @override
@@ -31,6 +61,36 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   set name(String value) {
     _$nameAtom.reportWrite(value, super.name, () {
       super.name = value;
+    });
+  }
+
+  final _$activitsAtom = Atom(name: '_EditProfileControllerBase.activits');
+
+  @override
+  ObservableList<Atividade> get activits {
+    _$activitsAtom.reportRead();
+    return super.activits;
+  }
+
+  @override
+  set activits(ObservableList<Atividade> value) {
+    _$activitsAtom.reportWrite(value, super.activits, () {
+      super.activits = value;
+    });
+  }
+
+  final _$interestsAtom = Atom(name: '_EditProfileControllerBase.interests');
+
+  @override
+  ObservableList<Interess> get interests {
+    _$interestsAtom.reportRead();
+    return super.interests;
+  }
+
+  @override
+  set interests(ObservableList<Interess> value) {
+    _$interestsAtom.reportWrite(value, super.interests, () {
+      super.interests = value;
     });
   }
 
@@ -284,6 +344,21 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
     });
   }
 
+  final _$valueRadioAtom = Atom(name: '_EditProfileControllerBase.valueRadio');
+
+  @override
+  int get valueRadio {
+    _$valueRadioAtom.reportRead();
+    return super.valueRadio;
+  }
+
+  @override
+  set valueRadio(int value) {
+    _$valueRadioAtom.reportWrite(value, super.valueRadio, () {
+      super.valueRadio = value;
+    });
+  }
+
   final _$checkGraduationAtom =
       Atom(name: '_EditProfileControllerBase.checkGraduation');
 
@@ -300,8 +375,128 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
     });
   }
 
+  final _$programsAtom = Atom(name: '_EditProfileControllerBase.programs');
+
+  @override
+  ObservableList<CheckBoxProgramsWidget> get programs {
+    _$programsAtom.reportRead();
+    return super.programs;
+  }
+
+  @override
+  set programs(ObservableList<CheckBoxProgramsWidget> value) {
+    _$programsAtom.reportWrite(value, super.programs, () {
+      super.programs = value;
+    });
+  }
+
+  final _$ufsAtom = Atom(name: '_EditProfileControllerBase.ufs');
+
+  @override
+  ObservableList<UfModel> get ufs {
+    _$ufsAtom.reportRead();
+    return super.ufs;
+  }
+
+  @override
+  set ufs(ObservableList<UfModel> value) {
+    _$ufsAtom.reportWrite(value, super.ufs, () {
+      super.ufs = value;
+    });
+  }
+
+  final _$citiesAtom = Atom(name: '_EditProfileControllerBase.cities');
+
+  @override
+  ObservableStream<List<CityModel>> get cities {
+    _$citiesAtom.reportRead();
+    return super.cities;
+  }
+
+  @override
+  set cities(ObservableStream<List<CityModel>> value) {
+    _$citiesAtom.reportWrite(value, super.cities, () {
+      super.cities = value;
+    });
+  }
+
+  final _$getUFAsyncAction = AsyncAction('_EditProfileControllerBase.getUF');
+
+  @override
+  Future<void> getUF() {
+    return _$getUFAsyncAction.run(() => super.getUF());
+  }
+
+  final _$getCityAsyncAction =
+      AsyncAction('_EditProfileControllerBase.getCity');
+
+  @override
+  Future<void> getCity(UfModel model) {
+    return _$getCityAsyncAction.run(() => super.getCity(model));
+  }
+
+  final _$takeUserDataAsyncAction =
+      AsyncAction('_EditProfileControllerBase.takeUserData');
+
+  @override
+  Future<void> takeUserData() {
+    return _$takeUserDataAsyncAction.run(() => super.takeUserData());
+  }
+
+  final _$saveDataAsyncAction =
+      AsyncAction('_EditProfileControllerBase.saveData');
+
+  @override
+  Future<void> saveData() {
+    return _$saveDataAsyncAction.run(() => super.saveData());
+  }
+
   final _$_EditProfileControllerBaseActionController =
       ActionController(name: '_EditProfileControllerBase');
+
+  @override
+  void changeCode(String value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeCode');
+    try {
+      return super.changeCode(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeID(int value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeID');
+    try {
+      return super.changeID(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeListActivits(List<Atividade> value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeListActivits');
+    try {
+      return super.changeListActivits(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeListInteress(List<Interess> value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeListInteress');
+    try {
+      return super.changeListInteress(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void changeName(String value) {
@@ -515,6 +710,28 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   }
 
   @override
+  void changeValueRadio(String value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeValueRadio');
+    try {
+      return super.changeValueRadio(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeRadio(int value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeRadio');
+    try {
+      return super.changeRadio(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic changeCheckGraduation(int value) {
     final _$actionInfo = _$_EditProfileControllerBaseActionController
         .startAction(name: '_EditProfileControllerBase.changeCheckGraduation');
@@ -526,9 +743,24 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   }
 
   @override
+  void changeCitiesAndState(String value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeCitiesAndState');
+    try {
+      return super.changeCitiesAndState(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+id: ${id},
+code: ${code},
 name: ${name},
+activits: ${activits},
+interests: ${interests},
 nameFeedback: ${nameFeedback},
 nameValidate: ${nameValidate},
 email: ${email},
@@ -545,7 +777,11 @@ locationState: ${locationState},
 locationCity: ${locationCity},
 graduation: ${graduation},
 speciality: ${speciality},
-checkGraduation: ${checkGraduation}
+valueRadio: ${valueRadio},
+checkGraduation: ${checkGraduation},
+programs: ${programs},
+ufs: ${ufs},
+cities: ${cities}
     ''';
   }
 }

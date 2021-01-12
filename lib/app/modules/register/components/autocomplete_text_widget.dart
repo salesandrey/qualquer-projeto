@@ -1,4 +1,3 @@
-import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:PadrinhoMED/app/utils/autocomplete.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +28,6 @@ class AutoCompleteTextWidget extends StatelessWidget {
         style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color: element,),
         suggestions: suggestion,
         textChanged: onChanged,
-
         decoration: InputDecoration(
           labelText: labelText,
           contentPadding: EdgeInsets.zero,
@@ -39,7 +37,6 @@ class AutoCompleteTextWidget extends StatelessWidget {
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: element),
           ),
-
         ))
     );
   }

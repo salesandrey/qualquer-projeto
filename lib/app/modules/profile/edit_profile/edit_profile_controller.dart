@@ -1,6 +1,14 @@
+import 'dart:io';
+
+import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
+import 'package:PadrinhoMED/app/models/city_model.dart';
+import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:PadrinhoMED/app/models/user_model.dart';
+import 'package:PadrinhoMED/app/modules/profile/edit_profile/components/checkbox_programs_widget.dart';
 import 'package:PadrinhoMED/app/modules/profile/edit_profile/viewmodel/list_programs_viewmodel.dart';
-import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_widget.dart';
+import 'package:PadrinhoMED/app/repositories/location_repository.dart';
+import 'package:PadrinhoMED/app/repositories/user_repository.dart';
+import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -15,7 +23,40 @@ class EditProfileController = _EditProfileControllerBase
 abstract class _EditProfileControllerBase with Store {
 
   @observable
+  int id;
+
+  @observable
+  String code;
+
+  @action
+  void changeCode(String value){
+    code = value;
+  }
+
+
+  @action
+  void changeID(int value){
+    id = value;
+  }
+
+  @observable
   String name;
+
+  @observable
+  ObservableList<Atividade> activits;
+
+  @observable
+  ObservableList<Interess> interests;
+
+  @action
+  void changeListActivits(List<Atividade> value){
+    activits = value.asObservable();
+  }
+
+  @action
+  void changeListInteress(List<Interess> value){
+    interests = value.asObservable();
+  }
 
   @observable
   String nameFeedback;
@@ -221,6 +262,23 @@ abstract class _EditProfileControllerBase with Store {
   ];
 
   @observable
+  int valueRadio;
+
+  @action
+  void changeValueRadio(String value){
+    if(value=="Afilhado"){
+        valueRadio = 0;
+      }else{
+      valueRadio = 1;
+    }
+  }
+
+  @action
+  void changeRadio(int value){
+    valueRadio = value;
+  }
+
+  @observable
   int checkGraduation = 0;
 
   @action
@@ -229,10 +287,135 @@ abstract class _EditProfileControllerBase with Store {
   }
 
   @observable
-  ObservableList<CheckBoxWidget> programs;
+  ObservableList<CheckBoxProgramsWidget> programs;
 
   Future<void> addProgramsToList() async{
-    programs =  ListProgramsViewModel().createListCheckBox([]).asObservable();
+    programs =  ListProgramsViewModel().createListCheckBox(activits).asObservable();
   }
 
+  @observable
+  ObservableList<UfModel> ufs;
+
+  @action
+  Future<void> getUF() async {
+    ufs = await LocationRepository().getUF();
+  }
+
+  @observable
+  ObservableStream<List<CityModel>> cities;
+
+  @action
+  Future<void> getCity(UfModel model) async{
+    cities = LocationRepository(id: model.id.toString()).cities.asObservable().asBroadcastStream();
+  }
+
+  @action
+  void changeCitiesAndState(String value){
+    changeLocationState(value);
+    getCity(ufs.singleWhere((element) => element.nome==value,orElse:() => UfModel(nome: value)));
+  }
+
+  @action
+  Future<void> takeUserData() async{
+
+    ILocalStorage storage = SharedLocalStorageService();
+    String email = await storage.get("email");
+    String password = await storage.get("password");
+    dynamic data =  await UserRepository().get(email, password);
+
+    UserModel model = UserModel.fromMap(data["results"]);
+
+    print(model.toMap());
+
+
+
+    changeName(model.nome);
+    changeEmail(model.email);
+    changeInstagram(model.instagram);
+    changeAbout(model.sobre);
+    changeTypeSearch(model.tipo);
+    changeLocationState(model.estado);
+    changeLocationCity(model.cidade);
+    changeGraduation(model.graduacao);
+    changeSpeciality(model.especialidade);
+    changeListActivits(model.atividades);
+    changeListInteress(model.interesses);
+    changeCode(model.cod);
+    changeID(model.id);
+    changeValueRadio(model.tipo);
+    switch(model.graduacao){
+      case "Estudante 1º ao 8º semestre":
+        changeCheckGraduation(1);
+        break;
+      case "Internato 9º ao 12º semestre":
+        changeCheckGraduation(2);
+        break;
+      case "Médico Generalista":
+        changeCheckGraduation(3);
+        break;
+      case "Residente / Em Especialização":
+        changeCheckGraduation(4);
+        break;
+      case "Médico Especialista":
+        changeCheckGraduation(5);
+        break;
+    }
+  }
+
+  @action
+  Future<void> saveData() async{
+
+    Map<int,String> graduationMap = {
+      1 : "Estudante 1º ao 8º semestre",
+      2 : "Internato 9º ao 12º semestre",
+      3 : "Médico Generalista",
+      4 : "Residente / Em Especialização",
+      5 : "Médico Especialista"
+    };
+
+    Map<String,String> typeActivits ={
+      "Posts para Redes Sociais":"20",
+      "Discussão de Casos Clínicos e Aulas":"21",
+      "Trabalhos Científicos":"22",
+      "Mentoria sobre Carreira Médica":"23",
+      "Acompanhamento de Rotina Médica":"24"
+    };
+
+     List<String> selectActivits = programs.where((element) => element.controller.check).map((e) => e.controller.title).toList();
+
+     List<Atividade> currentActivits = selectActivits.map((e) => Atividade(atividade: e,tipo: typeActivits[e],
+         id: activits.singleWhere((element) => element.atividade==e,orElse: ()=>Atividade(id: null)).id)).toList();
+
+     List<Interess> currentInteress = [Interess(
+         id: interests[0].id,
+         tipo: typeSearch,
+         cidade: locationCity,
+         graduacao:graduationMap[checkGraduation],
+         especialidade: speciality,
+         estado: locationState)
+     ];
+
+     UserModel userToUpdate = UserModel(
+       id: id,
+       cod: code,
+       nome: name,
+       email: email,
+       instagram: instagram,
+       tipo: typeSearch,
+       graduacao: graduationMap[checkGraduation],
+       especialidade: speciality,
+       data: DateTime.now(),
+       cidade: locationCity,
+       estado: locationState,
+       dispositivo: Platform.isAndroid? "Android":"Ios",
+       sobre: about,
+       interesses: currentInteress,
+       atividades: currentActivits
+     );
+
+     print(userToUpdate.toMap());
+
+     await UserRepository().update(userToUpdate);
+
+  }
 }
