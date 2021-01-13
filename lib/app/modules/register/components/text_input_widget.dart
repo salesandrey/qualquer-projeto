@@ -37,13 +37,13 @@ class TextInputWidget extends StatelessWidget {
         textCapitalization: capitalize,
         keyboardType: keyboardType,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical:12.0),
+          contentPadding: EdgeInsets.only(bottom: 8),
           helperMaxLines: 3,
           helperText: helpText,
           helperStyle: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular"),
           labelText: labelText,
           errorText: validator ? errorText : null,
-          labelStyle: TextStyle(color: focusNode.hasFocus? Color(0xFF050072) : KgreyColor ,fontFamily: "Montserrat Regular",fontSize: 18,),
+          labelStyle: TextStyle(height: 1,color: focusNode.hasFocus? Color(0xFF050072) : KgreyColor ,fontFamily: "Montserrat Regular",fontSize: 18,),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: KGreyColor)),

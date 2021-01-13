@@ -1,4 +1,5 @@
 import 'package:PadrinhoMED/app/modules/navigator/navigator_controller.dart';
+import 'package:PadrinhoMED/app/modules/tutorial/tutorial_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<TutorialController>(create: (context)=>TutorialController()),
         Provider<RegisterController>(create: (context)=>RegisterController()),
         Provider<ResetPasswordController>(create:(context)=> ResetPasswordController()),
         Provider<NavigatorController>(create:(context)=> NavigatorController()),

@@ -39,160 +39,165 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   Widget build(BuildContext context) {
     return Observer(builder: (context){
       return ModalProgressHUD(inAsyncCall: controller.loading,
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: KPrimaryColor,
-          body: SafeArea(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Hero(
-                            tag:"Logo",
-                            child: Container(
-                              child: Image(
-                                image: AssetImage('assets/images/VerticalColor.png'),
-                                width: MediaQuery.of(context).size.width*0.55,
+        child: WillPopScope(
+          onWillPop: ()async{
+            return false;
+          },
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: KPrimaryColor,
+            body: SafeArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Hero(
+                              tag:"Logo",
+                              child: Container(
+                                child: Image(
+                                  image: AssetImage('assets/images/VerticalColor.png'),
+                                  width: MediaQuery.of(context).size.width*0.55,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            child: TextField(
-                              onChanged: controller.changeEmail,
-                              style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold",fontSize: 18),
-                              focusNode: emailNode,
-                              onTap: (){
-                                emailNode.requestFocus();
-                                setState(() {});
-                              },
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                focusColor: Color(0xFF050072),
-                                errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
-                                labelText: "E-mail",
-                                errorText: controller.emailValidator? controller.emailFeedback:null,
-                                labelStyle: TextStyle(fontFamily: "Montserrat Regular", color: emailNode.hasFocus ? Color(0xFF050072):KgreyColor,fontSize: 18,),
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 5),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: KGreyColor,
-                                  ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: KBlueTextColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            child: TextField(
-                              onChanged: controller.changePassword,
-                              style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold",fontSize: 18),
-                              focusNode: passwordNode,
-                              onTap: (){
-                                  passwordNode.requestFocus();
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              child: TextField(
+                                onChanged: controller.changeEmail,
+                                style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold",fontSize: 18),
+                                focusNode: emailNode,
+                                onTap: (){
+                                  emailNode.requestFocus();
                                   setState(() {});
-                              },
-                              buildCounter: (BuildContext context,{int currentLength, int maxLength, bool isFocused }){
-                                if(passwordNode.hasFocus)
-                                  return InkWell(onTap: (){
-                                    Modular.to.pushNamed("/ResetPassword");
-                                  },child: Text("Esqueceu?",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color:Color(0xFF6259B2))));
-                                else
-                                  return null;
-                              },
-                              obscureText: show,
-                              decoration: InputDecoration(
-                                focusColor: Color(0xFF050072),
-                                labelText: "Senha",
-                                suffixIcon:
-                                passwordNode.hasFocus?
-                                IconButton(onPressed: (){show = !show; setState(() {});},
-                                  icon: Image(
-                                    image: show ? AssetImage("assets/images/eye_login.png") : AssetImage("assets/images/eye_open_login.png"),
-                                    height: 23,
-                                    width: 23,
-                                    color: controller.passwordValidator? Colors.redAccent:Colors.black),):null,
-                                errorText: controller.passwordValidator? "Senha Incorreta : (":null,
-                                errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
-                                hintStyle: TextStyle(fontSize: 18,fontFamily: "Montserrat Regular",color: KBlueTextColor,),
-                                labelStyle: TextStyle(fontFamily: "Montserrat Regular",color: passwordNode.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,fontSize: 18),
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 5),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: KGreyColor,
+                                },
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  focusColor: Color(0xFF050072),
+                                  errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
+                                  labelText: "E-mail",
+                                  errorText: controller.emailValidator? controller.emailFeedback:null,
+                                  labelStyle: TextStyle(fontFamily: "Montserrat Regular", color: emailNode.hasFocus ? Color(0xFF050072):KgreyColor,fontSize: 18,),
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: KGreyColor,
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: KBlueTextColor,
+                                    ),
                                   ),
                                 ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                              ),
+                            ),
+                            Container(
+                              child: TextField(
+                                onChanged: controller.changePassword,
+                                style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold",fontSize: 18),
+                                focusNode: passwordNode,
+                                onTap: (){
+                                    passwordNode.requestFocus();
+                                    setState(() {});
+                                },
+                                buildCounter: (BuildContext context,{int currentLength, int maxLength, bool isFocused }){
+                                  if(passwordNode.hasFocus)
+                                    return InkWell(onTap: (){
+                                      Modular.to.pushNamed("/ResetPassword");
+                                    },child: Text("Esqueceu?",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color:Color(0xFF6259B2))));
+                                  else
+                                    return null;
+                                },
+                                obscureText: show,
+                                decoration: InputDecoration(
+                                  focusColor: Color(0xFF050072),
+                                  labelText: "Senha",
+                                  suffixIcon:
+                                  passwordNode.hasFocus?
+                                  IconButton(onPressed: (){show = !show; setState(() {});},
+                                    icon: Image(
+                                      image: show ? AssetImage("assets/images/eye_login.png") : AssetImage("assets/images/eye_open_login.png"),
+                                      height: 23,
+                                      width: 23,
+                                      color: controller.passwordValidator? Colors.redAccent:Colors.black),):null,
+                                  errorText: controller.passwordValidator? "Senha Incorreta : (":null,
+                                  errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
+                                  hintStyle: TextStyle(fontSize: 18,fontFamily: "Montserrat Regular",color: KBlueTextColor,),
+                                  labelStyle: TextStyle(fontFamily: "Montserrat Regular",color: passwordNode.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,fontSize: 18),
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: KGreyColor,
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: KBlueTextColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ButtonWidget(color: KBlueColor,titleColor: KSecondaryColor, title:"ENTRAR",
+                              navigation: () async{
+                                LoginValidateViewModel().loginValidate(controller);
+                                if(!controller.emailValidator && !controller.passwordValidator) {
+                                  controller.changeLoading(true);
+                                  await controller.loginAccount();
+                                  setState(() {});
+                                  controller.changeLoading(false);
+                                }
+                                setState(() {});
+                              },),
+                            InkWell(
+                              onTap: (){
+                                Modular.to.pushNamed("/Register");
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(top: 20),
+                                child: Text(
+                                  "Criar nova conta",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: "Montserrat Bold",
                                     color: KBlueTextColor,
                                   ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                             ),
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ButtonWidget(color: KBlueColor,titleColor: KSecondaryColor, title:"ENTRAR",
-                            navigation: () async{
-                              LoginValidateViewModel().loginValidate(controller);
-                              if(!controller.emailValidator && !controller.passwordValidator) {
-                                controller.changeLoading(true);
-                                await controller.loginAccount();
-                                setState(() {});
-                                controller.changeLoading(false);
-                              }
-                              setState(() {});
-                            },),
-                          InkWell(
-                            onTap: (){
-                              Modular.to.pushNamed("/Register");
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(top: 20),
-                              child: Text(
-                                "Criar nova conta",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: "Montserrat Bold",
-                                  color: KBlueTextColor,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

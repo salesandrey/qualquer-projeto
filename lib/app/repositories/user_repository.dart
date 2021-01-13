@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:PadrinhoMED/app/models/user_model.dart';
 import 'package:PadrinhoMED/app/utils/time_convert.dart';
 import 'package:http/http.dart';
+import 'package:validators/sanitizers.dart';
 
 class UserRepository{
 
@@ -36,7 +37,6 @@ class UserRepository{
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: userData );
 
     if(response.statusCode==200){
-      print(response.body);
       return jsonDecode(response.body);
     }
     else{
@@ -47,16 +47,18 @@ class UserRepository{
 
   Future<void> update(UserModel model) async{
       String url = "https://padmed.lanconi.com.br/usuarioUpdate.py";
+
+      var newUser = model.toJson();
+
       var userData = jsonEncode({
-        "id":model.id,
+        "id":31,
         "instagram":model.instagram,
-        "idInteresse":12,
         "nome":model.nome,
         "email": model.email,
         "data":TimeConvert().convertDateTimeToString(model.data),
         "cod":model.cod,
         "sobre":model.sobre,
-        "situacao": "",
+        "situacao": model.situacao,
         "dispositivo": Platform.isAndroid? "Android":"Ios",
         "especialidade": model.especialidade,
         "graduacao": model.graduacao,
@@ -67,7 +69,7 @@ class UserRepository{
         "interesses":model.interesses
       });
 
-      Response response = await post(url,headers:{"Content-Type": "application/json"},body: userData );
+      Response response = await post(url,headers:{"Content-Type": "application/json"},body: newUser );
 
       if(response.statusCode==200){
         print(response.body);

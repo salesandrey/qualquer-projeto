@@ -80,7 +80,7 @@ class AutoCompleteUpdateWidget extends StatelessWidget {
                           controller: currentCity,
                           suggestion: snapshot.data.map((e) => e.nome).toList(),
                           textSubmit: changeCity,
-                          onChanged: changeCity,
+                          onChanged: (value){},
                           keyText: keyCity,
                         )),
                   );

@@ -87,7 +87,11 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                     Modular.to.pushNamed("/EditProfile");
                   }),//Modular.to.pushNamed("/EditProfile");},),
                   BoxOptionWidget(iconImage: 'assets/images/48.png',text: "Meus Certificados", navigation: (){
+                    if(controller.premium){
 
+                    }else{
+                      Modular.to.pushNamed("/Monkey");
+                    }
                   },),
                   BoxOptionWidget(iconImage: 'assets/images/50.png',text: "Configurações",navigation: (){
                     Modular.to.pushNamed("/Configuration");
@@ -95,7 +99,9 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                   BoxOptionWidget(iconImage: 'assets/images/85.png',text: "Conta Premium",navigation: (){
                     Modular.to.pushNamed("/Premium");
                   },),
-                  BoxOptionWidget(iconImage: 'assets/images/51.png',text: "Ajuda"),
+                  BoxOptionWidget(iconImage: 'assets/images/51.png',text: "Ajuda",navigation: (){
+                    Modular.to.pushNamed("/Tutorial",arguments: "Navigator");
+                  },),
                 ],
               ),
             ),

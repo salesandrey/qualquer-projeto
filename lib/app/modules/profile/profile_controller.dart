@@ -12,6 +12,9 @@ class ProfileController = _ProfileControllerBase with _$ProfileController;
 abstract class _ProfileControllerBase with Store {
 
   @observable
+  bool premium = false;
+
+  @observable
   String name = "";
 
   @action

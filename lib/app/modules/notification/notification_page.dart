@@ -44,7 +44,9 @@ class _NotificationPageState extends ModularState<NotificationPage, Notification
           body: StreamBuilder<List<NotificationModel>>(
               stream: controller.notifications,
               builder: (context, snapshot){
-                print(snapshot.connectionState);
+                if(snapshot.connectionState==ConnectionState.active){
+                  return Container();
+                }
                 if(!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator(
                       valueColor: new AlwaysStoppedAnimation<Color>(

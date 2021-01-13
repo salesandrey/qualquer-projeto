@@ -11,7 +11,7 @@ class TutorialModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-    ModularRouter(Modular.initialRoute, child: (_, args) => TutorialPage()),
+    ModularRouter(Modular.initialRoute, child: (_, args) => TutorialPage(screenCall: args.data,)),
       ];
 
   static Inject get to => Inject<TutorialModule>.of();

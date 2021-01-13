@@ -24,22 +24,26 @@ class LocationRepository {
         url, headers: {"Content-Type": "application/json"}, body: query);
 
     if (response.statusCode == 200) {
+      print(response.body);
       List<dynamic> list = jsonDecode(response.body)["results"];
       List<UfModel> ufs = list.map((value) => UfModel.fromMap(value)).toList();
       return ufs.asObservable();
     } else {
+      print(response.body);
       return null;
     }
   }
 
-  Future<List<CityModel>> getCity(String id) async {
+  Future<List<CityModel>> getCity(String uf) async {
     String url = "https://padmed.lanconi.com.br/cidadesGet.py";
 
     var query = jsonEncode(
         {
           "id": "",
-          "idEstado": id
-        });
+          "uf": uf
+
+        }
+        );
 
     Response response = await post(
         url, headers: {"Content-Type": "application/json"}, body: query);
@@ -49,6 +53,7 @@ class LocationRepository {
       List<CityModel> cities = list.map((value) => CityModel.fromMap(value)).toList();
       return cities;
     } else {
+      print(response.body);
       return null;
     }
   }

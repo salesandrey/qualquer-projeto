@@ -169,29 +169,23 @@ class CardProductWidget extends StatelessWidget {
           ),
           Positioned(
             bottom: -15,
-            child: InkWell(
-              onTap: goToDetails,
-              child: Container(
+            child: Container(
                 height: 32,
                 width: MediaQuery.of(context).size.width * 0.3,
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(top: 140),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Kdeep_PurpleAccentColor,
-                ),
-                child: Text(
-                  "É ESSE!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Montserrat Bold",
-                    color: KwhiteColor,
-                  ),
-                ),
-              ),
-            ),
-          ),
+                child: RaisedButton(
+                    onPressed: goToDetails,
+                    color: Kdeep_PurpleAccentColor,
+                    elevation: 0,
+                    shape: StadiumBorder(),
+                    child: FittedBox(
+                        child: Text("É ESSE",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: "Montserrat Bold",
+                        fontSize: 12,
+                        color: KwhiteColor),
+                    )))),
+          )
         ],
       ),
     );

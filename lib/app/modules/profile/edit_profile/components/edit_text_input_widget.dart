@@ -6,6 +6,8 @@ class EditTextIInputWidget extends StatelessWidget {
   final String labelText;
   final int maxLength;
   final int maxLine;
+  final bool enable;
+  final Color contentColor;
   final InputCounterWidgetBuilder counter;
   final FocusNode focusNode;
   final Function requestNode;
@@ -14,7 +16,7 @@ class EditTextIInputWidget extends StatelessWidget {
   final TextEditingController controller;
   final Function onChanged;
 
-  const EditTextIInputWidget({Key key, this.labelText, this.controller, this.onChanged, this.maxLine, this.maxLength, this.focusNode, this.isVisibility, this.controllerValidator, this.requestNode, this.counter}) : super(key: key);
+  const EditTextIInputWidget({Key key, this.labelText, this.controller, this.onChanged, this.maxLine, this.maxLength, this.focusNode, this.isVisibility, this.controllerValidator, this.requestNode, this.counter, this.enable, this.contentColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,9 @@ class EditTextIInputWidget extends StatelessWidget {
         onChanged: onChanged,
         obscureText: isVisibility,
         buildCounter: counter,
+        enabled: enable,
         style: TextStyle(
-            color: Colors.black, fontSize: 16, fontFamily: "Montserrat Bold"),
+            color: contentColor, fontSize: 16, fontFamily: "Montserrat Bold"),
         decoration: InputDecoration(
           labelText: labelText,
           counterStyle: TextStyle(fontFamily: "Montserrat Regular",fontSize: 15,color: Color(0xFF666666)),

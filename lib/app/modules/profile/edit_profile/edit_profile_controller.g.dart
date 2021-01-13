@@ -19,6 +19,37 @@ final $EditProfileController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$EditProfileController on _EditProfileControllerBase, Store {
+  final _$changeDatasAtom =
+      Atom(name: '_EditProfileControllerBase.changeDatas');
+
+  @override
+  bool get changeDatas {
+    _$changeDatasAtom.reportRead();
+    return super.changeDatas;
+  }
+
+  @override
+  set changeDatas(bool value) {
+    _$changeDatasAtom.reportWrite(value, super.changeDatas, () {
+      super.changeDatas = value;
+    });
+  }
+
+  final _$loadingAtom = Atom(name: '_EditProfileControllerBase.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
   final _$idAtom = Atom(name: '_EditProfileControllerBase.id');
 
   @override
@@ -455,6 +486,28 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
       ActionController(name: '_EditProfileControllerBase');
 
   @override
+  void changeChangeDatas(bool value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeChangeDatas');
+    try {
+      return super.changeChangeDatas(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeLoading(bool value) {
+    final _$actionInfo = _$_EditProfileControllerBaseActionController
+        .startAction(name: '_EditProfileControllerBase.changeLoading');
+    try {
+      return super.changeLoading(value);
+    } finally {
+      _$_EditProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeCode(String value) {
     final _$actionInfo = _$_EditProfileControllerBaseActionController
         .startAction(name: '_EditProfileControllerBase.changeCode');
@@ -756,6 +809,8 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   @override
   String toString() {
     return '''
+changeDatas: ${changeDatas},
+loading: ${loading},
 id: ${id},
 code: ${code},
 name: ${name},

@@ -3,6 +3,7 @@ import 'package:PadrinhoMED/app/modules/loading/loading_module.dart';
 import 'package:PadrinhoMED/app/modules/navigator/navigator_module.dart';
 import 'package:PadrinhoMED/app/modules/onBoarding/on_boarding_module.dart';
 import 'package:PadrinhoMED/app/modules/premium/premium_module.dart';
+import 'package:PadrinhoMED/app/modules/profile/components/monkey_certification_widget.dart';
 import 'package:PadrinhoMED/app/modules/profile/edit_profile/edit_profile_module.dart';
 import 'package:PadrinhoMED/app/modules/register/category/category_page.dart';
 import 'package:PadrinhoMED/app/modules/register/graduation/graduation_page.dart';
@@ -42,6 +43,7 @@ class AppModule extends MainModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, module: SplashModule()),
+        ModularRouter("/Monkey",child:(_,args) => MonkeyCertificationWidget()),
         ModularRouter("/Configuration", module: ConfigurationModule()),
         ModularRouter("/PremiumDetails",
             child: (_, args) => PremiumDetailsPage(

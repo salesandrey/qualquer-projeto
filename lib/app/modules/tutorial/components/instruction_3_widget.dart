@@ -1,11 +1,14 @@
 import 'package:PadrinhoMED/app/modules/tutorial/components/buttom_widget.dart';
 import 'package:PadrinhoMED/app/modules/tutorial/components/text_widget.dart';
+import 'package:PadrinhoMED/app/modules/tutorial/tutorial_controller.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Instruction3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<TutorialController>(context);
     return Container(
       color: KfirstColor.withOpacity(0.9),
       padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 34),
@@ -27,7 +30,7 @@ class Instruction3 extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Flávia J.',
+                        controller.godFather=="Afilhado"?'Flávia J.':"Maria S.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 24,
@@ -35,7 +38,7 @@ class Instruction3 extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Interesse: Pediatra',
+                        controller.godFather=="Afilhado"?'Especialidade: Cirurgia Plástica':"Interesse: Pediatria",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -48,17 +51,17 @@ class Instruction3 extends StatelessWidget {
                 ),
                 Container(
                     padding: EdgeInsets.only(top: 24,left: 24,right: 24),
-                    child: TextWidget(text1: "Nível de Graduação",text2:"Estudante 1º a 8º semestre")),
+                    child: TextWidget(text1: "Nível de Graduação",text2: controller.godFather=="Afilhado"?"Médico Especialista":"Estudante 1º ao 8º semestre")),
                 Container(
                     padding: EdgeInsets.only(top: 24,left: 24,right: 24),
-                    child: TextWidget(text1: "Localização",text2: "São Bernado do Campo, SP")),
+                    child: TextWidget(text1: "Localização",text2: controller.godFather=="Afilhado"?"São Paulo, SP":"Rio de Janeiro, RJ")),
                 Container(
                   padding: EdgeInsets.only(top: 24,left: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Contatos de Flávia",
+                        controller.godFather=="Afilhado"?"Contatos de Flávia":"Contatos de Maria",
                         style: TextStyle(
                             fontSize: 14,
                             fontFamily: "Montserrat Bold",
@@ -120,10 +123,21 @@ class Instruction3 extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    ' Importante: O e-mail e Instagram\nsó aparecem se você e a pessoa\nestiverem conectados no app',
+                    "Importante: O e-mail e Instagram\nsó aparecem para aqueles que você adicionou no ícone️",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 15,
+                      fontFamily: "Montserrat Bold",
+                      color: KthirdColor,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    "♥️",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 22,
                       fontFamily: "Montserrat Bold",
                       color: KthirdColor,
                     ),

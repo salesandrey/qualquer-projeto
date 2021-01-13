@@ -15,7 +15,7 @@ class RegisterPage extends StatefulWidget {
   _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends ModularState<RegisterPage,RegisterController> {
+class _RegisterPageState extends State<RegisterPage> {
 
 
 
@@ -45,8 +45,8 @@ class _RegisterPageState extends ModularState<RegisterPage,RegisterController> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<RegisterController>(context);
     return Observer(builder: (context){
+      final controller = Provider.of<RegisterController>(context);
       return Scaffold(
         backgroundColor: KPrimaryColor,
         body: SafeArea(
@@ -108,9 +108,17 @@ class _RegisterPageState extends ModularState<RegisterPage,RegisterController> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            TextInputWidget(capitalize: TextCapitalization.words,keyboardType: TextInputType.text,function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo",helpText: "Confira seus dados pois este é o nome que vai nos certificados",),
+                            TextInputWidget(capitalize: TextCapitalization.words,keyboardType: TextInputType.text,function: (){setState(() {});},focusNode: username,errorText: controller.usernameFeedback,validator: controller.usernameValidator,changeText: controller.changeUsername,labelText: "Digite seu nome completo"),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: Text("Confira seus dados pois este é o nome que vai nos certificados",style: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular")),
+                            ),
                             SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
-                            TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?",helpText: "Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",)
+                            TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?"),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: Text("Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",style: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular")),
+                            ),
                           ],
                         ),
                       ),
@@ -128,6 +136,7 @@ class _RegisterPageState extends ModularState<RegisterPage,RegisterController> {
                             null : (){
                               RegisterValidateViewModel().validateUsername(controller);
                               if(!controller.usernameValidator) {
+                                controller.getUF();
                                 Modular.to.pushNamed("/CheckEmail");
                               }
                               setState(() {});

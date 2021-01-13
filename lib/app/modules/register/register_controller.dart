@@ -355,73 +355,25 @@ abstract class _RegisterControllerBase with Store{
   ObservableList<UfModel> ufs;
 
   @observable
-  ObservableList<CityModel> cities;
+  ObservableStream<List<CityModel>> cities;
 
-  @observable
-  ObservableList<String>ufsString;
-
-  @observable
-  ObservableList<String>citiesString;
-
-  @computed
-  List<String> get citiesComputed {
-
-    if(cities==null){
-      return [];
-    }
-    return cities.map((e) => e.nome).toList();
+  @action
+  Future<void> getUF() async {
+    ufs = await LocationRepository().getUF();
+    print(ufs.length);
   }
 
   @action
-  void cleanListCities(){
-    citiesString = null;
-  }
-
- 
-  @action
-  Future<void> getUF() async{
-    if(ufs!=null) {
-      ufs.clear();
-    }
-     List<UfModel> newUFs = [];
-     dynamic data = await  LocationRepository().getUF();
-     print(data);
-     if(data!=null) {
-       for(dynamic value in data){
-         UfModel model  = UfModel.fromMap(value);
-         newUFs.add(model);
-       }
-     }
-     ufs = newUFs.asObservable();
-     transformUfList();
+  Future<void> getCity(UfModel model) async{
+    cities = LocationRepository(id: model.sigla.toString()).cities.asObservable().asBroadcastStream();
   }
 
   @action
-  void transformUfList(){
-    ufsString = ufs.map((e) => e.nome).toList().asObservable();
+  void submitStateValue(String value){
+    changeLocationState(value);
+    getCity(ufs.singleWhere((element) => element.nome==value,orElse:() => UfModel(id: 400,sigla: "")));
   }
 
-  @action
-  void transformCityList(){
-    citiesString = cities.map((e) => e.nome).toList().asObservable();
-  }
-
-  @action
-  Future<void> getCities(String id) async{
-    if(cities!=null) {
-      cities.clear();
-    }
-    dynamic data = await  LocationRepository().getCity(id);
-    List<CityModel> newCities = [];
-    if(data!=null) {
-      for (dynamic value in data) {
-        CityModel model = CityModel.fromMap(value);
-        newCities.add(model);
-      }
-    }
-    cities = newCities.asObservable();
-    transformCityList();
-  }
 
   @action
   Future<void> checkEmailUser()async{

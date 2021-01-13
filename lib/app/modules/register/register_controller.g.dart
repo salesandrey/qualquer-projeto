@@ -19,14 +19,6 @@ final $RegisterController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterController on _RegisterControllerBase, Store {
-  Computed<List<String>> _$citiesComputedComputed;
-
-  @override
-  List<String> get citiesComputed => (_$citiesComputedComputed ??=
-          Computed<List<String>>(() => super.citiesComputed,
-              name: '_RegisterControllerBase.citiesComputed'))
-      .value;
-
   final _$loadingAtom = Atom(name: '_RegisterControllerBase.loading');
 
   @override
@@ -369,45 +361,15 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   final _$citiesAtom = Atom(name: '_RegisterControllerBase.cities');
 
   @override
-  ObservableList<CityModel> get cities {
+  ObservableStream<List<CityModel>> get cities {
     _$citiesAtom.reportRead();
     return super.cities;
   }
 
   @override
-  set cities(ObservableList<CityModel> value) {
+  set cities(ObservableStream<List<CityModel>> value) {
     _$citiesAtom.reportWrite(value, super.cities, () {
       super.cities = value;
-    });
-  }
-
-  final _$ufsStringAtom = Atom(name: '_RegisterControllerBase.ufsString');
-
-  @override
-  ObservableList<String> get ufsString {
-    _$ufsStringAtom.reportRead();
-    return super.ufsString;
-  }
-
-  @override
-  set ufsString(ObservableList<String> value) {
-    _$ufsStringAtom.reportWrite(value, super.ufsString, () {
-      super.ufsString = value;
-    });
-  }
-
-  final _$citiesStringAtom = Atom(name: '_RegisterControllerBase.citiesString');
-
-  @override
-  ObservableList<String> get citiesString {
-    _$citiesStringAtom.reportRead();
-    return super.citiesString;
-  }
-
-  @override
-  set citiesString(ObservableList<String> value) {
-    _$citiesStringAtom.reportWrite(value, super.citiesString, () {
-      super.citiesString = value;
     });
   }
 
@@ -418,12 +380,11 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     return _$getUFAsyncAction.run(() => super.getUF());
   }
 
-  final _$getCitiesAsyncAction =
-      AsyncAction('_RegisterControllerBase.getCities');
+  final _$getCityAsyncAction = AsyncAction('_RegisterControllerBase.getCity');
 
   @override
-  Future<void> getCities(String id) {
-    return _$getCitiesAsyncAction.run(() => super.getCities(id));
+  Future<void> getCity(UfModel model) {
+    return _$getCityAsyncAction.run(() => super.getCity(model));
   }
 
   final _$checkEmailUserAsyncAction =
@@ -702,33 +663,11 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   @override
-  void cleanListCities() {
+  void submitStateValue(String value) {
     final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.cleanListCities');
+        name: '_RegisterControllerBase.submitStateValue');
     try {
-      return super.cleanListCities();
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void transformUfList() {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.transformUfList');
-    try {
-      return super.transformUfList();
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void transformCityList() {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.transformCityList');
-    try {
-      return super.transformCityList();
+      return super.submitStateValue(value);
     } finally {
       _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -759,10 +698,7 @@ graduation: ${graduation},
 speciality: ${speciality},
 checkTerm: ${checkTerm},
 ufs: ${ufs},
-cities: ${cities},
-ufsString: ${ufsString},
-citiesString: ${citiesString},
-citiesComputed: ${citiesComputed}
+cities: ${cities}
     ''';
   }
 }

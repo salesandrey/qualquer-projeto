@@ -28,7 +28,7 @@ abstract class _HomeControllerBase with Store {
   }
 
   @observable
-  bool premium = true;
+  bool premium = false;
 
   @observable
   bool activateButton = false;
@@ -56,7 +56,7 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future<void> getCity(UfModel model) async{
-    cities = LocationRepository(id: model.id.toString()).cities.asObservable().asBroadcastStream();
+    cities = LocationRepository(id: model.sigla.toString()).cities.asObservable().asBroadcastStream();
   }
 
   @observable
@@ -69,7 +69,7 @@ abstract class _HomeControllerBase with Store {
 
   @action
   void changeStateAndCity(String value){
-    getCity(ufs.firstWhere((element) => element.nome == value,orElse: () => UfModel(id: 400)));
+    getCity(ufs.firstWhere((element) => element.nome == value,orElse: () => UfModel(id: 400,sigla: "")));
     changeStateDialog(value);
   }
 

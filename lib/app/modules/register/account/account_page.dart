@@ -24,7 +24,7 @@ class _AccountPageState extends State<AccountPage> {
 
   _AccountPageState({this.controllerPage});
 
-    final PageController controllerPage;
+  final PageController controllerPage;
 
   FocusNode email;
   FocusNode password;
@@ -47,8 +47,10 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<RegisterController>(context);
+
     return Observer(builder: (_){
+      final controller = Provider.of<RegisterController>(context);
+
       return ModalProgressHUD(inAsyncCall: controller.loading,
         child: Scaffold(
           backgroundColor: KPrimaryColor,
@@ -123,6 +125,7 @@ class _AccountPageState extends State<AccountPage> {
                               Container(
                                 child: TextField(
                                   onChanged: controller.changeEmail,
+                                  textAlignVertical: TextAlignVertical.center,
                                   keyboardType: TextInputType.emailAddress,
                                   style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold"),
                                   focusNode: email,
@@ -136,12 +139,12 @@ class _AccountPageState extends State<AccountPage> {
                                     errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
                                     hintStyle: TextStyle(fontFamily: "Montserrat Bold",color: Colors.black),
                                     labelStyle: TextStyle(
-                                      height: -8.0,
+                                      height: 1,
                                       fontFamily: "Montserrat Regular",
                                       fontSize: 18,
                                       color: email.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                                    contentPadding: const EdgeInsets.only(bottom: 8),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: KGreyColor,
@@ -159,6 +162,7 @@ class _AccountPageState extends State<AccountPage> {
                               Container(
                                 child: TextField(
                                   onChanged: controller.changePassword,
+                                  textAlignVertical: TextAlignVertical.center,
                                   style: TextStyle(color: KBlackLightTextColor,fontFamily: "Montserrat Bold"),
                                   obscureText: show,
                                   focusNode: password,
@@ -183,11 +187,12 @@ class _AccountPageState extends State<AccountPage> {
                                     errorStyle: TextStyle(fontSize: 15,fontFamily: "Montserrat Regular"),
                                     hintStyle: TextStyle(fontFamily: "Montserrat Bold",color: Colors.black),
                                     labelStyle: TextStyle(
+                                      height: 1,
                                       fontFamily: "Montserrat Regular",
                                       fontSize: 18,
                                       color: password.hasFocus?controller.passwordValidator?Colors.redAccent:Color(0xFF050072):KgreyColor,
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                                    contentPadding: const EdgeInsets.only(bottom: 8),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: KGreyColor,

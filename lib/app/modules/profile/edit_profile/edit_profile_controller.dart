@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
 import 'package:PadrinhoMED/app/models/city_model.dart';
@@ -21,6 +22,23 @@ class EditProfileController = _EditProfileControllerBase
     with _$EditProfileController;
 
 abstract class _EditProfileControllerBase with Store {
+
+
+  @observable
+  bool changeDatas = false;
+
+  @action
+  void changeChangeDatas(bool value){
+    changeDatas = value;
+  }
+
+  @observable
+  bool loading = false;
+
+  @action
+  void changeLoading(bool value){
+    loading = value;
+  }
 
   @observable
   int id;
@@ -276,6 +294,11 @@ abstract class _EditProfileControllerBase with Store {
   @action
   void changeRadio(int value){
     valueRadio = value;
+    if(value==0){
+      changeTypeSearch("Afilhado");
+    }else{
+      changeTypeSearch("Padrinho");
+    }
   }
 
   @observable
@@ -306,7 +329,7 @@ abstract class _EditProfileControllerBase with Store {
 
   @action
   Future<void> getCity(UfModel model) async{
-    cities = LocationRepository(id: model.id.toString()).cities.asObservable().asBroadcastStream();
+    cities = LocationRepository(id: model.sigla.toString()).cities.asObservable().asBroadcastStream();
   }
 
   @action
@@ -384,7 +407,7 @@ abstract class _EditProfileControllerBase with Store {
      List<String> selectActivits = programs.where((element) => element.controller.check).map((e) => e.controller.title).toList();
 
      List<Atividade> currentActivits = selectActivits.map((e) => Atividade(atividade: e,tipo: typeActivits[e],
-         id: activits.singleWhere((element) => element.atividade==e,orElse: ()=>Atividade(id: null)).id)).toList();
+         id: 0)).toList();
 
      List<Interess> currentInteress = [Interess(
          id: interests[0].id,
@@ -398,6 +421,7 @@ abstract class _EditProfileControllerBase with Store {
      UserModel userToUpdate = UserModel(
        id: id,
        cod: code,
+       situacao: "free",
        nome: name,
        email: email,
        instagram: instagram,

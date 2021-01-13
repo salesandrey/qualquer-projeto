@@ -17,11 +17,8 @@ class LocationPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<LocationPage> {
-  //use 'controller' variable to access controller
-
   GlobalKey<AutoCompleteTextFieldState<String>> keyStringState = new GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<String>> keyStringCity = new GlobalKey();
-  RegisterController controller;
   TextEditingController stateController;
   TextEditingController cityController;
 
@@ -29,8 +26,6 @@ class _LocationPageState extends State<LocationPage> {
   void initState() {
     stateController = TextEditingController();
     cityController = TextEditingController();
-    controller = Provider.of<RegisterController>(context,listen: false);
-    controller.getUF();
     super.initState();
   }
 
@@ -43,8 +38,9 @@ class _LocationPageState extends State<LocationPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<RegisterController>(context);
+
     return Observer(builder: (context){
+      final controller = Provider.of<RegisterController>(context);
       return Scaffold(
         backgroundColor: KPrimaryColor,
         body: SafeArea(
@@ -107,15 +103,18 @@ class _LocationPageState extends State<LocationPage> {
                               TextStyle(fontSize: 18, color: KGreyColor,fontFamily: "Montserrat Regular"),
                             ),
                             LocationWidget(
-                                controller: controller,
-                              cityController: cityController,
+                              changeCity:controller.changeLocationCity,
+                              changeState:controller.changeLocationState,
+                              streamCity: controller.cities,
+                              states: controller.ufs.map((element) => element.nome).toList(),
+                              submitCity: controller.changeLocationCity,
+                              submitState: controller.submitStateValue,
                               keyStringCity: keyStringCity,
                               keyStringState: keyStringState,
                               label1: "Estado",
                               label2: "Cidade ",
                               icon1: Icon(Icons.keyboard_arrow_down,color: Color(0xFF050072)),
                               icon2: Icon(Icons.search,),
-                              stateController: stateController,
                             ),
                           ],
                         ),
@@ -133,7 +132,7 @@ class _LocationPageState extends State<LocationPage> {
 
                 Positioned(bottom: 40,left: 40,right: 40,
                     child: ButtonConfirmWidget(
-                        navigation: (controller.ufsString!=null && controller.ufsString.contains(controller.locationState)) && (controller.citiesString!=null && controller.citiesString.contains(controller.locationCity))?
+                        navigation: controller.locationCity!=null && controller.locationState!=null?
                             (){
                           if(RegisterValidateViewModel().validateLocation(controller)){
                             Modular.to.pushNamed("/Graduation");
