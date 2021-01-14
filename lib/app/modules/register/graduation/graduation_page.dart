@@ -103,7 +103,7 @@ class _GraduationPageState extends State<GraduationPage> {
                         {
                           if(RegisterValidateViewModel().validateGraduation(controller)){
                             if(controller.graduation=="Estudante (1º ao 8º semestre)" ||
-                                controller.graduation=="Interno (9º ao 12º semestre)" ||
+                                controller.graduation=="Internato (9º ao 12º semestre)" ||
                                 controller.graduation=="Médico generalista")
                               Modular.to.pushNamed("/Speciality",arguments: ["Qual a especialidade de maior interesse?",true]);
                             else{

@@ -1,4 +1,3 @@
-import 'package:PadrinhoMED/app/modules/telas_temporarias/certificados4.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -111,9 +110,7 @@ class _P2MeusCertificados3State extends State<P2MeusCertificados3> {
                           elevation: 0,
                           highlightElevation: 0,
                           onPressed: () {
-                            Navigator.of(context).push(
-                                new MaterialPageRoute(builder: (context)=>P2MeusCertificados4(),)
-                            );
+
                           },
                           color: KSecondaryColor,
                           textColor: Kdeep_PurpleAccentColor,

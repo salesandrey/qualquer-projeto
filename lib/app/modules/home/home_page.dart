@@ -169,7 +169,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   navigator: ()
                                   {
                                     controller.changeFilter("Estudantes (1º ao 8º semestre)");
-                                    Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPinkColor,textColor: Colors.black,name: "Estudante (1º ao 8º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
+                                    Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPinkColor,textColor: Colors.black,name: "Estudantes (1º ao 8º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
                                   },
                                 ),
                                 CardColorFullWidget(
@@ -178,8 +178,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   description: "9º ao 12º semestre",
                                   navigator: ()
                                   {
-                                    controller.changeFilter("Interno (9º ao 12º semestre)");
-                                    Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPurple,textColor: Colors.black,name: "Interno (9º ao 12º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
+                                    controller.changeFilter("Internato (9º ao 12º semestre)");
+                                    Modular.to.pushNamed("/Match",arguments:[controller.listFiltered,HeadModel(color:KPurple,textColor: Colors.black,name: "Internos (9º ao 12º semestre)"),controller.currentUser.id,controller.currentUser.tipo]);
                                   },
                                 ),
                                 CardColorFullWidget(

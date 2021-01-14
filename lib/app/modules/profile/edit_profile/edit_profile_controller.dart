@@ -367,10 +367,10 @@ abstract class _EditProfileControllerBase with Store {
     changeID(model.id);
     changeValueRadio(model.tipo);
     switch(model.graduacao){
-      case "Estudante 1º ao 8º semestre":
+      case "Estudantes (1º ao 8º semestre)":
         changeCheckGraduation(1);
         break;
-      case "Internato 9º ao 12º semestre":
+      case "Internato (9º ao 12º semestre)":
         changeCheckGraduation(2);
         break;
       case "Médico Generalista":
@@ -389,8 +389,8 @@ abstract class _EditProfileControllerBase with Store {
   Future<void> saveData() async{
 
     Map<int,String> graduationMap = {
-      1 : "Estudante 1º ao 8º semestre",
-      2 : "Internato 9º ao 12º semestre",
+      1 : "Estudantes (1º ao 8º semestre)",
+      2 : "Internato (9º ao 12º semestre)",
       3 : "Médico Generalista",
       4 : "Residente / Em Especialização",
       5 : "Médico Especialista"

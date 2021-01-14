@@ -28,7 +28,7 @@ abstract class _HomeControllerBase with Store {
   }
 
   @observable
-  bool premium = false;
+  bool premium = true;
 
   @observable
   bool activateButton = false;

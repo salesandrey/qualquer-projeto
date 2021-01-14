@@ -93,13 +93,13 @@ class _ConfigurationPageState extends ModularState<ConfigurationPage, Configurat
                           SwitchConfigWidget(title: "Favoritado por alguém",
                             color: controller.pushNotification?Color(0xFF313131):Color(0xFFd9d9d9),
                             off: controller.somebodyFavorite,
-                            turnON: controller.pushNotification?controller.changeNotificationGodFather:null,),
+                            turnON: controller.pushNotification?controller.changeSomebodyFavorite:null,),
                           SizedBox(height: 17,),
                           SwitchConfigWidget(
                             title: "Meu favorito me favoritou",
                             color: controller.pushNotification?Color(0xFF313131):Color(0xFFd9d9d9),
                             off: controller.favoriteFavorite,
-                            turnON: controller.pushNotification?controller.changeNotificationGodFather:null,),
+                            turnON: controller.pushNotification?controller.changeFavoriteFavorite:null,),
                           SizedBox(height: 17,),
                           SwitchConfigWidget(
                             title: "Solicitado para ser padrinho",
@@ -111,13 +111,13 @@ class _ConfigurationPageState extends ModularState<ConfigurationPage, Configurat
                             title: "Escolhido para ser afilhado",
                             color: controller.pushNotification?Color(0xFF313131):Color(0xFFd9d9d9),
                             off: controller.chooseGodson,
-                            turnON: controller.pushNotification?controller.changeNotificationGodFather:null,),
+                            turnON: controller.pushNotification?controller.changeChooseGodson:null,),
                           SizedBox(height: 17,),
                           SwitchConfigWidget(
                             title: "Apadrinhamentos Oficiais",
                             color: controller.pushNotification?Color(0xFF313131):Color(0xFFd9d9d9),
                             off: controller.officialGodfather,
-                            turnON: controller.pushNotification?controller.changeNotificationGodFather:null,),
+                            turnON: controller.pushNotification?controller.changeOfficialGodFather:null,),
 
                         ])),
                   ),

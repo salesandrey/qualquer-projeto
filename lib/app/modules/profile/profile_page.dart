@@ -1,6 +1,5 @@
 import 'package:PadrinhoMED/app/modules/profile/components/box_option_widget.dart';
 import 'package:PadrinhoMED/app/modules/profile/components/logout_dialog_widget.dart';
-import 'package:PadrinhoMED/app/modules/telas_temporarias/certificados4.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
