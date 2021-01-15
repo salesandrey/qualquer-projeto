@@ -57,28 +57,30 @@ class CardProductWidget extends StatelessWidget {
                     children: <Widget>[
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: RichText(
-                          text: TextSpan(
-                              children: [
-                                TextSpan(text: 'R\$',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: "Montserrar Regular",
-                                      color: Color(0xFF313131),
-                                    )),
-                                TextSpan(text: price,
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontFamily: "Montserrat Bold",
-                                      color: KblackColor,
-                                    )),
-                                TextSpan(text: cents,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: "Montserrat Bold",
-                                      color: KblackColor,
-                                    )),
-                              ]
+                        child: FittedBox(
+                          child: RichText(
+                            text: TextSpan(
+                                children: [
+                                  TextSpan(text: 'R\$',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: "Montserrar Regular",
+                                        color: Color(0xFF313131),
+                                      )),
+                                  TextSpan(text: price,
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontFamily: "Montserrat Bold",
+                                        color: KblackColor,
+                                      )),
+                                  TextSpan(text: cents,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: "Montserrat Bold",
+                                        color: KblackColor,
+                                      )),
+                                ]
+                            ),
                           ),
                         ),
                       ),

@@ -1,3 +1,5 @@
+import 'package:PadrinhoMED/app/modules/searching/home_filtered/home_filtered_page.dart';
+
 import 'profile_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

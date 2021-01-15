@@ -56,7 +56,7 @@ class LocationFilterDialog extends StatelessWidget {
                       data: ThemeData(primaryColor:Color(0xFF050072)),
                       child: LocationAutocompleteFilterWidget(
                         element: Color(0xFF050072),
-                        icon: ImageIcon(AssetImage("assets/images/search-interface-symbol (1).png"),color: Color(0xFF050072),),
+                        icon: ImageIcon(AssetImage("assets/icons/arrow.png"),color: Color(0xFF050072),),
                         onChanged: (value){},
                         focusChanged:controller.changeButtonActivate,
                         textSubmit: controller.changeState,
@@ -80,7 +80,7 @@ class LocationFilterDialog extends StatelessWidget {
                               child: LocationAutocompleteFilterWidget(
                                 element: Color(0xFFB2B2B2),
                                 icon: ImageIcon(AssetImage(
-                                    "assets/images/search-interface-symbol (1).png"),
+                                    "assets/icons/search.png"),
                                   color: Color(0xFFB2B2B2),),
                                 onChanged: (value){},
                                 focusChanged:controller.changeButtonActivate,
@@ -113,12 +113,9 @@ class LocationFilterDialog extends StatelessWidget {
                                 decoration: InputDecoration(
                                   hintText: "Cidade",
                                   contentPadding: EdgeInsets.only(left: 7),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: ImageIcon(AssetImage(
-                                        "assets/images/search-interface-symbol (1).png"),
-                                      color: Color(0xFFB2B2B2),),
-                                  ),
+                                  suffixIcon: Transform.scale(scale: 0.5,child: ImageIcon(AssetImage(
+                                      "assets/icons/search.png"),
+                                    color: Color(0xFFB2B2B2))),
                                   hintStyle: TextStyle(
                                       fontSize: 18,
                                       fontFamily: "Montserrat Bold",

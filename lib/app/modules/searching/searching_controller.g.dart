@@ -34,6 +34,21 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
     });
   }
 
+  final _$idUserAtom = Atom(name: '_SearchingControllerBase.idUser');
+
+  @override
+  int get idUser {
+    _$idUserAtom.reportRead();
+    return super.idUser;
+  }
+
+  @override
+  set idUser(int value) {
+    _$idUserAtom.reportWrite(value, super.idUser, () {
+      super.idUser = value;
+    });
+  }
+
   final _$stateAtom = Atom(name: '_SearchingControllerBase.state');
 
   @override
@@ -172,6 +187,14 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
     });
   }
 
+  final _$changeIDUserAsyncAction =
+      AsyncAction('_SearchingControllerBase.changeIDUser');
+
+  @override
+  Future<void> changeIDUser() {
+    return _$changeIDUserAsyncAction.run(() => super.changeIDUser());
+  }
+
   final _$getUFAsyncAction = AsyncAction('_SearchingControllerBase.getUF');
 
   @override
@@ -234,20 +257,10 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
   }
 
   @override
-  void filterResults() {
-    final _$actionInfo = _$_SearchingControllerBaseActionController.startAction(
-        name: '_SearchingControllerBase.filterResults');
-    try {
-      return super.filterResults();
-    } finally {
-      _$_SearchingControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 premium: ${premium},
+idUser: ${idUser},
 state: ${state},
 city: ${city},
 ufs: ${ufs},

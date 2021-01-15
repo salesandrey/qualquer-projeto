@@ -1,5 +1,6 @@
 import 'package:PadrinhoMED/app/utils/autocomplete.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class LocationAutocompleteFilterWidget extends StatelessWidget{
@@ -45,10 +46,7 @@ class LocationAutocompleteFilterWidget extends StatelessWidget{
             decoration: InputDecoration(
               hintText: hintText,
               contentPadding: EdgeInsets.only(left: 7),
-              suffixIcon: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: icon,
-              ),
+              suffixIcon: Transform.scale(scale: 0.5,child: icon),
               hintStyle: TextStyle(
                 fontFamily: "Montserrat Regular",fontSize: 18,color: element,),
               enabledBorder: UnderlineInputBorder(

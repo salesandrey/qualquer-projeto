@@ -33,7 +33,7 @@ class CustomAutoCompletedWidget extends StatelessWidget {
 
             decoration: InputDecoration(
               labelText: labelText,
-              suffixIcon: icon,
+              suffixIcon: Transform.scale(scale: 0.5,child:icon,) ,
               labelStyle: TextStyle(
                 fontFamily: "Montserrat Regular",
                 fontSize: 18,

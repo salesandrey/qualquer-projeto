@@ -17,8 +17,8 @@ class LocationWidget extends StatelessWidget {
   final List<String> states;
   final String label1;
   final String label2;
-  final Icon icon1;
-  final Icon icon2;
+  final ImageIcon icon1;
+  final ImageIcon icon2;
 
   LocationWidget({Key key,
     this.keyStringState,
@@ -77,7 +77,10 @@ class LocationWidget extends StatelessWidget {
                         }
                         return TextField(textAlignVertical: TextAlignVertical.center,
                           enabled: false,
-                          decoration: InputDecoration(hintText: "Cidade",hintStyle: TextStyle(fontSize: 18,fontFamily: "Montserrat Regular",color: Colors.grey)),);
+                          decoration: InputDecoration(
+                            suffixIcon: Transform.scale(scale: 0.5,child: ImageIcon(AssetImage(
+                                "assets/icons/search.png"),color: Colors.grey)),
+                              hintText: "Cidade",hintStyle: TextStyle(fontSize: 18,fontFamily: "Montserrat Regular",color: Colors.grey)),);
                       }
                   ),
                 ),

@@ -94,7 +94,7 @@ class _LoadingPageState extends ModularState<LoadingPage, LoadingController> wit
                         child: FadeAnimatedTextKit(
                             duration: Duration(seconds: 2),
                             isRepeatingAnimation: false,
-                            text: controller.currentsMessages,
+                            text: controller.messagesLoading,
                             onFinished: () {
                               Modular.to.pushNamed("/Tutorial",arguments: "Register");
                             },

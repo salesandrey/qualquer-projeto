@@ -11,7 +11,7 @@ class AutoCompleteTextWidget extends StatelessWidget {
   final Function focusChanged;
   final List<String> suggestion;
   final String labelText;
-  final Icon icon;
+  final ImageIcon icon;
 
   const AutoCompleteTextWidget({this.keyText, this.controller, this.element, this.textSubmit, this.onChanged, this.focusChanged, this.suggestion, this.labelText, this.icon});
 
@@ -30,7 +30,7 @@ class AutoCompleteTextWidget extends StatelessWidget {
         textChanged: onChanged,
         decoration: InputDecoration(
           labelText: labelText,contentPadding: EdgeInsets.only(bottom: 8),
-          suffixIcon: icon,
+          suffixIcon: Transform.scale(scale: 0.5,child: icon),
           labelStyle: TextStyle(height: 1,
             fontFamily: "Montserrat Regular",fontSize: 18,color: element,),
           enabledBorder: UnderlineInputBorder(

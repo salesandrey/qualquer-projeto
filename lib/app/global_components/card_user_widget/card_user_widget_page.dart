@@ -28,7 +28,7 @@ class CardUserWidget extends StatelessWidget {
               Modular.to.pushNamed("/CompleteProfile",arguments: [controller.user,controller.id,controller.like,controller.typeSearch]);
             },
             child: Container(
-              margin: const EdgeInsets.only(bottom: 10),
+              margin: const EdgeInsets.only(bottom: 4),
               height: 91,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(12)),

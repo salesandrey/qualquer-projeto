@@ -237,10 +237,11 @@ abstract class _HomeControllerBase with Store {
     city: premium?city:"",
     state: premium?state:"",
     idUser: currentUser.id,
+    activits: [],
     speciality: [{"especialidade":currentUser.graduacao}],
     email: "",
     instagram: "",
-    graduations: [{"graduacao":""}]
+    graduations: []
     );
     List<UserMatchModel> newList =[];
     if(data!=null){
@@ -257,13 +258,14 @@ abstract class _HomeControllerBase with Store {
   Future<void> getRecentUsers() async{
     dynamic data = await FilterRepository().filter(
       idUser: currentUser.id,
+        activits: [],
         city: premium?city:"",
         state: premium?state:"",
         type: "novosUsuarios",
-        graduations:[{"graduacao":""}],
+        graduations:[],
         instagram: "",
         email: "",
-        speciality: [{"especialidade":""}]
+        speciality: []
     );
 
     List<UserMatchModel> newList =[];

@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
 import 'package:PadrinhoMED/app/models/city_model.dart';
 import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:PadrinhoMED/app/models/user_model.dart';
@@ -5,9 +6,11 @@ import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_c
 import 'package:PadrinhoMED/app/modules/searching/components/checkbox/checkbox_widget.dart';
 import 'package:PadrinhoMED/app/modules/searching/viewmodel/list_option_viewmodel.dart';
 import 'package:PadrinhoMED/app/repositories/location_repository.dart';
+import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:validators/sanitizers.dart';
 
 part 'searching_controller.g.dart';
 
@@ -24,6 +27,17 @@ abstract class _SearchingControllerBase with Store {
   void changePremium(bool value){
     premium = value;
   }
+
+  @observable
+  int idUser;
+
+  @action
+  Future<void> changeIDUser() async{
+    ILocalStorage storage = SharedLocalStorageService();
+    String value = await storage.get("id");
+    idUser = toInt(value);
+  }
+
 
   @observable
   String state = "";
@@ -148,25 +162,6 @@ abstract class _SearchingControllerBase with Store {
   @observable
   ObservableList<CheckBoxWidget> specialists;
 
-  @action
-  void filterResults(){
-    List<String> programsSelect = programs.map((element){
-      if(element.controller.check)
-        return element.controller.title;
-    }).toList();
-
-    List<String> specialistsSelect = specialists.map((element){
-      if(element.controller.check)
-        return element.controller.title;
-    }).toList();
-
-    List<String> graduationSelect = listGraduation.map((element){
-      if(element.controller.check)
-        return element.controller.title;
-    }).toList();
-
-    Modular.to.pushNamed("/HomeFiltered",arguments: [userInstagramEmailSearching,state,city,programsSelect,specialistsSelect,graduationSelect]);
-  }
 
   Future<void> addProgramsToList() async{
     programs =  ListOptionViewModel().createListCheckBox(programsText).asObservable();

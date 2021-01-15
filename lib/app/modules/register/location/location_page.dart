@@ -113,8 +113,10 @@ class _LocationPageState extends State<LocationPage> {
                               keyStringState: keyStringState,
                               label1: "Estado",
                               label2: "Cidade ",
-                              icon1: Icon(Icons.keyboard_arrow_down,color: Color(0xFF050072)),
-                              icon2: Icon(Icons.search,),
+                              icon1: ImageIcon(AssetImage(
+                                  "assets/icons/arrow.png"),color: Color(0xFF050072)),
+                              icon2: ImageIcon(AssetImage(
+                                  "assets/icons/search.png"),color: Color(0xFFB2B2B2)),
                             ),
                           ],
                         ),

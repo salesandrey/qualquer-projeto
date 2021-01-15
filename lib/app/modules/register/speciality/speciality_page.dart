@@ -114,7 +114,8 @@ class _SpecialityPageState extends State<SpecialityPage> {
                                 labelText: "Especialidade",
 
                                 element: kGrey,
-                                icon: Icon(Icons.search),
+                                icon: ImageIcon(AssetImage(
+                                    "assets/icons/search.png"),color: Color(0xFFB2B2B2)),
                                 controller: specialityController,
                                 suggestion: controller.specialityList,
                                 textSubmit: controller.changeSpeciality,

@@ -42,6 +42,8 @@ class AutoCompleteUpdateWidget extends StatelessWidget {
               data: ThemeData(primaryColor: Color(0xFF050072)),
               child: Container(
                   child: AutoCompleteUpdateComponentWidget(
+                    icon: Transform.scale(scale: 0.5,child: ImageIcon(AssetImage(
+                        "assets/icons/arrow.png"),color: Color(0xFF050072))),
                     hintText: "Estado",
                     hintStyle: TextStyle(fontFamily: "Montserrat Regular",
                         color: Color(0xFF050072),
@@ -68,6 +70,9 @@ class AutoCompleteUpdateWidget extends StatelessWidget {
                     data: ThemeData(primaryColor: Color(0xFFB2B2B2)),
                     child: Container(
                         child: AutoCompleteUpdateComponentWidget(
+                          icon: Transform.scale(scale: 0.5,child: ImageIcon(AssetImage(
+                              "assets/icons/search.png"),
+                              color: Color(0xFFB2B2B2))),
                           hintText: "Cidade",
                           hintStyle: TextStyle(fontFamily: "Montserrat Regular",
                               color: Color(0xFFB2B2B2),
@@ -90,8 +95,10 @@ class AutoCompleteUpdateWidget extends StatelessWidget {
                   controller: currentCity,
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 7,bottom: 8),
-                  ),
+                    contentPadding: EdgeInsets.only(left: 5,bottom: 5),
+                    suffixIcon: Transform.scale(scale: 0.5,child: ImageIcon(AssetImage(
+                    "assets/icons/search.png"),
+                  color: Color(0xFFB2B2B2)))),
                   style: TextStyle(fontFamily: "Montserrat Regular",
                       color: Color(0xFFB2B2B2),
                       fontSize: 18),

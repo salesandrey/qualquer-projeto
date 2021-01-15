@@ -12,7 +12,7 @@ class AutoCompleteUpdateComponentWidget extends StatelessWidget {
   final Function onChanged;
   final List<String> suggestion;
   final String hintText;
-  final Icon icon;
+  final dynamic icon;
 
   const AutoCompleteUpdateComponentWidget({
     this.keyText, this.controller,
@@ -33,7 +33,7 @@ class AutoCompleteUpdateComponentWidget extends StatelessWidget {
             suggestions: suggestion,
             textChanged: onChanged,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(left: 7,bottom: 8),
+              contentPadding: EdgeInsets.only(left: 5,bottom: 5),
               hintText: hintText,
               hintStyle: hintStyle,
               suffixIcon: icon,

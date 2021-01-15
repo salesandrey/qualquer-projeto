@@ -7,7 +7,7 @@ part of 'long_card_controller.dart';
 // **************************************************************************
 
 final $LongCardController = BindInject(
-  (i) => LongCardController(title: i<String>(), removeElement: i<Function>()),
+  (i) => LongCardController(title: i<String>()),
   singleton: true,
   lazy: true,
 );
@@ -34,27 +34,10 @@ mixin _$LongCardController on _LongCardControllerBase, Store {
     });
   }
 
-  final _$removeElementAtom =
-      Atom(name: '_LongCardControllerBase.removeElement');
-
-  @override
-  Function get removeElement {
-    _$removeElementAtom.reportRead();
-    return super.removeElement;
-  }
-
-  @override
-  set removeElement(Function value) {
-    _$removeElementAtom.reportWrite(value, super.removeElement, () {
-      super.removeElement = value;
-    });
-  }
-
   @override
   String toString() {
     return '''
-title: ${title},
-removeElement: ${removeElement}
+title: ${title}
     ''';
   }
 }

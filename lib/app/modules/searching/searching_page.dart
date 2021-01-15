@@ -20,6 +20,7 @@ class _SearchingPageState
 
   @override
   void initState() {
+    controller.changeIDUser();
     controller.addProgramsToList();
     super.initState();
   }
@@ -101,7 +102,37 @@ class _SearchingPageState
                   SearchFilterPremiumWidget(),
                   SizedBox(height: 40,),
                   ApplyButtonWidget(
-                    navigation: controller.filterResults,
+                    navigation: (){
+
+                      List<String> programsSelect = [];
+                      List<String> specialistsSelect = [];
+                      List<String> graduationSelect = [];
+
+                      if(controller.programs.isNotEmpty) {
+                        programsSelect = controller.programs
+                            .where((element) {
+                          return element.controller.check;
+                        }).map((e) => e.controller.title).toList();
+                      }
+
+                      if(controller.specialists.isNotEmpty) {
+                        specialistsSelect = controller.specialists
+                            .where((element) {
+                          return element.controller.check;
+                        }).map((e) => e.controller.title).toList();
+                      }
+
+                      if(controller.listGraduation.isNotEmpty) {
+                        graduationSelect = controller
+                            .listGraduation.where((element) {
+                          return element.controller.check;
+                        }).map((e) => e.controller.title).toList();
+                      }
+
+                      Navigator.of(context).pushNamed("/HomeFiltered",arguments: [controller.userInstagramEmailSearching,controller.state,controller.city,programsSelect,specialistsSelect,graduationSelect,controller.idUser]);
+
+                    }
+                    ,
                     text: "APLICAR",
                     textColor:Colors.white,
                     color: Color(0xFF6259B2) ,

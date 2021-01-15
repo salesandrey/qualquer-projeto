@@ -304,6 +304,8 @@ class _EditProfilePageState
                                         data: ThemeData(primaryColor:Color(0xFF050072)),
                                         child: Container(
                                           child: CustomAutoCompletedWidget(
+                                            icon: ImageIcon(AssetImage(
+                                                "assets/icons/search.png")),
                                             element: Color(0xFF050072),
                                             controller: speciality,
                                             suggestion: controller.specialityList,

@@ -8,11 +8,9 @@ class LongCardController = _LongCardControllerBase with _$LongCardController;
 
 abstract class _LongCardControllerBase with Store {
 
-  _LongCardControllerBase({this.title,this.removeElement});
+  _LongCardControllerBase({this.title});
 
   @observable
   String title;
 
-  @observable
-  Function removeElement;
 }

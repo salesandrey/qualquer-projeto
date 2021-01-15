@@ -10,7 +10,7 @@ class RoundedIconCardWidget extends StatelessWidget {
     "Posts para Redes Sociais":"assets/images/share.png",
     "Discussão de Casos Clínicos e Aulas":"assets/images/speech-bubble.png",
     "Trabalhos Científicos":"assets/images/chemistry.png",
-    "Acompanhar Rotina Médica":"assets/images/first-aid-kit.png",
+    "Acompanhamento de Rotina Médica":"assets/images/first-aid-kit.png",
     "Mentoria sobre Carreira Médica":"assets/images/target.png"
   };
 
@@ -18,7 +18,7 @@ class RoundedIconCardWidget extends StatelessWidget {
     "Posts para Redes Sociais":"Rede\nSocial",
     "Discussão de Casos Clínicos e Aulas":"Caso\ne Aula",
     "Trabalhos Científicos":"Trabalho\nCientífico",
-    "Acompanhar Rotina Médica":"Rotina\nMédica",
+    "Acompanhamento de Rotina Médica":"Rotina\nMédica",
     "Mentoria sobre Carreira Médica":"Mentoria\nCarreira"
   };
 

@@ -15,6 +15,7 @@ import 'package:PadrinhoMED/app/modules/register/terms/terms_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/components/check_email_reset_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/components/confirm_email_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/reset_password_module.dart';
+import 'package:PadrinhoMED/app/modules/searching/home_filtered/home_filtered_page.dart';
 import 'package:PadrinhoMED/app/modules/splash/splash_module.dart';
 
 import 'app_controller.dart';
@@ -42,6 +43,7 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
+
         ModularRouter(Modular.initialRoute, module: SplashModule()),
         ModularRouter("/Monkey",child:(_,args) => MonkeyCertificationWidget()),
         ModularRouter("/Configuration", module: ConfigurationModule()),
