@@ -1,5 +1,6 @@
 import 'package:PadrinhoMED/app/utils/autocomplete.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AutoCompleteTextWidget extends StatelessWidget {
 
@@ -20,11 +21,12 @@ class AutoCompleteTextWidget extends StatelessWidget {
     return  Container(
       child: SimpleAutoCompleteTextField(
         key: keyText,
-        suggestionsAmount: 5,
+        suggestionsAmount: 50,
         controller: controller,
         clearOnSubmit: false,
         onFocusChanged: focusChanged,
         textSubmitted: textSubmit,
+
         style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color: element,),
         suggestions: suggestion,
         textChanged: onChanged,

@@ -18,29 +18,24 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
 
 
-
+  TextEditingController insta = TextEditingController();
   FocusNode username;
   FocusNode instagram;
 
   @override
   void initState() {
     username = FocusNode();
+    insta = TextEditingController(text: "@");
     instagram = FocusNode();
     super.initState();
   }
 
   @override
   void dispose() {
+    insta.dispose();
     username.dispose();
     instagram.dispose();
     super.dispose();
-  }
-
-  TextEditingController istController(){
-    TextEditingController insta = TextEditingController();
-    insta.text = "@";
-    insta.selection = TextSelection.fromPosition(TextPosition(offset: insta.text.length));
-    return insta;
   }
 
   @override
@@ -114,10 +109,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: Text("Confira seus dados pois este é o nome que vai nos certificados",style: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular")),
                             ),
                             SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
-                            TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: instagram.hasFocus? istController():null,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?"),
+                            TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: insta,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?"),
                             Padding(
                               padding: const EdgeInsets.only(top: 12),
-                              child: Text("Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui pelo app!",style: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular")),
+                              child: Text("Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui no app!",style: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular")),
                             ),
                           ],
                         ),

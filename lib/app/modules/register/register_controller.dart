@@ -159,7 +159,6 @@ abstract class _RegisterControllerBase with Store{
   String speciality = "";
 
 
-
   @action
   void changeTypeSearch(String value){
     typeSearch = value;
@@ -210,7 +209,6 @@ abstract class _RegisterControllerBase with Store{
 
 
   Future<void> sendEmailCode() async{
-
     dynamic data = await EmailValidatorRepository().sendEmailCode(email);
     changePintRecerved(data["results"]["token"]);
   }

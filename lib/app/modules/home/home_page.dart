@@ -63,10 +63,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           backgroundColor: KPrimaryColor,
           body: SingleChildScrollView(
             child: SafeArea(
-              child: StreamBuilder<dynamic>(
-                stream: controller.favorites,
-                builder: (context, snapshot) {
-                  return Container(
+              child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -256,14 +253,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     shrinkWrap:controller.mostIndication!=null?controller.mostIndication.length>=3?false:true:true,
                                     itemCount: controller.mostIndication!=null?controller.mostIndication.length>=3?3:controller.mostIndication.length:0,
                                     itemBuilder: (BuildContext context,int index){
-                                      if(snapshot.hasData)
                                       return CardUserWidget(controller: CardUserWidgetController(
                                           user: controller.mostIndication[index],
                                           id:controller.currentUser.id,
                                           like: false,
                                           nameAbr: "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
-                                      ),);
-                                      return Container();
+                                      ));
                                     }),
                               )
                             ],
@@ -289,7 +284,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   FittedBox(
                                       child: InkWell(
                                         onTap: (){
-                                          Modular.to.pushReplacementNamed("/Match",arguments:[controller.recentUsers,HeadModel(color:KLightPurple,textColor: Color(0xFF050072),name: "Acabaram de entrar no app"),controller.currentUser.id,controller.currentUser.tipo]);
+                                          Modular.to.pushNamed("/Match",arguments:[controller.recentUsers,HeadModel(color:KLightPurple,textColor: Color(0xFF050072),name: "Acabaram de entrar no app"),controller.currentUser.id,controller.currentUser.tipo]);
                                         },
                                         child: Text(
                                           "Ver tudo",
@@ -313,7 +308,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     shrinkWrap: controller.recentUsers!=null?controller.recentUsers.length>=3?false:true:true,
                                     itemCount: controller.recentUsers!=null?controller.recentUsers.length>=3?3:controller.recentUsers.length:0,
                                     itemBuilder: (BuildContext context,int index){
-                                      if(snapshot.hasData)
                                       return CardUserWidget(
                                       controller: CardUserWidgetController(
                                           user: controller.recentUsers[index],
@@ -324,21 +318,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                             },
                                           nameAbr: "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
                                           like: controller.recentUsers[index].id==1));
-                                      return Container();
                                     }),
-                              )
-                          ],),
-                        )
-                      ],
-                    ),
-                  );
-                }
+                              )]))])
               ),
             ),
-          ),
-        ),
-      );
+          )));
     });
-
   }
 }

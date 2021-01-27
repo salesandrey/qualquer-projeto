@@ -223,14 +223,6 @@ abstract class _HomeFilteredControllerBase with Store implements Disposable {
           element) => {"graduacao": element.controller.title}).toList();
     }
 
-    print(email);
-    print(instagram);
-    print(state);
-    print(city);
-    print(specialitiesFiltered);
-    print(graduationsFiltered);
-    print(idUser);
-
     usersFiltered = FilterRepository(
       idUser: idUser,
       activits: activitsFiltered,

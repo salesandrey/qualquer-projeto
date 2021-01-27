@@ -438,7 +438,7 @@ class SimpleAutoCompleteTextField extends AutoCompleteTextField<String> {
     return a.compareTo(b);
   }, (item, query) {
 
-    return removeDiacritics(item).toLowerCase().contains(query.toLowerCase());
+    return removeDiacritics(item).toLowerCase().contains(query.toLowerCase().trim());
   },
       suggestionsAmount,
       submitOnSuggestionTap,

@@ -138,7 +138,7 @@ class _OnBoardingPageState
                           textColor: Colors.white,
                           shape: StadiumBorder(),
                           child: FittedBox(
-                            child: Text('ENTRAR NO APP',
+                            child: Text('ESTOU PRONTO!',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 18,

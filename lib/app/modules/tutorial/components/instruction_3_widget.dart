@@ -132,17 +132,8 @@ class Instruction3 extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  child: Text(
-                    "♥️",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontFamily: "Montserrat Bold",
-                      color: KthirdColor,
-                    ),
-                  ),
-                ),
+                SizedBox(height: 5,),
+                ImageIcon(AssetImage("assets/images/match_like.png"))
               ],
             ),
           ),

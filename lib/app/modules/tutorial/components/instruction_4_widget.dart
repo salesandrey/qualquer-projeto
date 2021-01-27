@@ -31,7 +31,7 @@ class Instruction4 extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              'Os programas que essa pessoas quer participar por aqui!',
+                              'Os programas que essa pessoas gostaria participar por aqui!',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: "Montserrat Regular",

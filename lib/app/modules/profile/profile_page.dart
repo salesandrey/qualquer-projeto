@@ -44,7 +44,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Oi, ${controller.name.split(" ")[0]}!",style: TextStyle(color: KSecondaryColor,fontFamily: "Montserrat Bold",fontSize: 24),),
+                              Text("Olá, ${controller.name.split(" ")[0]}!",style: TextStyle(color: KSecondaryColor,fontFamily: "Montserrat Bold",fontSize: 24),),
                               SizedBox(height: 10,),
                               Text("O que você procura por aqui?",style: TextStyle(fontSize: 15,color: KSecondaryColor,fontFamily:"MontSerrat Regular"),),
                             ],

@@ -64,12 +64,12 @@ class _SearchingPageState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 20,),
-                        Text("Nível de graduação de quem você gostaria de encontrar",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                        Text("Pesquisar por nível de graduação",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
                         Padding(
                           padding: const EdgeInsets.only(top:10,bottom: 20),
                           child: Column(children: controller.listGraduation,),
                         ),
-                        Text("Programas PadrinhoMed",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                        Text("Pesquisar por programa PadrinhoMed”",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
                         Padding(
                           padding: const EdgeInsets.only(top:10.0,bottom: 20),
                           child: Column(children: controller.programs),

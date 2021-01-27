@@ -61,7 +61,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                       TextSpan(text: "todos ",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:KGreyColor)),
                       TextSpan(text: "os programas \nque gostaria de participar. \nClique no " ),
                       TextSpan(text: "i ",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 18,color:KGreyColor)),
-                      TextSpan(text: "ao lado de cada opção para conhecer mais cada Plano PadrinhoMed" ),
+                      TextSpan(text: "ao lado de cada opção para conhecer mais cada Programa PadrinhoMed" ),
                     ]),),
               ],
             ),
