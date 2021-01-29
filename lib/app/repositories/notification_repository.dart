@@ -20,7 +20,7 @@ class NotificationRepository{
 
     var query = jsonEncode(
         {
-          "id": id
+          "idUsuario": id
         });
     Response response = await post(
         url, headers: {"Content-Type": "application/json"}, body: query);
@@ -29,6 +29,7 @@ class NotificationRepository{
       List<NotificationModel> notifications = list.map((value) => NotificationModel.fromMap(value)).toList();
       return notifications;
     }else{
+      print(response.body);
       return null;
     }
   }

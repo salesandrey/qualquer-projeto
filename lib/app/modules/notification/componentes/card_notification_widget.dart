@@ -13,15 +13,23 @@ class CardNotificationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    print(cardData.toMap());
     return Container(
       width: MediaQuery.of(context).size.width,
       color: cardData.status=="ativo"? Color(0xFFE4E2F0):Color(0xFFFAFAFA),
       child: Padding(
         padding: const EdgeInsets.only(left: 24,right: 24,top: 16,bottom: 17),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(""),
+            RichText(text: TextSpan(style: TextStyle(fontFamily: "Montserrat Regular",fontSize: 15,color:Colors.black),
+                children: [
+                  TextSpan(text: "${cardData.nomeAbrev} ",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15,color:Colors.black)),
+                  TextSpan(text: cardData.texto),
+                  TextSpan(text: " ${cardData.nomeAbrev}"),
+                ])),
+            SizedBox(height: 1,),
             Text(TimeConvert().convertDatetimeToStringBrazilTime(cardData.data),textAlign: TextAlign.left,style: TextStyle(fontSize: 14,fontFamily: "Montserrat",color: Color(0xFF191919)))
           ],
         ),

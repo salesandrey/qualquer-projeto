@@ -18,7 +18,7 @@ class TimeConvert{
   }
 
   String convertDatetimeToStringBrazilTime(DateTime date){
-    var formattedDate = "${date.day} de ${TimeMap.timeMonth[date.month]} de ${date.day}";
+    var formattedDate = "${date.day} de ${TimeMap.timeMonth[date.month]} de ${date.year}";
     return formattedDate;
   }
 }

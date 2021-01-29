@@ -1,4 +1,4 @@
-package br.lanconi.padrinhomed
+package com.padrinhomed.padrinhomed
 
 import io.flutter.embedding.android.FlutterActivity
 

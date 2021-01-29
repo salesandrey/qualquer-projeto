@@ -81,6 +81,8 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
                   stream: controller.godfathers,
                   builder: (context, snapshot) {
 
+                    print(snapshot.data);
+
                     if(!snapshot.hasData){
                       return Container();
                     }

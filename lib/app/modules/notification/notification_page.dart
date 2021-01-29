@@ -14,7 +14,6 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends ModularState<NotificationPage, NotificationController> {
 
 
-
   Future<void> initiFunctions() async{
     await controller.takeID();
     await controller.initStream();
@@ -45,7 +44,14 @@ class _NotificationPageState extends ModularState<NotificationPage, Notification
               stream: controller.notifications,
               builder: (context, snapshot){
                 if(snapshot.connectionState==ConnectionState.active){
-                  return Container();
+                  return ListView.separated(
+                      itemBuilder: (BuildContext context, int index){
+                        return CardNotificationWidget(cardData: snapshot.data[index]);
+                      },
+                      separatorBuilder: (BuildContext context, int index){
+                        return Divider(color: Color(0xFFD9D9D9),height: 1);
+                      },
+                      itemCount: snapshot.data==null?0:snapshot.data.length);
                 }
                 if(!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator(
@@ -55,14 +61,7 @@ class _NotificationPageState extends ModularState<NotificationPage, Notification
                 if(snapshot.hasError){
                   return Container();
                 }
-                return ListView.separated(
-                    itemBuilder: (BuildContext context, int index){
-                      return CardNotificationWidget(user: null);
-                    },
-                    separatorBuilder: (BuildContext context, int index){
-                      return Divider(color: Color(0xFFD9D9D9),height: 1);
-                    },
-                    itemCount: snapshot.data.length);
+                return Container();
               }
           ),
         ),

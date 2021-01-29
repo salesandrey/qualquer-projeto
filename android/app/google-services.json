@@ -1,34 +1,49 @@
 {
   "project_info": {
-    "project_number": "90859509874",
-    "project_id": "padrinhomed-d6b66",
-    "storage_bucket": "padrinhomed-d6b66.appspot.com"
+    "project_number": "802187615416",
+    "project_id": "padrinhomed-487f0",
+    "storage_bucket": "padrinhomed-487f0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:90859509874:android:bf7bf3cbced0a68e924aeb",
+        "mobilesdk_app_id": "1:802187615416:android:cabac834d43dfac0e8e84d",
         "android_client_info": {
-          "package_name": "br.lanconi.padrinhomed"
+          "package_name": "com.padrinhomed.padrinhomed"
         }
       },
       "oauth_client": [
         {
-          "client_id": "90859509874-84dha4p98miq98t0h5f48urn445rqjma.apps.googleusercontent.com",
+          "client_id": "802187615416-bi57skstlu13k4iel9q43qo3b8n0j60t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.padrinhomed.padrinhomed",
+            "certificate_hash": "02c09e12a78205d966fd974eabdb34159b32668f"
+          }
+        },
+        {
+          "client_id": "802187615416-uqqma1ol32pi45udie5l6gogmb03fh61.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDzrMmaa-aC65lOggHnDzlQQ7RLRwur2Ok"
+          "current_key": "AIzaSyBCob2g_Oik8mJROzN7uP0tZ3xHQW-9h_g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "90859509874-84dha4p98miq98t0h5f48urn445rqjma.apps.googleusercontent.com",
+              "client_id": "802187615416-uqqma1ol32pi45udie5l6gogmb03fh61.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "802187615416-eej5sier2herbr4dols53thgab211sm6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.padrinhomed.padrinhomed"
+              }
             }
           ]
         }
