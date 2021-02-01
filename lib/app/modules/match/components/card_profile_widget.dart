@@ -29,7 +29,7 @@ class CardProfile extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.7,
+        height: MediaQuery.of(context).size.height * 0.64,
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,12 +49,12 @@ class CardProfile extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 24),
+                    padding: EdgeInsets.only(top: 0.024 * MediaQuery.of(context).size.height),
                     child: Text(
                       "${user.nome.split(" ").first} ${user.nome.split(" ").last.substring(0,1)}.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 0.024 * MediaQuery.of(context).size.height,
                         fontFamily: "Montserrat Bold",
                       ),
                     ),
@@ -64,7 +64,7 @@ class CardProfile extends StatelessWidget {
                     "${user.especialidade} " : "Interesse: ${user.especialidade} ",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 0.015 * MediaQuery.of(context).size.height,
                         color: KGreyColor,
                         fontFamily: "Montserrat Bold",
                       ),
@@ -74,13 +74,13 @@ class CardProfile extends StatelessWidget {
               ),
             ),
             Container(
-                padding: EdgeInsets.only(top: 24,left:24,right: 24 ),
+                padding: EdgeInsets.only(top: 0.024 * MediaQuery.of(context).size.height,left:24,right: 24 ),
                 child: TextCardProfileWidget(text1: "Nível de Graduação",text2: user.graduacao)),
             Container(
-                padding: EdgeInsets.only(top: 20,left: 24,right: 24),
+                padding: EdgeInsets.only(top: 0.020 * MediaQuery.of(context).size.height,left: 24,right: 24),
                 child: TextCardProfileWidget(text1: "Localização",text2: "${user.cidade}, ${UFBrazil.ufBrazil.keys.firstWhere((element) => UFBrazil.ufBrazil[element]==user.estado)}")),
             Container(
-              padding: EdgeInsets.only(top: 20,left: 24,right: 24),
+              padding: EdgeInsets.only(top: 0.020 * MediaQuery.of(context).size.height,left: 24,right: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -90,14 +90,14 @@ class CardProfile extends StatelessWidget {
                     child: Text(
                       "Contatos de ${user.nome.split(" ").first}",
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 0.014 * MediaQuery.of(context).size.height,
                           fontFamily: "Montserrat Bold",
                           color: Color(0xFF050072)),
                     ),
                   ),
+                  SizedBox(height: 0.008 * MediaQuery.of(context).size.height),
                   Container(
-                    padding: EdgeInsets.only(top: 8),
-                    height: 40,
+                    height: 0.04 * MediaQuery.of(context).size.height,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -110,12 +110,12 @@ class CardProfile extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 0.020 * MediaQuery.of(context).size.height),
             Divider(
               indent: 15,
               endIndent: 15,
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 0.020 * MediaQuery.of(context).size.height,),
             Container(
               child: Column(
                 children: [
@@ -123,7 +123,7 @@ class CardProfile extends StatelessWidget {
                     child: Text(
                       'Programas PadrinhoMed',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 0.014 * MediaQuery.of(context).size.height,
                         color: Color(0xFF050072),
                         fontFamily: "Montserrat Bold",
                       ),

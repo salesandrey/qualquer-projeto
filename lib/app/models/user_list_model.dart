@@ -1,11 +1,8 @@
-// To parse this JSON data, do
-//
-//     final userMatchModel = userMatchModelFromMap(jsonString);
-
 import 'dart:convert';
 
 class UserMatchModel {
   UserMatchModel({
+    this.token,
     this.id,
     this.nome,
     this.email,
@@ -28,6 +25,7 @@ class UserMatchModel {
   final int id;
   final String nome;
   final String email;
+  final String token;
   final DateTime data;
   final String match;
   final String cod;
@@ -65,6 +63,7 @@ class UserMatchModel {
         id: id ?? this.id,
         nome: nome ?? this.nome,
         email: email ?? this.email,
+        token: token?? this.token,
         data: data ?? this.data,
         cod: cod ?? this.cod,
         sobre: sobre ?? this.sobre,
@@ -88,6 +87,7 @@ class UserMatchModel {
     id: json["id"],
     nome: json["nome"],
     email: json["email"],
+    token: json["token"],
     data: json["data"]==null || json["data"]==""?null:DateTime.parse(json["data"]),
     cod: json["cod"],
     sobre: json["sobre"],
@@ -111,6 +111,7 @@ class UserMatchModel {
     "cod": cod,
     "sobre": sobre,
     "situacao": situacao,
+    "token":token,
     "dispositivo": dispositivo,
     "especialidade": especialidade,
     "graduacao": graduacao,

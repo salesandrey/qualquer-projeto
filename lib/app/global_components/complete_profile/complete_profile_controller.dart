@@ -42,8 +42,10 @@ abstract class _CompleteProfileControllerBase with Store {
   @action
   Future<void> changeLike() async{
     like = !like;
-    await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr);
-    favorite();
+    print(id);
+    print(user.id);
+    print(nameAbr);
+    await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr,user.token);
   }
 
 }

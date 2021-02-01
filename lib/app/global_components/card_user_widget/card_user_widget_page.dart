@@ -62,7 +62,7 @@ class CardUserWidget extends StatelessWidget {
                         children: [
                           Container(
                             child: Text(
-                              "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last.substring(0,1)}.",
+                              "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last}.",
                               style: TextStyle(
                                 fontFamily: "Montserrat Bold",
                                 fontSize: 18,

@@ -28,7 +28,7 @@ class ButtonCardProfileWidget extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(fontSize: 15, fontFamily: "Montserrat Regular"),
+          style: TextStyle(fontSize: 0.015 * MediaQuery.of(context).size.height, fontFamily: "Montserrat Regular"),
         ),
       ),
     );

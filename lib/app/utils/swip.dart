@@ -29,6 +29,8 @@ class SwipeStack extends StatefulWidget {
   final void Function(int, SwiperPosition) onSwipe;
   final void Function(int, SwiperPosition) onRewind;
   final void Function() onEnd;
+  final void Function() notLove;
+  final void Function() love;
   final EdgeInsetsGeometry padding;
 
   SwipeStack({
@@ -46,7 +48,7 @@ class SwipeStack extends StatefulWidget {
     this.onEnd,
     this.onSwipe,
     this.onRewind,
-    this.padding = const EdgeInsets.symmetric(vertical: 20, horizontal: 25)
+    this.padding = const EdgeInsets.symmetric(vertical: 20, horizontal: 25), this.notLove, this.love
   }) :
         assert(maxAngle >= 0 && maxAngle <= 360),
         assert(threshold >= 1 && threshold <= 100),
@@ -236,21 +238,36 @@ class SwipeStackState extends State<SwipeStack> with SingleTickerProviderStateMi
       left: _left,
       top: _top,
       child: GestureDetector(
-          child: Transform.rotate(
-            angle: _angle,
-            child: Container(
-                constraints: constraints,
-                child: widget.children[index].builder(_currentItemPosition, _progress)
+          child: Dismissible(
+            key: UniqueKey(),
+            onDismissed: (direction){
+              if(direction==DismissDirection.startToEnd) {
+                _goFirstPosition();
+                widget.love();
+              }else{
+                _goFirstPosition();
+                widget.notLove();
+              }
+            },
+            background: Container(),
+            child: Transform.rotate(
+              angle: _angle,
+              child: Container(
+                  constraints: constraints,
+                  child: widget.children[index].builder(_currentItemPosition, _progress)
+              ),
             ),
           ),
-          onPanEnd: _onPandEnd
+          onPanEnd: onPandEnd
       ),
     );
 
   }
 
-  void _onPandEnd(_) {
+  void onPandEnd(_) {
     setState((){});
+    print(_progress);
+    print(widget.threshold);
     if (_progress < widget.threshold) {
       _goFirstPosition();
     } else {

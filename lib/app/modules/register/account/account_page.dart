@@ -97,7 +97,7 @@ class _AccountPageState extends State<AccountPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Oi!",
+                                "Olá!",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontFamily: "Montserrat Bold",

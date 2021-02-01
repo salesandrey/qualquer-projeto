@@ -12,7 +12,7 @@ class FavoriteRepository{
   FavoriteRepository({this.userID});
 
 
-  Future<void> insert(String value,int userID,int userFavorite,String nameAbrev) async {
+  Future<void> insert(String value,int userID,int userFavorite,String nameAbrev,String token) async {
     String url = "https://padmed.lanconi.com.br/favoriteInsert.py";
 
     var currentFilter = jsonEncode(
@@ -20,8 +20,11 @@ class FavoriteRepository{
           "nomeAbrev": nameAbrev,
           "idUsuario": userID,
           "idFavorito": userFavorite,
-          "status": value
+          "status": value,
+          "token": token
         });
+
+    print(currentFilter);
 
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
 
@@ -30,6 +33,7 @@ class FavoriteRepository{
       return jsonDecode(response.body);
     }else{
       print(response.statusCode);
+      print(response.body);
       return null;
     }
   }

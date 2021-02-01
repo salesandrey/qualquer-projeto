@@ -7,13 +7,15 @@ class SwipeCardWidget extends StatelessWidget {
 
   final List<UserMatchModel> listCard;
   final GlobalKey<SwipeStackState> swipeKey;
+  final Function love;
+  final Function notLove;
 
-  SwipeCardWidget({Key key, this.listCard, this.swipeKey}) : super(key: key);
+  SwipeCardWidget({Key key, this.listCard, this.swipeKey, this.love, this.notLove,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.60,
         width: MediaQuery.of(context).size.width,
         child: SwipeStack(
           key: swipeKey,
@@ -30,6 +32,8 @@ class SwipeCardWidget extends StatelessWidget {
           stackFrom: StackFrom.Right,
           translationInterval: 10,
           scaleInterval: 0.03,
+          love: love,
+          notLove: notLove,
           onEnd: () => debugPrint("onEnd"),
           onSwipe: (int index, SwiperPosition position) =>
               debugPrint("onSwipe $index $position"),

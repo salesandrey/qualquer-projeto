@@ -29,8 +29,7 @@ class RoundedIconCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Container(
-        padding: EdgeInsets.only(top: 15),
-        height: MediaQuery.of(context).size.height * 0.18,
+        padding: EdgeInsets.only(top: 0.015 * MediaQuery.of(context).size.height),
         child: Column(
           children: [
             Container(
@@ -58,9 +57,12 @@ class RoundedIconCardWidget extends StatelessWidget {
               iconText[title],
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width * 0.034,
+                fontSize: MediaQuery.of(context).size.width * 0.025,
                 fontFamily: "Montserrat Regular"
               ),
+            ),
+            SizedBox(
+              height: 8,
             ),
           ],
         ),

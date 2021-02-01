@@ -21,7 +21,7 @@ class MatchPage extends StatefulWidget {
 
   const MatchPage({Key key, this.headModel, this.listCard,this.id, this.typeSearch, this.nameAbr}) : super(key: key);
   @override
-  _MatchPageState createState() => _MatchPageState(listCard: listCard,headModel: headModel,id: id,typeSearch: typeSearch);
+  _MatchPageState createState() => _MatchPageState(listCard: listCard,headModel: headModel,id: id,typeSearch: typeSearch,nameAbr: nameAbr);
 }
 
 class _MatchPageState extends ModularState<MatchPage, MatchController> with TickerProviderStateMixin {
@@ -38,7 +38,7 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
   void notLove() async{
     _swipeKey.currentState.swipeLeft();
     if(listCard.isNotEmpty){
-      FavoriteRepository().insert("dislike",id, listCard.last.id,nameAbr);
+      FavoriteRepository().insert("dislike",id, listCard.last.id,nameAbr,listCard.last.token);
       listCard.removeLast();
     }
   }
@@ -46,8 +46,24 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
   void love(){
     _swipeKey.currentState.swipeRight();
     if(listCard.isNotEmpty){
-      FavoriteRepository().insert("like",id, listCard.last.id,nameAbr);
+      FavoriteRepository().insert("like",id, listCard.last.id,nameAbr,listCard.last.token);
       listCard.removeLast();
+    }
+  }
+
+  void swipeLove(){
+    if(listCard.isNotEmpty){
+      FavoriteRepository().insert("like",id, listCard.last.id,nameAbr,listCard.last.token);
+      listCard.removeLast();
+      setState(() {});
+    }
+  }
+
+  void swipeNotLove(){
+    if(listCard.isNotEmpty){
+      FavoriteRepository().insert("dislike",id, listCard.last.id,nameAbr,listCard.last.token);
+      listCard.removeLast();
+      setState(() {});
     }
   }
 
@@ -60,13 +76,16 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
           width: MediaQuery.of(context).size.width,
           child: Column(children: [
             HeaderWidget(backgroundColor: headModel.color,colorCategory: headModel.textColor,colorTitle: headModel.textColor,title: "Mostrando lista de",nameCategory: headModel.name),
-            SwipeCardWidget(listCard: listCard,swipeKey: _swipeKey,),
-            MatchButtonOptionWidget(
+            SwipeCardWidget(listCard: listCard,swipeKey: _swipeKey,notLove:() {swipeNotLove();},love: swipeLove,),
+            Expanded(child: Container()),
+            Container(
+              padding: EdgeInsets.only(bottom: 50),
+              child:MatchButtonOptionWidget(
               goHome: (){Modular.to.pop();},
               love: (){love();},
               notLove: (){notLove();},
-              accessProfile: (){Modular.to.pushNamed("/CompleteProfile",arguments: [listCard.last,id,false,typeSearch]);},)
-          ],),
+              accessProfile: (){Modular.to.pushNamed("/CompleteProfile",arguments: [listCard.last,id,false,typeSearch,nameAbr]);},))
+          ],)
         ),
       )
     );

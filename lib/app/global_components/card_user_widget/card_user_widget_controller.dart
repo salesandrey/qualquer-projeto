@@ -36,8 +36,7 @@ abstract class _CardUserWidgetControllerBase with Store {
   @action
   Future<void> changeLike() async{
     like = !like;
-    await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr);
-    favorite();
+    await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr,user.token);
   }
 
 }

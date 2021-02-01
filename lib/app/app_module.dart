@@ -60,7 +60,9 @@ class AppModule extends MainModule {
                     user: args.data[0],
                     id: args.data[1],
                     like: args.data[2],
-                    typeSearch: args.data[3]))),
+                    typeSearch: args.data[3],
+                    nameAbr: args.data[4]
+                ))),
         ModularRouter("/EditProfile", module: EditProfileModule()),
         ModularRouter("/Navigator", module: NavigatorModule()),
         ModularRouter("/Login", module: LoginModule()),

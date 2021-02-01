@@ -16,7 +16,7 @@ class TextCardProfileWidget extends StatelessWidget {
           Text(
             text1,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 0.014 * MediaQuery.of(context).size.height,
               fontFamily: "Montserrat Bold",
               color: Color(0xFF050072),
             ),
@@ -28,7 +28,7 @@ class TextCardProfileWidget extends StatelessWidget {
             text2,
             style: TextStyle(
               fontFamily: "Montserrat Regular",
-              fontSize: 15,
+              fontSize: 0.015 * MediaQuery.of(context).size.height,
               color: KBlackLightTextColor,
             ),
           ),

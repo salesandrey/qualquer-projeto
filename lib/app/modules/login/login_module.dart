@@ -1,3 +1,6 @@
+import 'package:PadrinhoMED/app/modules/login/componentes/transition_login_widget.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -11,7 +14,7 @@ class LoginModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => LoginPage(),transition:TransitionType.fadeIn,duration: Duration(seconds: 1),),
+        ModularRouter(Modular.initialRoute, child: (_, args) => LoginPage()),
       ];
 
   static Inject get to => Inject<LoginModule>.of();

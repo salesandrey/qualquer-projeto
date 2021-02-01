@@ -2,6 +2,7 @@
 
 
 import 'package:PadrinhoMED/app/modules/register/register_controller.dart';
+import 'package:diacritic/diacritic.dart';
 import 'package:validators/validators.dart';
 
 class RegisterValidateViewModel{
@@ -39,12 +40,28 @@ class RegisterValidateViewModel{
       controller.changeUsernameFeedback("Campo Obrigatório");
       controller.changeUsernameValidator(isNull(controller.username));
     } else {
-      if (controller.username.length < 2) {
-        controller.changeUsernameFeedback("Nome inválido");
+      if (controller.username.split(" ").length < 2) {
+        controller.changeUsernameFeedback("Nome sem sobrenome");
         controller.changeUsernameValidator(true);
-      } else {
-        controller.changeUsernameFeedback("");
-        controller.changeUsernameValidator(false);
+      }
+      else if(controller.username.split(" ").first.length < 2 || !RegExp(r'^[a-z A-Z]+$').hasMatch(removeDiacritics(controller.username.split(" ").first))){
+        controller.changeUsernameFeedback("Primeiro nome inválido");
+        controller.changeUsernameValidator(true);
+      }
+      else {
+        if(controller.username.split(" ").last.startsWith(" ")){
+          controller.changeUsernameFeedback("Sobrenome inválido");
+          controller.changeUsernameValidator(true);
+        }
+
+
+        else if(!RegExp(r'^[a-z A-Z]+$').hasMatch(removeDiacritics(controller.username))){
+          controller.changeUsernameFeedback("Nome completo inválido");
+          controller.changeUsernameValidator(true);
+        }else {
+          controller.changeUsernameFeedback("");
+          controller.changeUsernameValidator(false);
+        }
       }
     }
   }
