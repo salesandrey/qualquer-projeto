@@ -96,12 +96,6 @@ class _ConfigurationPageState extends ModularState<ConfigurationPage, Configurat
                             turnON: controller.pushNotification?controller.changeSomebodyFavorite:null,),
                           SizedBox(height: 17,),
                           SwitchConfigWidget(
-                            title: "Meu favorito me favoritou",
-                            color: controller.pushNotification?Color(0xFF313131):Color(0xFFd9d9d9),
-                            off: controller.favoriteFavorite,
-                            turnON: controller.pushNotification?controller.changeFavoriteFavorite:null,),
-                          SizedBox(height: 17,),
-                          SwitchConfigWidget(
                             title: "Solicitado para ser padrinho",
                             color: controller.pushNotification?Color(0xFF313131):Color(0xFFd9d9d9),
                             off: controller.notificationGodFather,

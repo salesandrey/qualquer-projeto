@@ -1,3 +1,5 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
+
 import 'favorite_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -6,7 +8,8 @@ import 'favorite_page.dart';
 class FavoriteModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        $FavoriteController,
+        Bind((i) => FavoriteController(appController: i.get<AppController>())),
+        Bind((i)=> AppController())
       ];
 
   @override

@@ -8,11 +8,13 @@ part of 'complete_profile_controller.dart';
 
 final $CompleteProfileController = BindInject(
   (i) => CompleteProfileController(
+      patronize: i<bool>(),
       user: i<UserMatchModel>(),
       id: i<int>(),
       like: i<bool>(),
       typeSearch: i<String>(),
-      nameAbr: i<String>()),
+      nameAbr: i<String>(),
+      appController: i<AppController>()),
   singleton: true,
   lazy: true,
 );
@@ -24,6 +26,22 @@ final $CompleteProfileController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CompleteProfileController on _CompleteProfileControllerBase, Store {
+  final _$appControllerAtom =
+      Atom(name: '_CompleteProfileControllerBase.appController');
+
+  @override
+  AppController get appController {
+    _$appControllerAtom.reportRead();
+    return super.appController;
+  }
+
+  @override
+  set appController(AppController value) {
+    _$appControllerAtom.reportWrite(value, super.appController, () {
+      super.appController = value;
+    });
+  }
+
   final _$userAtom = Atom(name: '_CompleteProfileControllerBase.user');
 
   @override
@@ -116,6 +134,14 @@ mixin _$CompleteProfileController on _CompleteProfileControllerBase, Store {
     });
   }
 
+  final _$changePatronizeAsyncAction =
+      AsyncAction('_CompleteProfileControllerBase.changePatronize');
+
+  @override
+  Future<void> changePatronize() {
+    return _$changePatronizeAsyncAction.run(() => super.changePatronize());
+  }
+
   final _$changeLikeAsyncAction =
       AsyncAction('_CompleteProfileControllerBase.changeLike');
 
@@ -124,23 +150,10 @@ mixin _$CompleteProfileController on _CompleteProfileControllerBase, Store {
     return _$changeLikeAsyncAction.run(() => super.changeLike());
   }
 
-  final _$_CompleteProfileControllerBaseActionController =
-      ActionController(name: '_CompleteProfileControllerBase');
-
-  @override
-  void changePatronize() {
-    final _$actionInfo = _$_CompleteProfileControllerBaseActionController
-        .startAction(name: '_CompleteProfileControllerBase.changePatronize');
-    try {
-      return super.changePatronize();
-    } finally {
-      _$_CompleteProfileControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''
+appController: ${appController},
 user: ${user},
 id: ${id},
 like: ${like},

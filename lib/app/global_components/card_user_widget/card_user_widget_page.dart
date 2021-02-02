@@ -25,7 +25,18 @@ class CardUserWidget extends StatelessWidget {
         children: [
           InkWell(
             onTap: (){
-              Modular.to.pushNamed("/CompleteProfile",arguments: [controller.user,controller.id,controller.like,controller.typeSearch]);
+              Modular.to.pushNamed("/CompleteProfile",arguments: [
+                controller.user,
+                controller.id,
+                controller.like,
+                controller.typeSearch,
+                controller.nameAbr,
+                controller.appController,
+                !controller.appController.myMatchesStore.matches.contains(controller.user.id)
+              ]).then((value){
+                if(value){
+                  controller.changeGlobalLike();
+                }});
             },
             child: Container(
               margin: const EdgeInsets.only(bottom: 4),
@@ -71,6 +82,8 @@ class CardUserWidget extends StatelessWidget {
                             ),width: MediaQuery.of(context).size.width * 0.75,
                           ),
                           Text(
+                            controller.user.graduacao == "Médico Especialista" || controller.user.graduacao == "Em Especialização / Residente" ?
+                            controller.user.interesses[0].especialidade:
                             "Interesse: ${controller.user.interesses[0].especialidade}",
                             style: TextStyle(
                               fontSize: 14,

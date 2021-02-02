@@ -25,6 +25,7 @@ class _LoadingPageState extends ModularState<LoadingPage, LoadingController> wit
   void initState() {
     super.initState();
     controller.loadingMessages();
+    controller.getMatchesAndFavorites();
     _controller = AnimationController(vsync: this, duration: Duration(seconds: 2))..repeat();
   }
 

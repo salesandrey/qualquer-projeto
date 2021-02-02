@@ -54,7 +54,10 @@ class _NavigatorPageState extends ModularState<NavigatorPage, NavigatorControlle
       },
       child: Observer(builder: (context){
         return Scaffold(
-            body: PageView(controller: controller.pageController,children: tab,physics:new NeverScrollableScrollPhysics(),onPageChanged: (value){ setState(() {});},),
+            body: PageView(
+              controller: controller.pageController,
+              children: tab,physics:new NeverScrollableScrollPhysics(),
+              onPageChanged: (value){ setState(() {});},),
                 bottomNavigationBar: AnimatedBuilder(
                   animation: controller.pageController,
                   builder: (context,snapshot){

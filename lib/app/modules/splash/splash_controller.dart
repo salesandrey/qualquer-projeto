@@ -22,7 +22,7 @@ abstract class _SplashControllerBase with Store {
     password = await storage.get("password");
 
     if(email!=null && password!=null) {
-      Modular.to.pushReplacementNamed("/Navigator");
+      Modular.to.pushReplacementNamed("/Loading",arguments: "");
     }else{
       Modular.to.pushReplacementNamed("/Login");
     }

@@ -218,7 +218,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     controller.changeFilter("Em Especialização / Residente");
                                     Modular.to.pushNamed("/Match",arguments:[
                                       controller.listFiltered,
-                                      HeadModel(color:KGreenColor,textColor: Colors.black,name:"Residentes em especialização"),
+                                      HeadModel(color:KGreenColor,textColor: Colors.black,name:"Em Especialização / Residente"),
                                       controller.currentUser.id,
                                       controller.currentUser.tipo,
                                       "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
@@ -231,7 +231,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   description: "Especialistas",
                                   navigator: ()
                                   {
-                                    controller.changeFilter("Médicos Especialista");
+                                    controller.changeFilter("Médico Especialista");
                                     Modular.to.pushNamed("/Match",arguments:[
                                       controller.listFiltered,
                                       HeadModel(color:KYellowColor,textColor: Colors.black,name:"Médicos Especialistas"),
@@ -284,15 +284,21 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                               ),
                               SizedBox(height: 8,),
                               Container(
-                                height: controller.mostIndication!=null && controller.mostIndication.length!=0?controller.mostIndication.length>=3?300:100 * controller.mostIndication.length :15,
+                                height: controller.mostIndication!=null && controller.mostIndication.length!=0?
+
+                                controller.mostIndication.length>=3?  300 :  100.0 * controller.mostIndication.length :15,
                                 child: ListView.builder(
                                     shrinkWrap:controller.mostIndication!=null?controller.mostIndication.length>=3?false:true:true,
                                     itemCount: controller.mostIndication!=null?controller.mostIndication.length>=3?3:controller.mostIndication.length:0,
                                     itemBuilder: (BuildContext context,int index){
                                       return CardUserWidget(controller: CardUserWidgetController(
+                                          changeGlobalLike: (){
+                                            setState(() {});
+                                          },
+                                          appController: controller.appController,
                                           user: controller.mostIndication[index],
                                           id:controller.currentUser.id,
-                                          like: false,
+                                          like: controller.appController.myFavoriteStore.favoritesIndex.contains(controller.mostIndication[index].id),
                                           nameAbr: "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
                                       ));
                                     }),
@@ -352,10 +358,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     itemBuilder: (BuildContext context,int index){
                                       return CardUserWidget(
                                       controller: CardUserWidgetController(
+                                          changeGlobalLike: (){
+                                            setState(() {});
+                                          },
+                                          appController: controller.appController,
                                           user: controller.recentUsers[index],
                                           id:controller.currentUser.id,
                                           nameAbr: "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
-                                          like: controller.recentUsers[index].id==1));
+                                          like: controller.appController.myFavoriteStore.favoritesIndex.contains(controller.recentUsers[index].id)));
                                     }),
                               )]))])
               ),

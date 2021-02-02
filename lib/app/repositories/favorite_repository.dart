@@ -29,11 +29,8 @@ class FavoriteRepository{
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
 
     if(response.statusCode==200){
-      print(response.body);
       return jsonDecode(response.body);
     }else{
-      print(response.statusCode);
-      print(response.body);
       return null;
     }
   }
@@ -79,6 +76,33 @@ class FavoriteRepository{
     }else{
       return null;
     }
+  }
+
+  Future<List<UserMatchModel>> getMyMatchesSolicitation(int idUser) async {
+
+    String url = "https://padmed.lanconi.com.br/matchGet.py";
+
+    var query = jsonEncode(
+        {
+          "idUsuario": idUser,
+          "status":"pendente"
+        });
+
+    Response response = await post(url,headers:{"Content-Type": "application/json"},body: query);
+    if(response.statusCode==200){
+
+      dynamic data = jsonDecode(response.body);
+      if(data["results"]=="Nenhum Registro Localizado"){
+        return null;
+      }
+      List<dynamic> list = data["results"];
+      List<UserMatchModel> matches = list.map((value) => UserMatchModel.fromMap(value)).toList();
+      return matches;
+    }else{
+      return null;
+    }
+
+
   }
 
   Stream<List<UserMatchModel>> get loadingGodFathers =>

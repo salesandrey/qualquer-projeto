@@ -84,7 +84,15 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
               goHome: (){Modular.to.pop();},
               love: (){love();},
               notLove: (){notLove();},
-              accessProfile: (){Modular.to.pushNamed("/CompleteProfile",arguments: [listCard.last,id,false,typeSearch,nameAbr]);},))
+              accessProfile: (){Modular.to.pushNamed("/CompleteProfile",arguments: [
+                listCard.last,
+                id,
+                controller.appController.myFavoriteStore.favoritesIndex.contains(listCard.last.id),
+                typeSearch,
+                nameAbr,
+                controller.appController,
+                !controller.appController.myMatchesStore.matches.contains(listCard.last.id)
+              ]);},))
           ],)
         ),
       )

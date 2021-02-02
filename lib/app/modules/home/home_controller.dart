@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
 import 'package:PadrinhoMED/app/models/city_model.dart';
 import 'package:PadrinhoMED/app/models/uf_model.dart';
@@ -8,16 +9,21 @@ import 'package:PadrinhoMED/app/repositories/filter_repository.dart';
 import 'package:PadrinhoMED/app/repositories/list_user_repository.dart';
 import 'package:PadrinhoMED/app/repositories/location_repository.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:validators/sanitizers.dart';
 part 'home_controller.g.dart';
 
-@Injectable()
+
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
+
+
+  _HomeControllerBase({this.appController});
+
+  @observable
+  AppController appController;
 
   @observable
   bool loading = false;
@@ -234,11 +240,11 @@ abstract class _HomeControllerBase with Store {
   Future<void> getMostIndication() async{
     dynamic data = await FilterRepository().filter(
     type:"maisIndicados",
-    city: premium?city:"",
-    state: premium?state:"",
+    city: premium? city: "",
+    state: premium? state: "",
     idUser: currentUser.id,
     activits: [],
-    speciality: [{"especialidade":currentUser.graduacao}],
+    speciality: [{"especialidade":currentUser.especialidade}],
     email: "",
     instagram: "",
     graduations: []
@@ -253,6 +259,7 @@ abstract class _HomeControllerBase with Store {
     mostIndication = newList.asObservable();
 
   }
+
 
   @action
   Future<void> getRecentUsers() async{

@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
 import 'package:PadrinhoMED/app/interfaces/local_storage_interface.dart';
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
@@ -8,10 +9,15 @@ import 'package:validators/sanitizers.dart';
 
 part 'favorite_controller.g.dart';
 
-@Injectable()
+
 class FavoriteController = _FavoriteControllerBase with _$FavoriteController;
 
 abstract class _FavoriteControllerBase with Store {
+
+  _FavoriteControllerBase({this.appController});
+
+  @observable
+  AppController appController;
 
   @observable
   ObservableStream<List<UserMatchModel>> usersADD;
@@ -30,9 +36,9 @@ abstract class _FavoriteControllerBase with Store {
     ILocalStorage storage = SharedLocalStorageService();
     String type= await storage.get("typeSearch");
     if(type=="Afilhado"){
-      typeSearch = "Afilhados";
-    }else{
       typeSearch = "Padrinhos";
+    }else{
+      typeSearch = "Afilhados";
     }
   }
 

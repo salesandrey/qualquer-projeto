@@ -69,7 +69,13 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
                           shrinkWrap: false,
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context,int index){
-                            return CardUserWidget(controller: CardUserWidgetController(user: snapshot.data[index],id:controller.userID,like: true));
+                            return CardUserWidget(
+                                controller: CardUserWidgetController(
+                                    changeGlobalLike: (){setState(() {});},
+                                    nameAbr: "${snapshot.data[index].nome.split(" ").first} ${snapshot.data[index].nome.split(" ").last.substring(0,1)}.",
+                                    appController: controller.appController,
+                                    user: snapshot.data[index],id:controller.userID,
+                                    like: true));
                           },
                         );
                       }
@@ -90,7 +96,13 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
                           shrinkWrap: false,
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context,int index){
-                            return CardUserWidget(controller: CardUserWidgetController(user: snapshot.data[index],id:controller.userID,like: true),);
+                            return CardUserWidget(controller: CardUserWidgetController(
+                                changeGlobalLike: (){setState(() {});} ,
+                                nameAbr: "${snapshot.data[index].nome.split(" ").first} ${snapshot.data[index].nome.split(" ").last.substring(0,1)}.",
+                                appController: controller.appController,
+                                user: snapshot.data[index],
+                                id:controller.userID,
+                                like: controller.appController.myFavoriteStore.favoritesIndex.contains(snapshot.data[index].id)),);
                           },
                         );
                   }

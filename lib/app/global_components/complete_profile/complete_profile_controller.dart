@@ -1,5 +1,7 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
+import 'package:PadrinhoMED/app/repositories/match_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -12,7 +14,17 @@ class CompleteProfileController = _CompleteProfileControllerBase
 abstract class _CompleteProfileControllerBase with Store {
 
 
-  _CompleteProfileControllerBase({this.user,this.id,this.like,this.typeSearch,this.nameAbr});
+  _CompleteProfileControllerBase({
+    this.patronize,
+    this.user,
+    this.id,
+    this.like,
+    this.typeSearch,
+    this.nameAbr,
+    this.appController});
+
+  @observable
+  AppController appController;
 
   @observable
   UserMatchModel user;
@@ -27,11 +39,14 @@ abstract class _CompleteProfileControllerBase with Store {
   String typeSearch;
 
   @observable
-  bool patronize = true;
+  bool patronize;
+
 
   @action
-  void changePatronize(){
-    patronize = !patronize;
+  Future<void> changePatronize() async {
+    patronize = false;
+    appController.myMatchesStore.addMyMatches(user);
+    await MatchRepository().matchInsert(id.toString(),user.id.toString(), nameAbr);
   }
 
   @observable
@@ -42,9 +57,11 @@ abstract class _CompleteProfileControllerBase with Store {
   @action
   Future<void> changeLike() async{
     like = !like;
-    print(id);
-    print(user.id);
-    print(nameAbr);
+    if(like){
+      appController.myFavoriteStore.addFavorite(user.id);
+    }else{
+      appController.myFavoriteStore.removeFavorite(user.id);
+    }
     await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr,user.token);
   }
 

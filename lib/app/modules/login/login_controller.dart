@@ -3,7 +3,6 @@ import 'package:PadrinhoMED/app/models/user_model.dart';
 import 'package:PadrinhoMED/app/modules/login/viewmodel/login_validate_viewmodel.dart';
 import 'package:PadrinhoMED/app/repositories/user_repository.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

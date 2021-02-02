@@ -3,22 +3,27 @@
 part of 'edit_profile_controller.dart';
 
 // **************************************************************************
-// InjectionGenerator
-// **************************************************************************
-
-final $EditProfileController = BindInject(
-  (i) => EditProfileController(),
-  singleton: true,
-  lazy: true,
-);
-
-// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$EditProfileController on _EditProfileControllerBase, Store {
+  final _$storageAtom = Atom(name: '_EditProfileControllerBase.storage');
+
+  @override
+  ILocalStorage get storage {
+    _$storageAtom.reportRead();
+    return super.storage;
+  }
+
+  @override
+  set storage(ILocalStorage value) {
+    _$storageAtom.reportWrite(value, super.storage, () {
+      super.storage = value;
+    });
+  }
+
   final _$changeDatasAtom =
       Atom(name: '_EditProfileControllerBase.changeDatas');
 
@@ -809,6 +814,7 @@ mixin _$EditProfileController on _EditProfileControllerBase, Store {
   @override
   String toString() {
     return '''
+storage: ${storage},
 changeDatas: ${changeDatas},
 loading: ${loading},
 id: ${id},

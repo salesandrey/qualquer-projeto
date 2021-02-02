@@ -7,7 +7,6 @@ class ConfigurationModel {
     this.notificacaoPush,
     this.notificacaoEmail,
     this.favoritadoAlguem,
-    this.favoritoFavoritou,
     this.solicitadoPadrinho,
     this.escolhidoAfilhado,
     this.apadrinhamentoOficial,
@@ -18,7 +17,6 @@ class ConfigurationModel {
   final int notificacaoPush;
   final int notificacaoEmail;
   final int favoritadoAlguem;
-  final int favoritoFavoritou;
   final int solicitadoPadrinho;
   final int escolhidoAfilhado;
   final int apadrinhamentoOficial;
@@ -29,7 +27,6 @@ class ConfigurationModel {
     int notificacaoPush,
     int notificacaoEmail,
     int favoritadoAlguem,
-    int favoritoFavoritou,
     int solicitadoPadrinho,
     int escolhidoAfilhado,
     int apadrinhamentoOficial,
@@ -40,7 +37,6 @@ class ConfigurationModel {
         notificacaoPush: notificacaoPush ?? this.notificacaoPush,
         notificacaoEmail: notificacaoEmail ?? this.notificacaoEmail,
         favoritadoAlguem: favoritadoAlguem ?? this.favoritadoAlguem,
-        favoritoFavoritou: favoritoFavoritou ?? this.favoritoFavoritou,
         solicitadoPadrinho: solicitadoPadrinho ?? this.solicitadoPadrinho,
         escolhidoAfilhado: escolhidoAfilhado ?? this.escolhidoAfilhado,
         apadrinhamentoOficial: apadrinhamentoOficial ?? this.apadrinhamentoOficial,
@@ -56,7 +52,6 @@ class ConfigurationModel {
     notificacaoPush: json["notificacaoPush"],
     notificacaoEmail: json["notificacaoEmail"],
     favoritadoAlguem: json["favoritadoAlguem"],
-    favoritoFavoritou: json["favoritoFavoritou"],
     solicitadoPadrinho: json["solicitadoPadrinho"],
     escolhidoAfilhado: json["escolhidoAfilhado"],
     apadrinhamentoOficial: json["apadrinhamentoOficial"],
@@ -68,7 +63,6 @@ class ConfigurationModel {
     "notificacaoPush": notificacaoPush,
     "notificacaoEmail": notificacaoEmail,
     "favoritadoAlguem": favoritadoAlguem,
-    "favoritoFavoritou": favoritoFavoritou,
     "solicitadoPadrinho": solicitadoPadrinho,
     "escolhidoAfilhado": escolhidoAfilhado,
     "apadrinhamentoOficial": apadrinhamentoOficial,

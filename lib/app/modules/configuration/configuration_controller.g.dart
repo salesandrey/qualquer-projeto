@@ -83,22 +83,6 @@ mixin _$ConfigurationController on _ConfigurationControllerBase, Store {
     });
   }
 
-  final _$favoriteFavoriteAtom =
-      Atom(name: '_ConfigurationControllerBase.favoriteFavorite');
-
-  @override
-  bool get favoriteFavorite {
-    _$favoriteFavoriteAtom.reportRead();
-    return super.favoriteFavorite;
-  }
-
-  @override
-  set favoriteFavorite(bool value) {
-    _$favoriteFavoriteAtom.reportWrite(value, super.favoriteFavorite, () {
-      super.favoriteFavorite = value;
-    });
-  }
-
   final _$notificationGodFatherAtom =
       Atom(name: '_ConfigurationControllerBase.notificationGodFather');
 
@@ -148,6 +132,14 @@ mixin _$ConfigurationController on _ConfigurationControllerBase, Store {
     });
   }
 
+  final _$saveConfigurationAsyncAction =
+      AsyncAction('_ConfigurationControllerBase.saveConfiguration');
+
+  @override
+  Future<void> saveConfiguration() {
+    return _$saveConfigurationAsyncAction.run(() => super.saveConfiguration());
+  }
+
   final _$_ConfigurationControllerBaseActionController =
       ActionController(name: '_ConfigurationControllerBase');
 
@@ -182,18 +174,6 @@ mixin _$ConfigurationController on _ConfigurationControllerBase, Store {
             name: '_ConfigurationControllerBase.changeSomebodyFavorite');
     try {
       return super.changeSomebodyFavorite(value);
-    } finally {
-      _$_ConfigurationControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void changeFavoriteFavorite(bool value) {
-    final _$actionInfo =
-        _$_ConfigurationControllerBaseActionController.startAction(
-            name: '_ConfigurationControllerBase.changeFavoriteFavorite');
-    try {
-      return super.changeFavoriteFavorite(value);
     } finally {
       _$_ConfigurationControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -241,7 +221,6 @@ changeConfiguration: ${changeConfiguration},
 emailNotification: ${emailNotification},
 pushNotification: ${pushNotification},
 somebodyFavorite: ${somebodyFavorite},
-favoriteFavorite: ${favoriteFavorite},
 notificationGodFather: ${notificationGodFather},
 chooseGodson: ${chooseGodson},
 officialGodfather: ${officialGodfather}

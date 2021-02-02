@@ -3,16 +3,6 @@
 part of 'home_controller.dart';
 
 // **************************************************************************
-// InjectionGenerator
-// **************************************************************************
-
-final $HomeController = BindInject(
-  (i) => HomeController(),
-  singleton: true,
-  lazy: true,
-);
-
-// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
@@ -40,6 +30,21 @@ mixin _$HomeController on _HomeControllerBase, Store {
           Computed<List<UserMatchModel>>(() => super.listFiltered,
               name: '_HomeControllerBase.listFiltered'))
       .value;
+
+  final _$appControllerAtom = Atom(name: '_HomeControllerBase.appController');
+
+  @override
+  AppController get appController {
+    _$appControllerAtom.reportRead();
+    return super.appController;
+  }
+
+  @override
+  set appController(AppController value) {
+    _$appControllerAtom.reportWrite(value, super.appController, () {
+      super.appController = value;
+    });
+  }
 
   final _$loadingAtom = Atom(name: '_HomeControllerBase.loading');
 
@@ -502,6 +507,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     return '''
+appController: ${appController},
 loading: ${loading},
 premium: ${premium},
 activateButton: ${activateButton},

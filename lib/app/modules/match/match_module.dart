@@ -1,3 +1,5 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
+
 import 'match_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -6,7 +8,8 @@ import 'match_page.dart';
 class MatchModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        $MatchController,
+        Bind((i)=> MatchController(appController: i.get<AppController>())),
+        Bind((i)=> AppController())
       ];
 
   @override

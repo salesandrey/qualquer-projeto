@@ -17,12 +17,18 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 part 'edit_profile_controller.g.dart';
 
-@Injectable()
+
 class EditProfileController = _EditProfileControllerBase
     with _$EditProfileController;
 
 abstract class _EditProfileControllerBase with Store {
 
+
+  _EditProfileControllerBase({this.storage});
+
+
+  @observable
+  ILocalStorage storage;
 
   @observable
   bool changeDatas = false;
@@ -440,6 +446,18 @@ abstract class _EditProfileControllerBase with Store {
      print(userToUpdate.toMap());
 
      await UserRepository().update(userToUpdate);
+     await saveLocal(userToUpdate);
 
+  }
+
+  Future<void> saveLocal(UserModel model) async {
+    storage.put("name", model.nome);
+    storage.put("about", model.sobre);
+    storage.put("speciality", model.especialidade);
+    storage.put("graduation", model.graduacao);
+    storage.put("typeSearch", model.tipo);
+    storage.put("city", model.cidade);
+    storage.put("state", model.estado);
+    storage.put("instagram", model.instagram);
   }
 }

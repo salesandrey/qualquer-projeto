@@ -30,7 +30,6 @@ abstract class _ConfigurationControllerBase with Store {
 
     if(!pushNotification){
       somebodyFavorite = false;
-      favoriteFavorite = false;
       notificationGodFather = false;
       officialGodfather = false;
       chooseGodson = false;
@@ -46,14 +45,6 @@ abstract class _ConfigurationControllerBase with Store {
     changeConfiguration = true;
   }
 
-  @observable
-  bool favoriteFavorite = false;
-
-  @action
-  void changeFavoriteFavorite(bool value){
-    favoriteFavorite = value;
-    changeConfiguration = true;
-  }
 
   @observable
   bool notificationGodFather = false;
@@ -82,5 +73,10 @@ abstract class _ConfigurationControllerBase with Store {
     changeConfiguration = true;
   }
 
+  @action
+  Future<void> saveConfiguration() async {
 
+
+
+  }
 }

@@ -1,5 +1,7 @@
 import 'package:PadrinhoMED/app/modules/configuration/configuration_module.dart';
 import 'package:PadrinhoMED/app/modules/loading/loading_module.dart';
+import 'package:PadrinhoMED/app/modules/my_favorites/my_favorite_store.dart';
+import 'package:PadrinhoMED/app/modules/my_matches/my_matches_store.dart';
 import 'package:PadrinhoMED/app/modules/navigator/navigator_module.dart';
 import 'package:PadrinhoMED/app/modules/onBoarding/on_boarding_module.dart';
 import 'package:PadrinhoMED/app/modules/premium/premium_module.dart';
@@ -38,7 +40,11 @@ import 'modules/tutorial/tutorial_module.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
-        $AppController,
+        Bind((i) => MyFavoriteStore()),
+        Bind((i) => MyMatchesStore()),
+        Bind((i)=> AppController(
+            myFavoriteStore: i.get<MyFavoriteStore>(),
+            myMatchesStore: i.get<MyMatchesStore>())),
       ];
 
   @override
@@ -61,7 +67,9 @@ class AppModule extends MainModule {
                     id: args.data[1],
                     like: args.data[2],
                     typeSearch: args.data[3],
-                    nameAbr: args.data[4]
+                    nameAbr: args.data[4],
+                    appController: args.data[5],
+                    patronize: args.data[6]
                 ))),
         ModularRouter("/EditProfile", module: EditProfileModule()),
         ModularRouter("/Navigator", module: NavigatorModule()),

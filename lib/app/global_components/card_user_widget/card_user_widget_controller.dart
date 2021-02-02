@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/repositories/favorite_repository.dart';
 import 'package:mobx/mobx.dart';
@@ -11,7 +12,11 @@ class CardUserWidgetController = _CardUserWidgetControllerBase
 
 abstract class _CardUserWidgetControllerBase with Store {
 
-  _CardUserWidgetControllerBase({this.user,this.id,this.like,this.nameAbr,this.favorite});
+  _CardUserWidgetControllerBase({
+    this.user,this.id,this.like,this.nameAbr,this.appController,this.changeGlobalLike});
+
+  @observable
+  AppController appController;
 
   @observable
   UserMatchModel user;
@@ -31,11 +36,18 @@ abstract class _CardUserWidgetControllerBase with Store {
   @observable
   String nameAbr = "";
 
-  Function favorite;
+  final Function changeGlobalLike;
+
 
   @action
   Future<void> changeLike() async{
     like = !like;
+    if(like){
+      appController.myFavoriteStore.addFavorite(user.id);
+    }else{
+      appController.myFavoriteStore.removeFavorite(user.id);
+    }
+    changeGlobalLike();
     await FavoriteRepository().insert(like?"like":"dislike", id, user.id,nameAbr,user.token);
   }
 

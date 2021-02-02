@@ -12,7 +12,8 @@ final $CardUserWidgetController = BindInject(
       id: i<int>(),
       like: i<bool>(),
       nameAbr: i<String>(),
-      favorite: i<Function>()),
+      appController: i<AppController>(),
+      changeGlobalLike: i<Function>()),
   singleton: true,
   lazy: true,
 );
@@ -24,6 +25,22 @@ final $CardUserWidgetController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
+  final _$appControllerAtom =
+      Atom(name: '_CardUserWidgetControllerBase.appController');
+
+  @override
+  AppController get appController {
+    _$appControllerAtom.reportRead();
+    return super.appController;
+  }
+
+  @override
+  set appController(AppController value) {
+    _$appControllerAtom.reportWrite(value, super.appController, () {
+      super.appController = value;
+    });
+  }
+
   final _$userAtom = Atom(name: '_CardUserWidgetControllerBase.user');
 
   @override
@@ -126,6 +143,7 @@ mixin _$CardUserWidgetController on _CardUserWidgetControllerBase, Store {
   @override
   String toString() {
     return '''
+appController: ${appController},
 user: ${user},
 id: ${id},
 like: ${like},

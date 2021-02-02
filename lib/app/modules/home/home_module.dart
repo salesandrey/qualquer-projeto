@@ -1,3 +1,5 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
+
 import 'home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -6,7 +8,8 @@ import 'home_page.dart';
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        $HomeController,
+        Bind((i)=> HomeController(appController: i.get<AppController>())),
+        Bind((i)=> AppController())
       ];
 
   @override

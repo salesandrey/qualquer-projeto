@@ -3,22 +3,28 @@
 part of 'favorite_controller.dart';
 
 // **************************************************************************
-// InjectionGenerator
-// **************************************************************************
-
-final $FavoriteController = BindInject(
-  (i) => FavoriteController(),
-  singleton: true,
-  lazy: true,
-);
-
-// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$FavoriteController on _FavoriteControllerBase, Store {
+  final _$appControllerAtom =
+      Atom(name: '_FavoriteControllerBase.appController');
+
+  @override
+  AppController get appController {
+    _$appControllerAtom.reportRead();
+    return super.appController;
+  }
+
+  @override
+  set appController(AppController value) {
+    _$appControllerAtom.reportWrite(value, super.appController, () {
+      super.appController = value;
+    });
+  }
+
   final _$usersADDAtom = Atom(name: '_FavoriteControllerBase.usersADD');
 
   @override
@@ -123,6 +129,7 @@ mixin _$FavoriteController on _FavoriteControllerBase, Store {
   @override
   String toString() {
     return '''
+appController: ${appController},
 usersADD: ${usersADD},
 godfathers: ${godfathers},
 typeSearch: ${typeSearch},

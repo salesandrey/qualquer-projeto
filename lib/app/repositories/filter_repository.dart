@@ -21,7 +21,6 @@ class FilterRepository{
 
   Future<dynamic> filter({
       String type,
-
       String instagram,
       String state,
       String city,
@@ -46,10 +45,13 @@ class FilterRepository{
       "offset" : 0
     });
 
+    print(currentFilter);
+
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
 
     if(response.statusCode==200){
-      print(jsonDecode(response.body));
+      print(type);
+      print(response.body);
       return jsonDecode(response.body);
     }else{
       return null;

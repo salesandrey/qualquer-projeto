@@ -14,6 +14,28 @@ class NotificationRepository{
   NotificationRepository({this.id});
 
 
+  Future<void> validateNotifications(String userID,String token) async {
+
+    final String url = "https://padmed.lanconi.com.br/notificacaoValidate.py";
+
+    var query = jsonEncode(
+        {
+            "idUsuario": userID,
+            "token": token
+        });
+    try {
+      Response response = await post(
+          url, headers: {"Content-Type": "application/json"}, body: query);
+
+      if (response.statusCode == 200){
+        print(response.statusCode);
+      }else{
+        print(response.statusCode);
+      }
+    }catch(e){}
+  }
+
+
   Future<List<NotificationModel>> getNotifications(int id) async{
 
     final String url = "https://padmed.lanconi.com.br/notificacaoList.py";

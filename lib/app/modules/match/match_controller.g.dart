@@ -7,7 +7,7 @@ part of 'match_controller.dart';
 // **************************************************************************
 
 final $MatchController = BindInject(
-  (i) => MatchController(),
+  (i) => MatchController(appController: i<AppController>()),
   singleton: true,
   lazy: true,
 );
@@ -19,39 +19,25 @@ final $MatchController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$MatchController on _MatchControllerBase, Store {
-  final _$valueAtom = Atom(name: '_MatchControllerBase.value');
+  final _$appControllerAtom = Atom(name: '_MatchControllerBase.appController');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  AppController get appController {
+    _$appControllerAtom.reportRead();
+    return super.appController;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set appController(AppController value) {
+    _$appControllerAtom.reportWrite(value, super.appController, () {
+      super.appController = value;
     });
-  }
-
-  final _$_MatchControllerBaseActionController =
-      ActionController(name: '_MatchControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_MatchControllerBaseActionController.startAction(
-        name: '_MatchControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_MatchControllerBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+appController: ${appController}
     ''';
   }
 }

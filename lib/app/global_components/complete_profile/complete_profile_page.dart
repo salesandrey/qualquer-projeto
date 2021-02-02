@@ -63,7 +63,7 @@ class CompleteProfilePage extends StatelessWidget {
                                       color: Color(0xff170C10),
                                     ),
                                     onPressed: () {
-                                      Modular.to.pop();
+                                      Modular.to.pop(true);
                                     },
                                   ),
                                   Container(
@@ -203,7 +203,10 @@ class CompleteProfilePage extends StatelessWidget {
                               )),
                           Positioned(left: 40,right: 40,
                               child: ButtonConfirmWidget(
-                                  navigation:controller.patronize? (){controller.changePatronize();} : null,
+                                  navigation:controller.patronize? (){
+                                    controller.changePatronize();
+
+                                  } : null,
                                   disableColor: KButtonLightColor,
                                   disableTextColor:KButtonLightTextColor,
                                   text: controller.patronize?controller.typeSearch=="Padrinho"?"QUERO APADRINHAR!":"QUERO SER AFILHADO":"SOLICITAÇÃO ENVIADA",

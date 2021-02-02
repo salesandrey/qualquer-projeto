@@ -18,7 +18,6 @@ class ConfigurationRepository{
           "notificacaoPush":configuration.notificacaoPush,
           "notificacaoEmail":configuration.notificacaoEmail,
           "favoritadoAlguem":configuration.favoritadoAlguem,
-          "favoritoFavoritou":configuration.favoritoFavoritou,
           "solicitadoPadrinho":configuration.solicitadoPadrinho,
           "escolhidoAfilhado":configuration.escolhidoAfilhado,
           "apadrinhamentoOficial":configuration.apadrinhamentoOficial
