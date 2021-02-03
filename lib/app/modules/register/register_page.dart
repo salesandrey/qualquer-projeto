@@ -5,6 +5,7 @@ import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'register_controller.dart';
 
@@ -18,21 +19,19 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
 
 
-  TextEditingController insta = TextEditingController();
+  var maskFormatter = new MaskTextInputFormatter(mask: "@############################################",filter: { "#": RegExp(r'') });
   FocusNode username;
   FocusNode instagram;
 
   @override
   void initState() {
     username = FocusNode();
-    insta = TextEditingController(text: "@");
     instagram = FocusNode();
     super.initState();
   }
 
   @override
   void dispose() {
-    insta.dispose();
     username.dispose();
     instagram.dispose();
     super.dispose();
@@ -109,7 +108,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: Text("Confira seus dados pois este é o nome que vai nos certificados",style: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular")),
                             ),
                             SizedBox(height: MediaQuery.of(context).size.height * 0.09,),
-                            TextInputWidget(capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},controller: insta,focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?"),
+                            TextInputWidget(
+                                inputs: [maskFormatter],
+                                capitalize: TextCapitalization.none,keyboardType: TextInputType.text ,function: (){setState(() {});},focusNode: instagram,validator: false,changeText: controller.changeInstagram,labelText: "Qual seu instagram?"),
                             Padding(
                               padding: const EdgeInsets.only(top: 12),
                               child: Text("Essa informação não é obrigatória, mas ela torna mais fácil as pessoas te encontrarem aqui no app!",style: TextStyle(fontSize: 15,color: KgreyColor,fontFamily: "Montserrat Regular")),

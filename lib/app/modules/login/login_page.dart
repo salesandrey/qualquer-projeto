@@ -4,7 +4,6 @@ import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_typeahead/cupertino_flutter_typeahead.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'login_controller.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
@@ -27,7 +26,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> with Tick
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this,duration: Duration(seconds: 6))..forward();
+    _animationController = AnimationController(vsync: this,duration: Duration(seconds: 3))..forward();
     animation = Tween<double>(end: 1.0,begin: 3.0).animate(_animationController);
     emailNode = new FocusNode();
     passwordNode = new FocusNode();

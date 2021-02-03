@@ -34,10 +34,7 @@ class CardUserWidget extends StatelessWidget {
                 controller.appController,
                 !controller.appController.myMatchesStore.matches.contains(controller.user.id),
                 controller.appController.myRealMatchesStore.matches.contains(controller.user.id)
-              ]).then((value){
-                if(value){
-                  controller.changeGlobalLike();
-                }});
+              ]);
             },
             child: Container(
               margin: const EdgeInsets.only(bottom: 4),

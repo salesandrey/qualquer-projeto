@@ -28,7 +28,7 @@ class CardNotificationWidget extends StatelessWidget {
                 color:Colors.black)));
       }else {
 
-        if(a.startsWith(" ")){
+        if(a.startsWith(" ") && stringList.first!="") {
           list.add(TextSpan(text: cardData.nomeAbrev,
               style: TextStyle(
                   fontFamily: "Montserrat Bold",

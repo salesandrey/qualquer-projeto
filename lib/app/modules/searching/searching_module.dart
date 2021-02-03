@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
 import 'package:PadrinhoMED/app/modules/searching/home_filtered/home_filtered_page.dart';
 
 import 'long_card/long_card_controller.dart';
@@ -10,8 +11,9 @@ import 'searching_page.dart';
 class SearchingModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => AppController()),
         $LongCardController,
-        $HomeFilteredController,
+        Bind((i) => HomeFilteredController(appController: i.get<AppController>())),
         $SearchingController,
       ];
 

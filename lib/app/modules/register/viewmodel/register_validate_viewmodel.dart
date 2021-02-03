@@ -49,7 +49,7 @@ class RegisterValidateViewModel{
         controller.changeUsernameValidator(true);
       }
       else {
-        if(controller.username.split(" ").last.startsWith(" ")){
+        if(controller.username.split(" ").last==""){
           controller.changeUsernameFeedback("Sobrenome inválido");
           controller.changeUsernameValidator(true);
         }

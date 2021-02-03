@@ -34,6 +34,36 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
     });
   }
 
+  final _$signatureAtom = Atom(name: '_ProfileControllerBase.signature');
+
+  @override
+  bool get signature {
+    _$signatureAtom.reportRead();
+    return super.signature;
+  }
+
+  @override
+  set signature(bool value) {
+    _$signatureAtom.reportWrite(value, super.signature, () {
+      super.signature = value;
+    });
+  }
+
+  final _$typeAtom = Atom(name: '_ProfileControllerBase.type');
+
+  @override
+  String get type {
+    _$typeAtom.reportRead();
+    return super.type;
+  }
+
+  @override
+  set type(String value) {
+    _$typeAtom.reportWrite(value, super.type, () {
+      super.type = value;
+    });
+  }
+
   final _$nameAtom = Atom(name: '_ProfileControllerBase.name');
 
   @override
@@ -49,6 +79,15 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
     });
   }
 
+  final _$getSignatureValidatorAsyncAction =
+      AsyncAction('_ProfileControllerBase.getSignatureValidator');
+
+  @override
+  Future<void> getSignatureValidator() {
+    return _$getSignatureValidatorAsyncAction
+        .run(() => super.getSignatureValidator());
+  }
+
   final _$getNameAsyncAction = AsyncAction('_ProfileControllerBase.getName');
 
   @override
@@ -60,6 +99,8 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
   String toString() {
     return '''
 premium: ${premium},
+signature: ${signature},
+type: ${type},
 name: ${name}
     ''';
   }

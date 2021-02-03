@@ -70,6 +70,11 @@ class FavoriteRepository{
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);
 
     if(response.statusCode==200){
+
+      dynamic data = jsonDecode(response.body)["results"];
+      if(data=="Nenhum Registro Localizado"){
+        return null;
+      };
       List<dynamic> list = jsonDecode(response.body)["results"];
       List<UserMatchModel> matches = list.map((value) => UserMatchModel.fromMap(value)).toList();
       return matches;

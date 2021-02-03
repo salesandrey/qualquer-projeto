@@ -1,4 +1,5 @@
 import 'package:PadrinhoMED/app/modules/configuration/configuration_module.dart';
+import 'package:PadrinhoMED/app/modules/godfather/godfather_module.dart';
 import 'package:PadrinhoMED/app/modules/loading/loading_module.dart';
 import 'package:PadrinhoMED/app/modules/my_favorites/my_favorite_store.dart';
 import 'package:PadrinhoMED/app/modules/my_matches/my_matches_store.dart';
@@ -18,6 +19,7 @@ import 'package:PadrinhoMED/app/modules/reset_password/components/check_email_re
 import 'package:PadrinhoMED/app/modules/reset_password/components/confirm_email_page.dart';
 import 'package:PadrinhoMED/app/modules/reset_password/reset_password_module.dart';
 import 'package:PadrinhoMED/app/modules/searching/home_filtered/home_filtered_page.dart';
+import 'package:PadrinhoMED/app/modules/signature/signature_module.dart';
 import 'package:PadrinhoMED/app/modules/splash/splash_module.dart';
 
 import 'app_controller.dart';
@@ -54,8 +56,10 @@ class AppModule extends MainModule {
   @override
   List<ModularRouter> get routers => [
 
-        ModularRouter(Modular.initialRoute, module: RegisterModule()),
+        ModularRouter(Modular.initialRoute, module: SplashModule()),
         ModularRouter("/Monkey",child:(_,args) => MonkeyCertificationWidget()),
+        ModularRouter("/Signature",module: SignatureModule()),
+        ModularRouter("/GodFather", module: GodfatherModule()),
         ModularRouter("/Configuration", module: ConfigurationModule()),
         ModularRouter("/PremiumDetails",
             child: (_, args) => PremiumDetailsPage(

@@ -17,7 +17,7 @@ class SingleCheckboxOptionWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SingleCheckboxWidget(
-            title:"Estudantes (1º ao 8º semestre)",
+            title:"Estudante (1º ao 8º semestre)",
             color:Color(0xFFED7AA0),
             currentIndex: checkGraduation,
             index: 1,

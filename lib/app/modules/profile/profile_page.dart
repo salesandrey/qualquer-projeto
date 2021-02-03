@@ -18,12 +18,19 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
   @override
   void initState() {
     controller.getName();
+    controller.getSignatureValidator();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
+
+
+      if(controller.signature==null){
+          return Scaffold(body: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6259B2)))));
+      }
+
       return Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -87,6 +94,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                   }),//Modular.to.pushNamed("/EditProfile");},),
                   BoxOptionWidget(iconImage: 'assets/images/48.png',text: "Meus Certificados", navigation: (){
                     if(controller.premium){
+                      Modular.to.pushReplacementNamed("/Signature");
 
                     }else{
                       Modular.to.pushNamed("/Monkey");

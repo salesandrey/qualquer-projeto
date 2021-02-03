@@ -1,3 +1,4 @@
+import 'package:PadrinhoMED/app/app_controller.dart';
 import 'package:PadrinhoMED/app/models/city_model.dart';
 import 'package:PadrinhoMED/app/models/uf_model.dart';
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
@@ -11,11 +12,17 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 part 'home_filtered_controller.g.dart';
 
-@Injectable()
+
 class HomeFilteredController = _HomeFilteredControllerBase
     with _$HomeFilteredController;
 
 abstract class _HomeFilteredControllerBase with Store implements Disposable {
+
+
+  _HomeFilteredControllerBase({this.appController});
+
+  @observable
+  AppController appController;
 
   @observable
   bool premium = false;

@@ -69,12 +69,12 @@ class _SearchingPageState
                           padding: const EdgeInsets.only(top:10,bottom: 20),
                           child: Column(children: controller.listGraduation,),
                         ),
-                        Text("Pesquisar por programa PadrinhoMed”",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                        Text("Pesquisar por programa PadrinhoMed",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
                         Padding(
                           padding: const EdgeInsets.only(top:10.0,bottom: 20),
                           child: Column(children: controller.programs),
                         ),
-                        Text("Especialidades",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
+                        Text(controller.type=="Afilhado"?"Especialidades de interesse":"Especialidades",style: TextStyle(fontFamily: "Montserrat Bold",fontSize: 15),),
                         Padding(
                           padding: const EdgeInsets.only(top:10.0,bottom: 10),
                           child: ConstrainedBox(constraints: true ? BoxConstraints() : BoxConstraints(maxHeight: 50.0),

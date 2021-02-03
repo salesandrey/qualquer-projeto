@@ -34,6 +34,21 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
     });
   }
 
+  final _$typeAtom = Atom(name: '_SearchingControllerBase.type');
+
+  @override
+  String get type {
+    _$typeAtom.reportRead();
+    return super.type;
+  }
+
+  @override
+  set type(String value) {
+    _$typeAtom.reportWrite(value, super.type, () {
+      super.type = value;
+    });
+  }
+
   final _$idUserAtom = Atom(name: '_SearchingControllerBase.idUser');
 
   @override
@@ -260,6 +275,7 @@ mixin _$SearchingController on _SearchingControllerBase, Store {
   String toString() {
     return '''
 premium: ${premium},
+type: ${type},
 idUser: ${idUser},
 state: ${state},
 city: ${city},

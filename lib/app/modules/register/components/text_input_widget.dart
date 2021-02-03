@@ -18,10 +18,11 @@ class TextInputWidget extends StatelessWidget {
   final FocusNode focusNode;
   final TextEditingController controller;
   final Function function;
+  final List<TextInputFormatter> inputs;
   final TextInputType keyboardType;
   final TextCapitalization capitalize;
 
-  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText, this.focusNode, this.controller, this.function, this.keyboardType, this.capitalize}) : super(key: key);
+  const TextInputWidget({Key key, this.labelText, this.hintText, this.helpText, this.changeText, this.validator, this.errorText, this.focusNode, this.controller, this.function, this.keyboardType, this.capitalize, this.inputs}) : super(key: key);
 
 
   @override
@@ -36,6 +37,7 @@ class TextInputWidget extends StatelessWidget {
         focusNode: focusNode,
         textCapitalization: capitalize,
         keyboardType: keyboardType,
+        inputFormatters: inputs,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(bottom: 8),
           helperMaxLines: 3,

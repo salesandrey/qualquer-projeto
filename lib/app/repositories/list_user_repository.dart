@@ -9,8 +9,8 @@ class ListUserRepository{
     var currentFilter = jsonEncode(
         {
           "idUsuario": id,
-          "limit":0,
-          "offset":30
+          "limit":30,
+          "offset":0
         });
 
     Response response = await post(url,headers:{"Content-Type": "application/json"},body: currentFilter);

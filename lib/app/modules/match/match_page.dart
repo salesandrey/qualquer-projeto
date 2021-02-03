@@ -36,6 +36,7 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
   final List<UserMatchModel> listCard;
   final String typeSearch;
   final bool premium;
+  bool show = true;
 
   _MatchPageState({this.listCard,this.headModel,this.id,this.typeSearch,this.nameAbr,this.premium});
 
@@ -64,6 +65,11 @@ class _MatchPageState extends ModularState<MatchPage, MatchController> with Tick
       listCard.removeLast();
       setState(() {});
     }
+  }
+
+  void changeShowContacts(bool value){
+    show = value;
+    setState(() {});
   }
 
   void swipeNotLove(){

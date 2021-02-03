@@ -189,7 +189,8 @@ class CompleteProfilePage extends StatelessWidget {
                 ),
               ),
 
-                  controller.officialPatronize? Positioned(
+                  controller.officialPatronize?
+                  Positioned(
                       bottom: 0,
                       child: Container(
                         color: colorCard[controller.user.graduacao],

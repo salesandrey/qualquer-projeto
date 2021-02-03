@@ -1,5 +1,6 @@
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/modules/match/components/button_card_profile_widget.dart';
+import 'package:PadrinhoMED/app/modules/match/components/card_disable_contact_widget.dart';
 import 'package:PadrinhoMED/app/modules/match/components/location_disable.dart';
 import 'package:PadrinhoMED/app/modules/match/components/rounded_icon_card_widget.dart';
 import 'package:PadrinhoMED/app/modules/match/components/text_card_profile_widget.dart';
@@ -13,6 +14,8 @@ class CardProfile extends StatelessWidget {
 
   final bool premium;
   final UserMatchModel user;
+  final bool showContacts = true;
+  final Function showFunction;
   final Map<String,Color> colorCard = {
     "Estudante (1º ao 8º semestre)":Color(0xFFED7AA0),
     "Internato (9º ao 12º semestre)":Color(0xFFA652B7),
@@ -21,7 +24,7 @@ class CardProfile extends StatelessWidget {
     "Médico Especialista":Color(0xFFFFBE69)
   };
 
-  CardProfile({Key key, this.user,this.premium}) : super(key: key);
+  CardProfile({Key key, this.user,this.premium, this.showFunction}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -105,13 +108,16 @@ class CardProfile extends StatelessWidget {
                   SizedBox(height: 0.008 * MediaQuery.of(context).size.height),
                   Container(
                     height: 0.04 * MediaQuery.of(context).size.height,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        ButtonCardProfileWidget(text: "E-mail"),
-                        SizedBox(width: 8,),
-                        ButtonCardProfileWidget(text: "Instagram")
-                      ],
+                    child: InkWell(
+                      onTap: showFunction,
+                      child: showContacts? Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          ButtonCardProfileWidget(text: "E-mail"),
+                          SizedBox(width: 8,),
+                          ButtonCardProfileWidget(text: "Instagram")
+                        ],
+                      ): CardDisableContactWidget(),
                     ),
                   ),
                 ],

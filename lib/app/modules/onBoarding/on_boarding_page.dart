@@ -130,7 +130,7 @@ class _OnBoardingPageState
                         height: 56,
                         child: RaisedButton(
                           onPressed: () {
-                            Modular.to.pushReplacementNamed("/Navigator");
+                            Modular.to.pushReplacementNamed("/Navigator",arguments:[0,0]);
                           },
                           color:Color(0xff6259B2),
                           elevation: 0,

@@ -23,6 +23,9 @@ abstract class _SearchingControllerBase with Store {
   @observable
   bool premium = false;
 
+  @observable
+  String type;
+
   @action
   void changePremium(bool value){
     premium = value;
@@ -35,6 +38,7 @@ abstract class _SearchingControllerBase with Store {
   Future<void> changeIDUser() async{
     ILocalStorage storage = SharedLocalStorageService();
     String value = await storage.get("id");
+    type = await storage.get("typeSearch");
     idUser = toInt(value);
   }
 
@@ -152,7 +156,7 @@ abstract class _SearchingControllerBase with Store {
     CheckBoxWidget(controller: CheckboxController(title:"Estudante (1º ao 8º semestre)",check: false),color:Color(0xFFED7AA0)),
     CheckBoxWidget(controller: CheckboxController(title:"Internato (9º ao 12º semestre)",check: false),color:Color(0xFFA652B7)),
     CheckBoxWidget(controller: CheckboxController(title:"Médico Generalista",check: false),color:Color(0xFF6AA4E8)),
-    CheckBoxWidget(controller: CheckboxController(title:"Residente / Em Especialização",check: false),color:Color(0xFF3FBAA3)),
+    CheckBoxWidget(controller: CheckboxController(title:"Em Especialização / Residente",check: false),color:Color(0xFF3FBAA3)),
     CheckBoxWidget(controller: CheckboxController(title:"Médico Especialista",check: false),color:Color(0xFFFFBE69)),
   ].asObservable();
 

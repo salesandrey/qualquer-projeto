@@ -196,6 +196,8 @@ class _HomeFilteredPageState extends ModularState<HomeFilteredPage, HomeFiltered
                               itemBuilder: (context, index) {
                             return CardUserWidget(
                               controller: CardUserWidgetController(
+                                  changeGlobalLike: (){setState(() {});},
+                                  appController: controller.appController,
                                   user: snapshot.data[index],
                                   id: snapshot.data[index].id,
                                   nameAbr: "${snapshot.data[index].nome
