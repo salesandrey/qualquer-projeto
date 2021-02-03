@@ -39,6 +39,17 @@ mixin _$NavigatorController on _NavigatorControllerBase, Store {
       ActionController(name: '_NavigatorControllerBase');
 
   @override
+  void changePageController(int page) {
+    final _$actionInfo = _$_NavigatorControllerBaseActionController.startAction(
+        name: '_NavigatorControllerBase.changePageController');
+    try {
+      return super.changePageController(page);
+    } finally {
+      _$_NavigatorControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changePage(int index) {
     final _$actionInfo = _$_NavigatorControllerBaseActionController.startAction(
         name: '_NavigatorControllerBase.changePage');

@@ -21,7 +21,8 @@ abstract class _CompleteProfileControllerBase with Store {
     this.like,
     this.typeSearch,
     this.nameAbr,
-    this.appController});
+    this.appController,
+    this.officialPatronize});
 
   @observable
   AppController appController;
@@ -41,6 +42,8 @@ abstract class _CompleteProfileControllerBase with Store {
   @observable
   bool patronize;
 
+  @observable
+  bool officialPatronize;
 
   @action
   Future<void> changePatronize() async {

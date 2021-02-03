@@ -155,23 +155,6 @@ class _PremiumPageState extends ModularState<PremiumPage, PremiumController> {
                             price: "67",
                             cents: ",00 / mês"),
                       ),
-                      SizedBox(width: 8,),
-                      Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.4,
-                        child: CardProductWidget(
-                          goToDetails: (){
-                            //Modular.to.pushNamed("/PremiumDetails",arguments: ["Full",[4,"3 certificado","167",",00 / mês"]]);
-                          },
-                          title: "Full",
-                          filter: 4,
-                          certifications: "1 certificado",
-                          price: "167",
-                          cents: ",00 / mês",),
-                      ),
-
                     ],
                   ),
                 ),

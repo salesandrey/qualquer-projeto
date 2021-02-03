@@ -25,14 +25,15 @@ class CardUserWidget extends StatelessWidget {
         children: [
           InkWell(
             onTap: (){
-              Modular.to.pushNamed("/CompleteProfile",arguments: [
+              Modular.to.pushReplacementNamed("/CompleteProfile",arguments: [
                 controller.user,
                 controller.id,
                 controller.like,
                 controller.typeSearch,
                 controller.nameAbr,
                 controller.appController,
-                !controller.appController.myMatchesStore.matches.contains(controller.user.id)
+                !controller.appController.myMatchesStore.matches.contains(controller.user.id),
+                controller.appController.myRealMatchesStore.matches.contains(controller.user.id)
               ]).then((value){
                 if(value){
                   controller.changeGlobalLike();
@@ -73,7 +74,7 @@ class CardUserWidget extends StatelessWidget {
                         children: [
                           Container(
                             child: Text(
-                              "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last}.",
+                              "${controller.user.nome.split(" ").first} ${controller.user.nome.split(" ").last.substring(0,1)}.",
                               style: TextStyle(
                                 fontFamily: "Montserrat Bold",
                                 fontSize: 18,

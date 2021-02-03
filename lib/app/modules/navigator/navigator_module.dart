@@ -12,7 +12,8 @@ class NavigatorModule extends ChildModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute,
-            child: (_, args) => NavigatorPage(),transition: TransitionType.fadeIn,duration: Duration(seconds: 2)),
+            child: (_, args) => NavigatorPage(currentPage: args.data[0],currentTabPatronize: args.data[1]),
+            transition: TransitionType.fadeIn,duration: Duration(seconds: 2)),
       ];
 
   static Inject get to => Inject<NavigatorModule>.of();

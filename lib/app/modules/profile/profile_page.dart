@@ -83,7 +83,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                     ),
                   ),
                   BoxOptionWidget(iconImage: 'assets/images/49.png',text: "Meus Dados",navigation: (){
-                    Modular.to.pushNamed("/EditProfile");
+                    Modular.to.pushReplacementNamed("/EditProfile");
                   }),//Modular.to.pushNamed("/EditProfile");},),
                   BoxOptionWidget(iconImage: 'assets/images/48.png',text: "Meus Certificados", navigation: (){
                     if(controller.premium){

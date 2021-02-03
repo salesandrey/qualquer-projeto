@@ -14,7 +14,8 @@ final $CompleteProfileController = BindInject(
       like: i<bool>(),
       typeSearch: i<String>(),
       nameAbr: i<String>(),
-      appController: i<AppController>()),
+      appController: i<AppController>(),
+      officialPatronize: i<bool>()),
   singleton: true,
   lazy: true,
 );
@@ -119,6 +120,22 @@ mixin _$CompleteProfileController on _CompleteProfileControllerBase, Store {
     });
   }
 
+  final _$officialPatronizeAtom =
+      Atom(name: '_CompleteProfileControllerBase.officialPatronize');
+
+  @override
+  bool get officialPatronize {
+    _$officialPatronizeAtom.reportRead();
+    return super.officialPatronize;
+  }
+
+  @override
+  set officialPatronize(bool value) {
+    _$officialPatronizeAtom.reportWrite(value, super.officialPatronize, () {
+      super.officialPatronize = value;
+    });
+  }
+
   final _$nameAbrAtom = Atom(name: '_CompleteProfileControllerBase.nameAbr');
 
   @override
@@ -159,6 +176,7 @@ id: ${id},
 like: ${like},
 typeSearch: ${typeSearch},
 patronize: ${patronize},
+officialPatronize: ${officialPatronize},
 nameAbr: ${nameAbr}
     ''';
   }

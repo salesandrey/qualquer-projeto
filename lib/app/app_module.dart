@@ -30,6 +30,7 @@ import 'global_components/complete_profile/complete_profile_page.dart';
 import 'modules/home/home_module.dart';
 import 'modules/login/login_module.dart';
 import 'modules/match/match_module.dart';
+import 'modules/my_real_matches/my_real_matches_store.dart';
 import 'modules/premium/premium_details/premium_details_page.dart';
 import 'modules/register/account/account_page.dart';
 import 'modules/register/check_email/check_email_page.dart';
@@ -42,15 +43,18 @@ class AppModule extends MainModule {
   List<Bind> get binds => [
         Bind((i) => MyFavoriteStore()),
         Bind((i) => MyMatchesStore()),
+        Bind((i)=> MyRealMatchesStore()),
         Bind((i)=> AppController(
             myFavoriteStore: i.get<MyFavoriteStore>(),
-            myMatchesStore: i.get<MyMatchesStore>())),
+            myMatchesStore: i.get<MyMatchesStore>(),
+            myRealMatchesStore: i.get<MyRealMatchesStore>()
+        )),
       ];
 
   @override
   List<ModularRouter> get routers => [
 
-        ModularRouter(Modular.initialRoute, module: SplashModule()),
+        ModularRouter(Modular.initialRoute, module: RegisterModule()),
         ModularRouter("/Monkey",child:(_,args) => MonkeyCertificationWidget()),
         ModularRouter("/Configuration", module: ConfigurationModule()),
         ModularRouter("/PremiumDetails",
@@ -69,7 +73,8 @@ class AppModule extends MainModule {
                     typeSearch: args.data[3],
                     nameAbr: args.data[4],
                     appController: args.data[5],
-                    patronize: args.data[6]
+                    patronize: args.data[6],
+                    officialPatronize: args.data[7]
                 ))),
         ModularRouter("/EditProfile", module: EditProfileModule()),
         ModularRouter("/Navigator", module: NavigatorModule()),

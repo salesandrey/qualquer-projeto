@@ -7,6 +7,7 @@ import 'complete_profile_controller.dart';
 import 'components/list_programs_column_widget.dart';
 
 
+
 class CompleteProfilePage extends StatelessWidget {
 
   final CompleteProfileController controller;
@@ -63,7 +64,11 @@ class CompleteProfilePage extends StatelessWidget {
                                       color: Color(0xff170C10),
                                     ),
                                     onPressed: () {
-                                      Modular.to.pop(true);
+                                      if(Modular.to.canPop()) {
+                                        Modular.to.pop(true);
+                                      }else{
+                                        Modular.to.pushReplacementNamed("/Navigator",arguments: [0,0]);
+                                      }
                                     },
                                   ),
                                   Container(
@@ -184,43 +189,65 @@ class CompleteProfilePage extends StatelessWidget {
                 ),
               ),
 
-              Visibility(
-                visible: controller.user.tipo!=controller.typeSearch,
-                child: Positioned(
-                  bottom: 0,
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height *0.15,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
-                              )),
-                          Positioned(left: 40,right: 40,
-                              child: ButtonConfirmWidget(
-                                  navigation:controller.patronize? (){
-                                    controller.changePatronize();
+                  controller.officialPatronize? Positioned(
+                      bottom: 0,
+                      child: Container(
+                        color: colorCard[controller.user.graduacao],
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          Text(
+                              "${controller.user.nome.split(" ").first[0].toUpperCase() + controller.user.nome.split(" ").first.substring(1)} é seu ${controller.user.tipo}!",
+                            style: TextStyle(color: Colors.black,fontFamily: "Montserrat Regular",fontSize: 0.035 * MediaQuery.of(context).size.width)),
+                            SizedBox(width: 4),
+                            InkWell(
+                              onTap: (){
+                                Modular.to.pushReplacementNamed("/Navigator",arguments: [3,1]);
+                              },
+                              child: Text(
+                                  "Ver todos",
+                                  style: TextStyle(decoration: TextDecoration.underline,color: Colors.black,fontFamily: "Montserrat Bold",fontSize: 0.035 * MediaQuery.of(context).size.width)),
+                            ),
+                        ],),
+                      )) : Visibility(
+                  visible: controller.user.tipo!=controller.typeSearch,
+                  child: Positioned(
+                    bottom: 0,
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height *0.15,
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
+                                )),
 
-                                  } : null,
-                                  disableColor: KButtonLightColor,
-                                  disableTextColor:KButtonLightTextColor,
-                                  text: controller.patronize?controller.typeSearch=="Padrinho"?"QUERO APADRINHAR!":"QUERO SER AFILHADO":"SOLICITAÇÃO ENVIADA",
-                                  color: colorCard[controller.user.graduacao],
-                                  textColor: Colors.white,
-                                  highLightColor: KBlueTextColor,
-                                  elevation: 0.00)
-                          ),
-                        ],alignment: Alignment.center,
-                      )
-                    ],
+                            Positioned(left: 40,right: 40,
+                                child: ButtonConfirmWidget(
+                                    navigation:controller.patronize? (){
+                                      controller.changePatronize();
+                                    } : null,
+                                    disableColor: KButtonLightColor,
+                                    disableTextColor:KButtonLightTextColor,
+                                    text: controller.patronize?controller.typeSearch=="Padrinho"?"QUERO APADRINHAR!":"QUERO SER AFILHADO":"SOLICITAÇÃO ENVIADA",
+                                    color: colorCard[controller.user.graduacao],
+                                    textColor: Colors.white,
+                                    highLightColor: KBlueTextColor,
+                                    elevation: 0.00)
+                            ),
+                          ],alignment: Alignment.center,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
+                )
             ],
           ),
         ),

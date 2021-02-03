@@ -9,13 +9,20 @@ import 'favorite_controller.dart';
 
 class FavoritePage extends StatefulWidget {
 
+  final int currentIndex;
+
+  const FavoritePage({Key key, this.currentIndex}) : super(key: key);
+
   @override
-  _FavoritePageState createState() => _FavoritePageState();
+  _FavoritePageState createState() => _FavoritePageState(currentIndex: currentIndex);
 }
 
 class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> {
 
 
+  final int currentIndex;
+
+  _FavoritePageState({this.currentIndex});
 
   Future<void> initAsyncFunction() async{
     await controller.getUserID();
@@ -35,6 +42,7 @@ class _FavoritePageState extends ModularState<FavoritePage, FavoriteController> 
   Widget build(BuildContext context) {
     return Observer(builder: (context){
       return DefaultTabController(
+        initialIndex: currentIndex,
         length: 2,
         child: Scaffold(
           backgroundColor: KPrimaryColor,

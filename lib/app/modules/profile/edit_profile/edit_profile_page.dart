@@ -99,7 +99,7 @@ class _EditProfilePageState
                           const EdgeInsets.only(top: 10, bottom: 15, left: 10),
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pop(context);
+                              Modular.to.pushReplacementNamed("Navigator",arguments: [4,0]);
                             },
                             child: Row(
                               children: <Widget>[
@@ -354,7 +354,7 @@ class _EditProfilePageState
                             controller.changeLoading(true);
                             await controller.saveData();
                             controller.changeLoading(false);
-                            Modular.to.pop();
+                            Modular.to.pushReplacementNamed("Navigator",arguments: [4,0]);
                           },
                           disableColor: KButtonLightColor,
                           disableTextColor:KButtonLightTextColor,

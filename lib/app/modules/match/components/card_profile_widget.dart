@@ -1,5 +1,6 @@
 import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/modules/match/components/button_card_profile_widget.dart';
+import 'package:PadrinhoMED/app/modules/match/components/location_disable.dart';
 import 'package:PadrinhoMED/app/modules/match/components/rounded_icon_card_widget.dart';
 import 'package:PadrinhoMED/app/modules/match/components/text_card_profile_widget.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/material.dart';
 
 class CardProfile extends StatelessWidget {
 
+
+  final bool premium;
   final UserMatchModel user;
   final Map<String,Color> colorCard = {
     "Estudante (1º ao 8º semestre)":Color(0xFFED7AA0),
@@ -18,7 +21,7 @@ class CardProfile extends StatelessWidget {
     "Médico Especialista":Color(0xFFFFBE69)
   };
 
-  CardProfile({Key key, this.user,}) : super(key: key);
+  CardProfile({Key key, this.user,this.premium}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +79,13 @@ class CardProfile extends StatelessWidget {
             Container(
                 padding: EdgeInsets.only(top: 0.024 * MediaQuery.of(context).size.height,left:24,right: 24 ),
                 child: TextCardProfileWidget(text1: "Nível de Graduação",text2: user.graduacao)),
-            Container(
+            premium?Container(
                 padding: EdgeInsets.only(top: 0.020 * MediaQuery.of(context).size.height,left: 24,right: 24),
-                child: TextCardProfileWidget(text1: "Localização",text2: "${user.cidade}, ${UFBrazil.ufBrazil.keys.firstWhere((element) => UFBrazil.ufBrazil[element]==user.estado)}")),
+                child: TextCardProfileWidget(
+                    text1: "Localização",
+                    text2: "${user.cidade}, ${UFBrazil.ufBrazil.keys.firstWhere((element) => UFBrazil.ufBrazil[element]==user.estado)}")):
+            Container(padding: EdgeInsets.only(top: 0.020 * MediaQuery.of(context).size.height,left: 24,right: 24),
+                child:LocationDisable(text1: "Localização",text2: "Exclusivo para contas Premium",)),
             Container(
               padding: EdgeInsets.only(top: 0.020 * MediaQuery.of(context).size.height,left: 24,right: 24),
               child: Column(
@@ -99,7 +106,7 @@ class CardProfile extends StatelessWidget {
                   Container(
                     height: 0.04 * MediaQuery.of(context).size.height,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         ButtonCardProfileWidget(text: "E-mail"),
                         SizedBox(width: 8,),

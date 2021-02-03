@@ -39,6 +39,8 @@ abstract class _LoadingControllerBase with Store {
     await globalController.myMatchesStore.getMyMatches(toInt(userID));
 
     await globalController.myFavoriteStore.startFavorite(toInt(userID));
+
+    await globalController.myRealMatchesStore.getMyMatches(toInt(userID));
   }
 
   @action

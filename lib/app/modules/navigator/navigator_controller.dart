@@ -16,6 +16,12 @@ abstract class _NavigatorControllerBase with Store implements Disposable {
   @observable
   PageController pageController = PageController(initialPage: 0);
 
+
+  @action
+  void changePageController(int page){
+    pageController = PageController(initialPage: page);
+  }
+
   @action
   void changePage(int index){
     pageController.jumpToPage(index);

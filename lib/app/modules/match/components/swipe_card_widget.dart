@@ -7,10 +7,11 @@ class SwipeCardWidget extends StatelessWidget {
 
   final List<UserMatchModel> listCard;
   final GlobalKey<SwipeStackState> swipeKey;
+  final bool premium;
   final Function love;
   final Function notLove;
 
-  SwipeCardWidget({Key key, this.listCard, this.swipeKey, this.love, this.notLove,}) : super(key: key);
+  SwipeCardWidget({Key key, this.listCard, this.swipeKey, this.love, this.notLove, this.premium}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +23,15 @@ class SwipeCardWidget extends StatelessWidget {
           children: listCard.map((value) {
             return SwiperItem(
                 builder: (SwiperPosition position, double progress) {
-                  return CardProfile(user: value);
+                  return CardProfile(user: value,premium: premium);
                 }
             );
           }).toList(),
           maxAngle: 0,
-          animationDuration: Duration(milliseconds: 500),
+          animationDuration: Duration(milliseconds: 450),
           visibleCount: 3,
           stackFrom: StackFrom.Right,
-          translationInterval: 10,
+          translationInterval: 9,
           scaleInterval: 0.03,
           love: love,
           notLove: notLove,

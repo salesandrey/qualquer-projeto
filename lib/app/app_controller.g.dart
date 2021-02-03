@@ -40,11 +40,28 @@ mixin _$AppController on _AppControllerBase, Store {
     });
   }
 
+  final _$myRealMatchesStoreAtom =
+      Atom(name: '_AppControllerBase.myRealMatchesStore');
+
+  @override
+  MyRealMatchesStore get myRealMatchesStore {
+    _$myRealMatchesStoreAtom.reportRead();
+    return super.myRealMatchesStore;
+  }
+
+  @override
+  set myRealMatchesStore(MyRealMatchesStore value) {
+    _$myRealMatchesStoreAtom.reportWrite(value, super.myRealMatchesStore, () {
+      super.myRealMatchesStore = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
 myFavoriteStore: ${myFavoriteStore},
-myMatchesStore: ${myMatchesStore}
+myMatchesStore: ${myMatchesStore},
+myRealMatchesStore: ${myRealMatchesStore}
     ''';
   }
 }

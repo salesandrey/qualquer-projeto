@@ -176,7 +176,7 @@ class _LoadingPageState extends ModularState<LoadingPage, LoadingController> wit
                           isRepeatingAnimation: false,
                           text: controller.currentsMessages,
                           onFinished: () {
-                            Modular.to.pushReplacementNamed("/Navigator");
+                            Modular.to.pushReplacementNamed("/Navigator",arguments: [0,0]);
                           },
                           textStyle: TextStyle(
                               fontSize: 18.0,

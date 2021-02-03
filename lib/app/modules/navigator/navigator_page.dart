@@ -11,25 +11,39 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'navigator_controller.dart';
 
 class NavigatorPage extends StatefulWidget {
+
+  final int currentPage;
+  final int currentTabPatronize;
+
+  const NavigatorPage({Key key, this.currentPage, this.currentTabPatronize}) : super(key: key);
+
   @override
-  _NavigatorPageState createState() => _NavigatorPageState();
+  _NavigatorPageState createState() => _NavigatorPageState(
+      currentPage: currentPage,
+      currentTabPatronize: currentTabPatronize);
 }
 
 class _NavigatorPageState extends ModularState<NavigatorPage, NavigatorController> {
 
 
-    List<Widget> tab =[
-      RouterOutlet(module: HomeModule(),),
-      RouterOutlet(module: SearchingModule()),
-      RouterOutlet(module: NotificationModule()),
-      RouterOutlet(module: FavoriteModule()),
-      RouterOutlet(module: ProfileModule())];
-    int index = 0;
+    final int currentPage;
+    final int currentTabPatronize;
+
+    List<Widget> tab;
 
     List<BottomNavigationBarItem> items;
 
+  _NavigatorPageState({this.currentPage, this.currentTabPatronize});
+
     @override
     void initState() {
+      controller.changePageController(currentPage);
+      tab =[
+        RouterOutlet(module: HomeModule(),),
+        RouterOutlet(module: SearchingModule()),
+        RouterOutlet(module: NotificationModule()),
+        RouterOutlet(module: FavoriteModule(currentIndex: currentTabPatronize)),
+        RouterOutlet(module: ProfileModule())];
       items = [
         BottomNavigationBarItem(
             icon: ImageIcon(AssetImage("assets/images/home_icon.png",),size: 32,),label: ""),
@@ -67,7 +81,7 @@ class _NavigatorPageState extends ModularState<NavigatorPage, NavigatorControlle
                         type: BottomNavigationBarType.fixed,
                         backgroundColor: Colors.white,
                         unselectedIconTheme: IconThemeData(color: kGrey),
-                        currentIndex: controller.pageController?.page?.round() ?? 0,
+                        currentIndex: controller.pageController?.page?.round() ?? currentPage,
                         selectedItemColor: Color(0xFF050072),
                         items: items,
                         onTap:controller.changePage

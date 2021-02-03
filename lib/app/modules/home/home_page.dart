@@ -165,14 +165,15 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   description: "1º ao 8º semestre",
                                   navigator: ()
                                   {
-                                    controller.changeFilter("Estudantes (1º ao 8º semestre)");
-                                    Modular.to.pushNamed("/Match",
+                                    controller.changeFilter("Estudante (1º ao 8º semestre)");
+                                    Modular.to.pushReplacementNamed("/Match",
                                         arguments:[
                                           controller.listFiltered,
                                           HeadModel(color:KPinkColor,textColor: Colors.black,name: "Estudantes (1º ao 8º semestre)"),
                                           controller.currentUser.id,
                                           controller.currentUser.tipo,
-                                          "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
+                                          "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
+                                          controller.premium
                                         ]);
                                   },
                                 ),
@@ -182,13 +183,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   description: "9º ao 12º semestre",
                                   navigator: ()
                                   {
-                                    controller.changeFilter("Internato (9º ao 12º semestre)");
-                                    Modular.to.pushNamed("/Match",arguments:[
+                                    controller.changeFilter("Interno (9º ao 12º semestre)");
+                                    Modular.to.pushReplacementNamed("/Match",arguments:[
                                       controller.listFiltered,
                                       HeadModel(color:KPurple,textColor: Colors.black,name: "Internos (9º ao 12º semestre)"),
                                       controller.currentUser.id,
                                       controller.currentUser.tipo,
-                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
+                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
+                                      controller.premium
                                     ]);
                                   },
                                 ),
@@ -200,12 +202,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   {
                                     controller.changeFilter("Médico Generalista");
 
-                                    Modular.to.pushNamed("/Match",arguments:[
+                                    Modular.to.pushReplacementNamed("/Match",arguments:[
                                       controller.listFiltered,
                                       HeadModel(color:KAzulColor,textColor: Colors.black,name:"Médicos Generalistas"),
                                       controller.currentUser.id,
                                       controller.currentUser.tipo,
-                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
+                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
+                                      controller.premium
                                     ]);
                                   },
                                 ),
@@ -216,12 +219,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   navigator: ()
                                   {
                                     controller.changeFilter("Em Especialização / Residente");
-                                    Modular.to.pushNamed("/Match",arguments:[
+                                    Modular.to.pushReplacementNamed("/Match",arguments:[
                                       controller.listFiltered,
                                       HeadModel(color:KGreenColor,textColor: Colors.black,name:"Em Especialização / Residente"),
                                       controller.currentUser.id,
                                       controller.currentUser.tipo,
-                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
+                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
+                                      controller.premium
                                     ]);
                                   },
                                 ),
@@ -232,12 +236,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   navigator: ()
                                   {
                                     controller.changeFilter("Médico Especialista");
-                                    Modular.to.pushNamed("/Match",arguments:[
+                                    Modular.to.pushReplacementNamed("/Match",arguments:[
                                       controller.listFiltered,
                                       HeadModel(color:KYellowColor,textColor: Colors.black,name:"Médicos Especialistas"),
                                       controller.currentUser.id,
                                       controller.currentUser.tipo,
-                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
+                                      "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
+                                      controller.premium
                                     ]);
                                   },
                                 ),
@@ -262,12 +267,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     FittedBox(
                                         child: InkWell(
                                           onTap: (){
-                                            Modular.to.pushNamed("/Match",arguments:[
+                                            Modular.to.pushReplacementNamed("/Match",arguments:[
                                               controller.mostIndication,
                                               HeadModel(color:KLightPurple,textColor: Color(0xFF050072), name: "Mais indicados para você"),
                                               controller.currentUser.id,
                                               controller.currentUser.tipo,
-                                              "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
+                                              "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
+                                              controller.premium
                                             ]);
                                           },
                                           child: Text(
@@ -326,12 +332,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   FittedBox(
                                       child: InkWell(
                                         onTap: (){
-                                          Modular.to.pushNamed("/Match",arguments:[
+                                          Modular.to.pushReplacementNamed("/Match",arguments:[
                                             controller.recentUsers,
                                             HeadModel(color:KLightPurple,textColor: Color(0xFF050072),name: "Acabaram de entrar no app"),
                                             controller.currentUser.id,
                                             controller.currentUser.tipo,
-                                            "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}."
+                                            "${controller.currentUser.nome.split(" ").first} ${controller.currentUser.nome.split(" ").last.substring(0,1)}.",
+                                            controller.premium
                                           ]);
                                         },
                                         child: Text(
