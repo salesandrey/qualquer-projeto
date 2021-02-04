@@ -22,7 +22,8 @@ class UserByIDRepository{
     if (response.statusCode == 200){
 
       dynamic user = jsonDecode(response.body)["results"];
-      UserMatchModel currentUser = user.map((value) => UserMatchModel.fromMap(value));
+      print(user);
+      UserMatchModel currentUser = UserMatchModel.fromMap(user);
       return currentUser;
 
     }else{

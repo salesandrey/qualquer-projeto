@@ -86,7 +86,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                   children: [
                                     FittedBox(
                                       child: Text(
-                                        "Procurando por afilhados em",
+                                        "Procurando em",
                                         style: TextStyle(
                                             color: KGreyColor,
                                             fontSize: 12,
@@ -301,6 +301,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                           changeGlobalLike: (){
                                             setState(() {});
                                           },
+                                          typeSearch: controller.currentUser.tipo,
                                           appController: controller.appController,
                                           user: controller.mostIndication[index],
                                           id:controller.currentUser.id,
@@ -368,6 +369,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                           changeGlobalLike: (){
                                             setState(() {});
                                           },
+                                          typeSearch: controller.currentUser.tipo,
                                           appController: controller.appController,
                                           user: controller.recentUsers[index],
                                           id:controller.currentUser.id,

@@ -13,7 +13,7 @@ class CardUserWidgetController = _CardUserWidgetControllerBase
 abstract class _CardUserWidgetControllerBase with Store {
 
   _CardUserWidgetControllerBase({
-    this.user,this.id,this.like,this.nameAbr,this.appController,this.changeGlobalLike});
+    this.user,this.id,this.like,this.nameAbr,this.appController,this.changeGlobalLike,this.typeSearch});
 
   @observable
   AppController appController;

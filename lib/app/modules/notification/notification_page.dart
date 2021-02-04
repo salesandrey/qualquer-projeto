@@ -1,6 +1,5 @@
 import 'package:PadrinhoMED/app/models/notification_model.dart';
 import 'package:PadrinhoMED/app/modules/notification/componentes/card_notification_widget.dart';
-import 'package:PadrinhoMED/app/utils/time_convert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -46,7 +45,11 @@ class _NotificationPageState extends ModularState<NotificationPage, Notification
                 if(snapshot.connectionState==ConnectionState.active){
                   return ListView.separated(
                       itemBuilder: (BuildContext context, int index){
-                        return CardNotificationWidget(cardData: snapshot.data[index]);
+                        return InkWell(
+                            onTap: (){
+                              Modular.to.pushNamed("/ProfileNotification",arguments:snapshot.data[index].idRemetente);
+                            },
+                            child: CardNotificationWidget(cardData: snapshot.data[index]));
                       },
                       separatorBuilder: (BuildContext context, int index){
                         return Divider(color: Color(0xFFD9D9D9),height: 1);

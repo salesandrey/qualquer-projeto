@@ -94,7 +94,7 @@ class _HomeFilteredPageState extends ModularState<HomeFilteredPage, HomeFiltered
                           children: [
                             FittedBox(
                               child: Text(
-                                "Procurando por afilhados em",
+                                "Procurando em",
                                 style: TextStyle(
                                     color: KGreyColor,
                                     fontSize: 12,

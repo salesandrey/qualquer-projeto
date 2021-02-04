@@ -1,19 +1,29 @@
+import 'package:PadrinhoMED/app/global_components/complete_profile/components/list_programs_column_widget.dart';
+import 'package:PadrinhoMED/app/models/user_list_model.dart';
 import 'package:PadrinhoMED/app/modules/register/components/button_confirm_widget.dart';
 import 'package:PadrinhoMED/app/styles/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'complete_profile_controller.dart';
-import 'components/list_programs_column_widget.dart';
+import 'profile_notification_controller.dart';
 
+class ProfileNotificationPage extends StatefulWidget {
 
+  final int remententUser;
 
-class CompleteProfilePage extends StatelessWidget {
+  ProfileNotificationPage({Key key, this.remententUser}) : super(key: key);
 
-  final CompleteProfileController controller;
+  @override
+  _ProfileNotificationPageState createState() =>
+      _ProfileNotificationPageState(remententUser: remententUser);
+}
 
+class _ProfileNotificationPageState extends ModularState<
+    ProfileNotificationPage, ProfileNotificationController> {
 
-  CompleteProfilePage({Key key, this.controller}) : super(key: key);
+  final int remententUser;
+
+  _ProfileNotificationPageState({this.remententUser});
 
   final Map<String,Color> colorCard = {
     "Estudante (1º ao 8º semestre)":Color(0xFFED7AA0),
@@ -27,9 +37,20 @@ class CompleteProfilePage extends StatelessWidget {
 
 
   @override
+  void initState() {
+    controller.initValues(remententUser);
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
+
     return Observer(builder: (context){
-      print(controller.typeSearch);
+      if(true) {
+        return Scaffold(body: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6259B2)))));
+      }
+
       return Scaffold(
         backgroundColor: KPrimaryColor,
         body: SafeArea(
@@ -45,7 +66,8 @@ class CompleteProfilePage extends StatelessWidget {
                       child: Stack(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height),
                           Positioned(
                             top: 0,left: 0,right: 0,
                             child: Container(
@@ -91,7 +113,7 @@ class CompleteProfilePage extends StatelessWidget {
                                           child: Container(
                                             child: Text(
                                               controller.user.graduacao=="Em Especialização / Residente" || controller.user.graduacao=="Médico Especialista"?
-                                               "${controller.user.especialidade} " : "Interesse: ${controller.user.especialidade} ",
+                                              "${controller.user.especialidade} " : "Interesse: ${controller.user.especialidade} ",
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontFamily: "Montserrat Bold",
@@ -192,71 +214,70 @@ class CompleteProfilePage extends StatelessWidget {
                 ),
               ),
 
-                  controller.officialPatronize?
-                  Positioned(
-                      bottom: 0,
-                      child: Container(
-                        color: colorCard[controller.user.graduacao],
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                          Text(
-                              "${controller.user.nome.split(" ").first[0].toUpperCase() + controller.user.nome.split(" ").first.substring(1)} é seu ${controller.user.tipo}!",
-                            style: TextStyle(color: Colors.black,fontFamily: "Montserrat Regular",fontSize: 0.035 * MediaQuery.of(context).size.width)),
-                            SizedBox(width: 4),
-                            InkWell(
-                              onTap: (){
-                                Modular.to.pushReplacementNamed("/Navigator",arguments: [3,1]);
-                              },
-                              child: Text(
-                                  "Ver todos",
-                                  style: TextStyle(decoration: TextDecoration.underline,color: Colors.black,fontFamily: "Montserrat Bold",fontSize: 0.035 * MediaQuery.of(context).size.width)),
-                            ),
-                        ],),
-                      )) : Visibility(
-                  visible: controller.user.tipo!=controller.typeSearch,
-                  child: Positioned(
-                    bottom: 0,
-                    child: Column(
+              controller.officialPatronize?
+              Positioned(
+                  bottom: 0,
+                  child: Container(
+                    color: colorCard[controller.user.graduacao],
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Stack(
-                          children: [
-                            Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height *0.15,
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
-                                )),
+                        Text(
+                            "${controller.user.nome.split(" ").first[0].toUpperCase() + controller.user.nome.split(" ").first.substring(1)} é seu ${controller.user.tipo}!",
+                            style: TextStyle(color: Colors.black,fontFamily: "Montserrat Regular",fontSize: 0.035 * MediaQuery.of(context).size.width)),
+                        SizedBox(width: 4),
+                        InkWell(
+                          onTap: (){
+                            Modular.to.pushReplacementNamed("/Navigator",arguments: [3,1]);
+                          },
+                          child: Text(
+                              "Ver todos",
+                              style: TextStyle(decoration: TextDecoration.underline,color: Colors.black,fontFamily: "Montserrat Bold",fontSize: 0.035 * MediaQuery.of(context).size.width)),
+                        ),
+                      ],),
+                  )) : Visibility(
+                visible: controller.user.tipo!=controller.typeSearch,
+                child: Positioned(
+                  bottom: 0,
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height *0.15,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [Colors.white.withOpacity(0.8), Colors.white.withOpacity(1.0)])
+                              )),
 
-                            Positioned(left: 40,right: 40,
-                                child: ButtonConfirmWidget(
-                                    navigation:controller.patronize? (){
-                                      controller.changePatronize();
-                                    } : null,
-                                    disableColor: KButtonLightColor,
-                                    disableTextColor:KButtonLightTextColor,
-                                    text: controller.patronize?controller.typeSearch=="Padrinho"?"QUERO APADRINHAR!":"QUERO SER AFILHADO":"SOLICITAÇÃO ENVIADA",
-                                    color: colorCard[controller.user.graduacao],
-                                    textColor: Colors.white,
-                                    highLightColor: KBlueTextColor,
-                                    elevation: 0.00)
-                            ),
-                          ],alignment: Alignment.center,
-                        )
-                      ],
-                    ),
+                          Positioned(left: 40,right: 40,
+                              child: ButtonConfirmWidget(
+                                  navigation:controller.patronize? (){
+                                    controller.changePatronize();
+                                  } : null,
+                                  disableColor: KButtonLightColor,
+                                  disableTextColor:KButtonLightTextColor,
+                                  text: controller.patronize?controller.typeSearch=="Padrinho"?"QUERO APADRINHAR!":"QUERO SER AFILHADO":"SOLICITAÇÃO ENVIADA",
+                                  color: colorCard[controller.user.graduacao],
+                                  textColor: Colors.white,
+                                  highLightColor: KBlueTextColor,
+                                  elevation: 0.00)
+                          ),
+                        ],alignment: Alignment.center,
+                      )
+                    ],
                   ),
-                )
+                ),
+              )
             ],
           ),
         ),
       );
     });
-
   }
 }

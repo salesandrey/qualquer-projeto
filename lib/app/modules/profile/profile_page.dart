@@ -95,7 +95,6 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
                   BoxOptionWidget(iconImage: 'assets/images/48.png',text: "Meus Certificados", navigation: (){
                     if(controller.premium){
                       Modular.to.pushReplacementNamed("/Signature");
-
                     }else{
                       Modular.to.pushNamed("/Monkey");
                     }
