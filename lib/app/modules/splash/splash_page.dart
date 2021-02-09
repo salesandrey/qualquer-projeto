@@ -9,7 +9,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends ModularState<SplashPage, SplashController> {
-  //use 'controller' variable to access controller
 
   @override
   void initState() {

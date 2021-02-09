@@ -1,3 +1,5 @@
+import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
+
 import 'configuration_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -6,7 +8,8 @@ import 'configuration_page.dart';
 class ConfigurationModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        $ConfigurationController,
+        Bind((i)=> SharedLocalStorageService()),
+        Bind((i)=> ConfigurationController(storage: i.get<SharedLocalStorageService>()))
       ];
 
   @override

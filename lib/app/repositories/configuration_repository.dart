@@ -23,11 +23,13 @@ class ConfigurationRepository{
           "apadrinhamentoOficial":configuration.apadrinhamentoOficial
         });
 
-    Response response = await post(
-        url, headers: {"Content-Type": "application/json"}, body: query);
+    print(query);
+
+    Response response = await post(url, headers: {"Content-Type": "application/json"}, body: query);
     if (response.statusCode == 200){
       print("Ok");
     }else{
+      print(response.body);
       return null;
     }
   }

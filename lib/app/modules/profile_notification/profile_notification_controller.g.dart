@@ -135,6 +135,14 @@ mixin _$ProfileNotificationController
     });
   }
 
+  final _$initValuesAsyncAction =
+      AsyncAction('_ProfileNotificationControllerBase.initValues');
+
+  @override
+  Future<void> initValues(int value) {
+    return _$initValuesAsyncAction.run(() => super.initValues(value));
+  }
+
   final _$changePatronizeAsyncAction =
       AsyncAction('_ProfileNotificationControllerBase.changePatronize');
 

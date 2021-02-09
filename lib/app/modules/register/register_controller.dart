@@ -9,7 +9,6 @@ import 'package:PadrinhoMED/app/repositories/user_repository.dart';
 import 'package:PadrinhoMED/app/services/push_notification_service.dart';
 import 'package:PadrinhoMED/app/services/shared_local_storage_service.dart';
 import 'package:PadrinhoMED/app/utils/time_convert.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -256,7 +255,7 @@ abstract class _RegisterControllerBase with Store{
 
    dynamic user = jsonEncode(
        {
-         "nome": username,
+         "nome": username.trim(),
          "instagram":instagram,
          "email": email,
          "senha": password,

@@ -1,4 +1,3 @@
-import 'package:PadrinhoMED/app/modules/login/componentes/button_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/components/button_confirm_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/form_register/componentes/level_graduation_widget.dart';
 import 'package:PadrinhoMED/app/modules/register/viewmodel/register_validate_viewmodel.dart';

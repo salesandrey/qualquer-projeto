@@ -13,7 +13,8 @@ final $CardUserWidgetController = BindInject(
       like: i<bool>(),
       nameAbr: i<String>(),
       appController: i<AppController>(),
-      changeGlobalLike: i<Function>()),
+      changeGlobalLike: i<Function>(),
+      typeSearch: i<String>()),
   singleton: true,
   lazy: true,
 );
